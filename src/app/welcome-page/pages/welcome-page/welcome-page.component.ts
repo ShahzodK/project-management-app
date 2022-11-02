@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.scss']
+  styleUrls: ['./welcome-page.component.scss'],
 })
-export class WelcomePageComponent implements OnInit {
+export class WelcomePageComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private translateService: TranslateService) {}
 }

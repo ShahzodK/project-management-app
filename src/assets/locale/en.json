@@ -6,6 +6,28 @@
       "createNewBoard": "Create new board",
       "logout": "Logout",
       "search": "Search..."
+    },
+    "welcome-header": {
+      "aboutApp": "ABOUT APP",
+      "course": "COURSE",
+      "ourTeam": "OUR TEAM",
+      "guest": "guest",
+      "login": "login"
+    },
+    "welcome-app": {
+      "title": "Manage projects easier with us",
+      "description": "Application name - Free application to improve work efficiency and manage projects together with other team members!",
+      "login": "login"
+    },
+    "welcome-course": {
+      "title": "Course",
+      "description": "This project was developed as part of the free Angular course from Rolling Scopes School. In this course, you will learn how to develop web applications using Angular. The course lasts 8 weeks where you will get acquainted with the basic syntax of Angular as well as with NgRx. Click on the link to join the course"
+    },
+    "welcome-team": {
+      "title": "Our Team",
+      "first-member-description": "Сделал логин и улучшил производительность приложения",
+      "second-member-description": "Сделал Drag and Drop и реализовал общение с сервером",
+      "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx"
     }
 	},
 	"languages": {

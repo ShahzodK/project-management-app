@@ -7,13 +7,13 @@
           <span></span>
         </div>
         <div class="header-links">
-          <a href="#app">О ПРИЛОЖЕНИИ</a>
-          <a href="#course">ПРО КУРС</a>
-          <a href="#about-us">НАША КОМАНДА</a>
+          <a href="#app">{{ 'common.welcome-header.aboutApp' | translate }}</a>
+          <a href="#course">{{ 'common.welcome-header.course' | translate }}</a>
+          <a href="#about-us">{{ 'common.welcome-header.ourTeam' | translate }}</a>
         </div>
         <div class="login-block">
-          <span>Гость</span>
-          <button mat-flat-button class="login-button">Войти</button>
+          <span>{{ 'common.welcome-header.guest' | translate }}</span>
+          <button mat-flat-button class="login-button">{{ 'common.welcome-header.login' | translate }}</button>
         </div>
       </div>
     </div>
@@ -23,12 +23,11 @@
 <section class="welcome-section" id="app">
   <div class="container welcome-page-container">
     <div class="welcome-content">
-      <mat-card-title class="welcome-title">Управляйте проектами проще вместе с нами</mat-card-title>
+      <mat-card-title class="welcome-title">{{ 'common.welcome-app.title' | translate }}</mat-card-title>
       <mat-card-content class="welcome-description">
-        Имя приложения - Это бесплатное приложение для повышения эффективности работы и управления
-        проектами вместе с другими членами команды!
+        {{ 'common.welcome-app.description' | translate }}
       </mat-card-content>
-      <button mat-flat-button class="login-button">Войти</button>
+      <button mat-flat-button class="login-button">{{ 'common.welcome-app.login' | translate }}</button>
     </div>
   </div>
 </section>
@@ -36,12 +35,9 @@
 <section class="course-section" id="course">
   <div class="container course-page-container">
     <div class="course-content">
-      <mat-card-title class="course-title">Про Курс</mat-card-title>
+      <mat-card-title class="course-title">{{ 'common.welcome-course.title' | translate }}</mat-card-title>
       <mat-card-content class="course-description">
-        Этот проект разработан в рамках бесплатного курса по Angular
-        от Rolling Scopes School. В этом курсе вы научитесь разрабатывать веб приложения с использованием Angular.
-        Курс длится 8 недель где вы познакомитесь с базовым синтаксисом Angular а также с NgRx.
-        Для участия в курсе нажмите на <a href="https://rs.school/angular/">ссылку</a>
+        {{ 'common.welcome-course.description' | translate }}
       </mat-card-content>
     </div>
   </div>
@@ -49,7 +45,7 @@
 
 <section class="our-team-section" id="about-us">
   <div class="container our-team-container">
-    <h2>Наша Команда</h2>
+    <h2>{{ 'common.welcome-team.title' | translate }}</h2>
     <div class="our-team-content">
       <div class="our-team-block">
         <div class="our-team-img-block">
@@ -57,7 +53,7 @@
        </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          Сделал логин и улучшил производительность приложения
+          {{ 'common.welcome-team.first-member-description' | translate }}
         </mat-card-content>
       </div>
       <div class="our-team-block">
@@ -66,7 +62,7 @@
        </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          Сделал Drag and Drop и реализовал общение с сервером
+          {{ 'common.welcome-team.second-member-description' | translate }}
         </mat-card-content>
       </div>
       <div class="our-team-block">
@@ -75,7 +71,7 @@
         </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          Разработал архитектуру приложения, роутинг и настроил NgRx
+          {{ 'common.welcome-team.third-member-description' | translate }}
         </mat-card-content>
       </div>
     </div>
