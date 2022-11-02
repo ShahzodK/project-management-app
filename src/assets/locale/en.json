@@ -1,0 +1,15 @@
+{
+	"common": {
+		"header": {
+      "title": "Projects management",
+      "editProfile": "Edit profile",
+      "createNewBoard": "Create new board",
+      "logout": "Logout",
+      "search": "Search..."
+    }
+	},
+	"languages": {
+		"en": "ENG",
+		"ru": "RUS"
+	}
+}
