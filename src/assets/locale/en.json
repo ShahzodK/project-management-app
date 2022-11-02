@@ -1,0 +1,10 @@
+{
+	"COMMON": {
+		"HEADER": "Projects management"
+	},
+	"LANGUAGES": {
+		"EN": "English",
+		"RU": "Russian",
+		"TITLE": "Language"
+	}
+}
