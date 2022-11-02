@@ -1,5 +1,7 @@
+import { ELocales } from 'src/app/shared/models';
+
 export const environment = {
   production: true,
-  locales: ['en', 'ru'],
-  defaultLocale: 'en',
+  locales: Object.keys(ELocales),
+  defaultLocale: ELocales.EN,
 };

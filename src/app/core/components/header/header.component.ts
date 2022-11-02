@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ELocales } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-header',
@@ -6,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  localeName = 'languages.en';
 
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor(private translateService: TranslateService) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  changeLocale() {
+    const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
+    this.translateService.use(lang);
+    this.localeName = `languages.${lang}`;
+  }
 }

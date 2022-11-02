@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
+import { ELocales } from './shared/models';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements OnInit {
   title = 'project-management-app';
 
-  selectedLanguage: string = 'en';
+  selectedLanguage: ELocales = ELocales.EN;
 
   languages: { id: string, title: string }[] = [];
 
