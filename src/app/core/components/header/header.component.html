@@ -1,0 +1,18 @@
+<header class="header">
+  <div>{{ 'common.header.title' | translate }}</div>
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>{{ 'common.header.search' | translate }}</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
+  <nav>
+    <button mat-button>{{ 'common.header.editProfile' | translate }}</button>
+    <button mat-button>{{ 'common.header.createNewBoard' | translate }}</button>
+    <button mat-button>{{ 'common.header.logout' | translate }}</button>
+    <mat-slide-toggle
+      color="primary"
+      (toggleChange)="changeLocale()"
+    >{{ localeName | translate }}</mat-slide-toggle>
+  </nav>
+</header>
