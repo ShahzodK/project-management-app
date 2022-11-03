@@ -25,9 +25,9 @@
     },
     "welcome-team": {
       "title": "Our Team",
-      "first-member-description": "Сделал логин и улучшил производительность приложения",
-      "second-member-description": "Сделал Drag and Drop и реализовал общение с сервером",
-      "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx"
+      "first-member-description": "Made login and improved app performance",
+      "second-member-description": "Made Drag and Drop and implemented communication with the server",
+      "third-member-description": "Developed the application architecture, routing and configured NgRx"
     }
 	},
 	"languages": {
