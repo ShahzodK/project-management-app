@@ -14,6 +14,7 @@ import { MatFormFieldModule  } from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
 
 import { environment } from '../environments/environment';
+import { WelcomePageModule } from './welcome-page/welcome-page.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    WelcomePageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
