@@ -7,9 +7,15 @@
           <span></span>
         </div>
         <div class="header-links">
-          <a href="#app">{{ 'common.welcome-header.aboutApp' | translate }}</a>
-          <a href="#course">{{ 'common.welcome-header.course' | translate }}</a>
-          <a href="#about-us">{{ 'common.welcome-header.ourTeam' | translate }}</a>
+          <button [routerLink]="['/']" fragment="app" mat-button>
+            {{ 'common.welcome-header.aboutApp' | translate }}
+          </button>
+          <button [routerLink]="['/']" fragment="course" mat-button>
+            {{ 'common.welcome-header.course' | translate }}
+          </button>
+          <button [routerLink]="['/']" fragment="about-us" mat-button>
+            {{ 'common.welcome-header.ourTeam' | translate }}
+          </button>
         </div>
         <div class="login-block">
           <span>{{ 'common.welcome-header.guest' | translate }}</span>
@@ -79,17 +85,17 @@
 </section>
 
 <footer class="footer">
-  <a href="https://github.com/Guseff" class="footer-link">
+  <a href="https://github.com/Guseff" class="footer-link" mat-button>
     Vasily Gusev
   </a>
-  <a href="https://github.com/adiletmaksatuly" class="footer-link">
+  <a href="https://github.com/adiletmaksatuly" class="footer-link" mat-button>
     Adilet Maksatuly
   </a>
-  <a href="https://github.com/ShahzodK" class="footer-link">
+  <a href="https://github.com/ShahzodK" class="footer-link" mat-button>
     Shahzod Kakhkhorov
   </a>
   <p>2022</p>
-  <a href="https://rs.school/angular/" class="logo">
+  <a href="https://rs.school/angular/" class="logo" mat-button>
       <img src="https://i.postimg.cc/DZWQtjYS/school-logo.png" alt="RS-school">
   </a>
 </footer>

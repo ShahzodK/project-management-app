@@ -23,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatButtonModule,
     MatCardModule,
     WelcomePageRoutingModule,
+    WelcomePageRoutingModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
