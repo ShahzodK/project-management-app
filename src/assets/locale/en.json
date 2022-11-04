@@ -1,5 +1,7 @@
 {
 	"common": {
+    "login": "Log In",
+    "signup": "Sign Up",
 		"header": {
       "title": "Projects management",
       "editProfile": "Edit profile",

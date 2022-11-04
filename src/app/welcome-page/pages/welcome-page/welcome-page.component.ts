@@ -9,6 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class WelcomePageComponent {
 
-  constructor(public translateService: TranslateService ) {}
+  constructor(public translateService: TranslateService) {}
 
 }
