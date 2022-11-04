@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void { }
 
-  changeLocale() {
+  public changeLocale() {
     const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
     this.translateService.use(lang);
     this.localeName = `languages.${lang}`;

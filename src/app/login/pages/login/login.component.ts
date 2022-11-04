@@ -11,7 +11,6 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor, @typescript-eslint/no-empty-function
   constructor(
     private loginService: LoginService,
     private router: Router,
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogin(): void {
+  public login(): void {
     // @todo replace arguments !!!!
     this.loginService.login('user001', 'userpass@123').subscribe({
       next: (res) => {
