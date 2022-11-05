@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 import { ELocales } from 'src/app/shared/models';
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void { }
 
-  changeLocale() {
+  public changeLocale() {
     const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
     this.translateService.use(lang);
     this.localeName = `languages.${lang}`;
