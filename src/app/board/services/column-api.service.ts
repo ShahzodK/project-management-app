@@ -7,33 +7,29 @@ export class ColumnApiService {
 
   constructor(private http: HttpClient) { }
 
-  public boardsPath = 'boards';
-
-  public columnsPath = '/columns';
-
   public getColumns(boardId: string) {
-    return this.http.get<IColumn[]>(`${this.boardsPath}/${boardId}${this.columnsPath}`);
+    return this.http.get<IColumn[]>(`boards/${boardId}/columns`);
   }
 
   public getColumn(boardId: string, columnId: string) {
-    return this.http.get<IColumn>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}`);
+    return this.http.get<IColumn>(`boards/${boardId}/columns/${columnId}`);
   }
 
   public createColumn(boardId:string, title: string) {
-    return this.http.post<IColumn>(`${this.boardsPath}/${boardId}${this.columnsPath}`, {
+    return this.http.post<IColumn>(`boards/${boardId}/columns`, {
       title,
     });
   }
 
   public updateColumn(boardId: string, columnId: string, title: string, order: number) {
-    return this.http.put<IColumn>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}`, {
+    return this.http.put<IColumn>(`boards/${boardId}/columns/${columnId}`, {
       title,
       order,
     });
   }
 
   public deleteColumn(boardId: string, columnId: string) {
-    return this.http.delete(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}`);
+    return this.http.delete(`boards/${boardId}/columns/${columnId}`);
   }
 
 }

@@ -8,32 +8,30 @@ export class BoardApiService {
 
   constructor(private http: HttpClient) { }
 
-  public boardsPath = 'boards';
-
   public getBoards() {
-    return this.http.get<IBoard[]>(`${this.boardsPath}`);
+    return this.http.get<IBoard[]>(`/boards`);
   }
 
   public getBoard(boardId: string) {
-    return this.http.get<IBoard>(`${this.boardsPath}/${boardId}`);
+    return this.http.get<IBoard>(`boards/${boardId}`);
   }
 
   public createBoard(title: string, description: string) {
-    return this.http.post<IBoard>(`${this.boardsPath}`, {
+    return this.http.post<IBoard>(`boards`, {
       title: title,
       description:description,
     });
   }
 
   public updateBoard(boardId: string, title: string, description: string) {
-    return this.http.put<IBoard>(`${this.boardsPath}/${boardId}`, {
+    return this.http.put<IBoard>(`boards/${boardId}`, {
       title: title,
       description:description,
     });
   }
 
   public deleteBoard(boardId: string) {
-    return this.http.delete(`${environment.baseUrl}${this.boardsPath}/${boardId}`);
+    return this.http.delete(`${environment.baseUrl}boards/${boardId}`);
   }
 }
 

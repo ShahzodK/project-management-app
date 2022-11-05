@@ -7,23 +7,17 @@ export class TaskApiService {
 
   constructor(private http: HttpClient) { }
 
-  public boardsPath = 'boards';
-
-  public columnsPath = '/columns';
-
-  public tasksPath = '/tasks';
-
   public getTasks(boardId: string, columnId: string) {
-    return this.http.get<ITask[]>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}${this.tasksPath}`, {
+    return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`, {
     });
   }
 
   public getTask(boardId: string, columnId: string, taskId: string) {
-    return this.http.get<ITask>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}${this.tasksPath}/${taskId}`);
+    return this.http.get<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
   public createTask(boardId:string, columnId: string, title: string, description: string, userId: string) {
-    return this.http.post<ITask>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}${this.tasksPath}`, {
+    return this.http.post<ITask>(`boards/${boardId}/columns/${columnId}/tasks`, {
       title,
       description,
       userId,
@@ -31,7 +25,7 @@ export class TaskApiService {
   }
 
   public updateTask(boardId: string, columnId: string, taskId: string, title: string, order: number, description: string, userId:string) {
-    return this.http.put<ITask>(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}${this.tasksPath}/${taskId}`, {
+    return this.http.put<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, {
       title,
       order,
       description,
@@ -42,7 +36,7 @@ export class TaskApiService {
   }
 
   public deleteTask(boardId: string, columnId: string, taskId: string) {
-    return this.http.delete(`${this.boardsPath}/${boardId}${this.columnsPath}/${columnId}${this.tasksPath}/${taskId}`);
+    return this.http.delete(`boards/${boardId}/columns/${columnId}tasks/${taskId}`);
   }
 
 }
