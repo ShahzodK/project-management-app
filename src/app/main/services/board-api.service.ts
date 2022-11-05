@@ -9,7 +9,7 @@ export class BoardApiService {
   constructor(private http: HttpClient) { }
 
   public getBoards() {
-    return this.http.get<IBoard[]>(`/boards`);
+    return this.http.get<IBoard[]>('boards');
   }
 
   public getBoard(boardId: string) {
@@ -17,7 +17,7 @@ export class BoardApiService {
   }
 
   public createBoard(title: string, description: string) {
-    return this.http.post<IBoard>(`boards`, {
+    return this.http.post<IBoard>('boards', {
       title: title,
       description:description,
     });
