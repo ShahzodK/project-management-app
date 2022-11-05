@@ -13,9 +13,8 @@ export class Interceptor implements HttpInterceptor {
     }
 
     const url = `${environment.baseUrl}${request.url}`;
-    const temporaryToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NGNmOTZkMi01OGZjLTRlMGMtOTZkOS05YWM0MjhkNGQ0OTUiLCJsb2dpbiI6InVzZXIwMDEiLCJpYXQiOjE2NTIwMDMyMTF9.EUlvrrs0Hl7wq1o-vkW5eh710CeNmhTfivk8aYkO43I';
     const headers = request.headers
-      .append('Authorization', `Bearer ${localStorage.getItem('authToken') || temporaryToken}`)
+      .append('Authorization', `Bearer ${localStorage.getItem('authToken')}`)
       .append('Accept', 'application/json');
 
     const customReq = request.clone({
