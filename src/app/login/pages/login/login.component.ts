@@ -1,8 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
 
 import { LoginService } from '../../services/login.service';
 
@@ -12,7 +12,9 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  sbj?: BehaviorSubject<string>;
+  public isLoginError?: boolean;
+
+  public errMessage = '';
 
   loginForm = new FormGroup({
     loginInput: new FormControl<string>('', [
@@ -37,29 +39,34 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    // @todo replace arguments !!!!
-    this.loginService.login('user001', 'userpass@123').subscribe({
-      next: (res) => {
-        localStorage.setItem('authToken', (res as { token: string }).token);
-        this.router.navigate(['']);
-      },
-      error: () => {
-        // @todo handle error !!!
-        this.router.navigate(['404']);
-      },
-    });
+    if (this.loginInput?.value && this.passwordInput?.value) {
+      this.loginService.login(
+        this.loginInput.value,
+        this.passwordInput.value,
+      ).subscribe({
+        next: (res) => {
+          this.isLoginError = false;
+          this.loginForm.reset();
+          localStorage.setItem('authToken', (res as { token: string }).token);
+          this.router.navigate(['']);
+        },
+        error: (res: HttpErrorResponse) => {
+          this.isLoginError = true;
+          this.errMessage = `common.login-module.errors.${res.status}`;
+        },
+      });
+    }
   }
 
 
   public submit(): void {
-    if (this.loginForm.value.loginInput && this.sbj) {
-      this.sbj.next(this.loginForm.value.loginInput);
+    if (this.loginForm.valid) {
+      this.login();
+
       this.loginForm.setValue({
         loginInput: '',
         passwordInput: '',
       });
-
-      this.login();
     }
   }
 

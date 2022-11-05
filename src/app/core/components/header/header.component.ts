@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ELocales } from 'src/app/shared/models';
@@ -11,7 +12,10 @@ import { ELocales } from 'src/app/shared/models';
 export class HeaderComponent implements OnInit {
   localeName = 'languages.en';
 
-  constructor(private translateService: TranslateService) { }
+  constructor(
+    private translateService: TranslateService,
+    private router: Router,
+  ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void { }
@@ -21,4 +25,10 @@ export class HeaderComponent implements OnInit {
     this.translateService.use(lang);
     this.localeName = `languages.${lang}`;
   }
+
+  public logout() {
+    localStorage.removeItem('authToken');
+    this.router.navigate(['login']);
+  }
+
 }
