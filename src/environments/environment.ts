@@ -9,6 +9,9 @@ export const environment = {
   locales: Object.keys(ELocales),
   defaultLocale: ELocales.EN,
   baseUrl: 'https://shocking-monster-70192.herokuapp.com/',
+  boardsPath: 'boards',
+  columnsPath: '/columns',
+  tasksPath: '/tasks',
 };
 
 /*
