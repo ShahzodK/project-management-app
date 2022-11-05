@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BoardApiService } from './services/board-api.service';
+import { Interceptor } from '../core/services/interceptor';
 
 @NgModule({
   declarations: [],
@@ -9,6 +10,13 @@ import { BoardApiService } from './services/board-api.service';
     CommonModule,
     HttpClientModule,
   ],
-  providers: [BoardApiService],
+  providers: [
+    BoardApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true,
+    },
+  ],
 })
 export class MainModule { }

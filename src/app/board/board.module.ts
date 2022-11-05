@@ -1,9 +1,9 @@
-import { ColumnApiService } from './services/column-api.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ColumnApiService } from './services/column-api.service';
+import { TaskApiService } from './services/task-api.service';
+import { Interceptor } from '../core/services/interceptor';
 
 @NgModule({
   declarations: [],
@@ -13,6 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     ColumnApiService,
+    TaskApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true,
+    },
   ],
 })
 export class BoardModule { }
