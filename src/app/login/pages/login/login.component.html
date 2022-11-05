@@ -1,1 +1,40 @@
-<button mat-button (click)="login()">{{ 'common.login' | translate }}</button>
+<section>
+  <h3>Login</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <label for="login">login</label>
+    <input
+      type="text"
+      formControlName="login"
+      name="login"
+      [appInputBorderColor]="loginInput?.invalid && (loginInput?.dirty || loginInput?.touched)"
+    >
+    <div *ngIf="loginInput?.invalid && (loginInput?.dirty || loginInput?.touched)" class="alert">
+      <div *ngIf="loginInput?.errors?.['required']">
+        Please enter a login email.
+      </div>
+      <div *ngIf="loginInput?.errors?.['email']">
+        The login email is invalid.
+      </div>
+    </div>
+    <label for="password">password</label>
+    <input
+      type="password"
+      formControlName="password"
+      name="password"
+      [appInputBorderColor]="passwordInput?.invalid && (passwordInput?.dirty || passwordInput?.touched)"
+    >
+    <div *ngIf="passwordInput?.invalid && (passwordInput?.dirty || passwordInput?.touched)" class="alert">
+      <div *ngIf="passwordInput?.errors?.['required']">
+        Please enter a password.
+      </div>
+      <div *ngIf="passwordInput?.errors?.['minlength'] || passwordInput?.errors?.['pattern']">
+        Your password isn't strong enough.
+      </div>
+    </div>
+    <div class="buttons">
+      <a href="registration">Registration</a>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </div>
+  </form>
+  <button mat-button (click)="login()">{{ 'common.login' | translate }}</button>
+</section>

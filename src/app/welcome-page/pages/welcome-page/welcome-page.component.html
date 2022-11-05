@@ -19,7 +19,11 @@
         </div>
         <div class="login-block">
           <span>{{ 'common.welcome-header.guest' | translate }}</span>
-          <button mat-button class="login-button">{{ 'common.welcome-header.login' | translate }}</button>
+          <button
+            mat-button
+            class="login-button"
+            (click)="router.navigate(['login'])"
+          >{{ 'common.welcome-header.login' | translate }}</button>
         </div>
       </div>
     </div>
