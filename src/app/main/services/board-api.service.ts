@@ -1,67 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Board } from './../models/board.model';
+import { IBoard } from './../models/board.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class BoardApiService {
 
   constructor(private http: HttpClient) { }
 
-  private BASE_URL = 'https://fathomless-everglades-64985.herokuapp.com';
-
-  private BOARDS_PATH = '/boards';
-
-  public API_TOKEN = localStorage.getItem('authToken');
-
   public getBoards() {
-    return this.http.get<Board[]>(`${this.BASE_URL}${this.BOARDS_PATH}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+    return this.http.get<IBoard[]>(`${environment.boardsPath}`);
   }
 
-  public getBoard(id: string) {
-    return this.http.get<Board>(`${this.BASE_URL}${this.BOARDS_PATH}/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+  public getBoard(boardId: string) {
+    return this.http.get<IBoard>(`${environment.boardsPath}/${boardId}`);
   }
 
   public createBoard(title: string, description: string) {
-    return this.http.post<Board>(`${this.BASE_URL}${this.BOARDS_PATH}`, {
+    return this.http.post<IBoard>(`${environment.boardsPath}`, {
       title: title,
       description:description,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
     });
   }
 
-  public updateBoard(id: string, title: string, description: string) {
-    return this.http.put<Board>(`${this.BASE_URL}${this.BOARDS_PATH}/${id}`, {
+  public updateBoard(boardId: string, title: string, description: string) {
+    return this.http.put<IBoard>(`${environment.boardsPath}/${boardId}`, {
       title: title,
       description:description,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
     });
   }
 
-  public deleteBoard(id: string) {
-    return this.http.delete(`${this.BASE_URL}${this.BOARDS_PATH}/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+  public deleteBoard(boardId: string) {
+    return this.http.delete(`${environment.baseUrl}${environment.boardsPath}/${boardId}`);
   }
 }
 

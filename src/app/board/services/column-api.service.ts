@@ -1,68 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Column } from '../models/column.model';
+import { IColumn } from '../models/column.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ColumnApiService {
-  
+
   constructor(private http: HttpClient) { }
 
-  private BASE_URL = 'https://fathomless-everglades-64985.herokuapp.com';
-
-  private BOARDS_PATH = '/boards';
-
-  private COLUMNS_PATH = '/columns';
-
-  public API_TOKEN = localStorage.getItem('authToken');
-
   public getColumns(boardId: string) {
-    return this.http.get<Column[]>(`${this.BASE_URL}${this.BOARDS_PATH}/${boardId}${this.COLUMNS_PATH}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+    return this.http.get<IColumn[]>(`${environment.boardsPath}/${boardId}${environment.columnsPath}`);
   }
 
   public getColumn(boardId: string, columnId: string) {
-    return this.http.get<Column>(`${this.BASE_URL}${this.BOARDS_PATH}/${boardId}${this.COLUMNS_PATH}/${columnId}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+    return this.http.get<IColumn>(`${environment.boardsPath}/${boardId}${environment.columnsPath}/${columnId}`);
   }
 
   public createColumn(boardId:string, title: string) {
-    return this.http.post<Column>(`${this.BASE_URL}${this.BOARDS_PATH}/${boardId}${this.COLUMNS_PATH}`, {
+    return this.http.post<IColumn>(`${environment.boardsPath}/${boardId}${environment.columnsPath}`, {
       title,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
     });
   }
 
   public updateColumn(boardId: string, columnId: string, title: string, order: number) {
-    return this.http.put<Column>(`${this.BASE_URL}${this.BOARDS_PATH}/${boardId}${this.COLUMNS_PATH}/${columnId}`, {
+    return this.http.put<IColumn>(`${environment.boardsPath}/${boardId}${environment.columnsPath}/${columnId}`, {
       title,
       order,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
     });
   }
 
   public deleteColumn(boardId: string, columnId: string) {
-    return this.http.delete(`${this.BASE_URL}${this.BOARDS_PATH}/${boardId}${this.COLUMNS_PATH}/${columnId}`, {
-      headers: {
-        'Authorization': `Bearer ${this.API_TOKEN}`,
-        'Accept': 'application/json',
-      },
-    });
+    return this.http.delete(`${environment.boardsPath}/${boardId}${environment.columnsPath}/${columnId}`);
   }
 
 }
