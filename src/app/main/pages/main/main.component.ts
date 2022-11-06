@@ -17,9 +17,6 @@ export class MainComponent implements OnInit {
     this.api.getBoards().subscribe({
       next: (boards) => {
         this.boardService.boards = boards;
-        this.boardService.boards.forEach(board => {
-          board.isDeleteModalVisible = false;
-        });
       },
       error: (err) => console.log(`oops something went wrong, status:${err}`),
     });
