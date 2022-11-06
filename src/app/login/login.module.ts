@@ -15,6 +15,7 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
+import { UserService } from '../shared/services/user.service';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DirectivesModule } from '../shared/directives/directives.module';
   ],
   providers: [
     LoginService,
+    UserService,
   ],
 })
 export class LoginModule { }

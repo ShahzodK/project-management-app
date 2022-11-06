@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private userService: UserService,
     private router: Router,
     public translateService: TranslateService,
   ) { }
@@ -58,6 +60,9 @@ export class SignupComponent implements OnInit {
         error: (res: HttpErrorResponse) => {
           this.isSignupError = true;
           this.errMessage = `common.login-module.errors.${res.status}`;
+        },
+        complete: () => {
+          this.userService.check();
         },
       });
     }

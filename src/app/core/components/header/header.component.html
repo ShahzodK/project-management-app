@@ -1,15 +1,28 @@
 <header class="header">
-  <div>{{ 'common.header.title' | translate }}</div>
   <div>
+    <div class="title">{{ 'header.title' | translate }}</div>
+    <div class="user" *ngIf="isLogged$ | async">{{ 'header.logged' | translate }} {{ userName$ | async }}</div>
+    <div class="user" *ngIf="!!!(isLogged$ | async)">{{ 'header.no-logged' | translate }}</div>
+  </div>
+  <div *ngIf="isLogged$ | async">
     <mat-form-field appearance="standard">
-      <mat-label>{{ 'common.header.search' | translate }}</mat-label>
+      <mat-label>{{ 'header.search' | translate }}</mat-label>
       <input matInput>
     </mat-form-field>
   </div>
   <nav>
-    <button mat-button>{{ 'common.header.editProfile' | translate }}</button>
-    <button mat-button>{{ 'common.header.createNewBoard' | translate }}</button>
-    <button mat-button (click)="logout()">{{ 'common.header.logout' | translate }}</button>
+    <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
+    <button *ngIf="isLogged$ | async" mat-button>{{ 'header.createNewBoard' | translate }}</button>
+    <button
+      *ngIf="isLogged$ | async"
+      mat-button
+      (click)="logout()"
+    >{{ 'common.logout' | translate }}</button>
+    <a
+      *ngIf="!!!(isLogged$ | async)"
+      mat-button
+      routerLink="login"
+    >{{ 'common.login' | translate }}</a>
     <mat-slide-toggle
       color="primary"
       (toggleChange)="changeLocale()"
