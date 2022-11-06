@@ -30,6 +30,13 @@
       "first-member-description": "Сделал логин и улучшил производительность приложения",
       "second-member-description": "Сделал Drag and Drop и реализовал общение с сервером",
       "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx"
+    },
+    "main-page": {
+      "title": "Заголовок",
+      "description": "Описание",
+      "boards": "Доски",
+      "createBoard": "Создать Доску",
+      "areYouSureDelete": "Вы уверены что хотите удалить доску"
     }
 	},
 	"languages": {

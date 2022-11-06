@@ -30,6 +30,13 @@
       "first-member-description": "Made login and improved app performance",
       "second-member-description": "Made Drag and Drop and implemented communication with the server",
       "third-member-description": "Developed the application architecture, routing and configured NgRx"
+    },
+    "main-page": {
+      "title": "Title",
+      "description": "Description",
+      "boards": "Boards",
+      "createBoard": "Create board",
+      "areYouSureDelete": "Are you sure you want to delete the board"
     }
 	},
 	"languages": {
