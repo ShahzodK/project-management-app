@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginService } from './services/login.service';
@@ -24,6 +26,8 @@ import { DirectivesModule } from '../shared/directives/directives.module';
     CommonModule,
     DirectivesModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     LoginRoutingModule,
     TranslateModule.forChild({

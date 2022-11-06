@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { InputBorderColorDirective } from './input-border-color.directive';
 
 @NgModule({
   imports: [],
-  declarations: [InputBorderColorDirective],
-  exports: [InputBorderColorDirective],
+  declarations: [],
+  exports: [],
 })
 export class DirectivesModule { }

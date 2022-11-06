@@ -1,1 +1,41 @@
-<p>signup works!</p>
+<section class="sectionLogin">
+  <div class="wrapper">
+    <h3>{{ 'common.login-module.signup-welcome' | translate }}</h3>
+    <form class="formLogin" [formGroup]="signupForm" (ngSubmit)="signup()">
+      <mat-form-field appearance="standard">
+        <mat-label for="name">{{ 'common.name' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="nameInput"
+          name="name"
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="loginInput"
+          name="login"
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="passwordInput"
+          name="password"
+        >
+      </mat-form-field>
+      <div class="buttons">
+        <button
+          mat-button
+          type="submit"
+        >{{ 'common.signup' | translate }}</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="isSignupError" class="warning">{{ errMessage | translate }}</div>
+</section>

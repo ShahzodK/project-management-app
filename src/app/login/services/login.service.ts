@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap  } from 'rxjs';
 
 @Injectable()
 export class LoginService {
@@ -19,7 +19,9 @@ export class LoginService {
       name,
       login,
       password,
-    });
+    }).pipe(
+      switchMap(() => this.login(login, password)),
+    );
   }
 
 }
