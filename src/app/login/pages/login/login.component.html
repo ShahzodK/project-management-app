@@ -1,40 +1,33 @@
-<section>
-  <h3>Login</h3>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()">
-    <label for="login">login</label>
-    <input
-      type="text"
-      formControlName="login"
-      name="login"
-      [appInputBorderColor]="loginInput?.invalid && (loginInput?.dirty || loginInput?.touched)"
-    >
-    <div *ngIf="loginInput?.invalid && (loginInput?.dirty || loginInput?.touched)" class="alert">
-      <div *ngIf="loginInput?.errors?.['required']">
-        Please enter a login email.
+<section class="sectionLogin">
+  <div class="wrapper">
+    <h3>{{ 'common.login-module.login-welcome' | translate }}</h3>
+    <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="submit()">
+      <mat-form-field appearance="standard">
+        <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="loginInput"
+          name="login"
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="passwordInput"
+          name="password"
+        >
+      </mat-form-field>
+      <div class="buttons">
+        <a mat-button routerLink="signup">{{ 'common.signup' | translate }}</a>
+        <button
+          mat-button
+          type="submit"
+        >{{ 'common.login' | translate }}</button>
       </div>
-      <div *ngIf="loginInput?.errors?.['email']">
-        The login email is invalid.
-      </div>
-    </div>
-    <label for="password">password</label>
-    <input
-      type="password"
-      formControlName="password"
-      name="password"
-      [appInputBorderColor]="passwordInput?.invalid && (passwordInput?.dirty || passwordInput?.touched)"
-    >
-    <div *ngIf="passwordInput?.invalid && (passwordInput?.dirty || passwordInput?.touched)" class="alert">
-      <div *ngIf="passwordInput?.errors?.['required']">
-        Please enter a password.
-      </div>
-      <div *ngIf="passwordInput?.errors?.['minlength'] || passwordInput?.errors?.['pattern']">
-        Your password isn't strong enough.
-      </div>
-    </div>
-    <div class="buttons">
-      <a href="registration">Registration</a>
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
-    </div>
-  </form>
-  <button mat-button (click)="login()">{{ 'common.login' | translate }}</button>
+    </form>
+  </div>
+  <div *ngIf="!!isLoginError" class="warning">{{ errMessage | translate }}</div>
 </section>

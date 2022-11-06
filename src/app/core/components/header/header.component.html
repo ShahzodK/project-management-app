@@ -9,7 +9,7 @@
   <nav>
     <button mat-button>{{ 'common.header.editProfile' | translate }}</button>
     <button mat-button>{{ 'common.header.createNewBoard' | translate }}</button>
-    <button mat-button>{{ 'common.header.logout' | translate }}</button>
+    <button mat-button (click)="logout()">{{ 'common.header.logout' | translate }}</button>
     <mat-slide-toggle
       color="primary"
       (toggleChange)="changeLocale()"
