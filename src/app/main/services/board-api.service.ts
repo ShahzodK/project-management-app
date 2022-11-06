@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IBoard } from './../models/board.model';
-import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn:'root',
+})
 export class BoardApiService {
 
   constructor(private http: HttpClient) { }
@@ -31,7 +32,7 @@ export class BoardApiService {
   }
 
   public deleteBoard(boardId: string) {
-    return this.http.delete(`${environment.baseUrl}boards/${boardId}`);
+    return this.http.delete(`boards/${boardId}`);
   }
 }
 
