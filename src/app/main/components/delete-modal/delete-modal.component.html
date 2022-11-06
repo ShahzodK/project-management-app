@@ -1,0 +1,5 @@
+<mat-card class="delete-board-modal-container">
+  <h3>{{'common.main-page.areYouSureDelete' | translate}}</h3>
+  <button mat-button fill="red" (click)="cancelDeletingBoard()" class="no-button">No</button>
+  <button mat-button fill="green" (click)="deleteBoard(boardService.deletingBoard)" class="yes-button">Yes</button>
+</mat-card>
