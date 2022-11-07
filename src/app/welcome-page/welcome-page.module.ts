@@ -9,6 +9,7 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
+import { FooterComponent } from '../core/components/footer/footer.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -16,6 +17,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
 @NgModule({
   declarations: [
     WelcomePageComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
