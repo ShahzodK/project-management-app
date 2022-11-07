@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
 import { ELocales } from './shared/models';
+import { UserService } from './shared/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,14 @@ export class AppComponent implements OnInit {
 
   languages: { id: string, title: string }[] = [];
 
-  constructor(private translateService: TranslateService) {}
+  constructor(
+    private translateService: TranslateService,
+    private userService: UserService,
+  ) {}
 
   ngOnInit(): void {
     this.translateService.use(environment.defaultLocale);
     this.selectedLanguage = environment.defaultLocale;
+    this.userService.check();
   }
 }

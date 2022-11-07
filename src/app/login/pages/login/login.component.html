@@ -1,6 +1,6 @@
 <section class="sectionLogin">
   <div class="wrapper">
-    <h3>{{ 'common.login-module.login-welcome' | translate }}</h3>
+    <h3>{{ 'login-module.login-welcome' | translate }}</h3>
     <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="submit()">
       <mat-form-field appearance="standard">
         <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
@@ -21,6 +21,7 @@
         >
       </mat-form-field>
       <div class="buttons">
+        <a mat-button routerLink="">{{ 'common.main-link' | translate }}</a>
         <a mat-button routerLink="signup">{{ 'common.signup' | translate }}</a>
         <button
           mat-button
