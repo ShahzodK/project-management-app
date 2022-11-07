@@ -13,7 +13,7 @@ export class BoardService {
 
   public searchValue = '';
 
-  public searchBoard(value: string) {
+  public searchBoard(value: string): void {
     const filteredBoards: IBoard[] = this.boards.filter((board) => board.title.toLowerCase().includes(value.toLowerCase()));
     console.log(filteredBoards);
   }

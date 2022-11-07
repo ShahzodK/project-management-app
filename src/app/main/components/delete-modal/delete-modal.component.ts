@@ -13,8 +13,8 @@ export class DeleteModalComponent {
   constructor(private api: BoardApiService, public boardService: BoardService) { }
 
   @Input() board: IBoard | undefined;
-  
-  public deleteBoard(id: string) {
+
+  public deleteBoard(id: string): void {
     console.log('boarder');
     this.api.deleteBoard(id).subscribe({
       next: () => {
@@ -25,7 +25,7 @@ export class DeleteModalComponent {
     });
   }
 
-  cancelDeletingBoard() {
+  cancelDeletingBoard(): void {
     this.boardService.deletingBoard = '';
   }
 }

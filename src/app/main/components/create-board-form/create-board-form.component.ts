@@ -29,7 +29,7 @@ export class CreateBoardFormComponent {
     }),
   });
 
-  public submit() {
+  public submit(): void {
     const boardTitle = this.createBoard.getRawValue().title;
     const boardDescription = this.createBoard.getRawValue().description;
     this.api.createBoard(boardTitle, boardDescription).subscribe({
@@ -41,7 +41,7 @@ export class CreateBoardFormComponent {
     });
   }
 
-  public showCreateBoardForm() {
+  public showCreateBoardForm(): void {
     this.isClicked = true;
   }
 }
