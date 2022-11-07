@@ -1,34 +1,32 @@
-<section class="sectionLogin">
-  <div class="wrapper">
-    <h3>{{ 'login-module.login-welcome' | translate }}</h3>
-    <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="submit()">
-      <mat-form-field appearance="standard">
-        <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="loginInput"
-          name="login"
-        >
-      </mat-form-field>
-      <mat-form-field appearance="standard">
-        <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="passwordInput"
-          name="password"
-        >
-      </mat-form-field>
-      <div class="buttons">
-        <a mat-button routerLink="">{{ 'common.main-link' | translate }}</a>
-        <a mat-button routerLink="signup">{{ 'common.signup' | translate }}</a>
-        <button
-          mat-button
-          type="submit"
-        >{{ 'common.login' | translate }}</button>
-      </div>
-    </form>
-  </div>
+<app-form-section>
+  <h2>{{ 'login-module.login-welcome' | translate }}</h2>
+  <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="standard">
+      <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="loginInput"
+        name="login"
+      >
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="passwordInput"
+        name="password"
+      >
+    </mat-form-field>
+    <div class="buttons">
+      <a mat-button routerLink="">{{ 'common.main-link' | translate }}</a>
+      <a mat-button routerLink="signup">{{ 'common.signup' | translate }}</a>
+      <button
+        mat-button
+        type="submit"
+      >{{ 'common.login' | translate }}</button>
+    </div>
+  </form>
   <div *ngIf="!!isLoginError" class="warning">{{ errMessage | translate }}</div>
-</section>
+</app-form-section>
