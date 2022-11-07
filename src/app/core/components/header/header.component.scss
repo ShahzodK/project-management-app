@@ -2,6 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem 5rem;
+  padding: 0.5rem 5rem;
   border-bottom: 1px solid #3f51b5;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.user {
+  color: #3f51b5;
 }

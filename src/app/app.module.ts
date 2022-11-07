@@ -5,7 +5,7 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { Interceptor } from './core/services/interceptor';
+import { UserService } from './shared/services/user.service';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -62,6 +63,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useClass: Interceptor,
       multi: true,
     },
+    UserService,
   ],
   bootstrap: [AppComponent],
 })
