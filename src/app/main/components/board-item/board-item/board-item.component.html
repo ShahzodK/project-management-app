@@ -1,6 +1,4 @@
 <mat-card class="board-card">
   <mat-card-title class="board-title">{{board!.title}}</mat-card-title>
-  <button mat-button (click)="boardService.deletingBoard = board!.id!">
-    <img src="../../../../../assets/img/main-page/trash.png" alt="delete">
-  </button>
+  <mat-icon (click)="boardService.deletingBoard = board!.id!" class="delete-button">delete</mat-icon>
 </mat-card>

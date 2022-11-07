@@ -10,9 +10,11 @@ import { BoardService } from '../../services/board.service';
 })
 export class CreateBoardFormComponent {
 
-  constructor(private boardService: BoardService, private api: BoardApiService) { }
+  constructor(public boardService: BoardService, private api: BoardApiService) { }
 
   public isClicked = false;
+
+  public boardError = false;
 
   public createBoard = new FormGroup({
     title: new FormControl<string>('', {
@@ -32,13 +34,16 @@ export class CreateBoardFormComponent {
   public submit(): void {
     const boardTitle = this.createBoard.getRawValue().title;
     const boardDescription = this.createBoard.getRawValue().description;
-    this.api.createBoard(boardTitle, boardDescription).subscribe({
-      next: ({ id, title, description }) => {
-        this.boardService.boards.push({ id, title, description });
-        this.isClicked = false;
-      },
-      error: (err) => console.log(`oops something went wrong, status: ${err.status}`),
-    });
+    if (boardTitle && boardDescription) {
+      this.api.createBoard(boardTitle, boardDescription).subscribe({
+        next: ({ id, title, description }) => {
+          this.boardService.boards.push({ id, title, description });
+          this.boardService.IsCreateBoardModalVisible = false;
+          this.boardError = false;
+        },
+        error: () => this.boardError = true,
+      });
+    }
   }
 
   public showCreateBoardForm(): void {

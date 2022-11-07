@@ -1,4 +1,14 @@
 @import '../../../shared/styles/board-item.scss';
+
+.create-board {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+}
 h3 {
   text-align: center;
 }
@@ -8,6 +18,7 @@ form {
   flex-direction: column;
   width: 300px;
   background: lighten(grey, 70%);
+  padding: 30px;
   button {
     width: 100px;
     margin-left: auto;

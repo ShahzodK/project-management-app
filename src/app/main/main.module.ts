@@ -7,6 +7,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon'
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
 import { Interceptor } from '../core/services/interceptor';
@@ -36,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatIconModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

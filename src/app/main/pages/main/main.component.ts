@@ -13,13 +13,15 @@ export class MainComponent implements OnInit {
 
   constructor(public translateService: TranslateService, public router: Router, public boardService: BoardService, public api: BoardApiService) { }
 
+  public boardError = false;
+
   ngOnInit(): void {
     this.api.getBoards().subscribe({
       next: (boards) => {
         this.boardService.boards = boards;
       },
-      error: (err) => console.log(`oops something went wrong, status:${err}`),
+      error: () => this.boardError = true,
     });
 
   }
-} 
+}

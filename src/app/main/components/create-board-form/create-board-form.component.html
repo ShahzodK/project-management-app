@@ -1,6 +1,7 @@
 <section class="create-board">
-  <div class="form-container" *ngIf="isClicked">
+  <div class="form-container" *ngIf="boardService.IsCreateBoardModalVisible">
     <form (ngSubmit)='submit()' [formGroup]="createBoard">
+      <h3>New Card</h3>
       <mat-form-field appearance="fill">
         <mat-label for="title">{{'main-page.title' | translate}}</mat-label>
         <input type="text" matInput name="title" formControlName="title">
@@ -12,10 +13,6 @@
       <button mat-button> {{'main-page.createBoard' | translate}}</button>
     </form>
   </div>
-  <mat-card class="create-board-button board-card" *ngIf="!isClicked" (click)="showCreateBoardForm()">
-    <button mat-button>
-      <img src="../../../../../assets/img/main-page/plus.png" alt="create board">
-    </button>
-  </mat-card>
+  <p *ngIf="boardError">{{'main-page.boardCreateError' | translate}}</p>
 </section>
 

@@ -4,10 +4,11 @@
       <h2>{{'main-page.boards' | translate}}</h2>
     </div>
     <div class="board-items-block">
-      <app-board-item *ngFor="let board of boardService.boards | search: boardService.searchValue" [board]="board">
+      <app-board-item *ngFor="let board of boardService.boards" [board]="board">
       </app-board-item>
       <app-create-board-form></app-create-board-form>
     </div>
     <app-delete-modal *ngIf="boardService.deletingBoard"></app-delete-modal>
+    <p *ngIf="boardError">{{'main-page.boardsError' | translate}}</p>
   </div>
 </section>

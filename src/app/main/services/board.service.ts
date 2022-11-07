@@ -13,6 +13,8 @@ export class BoardService {
 
   public searchValue = '';
 
+  public IsCreateBoardModalVisible = false;
+
   public searchBoard(value: string): void {
     const filteredBoards: IBoard[] = this.boards.filter((board) => board.title.toLowerCase().includes(value.toLowerCase()));
     console.log(filteredBoards);

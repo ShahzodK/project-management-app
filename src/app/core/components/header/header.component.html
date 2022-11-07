@@ -12,7 +12,10 @@
   </div>
   <nav>
     <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
-    <button *ngIf="isLogged$ | async" mat-button>{{ 'header.createNewBoard' | translate }}</button>
+    <button *ngIf="isLogged$ | async" mat-button
+    (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
+      {{ 'header.createNewBoard' | translate }}
+    </button>
     <button
       *ngIf="isLogged$ | async"
       mat-button
