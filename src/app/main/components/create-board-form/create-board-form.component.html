@@ -2,14 +2,14 @@
   <div class="form-container" *ngIf="isClicked">
     <form (ngSubmit)='submit()' [formGroup]="createBoard">
       <mat-form-field appearance="fill">
-        <mat-label for="title">{{'common.main-page.title' | translate}}</mat-label>
+        <mat-label for="title">{{'main-page.title' | translate}}</mat-label>
         <input type="text" matInput name="title" formControlName="title">
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label for="description">{{'common.main-page.description' | translate}}</mat-label>
+        <mat-label for="description">{{'main-page.description' | translate}}</mat-label>
         <input type="text" matInput name="description" formControlName="description">
       </mat-form-field>
-      <button mat-button> {{'common.main-page.createBoard' | translate}}</button>
+      <button mat-button> {{'main-page.createBoard' | translate}}</button>
     </form>
   </div>
   <mat-card class="create-board-button board-card" *ngIf="!isClicked" (click)="showCreateBoardForm()">
