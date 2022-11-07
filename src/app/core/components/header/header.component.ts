@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { BoardService } from './../../../main/services/board.service';
 
 import { ELocales } from 'src/app/shared/models';
 
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private router: Router,
+    public boardService: BoardService,
   ) { }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method

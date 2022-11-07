@@ -15,6 +15,7 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
 import { CreateBoardFormComponent } from './components/create-board-form/create-board-form.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -25,6 +26,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     BoardItemComponent,
     CreateBoardFormComponent,
     DeleteModalComponent,
+    SearchPipe,
   ],
   imports: [
     CommonModule,

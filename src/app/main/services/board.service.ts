@@ -11,4 +11,11 @@ export class BoardService {
 
   public deletingBoard = '';
 
+  public searchValue = '';
+
+  public searchBoard(value: string) {
+    const filteredBoards: IBoard[] = this.boards.filter((board) => board.title.toLowerCase().includes(value.toLowerCase()));
+    console.log(filteredBoards);
+  }
+
 }
