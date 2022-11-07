@@ -1,43 +1,10 @@
-<header>
-  <mat-toolbar class="header">
-    <div class="container welcome-page-container">
-      <div class="header-content">
-        <div class="logo">
-          <img src="" alt="">
-          <span></span>
-        </div>
-        <div class="header-links">
-          <button [routerLink]="['/']" fragment="app" mat-button>
-            {{ 'common.welcome-header.aboutApp' | translate }}
-          </button>
-          <button [routerLink]="['/']" fragment="course" mat-button>
-            {{ 'common.welcome-header.course' | translate }}
-          </button>
-          <button [routerLink]="['/']" fragment="about-us" mat-button>
-            {{ 'common.welcome-header.ourTeam' | translate }}
-          </button>
-        </div>
-        <div class="login-block">
-          <span>{{ 'common.welcome-header.guest' | translate }}</span>
-          <button
-            mat-button
-            class="login-button"
-            (click)="router.navigate(['login'])"
-          >{{ 'common.welcome-header.login' | translate }}</button>
-        </div>
-      </div>
-    </div>
-  </mat-toolbar>
-</header>
-
 <section class="welcome-section" id="app">
   <div class="container welcome-page-container">
     <div class="welcome-content">
-      <mat-card-title class="welcome-title">{{ 'common.welcome-app.title' | translate }}</mat-card-title>
+      <mat-card-title class="welcome-title">{{ 'welcome-app.title' | translate }}</mat-card-title>
       <mat-card-content class="welcome-description">
-        {{ 'common.welcome-app.description' | translate }}
+        {{ 'welcome-app.description' | translate }}
       </mat-card-content>
-      <button mat-button class="login-button">{{ 'common.welcome-app.login' | translate }}</button>
     </div>
   </div>
 </section>
@@ -45,9 +12,9 @@
 <section class="course-section" id="course">
   <div class="container course-page-container">
     <div class="course-content">
-      <mat-card-title class="course-title">{{ 'common.welcome-course.title' | translate }}</mat-card-title>
+      <mat-card-title class="course-title">{{ 'welcome-course.title' | translate }}</mat-card-title>
       <mat-card-content class="course-description">
-        {{ 'common.welcome-course.description' | translate }}
+        {{ 'welcome-course.description' | translate }}
       </mat-card-content>
     </div>
   </div>
@@ -55,7 +22,7 @@
 
 <section class="our-team-section" id="about-us">
   <div class="container our-team-container">
-    <h2>{{ 'common.welcome-team.title' | translate }}</h2>
+    <h2>{{ 'welcome-team.title' | translate }}</h2>
     <div class="our-team-content">
       <div class="our-team-block">
         <div class="our-team-img-block">
@@ -63,7 +30,7 @@
        </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          {{ 'common.welcome-team.first-member-description' | translate }}
+          {{ 'welcome-team.first-member-description' | translate }}
         </mat-card-content>
       </div>
       <div class="our-team-block">
@@ -72,7 +39,7 @@
        </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          {{ 'common.welcome-team.second-member-description' | translate }}
+          {{ 'welcome-team.second-member-description' | translate }}
         </mat-card-content>
       </div>
       <div class="our-team-block">
@@ -81,7 +48,7 @@
         </div>
         <mat-card-title>Имя Фамилия</mat-card-title>
         <mat-card-content class="our-team-description">
-          {{ 'common.welcome-team.third-member-description' | translate }}
+          {{ 'welcome-team.third-member-description' | translate }}
         </mat-card-content>
       </div>
     </div>
@@ -89,6 +56,7 @@
 </section>
 
 <footer class="footer">
+  <p>&copy; 2022</p>
   <a href="https://github.com/Guseff" class="footer-link" mat-button>
     Vasily Gusev
   </a>
@@ -98,7 +66,6 @@
   <a href="https://github.com/ShahzodK" class="footer-link" mat-button>
     Shahzod Kakhkhorov
   </a>
-  <p>2022</p>
   <a href="https://rs.school/angular/" class="logo" mat-button>
       <img src="https://i.postimg.cc/DZWQtjYS/school-logo.png" alt="RS-school">
   </a>
