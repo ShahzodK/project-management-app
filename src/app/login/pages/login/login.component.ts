@@ -8,6 +8,7 @@ import {UserService} from 'src/app/shared/services/user.service';
 import {LoginService} from '../../services/login.service';
 import {EmailFieldErrors, PasswordFieldErrors, SignInFormFields} from "../../models/auth.model";
 import {signInErrorsLocale} from "../../models/locale-errors.const";
+import {passwordStrengthValidator} from "../../validators/password-strength.validator";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     ]),
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(8),
+      passwordStrengthValidator()
     ]),
   });
 

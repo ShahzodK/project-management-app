@@ -9,7 +9,12 @@ export const signUpErrorsLocale = {
   },
   password: {
     required: 'login-module.signup-errors.password.required',
-  },
+    enough_chars: 'login-module.signup-errors.password.enough_chars',
+    lowercase: 'login-module.signup-errors.password.lowercase',
+    uppercase: 'login-module.signup-errors.password.uppercase',
+    numeric: 'login-module.signup-errors.password.numeric',
+    specials: 'login-module.signup-errors.password.specials'
+  }
 };
 
 export const signInErrorsLocale = {

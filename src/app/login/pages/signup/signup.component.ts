@@ -8,6 +8,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
 import {signUpErrorsLocale} from "../../models/locale-errors.const";
+import {passwordStrengthValidator} from "../../validators/password-strength.validator";
 
 @Component({
   selector: 'app-signup',
@@ -36,7 +37,7 @@ export class SignupComponent implements OnInit {
     ]),
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(8),
+      passwordStrengthValidator()
     ]),
   });
 
@@ -134,8 +135,20 @@ export class SignupComponent implements OnInit {
   public getPasswordErrorMessage(): string {
     const password = this.password;
 
-    if (password?.hasError(PasswordFieldErrors.REQUIRED)) return signUpErrorsLocale.password.required;
-
-    return '';
+    switch (true) {
+      case password?.hasError(PasswordFieldErrors.REQUIRED):
+        return signUpErrorsLocale.password.required;
+      case password?.hasError(PasswordFieldErrors.ENOUGH_CHARS):
+        return signUpErrorsLocale.password.enough_chars;
+      case password?.hasError(PasswordFieldErrors.LOWERCASE) ||
+      password?.hasError(PasswordFieldErrors.UPPERCASE):
+        return signUpErrorsLocale.password.lowercase;
+      case password?.hasError(PasswordFieldErrors.NUMERIC):
+        return signUpErrorsLocale.password.numeric;
+      case password?.hasError(PasswordFieldErrors.SPECIALS):
+        return signUpErrorsLocale.password.specials;
+      default:
+        return '';
+    }
   }
 }

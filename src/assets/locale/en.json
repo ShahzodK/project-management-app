@@ -44,7 +44,12 @@
         "email": "Email is invalid"
       },
       "password": {
-        "required": "Enter your password"
+        "required": "Enter your password",
+        "enough_chars": "Your password must be at least 8 characters",
+        "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+        "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+        "numeric": "Your password must contain numbers",
+        "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
       }
     },
     "signin-errors": {
