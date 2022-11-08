@@ -12,13 +12,17 @@ export const initialState: IBoardSliceState = {
 
 export const boardReducer = createReducer(
   initialState,
-  on(BoardActions.saveBoard, (state, { board }): IBoardSliceState => ({
+  on(BoardActions.createBoard, (state, { board }): IBoardSliceState => ({
     ...state,
     boards: [...state.boards, board],
   })),
-  on(BoardActions.saveBoards, (state, { boards }): IBoardSliceState => ({
+  on(BoardActions.getBoards, (state, { boards }): IBoardSliceState => ({
     ...state,
     boards,
+  })),
+  on(BoardActions.deleteBoard, (state, { id }): IBoardSliceState => ({
+    ...state,
+    boards: state.boards.filter(board => board.id !== id ),
   })),
 );
 
