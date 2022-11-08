@@ -47,6 +47,15 @@
         "required": "Введите пароль"
       }
     },
+    "signin-errors": {
+      "email": {
+        "required": "Enter your email",
+        "email": "Email is invalid"
+      },
+      "password": {
+        "required": "Enter your password"
+      }
+    },
     "errors": {
       "409": "Пользователь с таким логином существует!",
       "404": "Ошибка сети!",

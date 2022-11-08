@@ -6,8 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
-import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/signup.model';
-import { signUpErrorsLocale } from '../../models/locale-signup-errors.const';
+import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
+import {signUpErrorsLocale} from "../../models/locale-errors.const";
 
 @Component({
   selector: 'app-signup',

@@ -47,6 +47,15 @@
         "required": "Enter your password"
       }
     },
+    "signin-errors": {
+      "email": {
+        "required": "Enter your email",
+        "email": "Email is invalid"
+      },
+      "password": {
+        "required": "Enter your password"
+      }
+    },
     "errors": {
       "409": "User login already exists!",
       "404": "Network error!",

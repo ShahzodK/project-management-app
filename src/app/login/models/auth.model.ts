@@ -1,9 +1,13 @@
+export enum SignInFormFields {
+  EMAIL = 'email',
+  PASSWORD = 'password',
+}
+
 export enum SignUpFormFields {
   NAME = 'name',
   EMAIL = 'email',
   PASSWORD = 'password',
 }
-
 
 export enum NameFieldErrors {
   REQUIRED = 'required',

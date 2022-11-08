@@ -11,3 +11,13 @@ export const signUpErrorsLocale = {
     required: 'login-module.signup-errors.password.required',
   },
 };
+
+export const signInErrorsLocale = {
+  email: {
+    required: 'login-module.signin-errors.email.required',
+    email: 'login-module.signin-errors.email.email',
+  },
+  password: {
+    required: 'login-module.signin-errors.password.required',
+  },
+};
