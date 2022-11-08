@@ -1,14 +1,14 @@
-import {HttpErrorResponse} from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import {UserService} from 'src/app/shared/services/user.service';
-import {LoginService} from '../../services/login.service';
-import {EmailFieldErrors, PasswordFieldErrors, SignInFormFields} from "../../models/auth.model";
-import {signInErrorsLocale} from "../../models/locale-errors.const";
-import {passwordStrengthValidator} from "../../validators/password-strength.validator";
+import { UserService } from 'src/app/shared/services/user.service';
+import { LoginService } from '../../services/login.service';
+import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
+import { signInErrorsLocale } from '../../models/locale-errors.const';
+import { passwordStrengthValidator } from '../../validators/password-strength.validator';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
   public isLoginError?: boolean;
 
   public errMessage = '';
+
   public hasEmailError: boolean = false;
+
   public hasPasswordError: boolean = false;
 
   loginForm = new FormGroup({
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
     ]),
     password: new FormControl<string>('', [
       Validators.required,
-      passwordStrengthValidator()
+      passwordStrengthValidator(),
     ]),
   });
 

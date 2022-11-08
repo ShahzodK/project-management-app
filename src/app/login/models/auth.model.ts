@@ -18,11 +18,6 @@ export enum EmailFieldErrors {
   REQUIRED = 'required',
   EMAIL = 'email',
 }
-//
-// export enum PasswordFieldErrors {
-//   REQUIRED = 'required',
-// }
-
 
 export enum PasswordFieldErrors {
   REQUIRED = 'required',

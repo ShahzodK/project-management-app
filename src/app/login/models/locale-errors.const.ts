@@ -13,8 +13,8 @@ export const signUpErrorsLocale = {
     lowercase: 'login-module.signup-errors.password.lowercase',
     uppercase: 'login-module.signup-errors.password.uppercase',
     numeric: 'login-module.signup-errors.password.numeric',
-    specials: 'login-module.signup-errors.password.specials'
-  }
+    specials: 'login-module.signup-errors.password.specials',
+  },
 };
 
 export const signInErrorsLocale = {

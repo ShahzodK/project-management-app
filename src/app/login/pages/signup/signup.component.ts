@@ -7,8 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
-import {signUpErrorsLocale} from "../../models/locale-errors.const";
-import {passwordStrengthValidator} from "../../validators/password-strength.validator";
+import { signUpErrorsLocale } from '../../models/locale-errors.const';
+import { passwordStrengthValidator } from '../../validators/password-strength.validator';
 
 @Component({
   selector: 'app-signup',
@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
     ]),
     password: new FormControl<string>('', [
       Validators.required,
-      passwordStrengthValidator()
+      passwordStrengthValidator(),
     ]),
   });
 
