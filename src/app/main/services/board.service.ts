@@ -6,7 +6,6 @@ import { IBoard } from './../models/board.model';
 })
 export class BoardService {
 
-
   public boards: IBoard[] = [];
 
   public deletingBoard = '';

@@ -2,6 +2,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { BoardApiService } from '../../services/board-api.service';
 import { BoardService } from '../../services/board.service';
+import { Store } from '@ngrx/store';
+import * as BoardActions from './../../../redux/actions/board-action';
+import { IBoard } from './../../models/board.model';
 
 @Component({
   selector: 'app-create-board-form',
@@ -10,7 +13,11 @@ import { BoardService } from '../../services/board.service';
 })
 export class CreateBoardFormComponent {
 
-  constructor(public boardService: BoardService, private api: BoardApiService) { }
+  constructor(
+    public boardService: BoardService,
+    private api: BoardApiService,
+    private store: Store,
+  ) { }
 
   public isClicked = false;
 
@@ -37,9 +44,16 @@ export class CreateBoardFormComponent {
     if (boardTitle && boardDescription) {
       this.api.createBoard(boardTitle, boardDescription).subscribe({
         next: ({ id, title, description }) => {
+          const board: IBoard = {
+            id,
+            title,
+            description,
+          };
+          this.store.dispatch(BoardActions.saveBoard({ board }));
           this.boardService.boards.push({ id, title, description });
           this.boardService.IsCreateBoardModalVisible = false;
           this.boardError = false;
+          this.createBoard.reset();
         },
         error: () => this.boardError = true,
       });
