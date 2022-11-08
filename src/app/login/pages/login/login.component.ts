@@ -65,8 +65,10 @@ export class LoginComponent implements OnInit {
 
 
   public submit(): void {
+    console.log('submit');
     if (this.loginForm.valid) {
       this.login();
+      console.log('submit valid');
 
       this.loginForm.setValue({
         loginInput: '',
