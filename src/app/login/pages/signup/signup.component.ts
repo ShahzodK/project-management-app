@@ -57,14 +57,7 @@ export class SignupComponent implements OnInit {
         return;
       }
 
-      const name = this.name;
-      const email = this.email;
-      const password = this.password;
-      if (!name || !email || !password) return;
-
-      this.hasNameError = this.checkHasError(name);
-      this.hasEmailError = this.checkHasError(email);
-      this.hasPasswordError = this.checkHasError(password);
+      this.checkErrors();
     });
   }
 
@@ -95,6 +88,17 @@ export class SignupComponent implements OnInit {
 
   private checkHasError(control: AbstractControl): boolean {
     return !!(control.errors && Object.keys(control.errors).length !== 0);
+  }
+
+  private checkErrors() {
+    const name = this.name;
+    const email = this.email;
+    const password = this.password;
+    if (!name || !email || !password) return;
+
+    this.hasNameError = this.checkHasError(name);
+    this.hasEmailError = this.checkHasError(email);
+    this.hasPasswordError = this.checkHasError(password);
   }
 
   public get name() {
