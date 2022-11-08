@@ -7,7 +7,7 @@
   <div *ngIf="isLogged$ | async">
     <mat-form-field appearance="standard">
       <mat-label>{{ 'header.search' | translate }}</mat-label>
-      <input matInput (input)="boardService.searchValue = (inputValue.value)" #inputValue>
+      <input matInput (input)="boardService.searchValue = (input.value)" #input>
     </mat-form-field>
   </div>
   <nav>

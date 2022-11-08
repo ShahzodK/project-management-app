@@ -1,28 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BoardApiService } from './../../services/board-api.service';
 import { BoardService } from './../../services/board.service';
-import { IBoard } from 'src/app/main/models/board.model';
+import * as BoardActions from './../../../redux/actions/board-action';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-delete-modal',
   templateUrl: './delete-modal.component.html',
   styleUrls: ['./delete-modal.component.scss'],
 })
-export class DeleteModalComponent {
+export class DeleteModalComponent implements OnDestroy {
 
-  constructor(private api: BoardApiService, public boardService: BoardService) { }
-
-  @Input() board: IBoard | undefined;
+  constructor(
+    private api: BoardApiService,
+    public boardService: BoardService,
+    private store: Store,
+  ) { }
 
   public deleteBoardError = false;
 
+  public deleteBoardSub: Subscription | undefined;
+
   public deleteBoard(id: string): void {
-    console.log('boarder');
-    this.api.deleteBoard(id).subscribe({
+    this.deleteBoardSub = this.api.deleteBoard(id).subscribe({
       next: () => {
-        this.boardService.boards = this.boardService.boards.filter((board) => board.id !== id);
         this.boardService.deletingBoard = '';
         this.deleteBoardError = false;
+        this.store.dispatch(BoardActions.deleteBoard({ id }));
       },
       error: () => this.deleteBoardError = true,
     });
@@ -30,5 +35,9 @@ export class DeleteModalComponent {
 
   cancelDeletingBoard(): void {
     this.boardService.deletingBoard = '';
+  }
+
+  ngOnDestroy(): void {
+    this.deleteBoardSub?.unsubscribe();
   }
 }

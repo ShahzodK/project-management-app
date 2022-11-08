@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
 import { BoardApiService } from '../../services/board-api.service';
 import { BoardService } from '../../services/board.service';
 import { Store } from '@ngrx/store';
@@ -11,7 +12,7 @@ import { IBoard } from './../../models/board.model';
   templateUrl: './create-board-form.component.html',
   styleUrls: ['./create-board-form.component.scss'],
 })
-export class CreateBoardFormComponent {
+export class CreateBoardFormComponent implements OnDestroy {
 
   constructor(
     public boardService: BoardService,
@@ -38,19 +39,20 @@ export class CreateBoardFormComponent {
     }),
   });
 
+  public createBoardSub: Subscription | undefined;
+
   public submit(): void {
     const boardTitle = this.createBoard.getRawValue().title;
     const boardDescription = this.createBoard.getRawValue().description;
     if (boardTitle && boardDescription) {
-      this.api.createBoard(boardTitle, boardDescription).subscribe({
+      this.createBoardSub = this.api.createBoard(boardTitle, boardDescription).subscribe({
         next: ({ id, title, description }) => {
           const board: IBoard = {
             id,
             title,
             description,
           };
-          this.store.dispatch(BoardActions.saveBoard({ board }));
-          this.boardService.boards.push({ id, title, description });
+          this.store.dispatch(BoardActions.createBoard({ board }));
           this.boardService.IsCreateBoardModalVisible = false;
           this.boardError = false;
           this.createBoard.reset();
@@ -62,5 +64,9 @@ export class CreateBoardFormComponent {
 
   public showCreateBoardForm(): void {
     this.isClicked = true;
+  }
+
+  ngOnDestroy(): void {
+    this.createBoardSub?.unsubscribe();
   }
 }
