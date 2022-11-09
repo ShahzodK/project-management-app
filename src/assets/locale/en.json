@@ -47,31 +47,25 @@
     "login-warning": "Something went wrong. Please try again or sign up.",
     "signup-welcome": "Please fill form for sign up",
     "signup-warning": "Something went wrong. Please try again later.",
-    "signup-errors": {
+    "form-errors": {
+      "email": {
+        "required": "Enter your email",
+        "email": "Email is invalid"
+      },
       "name": {
         "required": "Enter your name",
         "minlength": "Name must be more than 3 letters"
       },
-      "email": {
-        "required": "Enter your email",
-        "email": "Email is invalid"
-      },
-      "password": {
-        "required": "Enter your password",
-        "enough_chars": "Your password must be at least 8 characters",
-        "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
-        "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
-        "numeric": "Your password must contain numbers",
-        "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
-      }
-    },
-    "signin-errors": {
-      "email": {
-        "required": "Enter your email",
-        "email": "Email is invalid"
-      },
-      "password": {
+      "password-signin": {
         "required": "Enter your password"
+      },
+      "password-signup": {
+          "required": "Enter your password",
+          "enough_chars": "Your password must be at least 8 characters",
+          "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+          "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+          "numeric": "Your password must contain numbers",
+          "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
       }
     },
     "errors": {

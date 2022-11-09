@@ -47,7 +47,7 @@
     "login-warning": "Что-то пошло не так. Пожалуйста, повторите попытку или пройдите регистрацию.",
     "signup-welcome": "Пожалуйста, заполните регистрационную форму",
     "signup-warning": "Что-то пошло не так. Пожалуйста, повторите попытку позже.",
-    "signup-errors": {
+    "form-errors": {
       "name": {
         "required": "Введите имя",
         "minlength": "Имя должно содержать 3 и более букв"
@@ -56,22 +56,16 @@
         "required": "Введите email",
         "email": "Введите корректный email"
       },
-      "password": {
+      "password-signup": {
         "required": "Введите пароль",
         "enough_chars": "Пароль должен содержать больше 8 символов",
         "lowercase": "Пароль должен содержать минимум 1 заглавную и 1 строчную букву",
         "uppercase": "Пароль должен содержать минимум 1 заглавную и 1 строчную букву",
         "numeric": "Пароль должен содержать цифры",
         "specials": "Пароль должен содержать специальные символы, например: ! @ # ? ]"
-      }
-    },
-    "signin-errors": {
-      "email": {
-        "required": "Enter your email",
-        "email": "Email is invalid"
       },
-      "password": {
-        "required": "Enter your password"
+      "password-signin": {
+        "required": "Введите пароль"
       }
     },
     "errors": {
