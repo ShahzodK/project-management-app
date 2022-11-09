@@ -6,5 +6,5 @@
   <button mat-button fill="green" (click)="deleteBoard(boardService.deletingBoard)" class="yes-button">
     {{"main-page.yes" | translate}}
   </button>
-  <p *ngIf="deleteBoardError">{{"main-page.deleteBoardError"}}</p>
+  <p *ngIf="deleteBoardError">{{"main-page.deleteBoardError" | translate}}</p>
 </mat-card>

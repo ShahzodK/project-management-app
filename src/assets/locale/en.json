@@ -38,6 +38,7 @@
     "boardsError": "We cannot load boards, please try again",
     "boardCreateError": "Cannot create board, please try again",
     "deleteBoardError": "Cannot delete board, please try again",
+    "newBoard": "New Board",
     "no": "No",
     "yes": "Yes"
 	},
