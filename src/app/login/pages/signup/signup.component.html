@@ -6,27 +6,30 @@
       <input
         matInput
         type="text"
-        formControlName="nameInput"
+        formControlName="name"
         name="name"
       >
+      <mat-error *ngIf="hasNameError">{{ getNameErrorMessage() | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
       <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
       <input
         matInput
         type="text"
-        formControlName="loginInput"
+        formControlName="email"
         name="login"
       >
+      <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
       <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
       <input
         matInput
         type="password"
-        formControlName="passwordInput"
+        formControlName="password"
         name="password"
       >
+      <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
     </mat-form-field>
     <div class="buttons">
       <a mat-button routerLink="">{{ 'common.main-link' | translate }}</a>
