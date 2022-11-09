@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         },
         error: (res: HttpErrorResponse) => {
           this.isLoginError = true;
-          this.errMessage = `common.login-module.errors.${res.status}`;
+          this.errMessage = `login-module.errors.${res.status}`;
         },
         complete: () => {
           this.userService.check();

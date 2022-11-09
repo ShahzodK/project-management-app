@@ -23,6 +23,7 @@ import { MissingTranslationService } from './shared/services/missing-translation
 import { Interceptor } from './core/services/interceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
