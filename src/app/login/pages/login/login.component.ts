@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
-import { signInErrorsLocale } from '../../models/locale-errors.const'
+import { signInErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../validators/password-strength.validator';
 
 @Component({
