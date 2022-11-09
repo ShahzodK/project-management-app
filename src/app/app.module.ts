@@ -22,6 +22,8 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { Interceptor } from './core/services/interceptor';
 import { UserService } from './shared/services/user.service';
+import { BoardEffects } from './redux/effects/board-effects';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -31,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomePageModule,
   ],

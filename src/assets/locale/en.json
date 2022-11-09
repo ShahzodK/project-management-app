@@ -29,6 +29,19 @@
     "second-member-description": "Made Drag and Drop and implemented communication with the server",
     "third-member-description": "Developed the application architecture, routing and configured NgRx"
   },
+  "main-page": {
+    "title": "Title",
+    "description": "Description",
+    "boards": "Boards",
+    "createBoard": "Create board",
+    "areYouSureDelete": "Are you sure you want to delete the board",
+    "boardsError": "We cannot load boards, please try again",
+    "boardCreateError": "Cannot create board, please try again",
+    "deleteBoardError": "Cannot delete board, please try again",
+    "newBoard": "New Board",
+    "no": "No",
+    "yes": "Yes"
+	},
   "login-module": {
     "login-welcome": "Please login or sign up if not yet.",
     "login-warning": "Something went wrong. Please try again or sign up.",
