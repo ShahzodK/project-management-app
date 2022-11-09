@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { BoardService } from './../../../main/services/board.service';
 import { resetUser } from 'src/app/redux/actions';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
@@ -22,6 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private router: Router,
+    public boardService: BoardService,
+
     private store: Store,
   ) { }
 
