@@ -30,11 +30,10 @@
     "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx",
     "forth-member-description": "Разработал компоненты приложения",
 
-      "first-member-name": "Василий Гусев",
-      "second-member-name": "Адилет Максатули",
-      "third-member-name": "Шахзод Какоров",
-      "forth-member-name": "Дмитрий Шабанов"
-
+    "first-member-name": "Василий Гусев",
+    "second-member-name": "Adilet Maksatuly",
+    "third-member-name": "Shahzod Kakhkhorov",
+    "forth-member-name": "Дмитрий Шабанов"
 
   },
    "main-page": {
