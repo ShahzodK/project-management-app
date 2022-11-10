@@ -26,9 +26,10 @@
       mat-button
       routerLink="login"
     >{{ 'common.login' | translate }}</a>
-    <mat-slide-toggle
-      color="primary"
-      (toggleChange)="changeLocale()"
-    >{{ localeName | translate }}</mat-slide-toggle>
+    <mat-select class="lang-select" [(value)]="lang" (selectionChange)="changeLocale()">
+      <mat-option *ngFor="let lang of languages" [value]="lang">
+        {{ lang | langTransform | translate }}
+      </mat-option>
+    </mat-select>
   </nav>
 </header>

@@ -8,14 +8,14 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule  } from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
 
 import { environment } from '../environments/environment';
 import { WelcomePageModule } from './welcome-page/welcome-page.module';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
@@ -24,6 +24,7 @@ import { Interceptor } from './core/services/interceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { LangTransformPipe } from './core/pipes/lang-transform.pipe';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -34,12 +35,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    LangTransformPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatSlideToggleModule,
+    MatSelectModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

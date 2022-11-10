@@ -14,7 +14,11 @@ import { ELocales } from 'src/app/shared/models';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  localeName = 'languages.en';
+  lang = ELocales.EN;
+
+  langName = `languages.${this.lang}`;
+
+  languages = Object.values(ELocales);
 
   userName$ = this.store.select(selectUserName);
 
@@ -32,9 +36,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void { }
 
   public changeLocale() {
-    const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
-    this.translateService.use(lang);
-    this.localeName = `languages.${lang}`;
+    this.langName = `languages.${this.lang}`;
+    this.translateService.use(this.lang);
   }
 
   public logout() {
