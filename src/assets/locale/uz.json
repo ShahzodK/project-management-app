@@ -1,0 +1,84 @@
+{
+	"common": {
+    "login": "Kirish",
+    "signup": "Ro'yxatdan o'tish",
+    "name": "Ism",
+    "logout": "Chiqish",
+    "main-link": "Bosh sahifa",
+    "password": "Parol"
+  },
+  "header":{
+    "title": "Loyihalarni boshqarish",
+    "editProfile": "Profilni tahrirlash",
+    "createNewBoard": "Yangi loyiha",
+    "search": "Izlash...",
+    "no-logged": "Siz dasturga kirmadingiz",
+    "logged": "Siz kirdingiz"
+  },
+  "welcome-app": {
+    "title": "Biz bilan loyihalaringizni osonroq boshqaring",
+    "description": "Dastur nomi - Boshqa jamoa a'zolari bilan loyihalarni qulay va samarali boshqarish uchun bepul dastur!"
+  },
+  "welcome-course": {
+    "title": "Kurs haqida",
+    "description": "Bu loyiha Rolling Scopes Schooldagi bepul Angular kursi doirasida ishlab chiqilgan. Bu kurda siz veb dasturlarni Angular orqali yaratishni o'rganasiz. Kurs 8 hafta davom etadi, unda siz Angularning asosiy sintaksi hamda NgRx bilan tanishasiz. Kursda qatnashish uchun havolani bosing"
+  },
+  "welcome-team": {
+    "title": "Jamoa",
+    "first-member-description": "Dastur ishlashini yaxshiladi va loginni qildi",
+    "second-member-description": "Drag and Drop va server bilan aloqani qildi",
+    "third-member-description": "Dastur Arxitekturasini ishlab chiqdi, routing va NgRx ni sozladi",
+    "forth-member-description": "Dastur komponentlarini ishla chiqdi",
+    "first-member-name": "Vasily Gusev",
+    "second-member-name": "Adilet Maksatuly",
+    "third-member-name": "Shahzod Kakhkhorov",
+    "forth-member-name": "Dimitrii Shabanov"
+  },
+   "main-page": {
+    "title": "Sarlavha",
+    "description": "Tavsifi",
+    "boards": "Loyihalar",
+    "createBoard": "Loyiha yaratish",
+    "areYouSureDelete": "Loyihani o'chirib tashlashga aminmisiz",
+    "boardsError": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring",
+    "boardCreateError": "Loyihani o'chirishni imkoni yo'q, qaytadan urinib ko'ring",
+    "deleteBoardError": "Loyihani o'chirishni imkoni yo'q, qaytadan urinib ko'ring",
+    "newBoard": "Yangi loyiha",
+    "no": "Yo'q",
+    "yes": "Ha"
+	},
+  "login-module": {
+    "login-welcome": "Iltimos, kiring yoki ro'yxatdan o'ting" ,
+    "login-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting.",
+    "signup-welcome": "Iltimos, ro'yxatdan o'ting",
+    "signup-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring.",
+    "form-errors": {
+      "name": {
+        "required": "Ismni yozing",
+        "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
+      },
+      "email": {
+        "required": "Emailni yozing",
+        "email": "To'g'ri emailni yozing"
+      },
+      "password": {
+        "required": "Parloni yozing",
+        "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+        "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+        "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+        "numeric": "Parolda raqamlar bo'lishi kerak",
+        "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
+      }
+    },
+    "errors": {
+      "409": "Bunday loginlik foydalanuvchi mavjud!",
+      "404": "Tarmoq xatosi!",
+      "403": "Login yoki Parol xato!"
+    }
+  },
+	"languages": {
+		"en": "ENG",
+		"ru": "RUS",
+    "uz": "UZB"
+	}
+}
