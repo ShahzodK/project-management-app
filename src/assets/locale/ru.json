@@ -27,7 +27,14 @@
     "title": "Наша Команда",
     "first-member-description": "Сделал логин и улучшил производительность приложения",
     "second-member-description": "Сделал Drag and Drop и реализовал общение с сервером",
-    "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx"
+    "third-member-description": "Разработал архитектуру приложения, роутинг и настроил NgRx",
+    "forth-member-description": "Разработал компоненты приложения",
+
+    "first-member-name": "Василий Гусев",
+    "second-member-name": "Adilet Maksatuly",
+    "third-member-name": "Shahzod Kakhkhorov",
+    "forth-member-name": "Дмитрий Шабанов"
+
   },
    "main-page": {
     "title": "Заголовок",
