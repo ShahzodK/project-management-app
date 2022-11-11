@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./main/main.module').then((mod) => mod.MainModule),
   },
   { path: '', redirectTo: 'home', pathMatch:'full' },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
+  },
 ];
 
 @NgModule({
