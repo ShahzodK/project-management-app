@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient, private store: Store) {}
 
-  private getUserId(): string {
+  public getUserId(): string {
     const token = localStorage.getItem('authToken');
 
     if (token) {
@@ -23,7 +23,6 @@ export class UserService {
 
   public check(): void {
     const id = this.getUserId();
-
     if (id.length === 0) {
       this.store.dispatch(resetUser());
     }
@@ -31,7 +30,9 @@ export class UserService {
     this.http.get(`users/${id}`).subscribe({
       next: (res) => {
         this.store.dispatch(setLoggedUser({
+          id: (res as { id: string }).id,
           name: (res as { name: string }).name,
+          login: (res as { login: string }).login,
         }));
       },
       error: () => {
