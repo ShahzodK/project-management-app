@@ -78,6 +78,14 @@
       "403": "Неверный логин или пароль!"
     }
   },
+  "editProfile": {
+    "edit-profile": "Редактировать Профиль",
+    "name": "имя",
+    "login": "login",
+    "password": "password",
+    "saveUser": "save user",
+    "deleteUser": "delete user"
+  },
 	"languages": {
 		"en": "АНГ",
 		"ru": "РУС",
