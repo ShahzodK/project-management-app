@@ -13,6 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { BoardRoutingModule } from './board-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateColumnModalComponent } from './components/create-column-modal/create-column-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {FormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     TasksListComponent,
     TasksItemComponent,
     HeaderComponent,
+    CreateColumnModalComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +35,10 @@ import { MatIconModule } from '@angular/material/icon';
     BoardRoutingModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [
     ColumnApiService,

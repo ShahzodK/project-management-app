@@ -6,6 +6,8 @@ import { IColumn } from '../../models/column.model';
 import { IBoard } from '../../../main/models/board.model';
 import { ColumnApiService } from '../../services/column-api.service';
 import { BoardApiService } from '../../../main/services/board-api.service';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {CreateColumnModalComponent} from "../../components/create-column-modal/create-column-modal.component";
 
 
 @Component({
@@ -26,22 +28,22 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private location: Location,
     private boardApiService: BoardApiService,
-    private columnApiService: ColumnApiService) {
+    private columnApiService: ColumnApiService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.routeParamsSub = this.route.paramMap.subscribe((params) => {
       const boardID = params.get('id');
-      console.log(boardID);
-      console.log(params);
-      if (!boardID) return;
+
+      if (!boardID) throw new Error("Board don't have an ID: URL doesn't contain board's ID");
 
       this.boardSub = this.boardApiService.getBoard(boardID).subscribe(board => {
         this.board = board;
       },
       );
 
-      this.columns$ = this.columnApiService.getColumns(boardID);
+      this.columns$ = this.getColumns$(boardID);
     });
 
   }
@@ -53,5 +55,32 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   navigateBack(): void {
     this.location.back();
+  }
+
+  getColumns$(boardID: string): Observable<IColumn[]> {
+    return this.columnApiService.getColumns(boardID);
+  }
+
+  createColumn(): void {
+    this.openModal();
+  }
+
+  openModal(): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = 'dialog';
+    dialogConfig.disableClose = false;
+
+    const dialogRef = this.dialog.open(CreateColumnModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      columnData => {
+        this.columnApiService.createColumn(this.board!.id, columnData).subscribe(createdColumn => {
+          console.log(createdColumn);
+          this.getColumns$(this.board!.id);
+        })
+      },
+    );
   }
 }

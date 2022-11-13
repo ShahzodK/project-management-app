@@ -3,7 +3,7 @@
 
   <div class="board-page-content">
     <app-columns-list *ngIf="(columns$ | async) as columns" [columns]="columns"></app-columns-list>
-    <button mat-stroked-button>
+    <button (click)="createColumn()" mat-stroked-button>
       <mat-icon>add</mat-icon>
       Create column</button>
 

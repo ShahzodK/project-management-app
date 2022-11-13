@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { IColumn } from '../../../models/column.model';
 
 @Component({
@@ -6,6 +6,10 @@ import { IColumn } from '../../../models/column.model';
   templateUrl: './columns-list.component.html',
   styleUrls: ['./columns-list.component.scss'],
 })
-export class ColumnsListComponent {
+export class ColumnsListComponent implements OnChanges {
   @Input() columns: IColumn[] | undefined;
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
 }
