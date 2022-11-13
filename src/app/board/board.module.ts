@@ -11,6 +11,8 @@ import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.com
 import { TasksItemComponent } from './components/tasks/tasks-item/tasks-item.component';
 import { MatButtonModule } from '@angular/material/button';
 import { BoardRoutingModule } from './board-routing.module';
+import { HeaderComponent } from './components/header/header.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { BoardRoutingModule } from './board-routing.module';
     ColumnsItemComponent,
     TasksListComponent,
     TasksItemComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     BoardRoutingModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     ColumnApiService,
