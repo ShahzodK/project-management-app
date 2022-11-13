@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,12 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
+  },
+  {
+    path: '', redirectTo: 'home', pathMatch:'full',
+  },
+  {
+    path: '**', pathMatch:'full', component: NotFoundPageComponent, // 404 page
   },
 ];
 

@@ -12,6 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule  } from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
+import { MatCardModule  } from '@angular/material/card';
 
 import { environment } from '../environments/environment';
 import { WelcomePageModule } from './welcome-page/welcome-page.module';
@@ -24,6 +25,7 @@ import { Interceptor } from './core/services/interceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -34,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
