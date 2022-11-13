@@ -30,16 +30,18 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeParamsSub = this.route.paramMap.subscribe((params) => {
       const boardID = params.get('id');
-
+      console.log(boardID)
+      console.log(params)
       if (!boardID) return;
 
       this.boardSub = this.boardApiService.getBoard(boardID).subscribe(board => {
         this.board = board;
       },
       );
+
+      this.columns$ = this.columnApiService.getColumns(boardID);
     });
 
-    this.columns$ = this.columnApiService.getColumns(this.board?.id);
   }
 
   ngOnDestroy(): void {
