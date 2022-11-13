@@ -1,0 +1,9 @@
+.board-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-page-content {
+  flex-grow: 1;
+  padding: 10px;
+}

@@ -1,9 +1,11 @@
 <section class="board-page">
-  <div class="container board-page-container">
-    <app-board-page-header [boardTitle]="board?.title" (back)="navigateBack()"></app-board-page-header>
-    <div class="board-page-content">
-      <app-columns-list *ngIf="(columns$ | async) as columns" [columns]="columns"></app-columns-list>
-      <button mat-raised-button color="primary">Create column</button>
-    </div>
+  <app-board-page-header [boardTitle]="board?.title" (back)="navigateBack()"></app-board-page-header>
+
+  <div class="board-page-content">
+    <app-columns-list *ngIf="(columns$ | async) as columns" [columns]="columns"></app-columns-list>
+    <button mat-stroked-button>
+      <mat-icon>add</mat-icon>
+      Create column</button>
+
   </div>
 </section>
