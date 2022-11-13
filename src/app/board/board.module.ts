@@ -10,6 +10,7 @@ import { ColumnsItemComponent } from './components/columns/columns-item/columns-
 import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.component';
 import { TasksItemComponent } from './components/tasks/tasks-item/tasks-item.component';
 import { MatButtonModule } from '@angular/material/button';
+import { BoardRoutingModule } from './board-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     HttpClientModule,
+    BoardRoutingModule,
     MatButtonModule,
   ],
   providers: [

@@ -1,4 +1,4 @@
-<mat-card class="board-card">
+<mat-card (click)="onBoardClick()" class="board-card">
   <mat-card-title class="board-title">{{board!.title}}</mat-card-title>
-  <mat-icon (click)="boardService.deletingBoard = board!.id!" class="delete-button">delete</mat-icon>
+  <mat-icon (click)="onDeleteClick($event)" class="delete-button">delete</mat-icon>
 </mat-card>
