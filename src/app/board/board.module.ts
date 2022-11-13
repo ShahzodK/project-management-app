@@ -15,8 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateColumnModalComponent } from './components/create-column-modal/create-column-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {FormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({

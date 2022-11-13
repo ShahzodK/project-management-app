@@ -6,8 +6,8 @@ import { IColumn } from '../../models/column.model';
 import { IBoard } from '../../../main/models/board.model';
 import { ColumnApiService } from '../../services/column-api.service';
 import { BoardApiService } from '../../../main/services/board-api.service';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {CreateColumnModalComponent} from "../../components/create-column-modal/create-column-modal.component";
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateColumnModalComponent } from '../../components/create-column-modal/create-column-modal.component';
 
 
 @Component({
@@ -79,7 +79,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.columnApiService.createColumn(this.board!.id, columnData).subscribe(createdColumn => {
           console.log(createdColumn);
           this.columns$ = this.getColumns$(this.board!.id);
-        })
+        });
       },
     );
   }
