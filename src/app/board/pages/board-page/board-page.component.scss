@@ -6,4 +6,16 @@
 .board-page-content {
   flex-grow: 1;
   padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.create-column-btn {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.columns-list {
+  flex-grow: 1;
 }
