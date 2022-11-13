@@ -8,8 +8,10 @@
   grid-auto-flow: column dense;
   gap: 10px;
 
+  max-width: 100%;
   width: fit-content;
   height: 100%;
+  overflow-x: auto;
 
   background-color: #fafafa;
 }

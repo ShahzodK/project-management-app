@@ -10,11 +10,11 @@ app-root {
   min-height: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
 }
 
 main > *:nth-child(2) {
   min-height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
 }
