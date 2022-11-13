@@ -78,7 +78,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       columnData => {
         this.columnApiService.createColumn(this.board!.id, columnData).subscribe(createdColumn => {
           console.log(createdColumn);
-          this.getColumns$(this.board!.id);
+          this.columns$ = this.getColumns$(this.board!.id);
         })
       },
     );
