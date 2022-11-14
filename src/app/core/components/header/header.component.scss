@@ -8,11 +8,13 @@
 
 .header-logo {
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  color: inherit;
+  text-decoration: none;
 }
 
 .header-nav {
   display: flex;
   justify-content: space-between;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
 }

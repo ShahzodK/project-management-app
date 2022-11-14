@@ -1,6 +1,6 @@
 <mat-toolbar class="header">
   <mat-toolbar-row class="header-container container">
-    <div class="header-logo">{{ 'header.title' | translate }}</div>
+    <a class="header-logo" mat-button routerLink="home">{{ 'header.title' | translate }}</a>
     <nav class="header-nav">
       <ng-container *ngIf="isLogged$ | async">
         <button mat-button>{{ 'header.editProfile' | translate }}</button>
