@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*, *::before, *::after {
+  box-sizing:  border-box;
+}
+app-root {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
+main > *:nth-child(2) {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+}

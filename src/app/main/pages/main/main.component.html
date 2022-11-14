@@ -7,7 +7,9 @@
       <app-board-item
        *ngFor="let board of (stateBoards$ | async)!.boards
        | search: boardService.searchValue"
-       [board]="board">
+       [board]="board"
+       (boardClick)="onBoardClick($event)"
+      >
       </app-board-item>
       <app-create-board-form></app-create-board-form>
     </div>

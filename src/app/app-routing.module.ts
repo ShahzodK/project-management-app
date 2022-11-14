@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
@@ -15,6 +16,14 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then((mod) => mod.MainModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'main/board',
+    loadChildren: () => import('./board/board.module').then((mod) => mod.BoardModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   { path: '', redirectTo: 'home', pathMatch:'full' },
   {
