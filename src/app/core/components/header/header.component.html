@@ -14,13 +14,14 @@
         >{{ 'common.logout' | translate }}</button>
       </ng-container>
 
+      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
+
       <a
         *ngIf="(isLogged$ | async) === false"
-        mat-button
+        mat-raised-button
+        color="primary"
         routerLink="login"
       >{{ 'common.login' | translate }}</a>
-
-      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
