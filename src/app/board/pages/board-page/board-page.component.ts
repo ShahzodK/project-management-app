@@ -16,13 +16,13 @@ import { CreateColumnModalComponent } from '../../components/create-column-modal
   styleUrls: ['./board-page.component.scss'],
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
-  public board: IBoard | undefined;
+  public board!: IBoard;
 
-  public columns$: Observable<IColumn[]> | undefined;
+  public columns$!: Observable<IColumn[]>;
 
-  private routeParamsSub: Subscription | undefined;
+  private routeParamsSub!: Subscription;
 
-  private boardSub: Subscription | undefined;
+  private boardSub!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
