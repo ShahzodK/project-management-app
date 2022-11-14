@@ -76,8 +76,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(
       columnData => {
-        this.columnApiService.createColumn(this.board!.id, columnData).subscribe(() => {
-          this.columns$ = this.getColumns$(this.board!.id);
+        this.columnApiService.createColumn(this.board.id, columnData).subscribe(() => {
+          this.columns$ = this.getColumns$(this.board.id);
         });
       },
     );
