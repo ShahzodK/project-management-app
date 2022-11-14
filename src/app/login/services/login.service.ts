@@ -4,6 +4,8 @@ import { Observable, switchMap  } from 'rxjs';
 import { resetUser } from '../../redux/actions';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { SignInResponse, SignUpResponse } from '../models/auth-api.model';
 
 
 @Injectable({
@@ -13,15 +15,22 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
-  public login(login: string, password: string): Observable<Object> {
-    return this.http.post('signin', {
+  public login(login: string, password: string): Observable<SignInResponse> {
+    return this.http.post<SignInResponse>('signin', {
       login,
       password,
-    });
+    }).pipe(
+      map((signedInUser) => {
+        localStorage.setItem('authToken', signedInUser.token);
+        this.router.navigate(['']);
+
+        return signedInUser;
+      }),
+    );
   }
 
-  public signup(name: string, login: string, password: string): Observable<Object> {
-    return this.http.post('signup', {
+  public signup(name: string, login: string, password: string): Observable<SignInResponse> {
+    return this.http.post<SignUpResponse>('signup', {
       name,
       login,
       password,
