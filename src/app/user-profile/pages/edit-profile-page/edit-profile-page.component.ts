@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -7,7 +7,6 @@ import { UserApiService } from './../../services/user-api.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
-import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -18,7 +17,7 @@ export class EditProfilePageComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private api: UserApiService,
+    private userApi: UserApiService,
     private userService: UserService,
     private router: Router,
   ) { }
@@ -35,9 +34,11 @@ export class EditProfilePageComponent implements OnInit {
     this.editProfileForm.get('login')!.setValue(this.loginValue);
   }
 
-  public nameValue: string = '';
+  public nameValue = '';
 
-  public loginValue: string = '';
+  public loginValue = '';
+
+  public passwordRecommendation = '';
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -58,13 +59,57 @@ export class EditProfilePageComponent implements OnInit {
       nonNullable: true,
       validators: [
         Validators.required,
-        passwordStrengthValidator(),
+        this.UserPasswordStrengthValidator(),
       ],
     }),
   });
 
+  public UserPasswordStrengthValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const passwordValue: string = control.value;
+      const pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$&+,:;=?@#|'<>.^*()%!-]).{8,}$/;
+      const specialChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
+      const upperCaseChar = /[A-Z]/;
+      const lowerCaseChar = /[a-z]/;
+      const number = /[0-9]/;
+      if (pattern.test(passwordValue)) {
+        this.passwordRecommendation = '';
+        return null;
+      }
+      if (passwordValue.length === 0) {
+        this.passwordRecommendation = 'login-module.form-errors.password.required';
+        return { value: control.value };
+      }
+      if (passwordValue.length < 8 && passwordValue.length !== 0) {
+        this.passwordRecommendation = 'login-module.form-errors.password.enough_chars';
+        return { value: control.value };
+      }
+
+      switch (false) {
+        case lowerCaseChar.test(passwordValue):
+          this.passwordRecommendation = 'login-module.form-errors.password.lowercase';
+          break;
+        case upperCaseChar.test(passwordValue):
+          this.passwordRecommendation = 'login-module.form-errors.password.uppercase';
+          break;
+        case number.test(passwordValue):
+          this.passwordRecommendation = 'login-module.form-errors.password.numeric';
+          break;
+        case specialChars.test(passwordValue):
+          this.passwordRecommendation = 'login-module.form-errors.password.specials';
+          break;
+        default:
+          this.passwordRecommendation = '';
+          return null;
+          break;
+      }
+      return { value: control.value };
+    };
+  }
+
+
   public deleteUser(): void {
-    this.api.deleteUser(this.userService.getUserId()).subscribe({
+    this.userApi.deleteUser(this.userService.getUserId()).subscribe({
       complete: () => {
         this.store.dispatch(UserActions.resetUser());
         this.router.navigateByUrl('home');
@@ -73,24 +118,25 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log('submitted');
     const id = this.userService.getUserId();
     const name = this.editProfileForm.getRawValue().name;
     const login = this.editProfileForm.getRawValue().login;
     const password = this.editProfileForm.getRawValue().password;
-    if (this.editProfileForm.valid) {
-      this.api.updateUser(this.userService.getUserId(), name, login, password).subscribe({
-        next: () => {
-          const user = {
-            name,
-            id,
-            login,
-          };
-          this.store.dispatch(UserActions.setLoggedUser(user));
-          this.router.navigateByUrl('main');
-        },
-      });
+    if (this.editProfileForm.invalid) {
+      return;
     }
+
+    this.userApi.updateUser(this.userService.getUserId(), name, login, password).subscribe({
+      next: () => {
+        const user = {
+          name,
+          id,
+          login,
+        };
+        this.store.dispatch(UserActions.setLoggedUser(user));
+        this.router.navigateByUrl('main');
+      },
+    });
 
   }
 
