@@ -10,14 +10,15 @@ import { UserService } from './shared/services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'project-management-app';
+  title = 'Teamwork';
 
   languages: { id: string, title: string }[] = [];
 
   constructor(
     private translateService: TranslateService,
     private userService: UserService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.translateService.use(environment.defaultLocale);

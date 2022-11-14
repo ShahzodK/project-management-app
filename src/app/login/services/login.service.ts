@@ -4,7 +4,6 @@ import { Observable, switchMap  } from 'rxjs';
 
 @Injectable()
 export class LoginService {
-
   constructor(private http: HttpClient) {}
 
   public login(login: string, password: string): Observable<Object> {
