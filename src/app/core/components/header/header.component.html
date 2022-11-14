@@ -20,13 +20,7 @@
         routerLink="login"
       >{{ 'common.login' | translate }}</a>
 
-      <button mat-button class="header-locales">
-        <mat-select *ngIf="selectedLocale" [(ngModel)]="selectedLocale" (selectionChange)="changeLocale($event)">
-          <mat-option *ngFor="let locale of locales" [value]="locale">
-            {{ locale | translate }}
-          </mat-option>
-        </mat-select>
-      </button>
+      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>

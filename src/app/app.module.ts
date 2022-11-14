@@ -29,6 +29,7 @@ import { NotFoundPageComponent } from './core/components/not-found-page/not-foun
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { LocaleTogglerComponent } from './core/components/locale-toggler/locale-toggler.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -40,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     HeaderComponent,
     FooterComponent,
     NotFoundPageComponent,
+    LocaleTogglerComponent,
   ],
   imports: [
     BrowserModule,
