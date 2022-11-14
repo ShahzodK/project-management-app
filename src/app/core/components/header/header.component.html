@@ -1,32 +1,26 @@
-<header class="header">
-  <div>
-    <div class="title">{{ 'header.title' | translate }}</div>
-  </div>
-<!--  <div *ngIf="isLogged$ | async">-->
-<!--    <mat-form-field appearance="standard">-->
-<!--      <mat-label>{{ 'header.search' | translate }}</mat-label>-->
-<!--      <input matInput (input)="boardService.searchValue = (input.value)" #input>-->
-<!--    </mat-form-field>-->
-<!--  </div>-->
-  <nav>
-    <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
-    <button *ngIf="isLogged$ | async" mat-button
-    (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
-      {{ 'header.createNewBoard' | translate }}
-    </button>
-    <button
-      *ngIf="isLogged$ | async"
-      mat-button
-      (click)="logout()"
-    >{{ 'common.logout' | translate }}</button>
-    <a
-      *ngIf="!!!(isLogged$ | async)"
-      mat-button
-      routerLink="login"
-    >{{ 'common.login' | translate }}</a>
-    <mat-slide-toggle
-      color="primary"
-      (toggleChange)="changeLocale()"
-    >{{ localeName | translate }}</mat-slide-toggle>
-  </nav>
-</header>
+<mat-toolbar class="header">
+  <mat-toolbar-row class="container">
+      <div class="header-logo">{{ 'header.title' | translate }}</div>
+      <div class="header-btns">
+        <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
+        <button *ngIf="isLogged$ | async" mat-button
+                (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
+          {{ 'header.createNewBoard' | translate }}
+        </button>
+        <button
+          *ngIf="isLogged$ | async"
+          mat-button
+          (click)="logout()"
+        >{{ 'common.logout' | translate }}</button>
+        <a
+          *ngIf="!!!(isLogged$ | async)"
+          mat-button
+          routerLink="login"
+        >{{ 'common.login' | translate }}</a>
+        <mat-slide-toggle
+          color="primary"
+          (toggleChange)="changeLocale()"
+        >{{ localeName | translate }}</mat-slide-toggle>
+      </div>
+  </mat-toolbar-row>
+</mat-toolbar>
