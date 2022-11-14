@@ -1,15 +1,13 @@
 <header class="header">
   <div>
     <div class="title">{{ 'header.title' | translate }}</div>
-    <div class="user" *ngIf="isLogged$ | async">{{ 'header.logged' | translate }} {{ userName$ | async }}</div>
-    <div class="user" *ngIf="!!!(isLogged$ | async)">{{ 'header.no-logged' | translate }}</div>
   </div>
-  <div *ngIf="isLogged$ | async">
-    <mat-form-field appearance="standard">
-      <mat-label>{{ 'header.search' | translate }}</mat-label>
-      <input matInput (input)="boardService.searchValue = (input.value)" #input>
-    </mat-form-field>
-  </div>
+<!--  <div *ngIf="isLogged$ | async">-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>{{ 'header.search' | translate }}</mat-label>-->
+<!--      <input matInput (input)="boardService.searchValue = (input.value)" #input>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
   <nav>
     <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
     <button *ngIf="isLogged$ | async" mat-button
