@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { BoardService } from './../../services/board.service';
-import { BoardApiService } from './../../services/board-api.service';
-import { getBoards } from './../../../redux/actions/board-action';
 import { selectBoards } from 'src/app/redux/selectors/boards-selector';
+import { BoardService } from '../../services/board.service';
+import { BoardApiService } from '../../services/board-api.service';
+import { getBoards } from '../../../redux/actions/board-action';
 
 @Component({
   selector: 'app-main',
@@ -26,7 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public boardError = false;
 
   public stateBoards$ = this.store.select(selectBoards);
-  
+
   public getBoardsSub: Subscription | undefined;
 
   ngOnInit(): void {
@@ -40,5 +40,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.getBoardsSub?.unsubscribe();
+  }
+
+  onBoardClick(ID: string): void {
+    this.router.navigate([`main/board/${ID}`]);
   }
 }
