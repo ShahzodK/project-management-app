@@ -30,8 +30,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { LocaleTogglerComponent } from './core/components/locale-toggler/locale-toggler.component';
-import {MatMenuModule} from "@angular/material/menu";
-import {MatIconModule} from "@angular/material/icon";
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -60,7 +60,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
     BrowserAnimationsModule,
@@ -68,7 +68,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       metaReducers,
     }),
     EffectsModule.forRoot([BoardEffects]),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomePageModule,
     MatToolbarModule,
     MatSelectModule,

@@ -5,20 +5,31 @@
       <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
 
       <ng-container *ngIf="isLogged$ | async">
-        <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu" aria-label="Open menu">
+        <ng-container *ngIf="isWelcomePage !== null">
+          <button (click)="toggleModal()" *ngIf="!isWelcomePage"
+                  mat-button>
+            {{ 'header.createNewBoard' | translate }}
+          </button>
+
+          <a
+            *ngIf="isWelcomePage"
+            mat-button
+            routerLink="main"
+          >{{ 'common.boards' | translate }}</a>
+        </ng-container>
+
+
+        <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu"
+                aria-label="Open menu">
           {{ 'header.greeting' | translate }}{{ userName$ | async }}!
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-        <button mat-menu-item>{{ 'header.editProfile' | translate }}</button>
-        <button mat-menu-item
-                (click)="toggleModal()">
-          {{ 'header.createNewBoard' | translate }}
-        </button>
-        <button
-          mat-menu-item
-          (click)="logout()"
-        >{{ 'common.logout' | translate }}</button>
+          <button mat-menu-item>{{ 'header.editProfile' | translate }}</button>
+          <button
+            mat-menu-item
+            (click)="logout()"
+          >{{ 'common.logout' | translate }}</button>
         </mat-menu>
       </ng-container>
 

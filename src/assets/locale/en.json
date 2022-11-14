@@ -5,7 +5,8 @@
     "name": "Name",
     "logout": "Logout",
     "main-link": "Go to main page",
-    "password": "Password"
+    "password": "Password",
+    "boards": "Boards"
   },
   "header": {
     "title": "Teamwork",

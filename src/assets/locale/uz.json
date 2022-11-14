@@ -5,7 +5,8 @@
     "name": "Ism",
     "logout": "Chiqish",
     "main-link": "Bosh sahifa",
-    "password": "Parol"
+    "password": "Parol",
+    "boards": "Taxtalar"
   },
   "header":{
     "title": "Teamwork",

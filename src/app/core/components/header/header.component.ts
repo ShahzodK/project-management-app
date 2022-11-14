@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { BoardService } from '../../../main/services/board.service';
 import { resetUser } from 'src/app/redux/actions';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   userName$ = this.store.select(selectUserName);
 
   isLogged$ = this.store.select(selectIsLogged);
+
+  public isWelcomePage: boolean | null = null;
+
+  private URLSub!: Subscription;
+
 
   constructor(
     private translateService: TranslateService,
@@ -23,6 +29,19 @@ export class HeaderComponent {
     private boardService: BoardService,
     private store: Store,
   ) {
+  }
+
+  ngOnInit(): void {
+    this.URLSub = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isWelcomePage = event.url.includes('home');
+      }
+    },
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.URLSub.unsubscribe();
   }
 
   public logout() {

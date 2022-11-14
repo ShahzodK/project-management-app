@@ -5,7 +5,8 @@
     "name": "Имя",
     "logout": "Выйти",
     "main-link": "На главную",
-    "password": "Пароль"
+    "password": "Пароль",
+    "boards": "Доски"
   },
   "header":{
     "title": "Teamwork",
