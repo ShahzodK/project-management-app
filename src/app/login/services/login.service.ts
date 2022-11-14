@@ -22,7 +22,7 @@ export class LoginService {
     }).pipe(
       map((signedInUser) => {
         localStorage.setItem('authToken', signedInUser.token);
-        this.router.navigate(['']);
+        this.router.navigate(['main']);
 
         return signedInUser;
       }),
