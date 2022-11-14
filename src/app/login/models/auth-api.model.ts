@@ -1,8 +1,8 @@
-export interface SignInResponse {
+export interface ISignInResponse {
   token: string;
 }
 
-export interface SignUpResponse {
+export interface ISignUpResponse {
   id: string;
   login: string;
   name: string;
