@@ -26,7 +26,9 @@ import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -39,33 +41,35 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     FooterComponent,
     NotFoundPageComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatSlideToggleModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-            },
-            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
-            useDefaultLang: false,
-        }),
-        BrowserAnimationsModule,
-        StoreModule.forRoot(reducers, {
-            metaReducers,
-        }),
-        EffectsModule.forRoot([BoardEffects]),
-        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-        WelcomePageModule,
-        MatToolbarModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    }),
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
+    EffectsModule.forRoot([BoardEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    WelcomePageModule,
+    MatToolbarModule,
+    MatSelectModule,
+    FormsModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

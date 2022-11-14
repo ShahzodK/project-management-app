@@ -15,15 +15,18 @@
       </ng-container>
 
       <a
-        *ngIf="!(isLogged$ | async)"
+        *ngIf="(isLogged$ | async) === false"
         mat-button
         routerLink="login"
       >{{ 'common.login' | translate }}</a>
 
-      <mat-slide-toggle
-        color="primary"
-        (toggleChange)="changeLocale()"
-      >{{ localeName | translate }}</mat-slide-toggle>
+      <button mat-button class="header-locales">
+        <mat-select *ngIf="selectedLocale" [(ngModel)]="selectedLocale" (selectionChange)="changeLocale($event)">
+          <mat-option *ngFor="let locale of locales" [value]="locale">
+            {{ locale | translate }}
+          </mat-option>
+        </mat-select>
+      </button>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
