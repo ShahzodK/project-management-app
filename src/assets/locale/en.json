@@ -9,6 +9,7 @@
   },
   "header": {
     "title": "Teamwork",
+    "greeting": "Hello, ",
     "editProfile": "Edit profile",
     "createNewBoard": "Create new board",
     "search": "Search...",

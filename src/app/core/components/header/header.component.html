@@ -2,19 +2,25 @@
   <mat-toolbar-row class="header-container container">
     <a class="header-logo" mat-button routerLink="home">{{ 'header.title' | translate }}</a>
     <nav class="header-nav">
+      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
+
       <ng-container *ngIf="isLogged$ | async">
-        <button mat-button>{{ 'header.editProfile' | translate }}</button>
-        <button mat-button
+        <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu" aria-label="Open menu">
+          {{ 'header.greeting' | translate }}{{ userName$ | async }}!
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+        <button mat-menu-item>{{ 'header.editProfile' | translate }}</button>
+        <button mat-menu-item
                 (click)="toggleModal()">
           {{ 'header.createNewBoard' | translate }}
         </button>
         <button
+          mat-menu-item
           (click)="logout()"
-          mat-button
         >{{ 'common.logout' | translate }}</button>
+        </mat-menu>
       </ng-container>
-
-      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
 
       <a
         *ngIf="(isLogged$ | async) === false"

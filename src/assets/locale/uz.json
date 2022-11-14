@@ -9,6 +9,7 @@
   },
   "header":{
     "title": "Teamwork",
+    "greeting": "Salom, ",
     "editProfile": "Profilni tahrirlash",
     "createNewBoard": "Yangi loyiha",
     "search": "Izlash...",
