@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.URLSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isWelcomePage = event.url.includes('welcome');
+        this.isWelcomePage = event.urlAfterRedirects.includes('welcome');
       }
     },
     );
