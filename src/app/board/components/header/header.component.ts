@@ -6,11 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() boardTitle: string | undefined = '';
+  @Input() boardTitle = '';
 
   @Output() back = new EventEmitter();
 
-  onNavigateBackClick() {
+  public onNavigateBackClick(): void {
     this.back.emit();
   }
 }

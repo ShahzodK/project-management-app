@@ -16,7 +16,7 @@ import { CreateColumnModalComponent } from '../../components/create-column-modal
   styleUrls: ['./board-page.component.scss'],
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
-  board: IBoard | undefined;
+  public board: IBoard | undefined;
 
   public columns$: Observable<IColumn[]> | undefined;
 
@@ -53,19 +53,19 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.boardSub?.unsubscribe();
   }
 
-  navigateBack(): void {
+  public navigateBack(): void {
     this.location.back();
   }
 
-  getColumns$(boardID: string): Observable<IColumn[]> {
+  private getColumns$(boardID: string): Observable<IColumn[]> {
     return this.columnApiService.getColumns(boardID);
   }
 
-  createColumn(): void {
+  public createColumn(): void {
     this.openModal();
   }
 
-  openModal(): void {
+  private openModal(): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -76,8 +76,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(
       columnData => {
-        this.columnApiService.createColumn(this.board!.id, columnData).subscribe(createdColumn => {
-          console.log(createdColumn);
+        this.columnApiService.createColumn(this.board!.id, columnData).subscribe(() => {
           this.columns$ = this.getColumns$(this.board!.id);
         });
       },

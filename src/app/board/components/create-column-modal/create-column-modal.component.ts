@@ -7,13 +7,11 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-column-modal.component.scss'],
 })
 export class CreateColumnModalComponent {
-  columnTitle: string = '';
-
+  public columnTitle = '';
 
   constructor(private dialogRef: MatDialogRef<CreateColumnModalComponent>) {}
 
-
-  save() {
+  public save(): void {
     this.dialogRef.close(this.columnTitle);
   }
 }

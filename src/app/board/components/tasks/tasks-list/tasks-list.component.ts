@@ -7,5 +7,5 @@ import { ITask } from '../../../models/task.model';
   styleUrls: ['./tasks-list.component.scss'],
 })
 export class TasksListComponent {
-  @Input() tasks: ITask[] | undefined;
+  @Input() tasks: ITask[] = [];
 }
