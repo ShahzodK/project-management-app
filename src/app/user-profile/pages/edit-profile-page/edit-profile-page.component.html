@@ -24,7 +24,7 @@
       <mat-form-field appearance="fill">
         <mat-label>{{'editProfile.password' | translate}}</mat-label>
         <input type="password" matInput name="password" formControlName="password">
-        <mat-error>{{passwordRecommendation | translate}}</mat-error>
+        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
       </mat-form-field>
       <button mat-button color="primary">{{'editProfile.saveUser' | translate}}</button>
     </form>

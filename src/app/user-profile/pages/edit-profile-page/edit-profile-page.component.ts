@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -7,6 +7,9 @@ import { UserApiService } from './../../services/user-api.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
+import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
+import { PasswordFieldErrors } from 'src/app/login/models/auth.model';
+import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -14,6 +17,14 @@ import * as UserActions from '../../../redux/actions/index';
   styleUrls: ['./edit-profile-page.component.scss'],
 })
 export class EditProfilePageComponent implements OnInit {
+
+  public hasPasswordError = false;
+
+  public nameValue = '';
+
+  public loginValue = '';
+
+  public passwordRecommendation = '';
 
   constructor(
     private store: Store,
@@ -23,6 +34,15 @@ export class EditProfilePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.editProfileForm.valueChanges.subscribe(() => {
+      if (this.editProfileForm.valid) {
+        this.hasPasswordError = false;
+        return;
+      }
+
+      this.checkErrors();
+    });
+
     this.store.select(selectUserName).pipe(take(1)).subscribe({
       next: (name) => this.nameValue = name,
     });
@@ -33,12 +53,6 @@ export class EditProfilePageComponent implements OnInit {
     this.editProfileForm.get('name')!.setValue(this.nameValue);
     this.editProfileForm.get('login')!.setValue(this.loginValue);
   }
-
-  public nameValue = '';
-
-  public loginValue = '';
-
-  public passwordRecommendation = '';
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -59,52 +73,44 @@ export class EditProfilePageComponent implements OnInit {
       nonNullable: true,
       validators: [
         Validators.required,
-        this.UserPasswordStrengthValidator(),
+        passwordStrengthValidator(),
       ],
     }),
   });
 
-  public UserPasswordStrengthValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const passwordValue: string = control.value;
-      const pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[$&+,:;=?@#|'<>.^*()%!-]).{8,}$/;
-      const specialChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
-      const upperCaseChar = /[A-Z]/;
-      const lowerCaseChar = /[a-z]/;
-      const number = /[0-9]/;
-      if (pattern.test(passwordValue)) {
-        this.passwordRecommendation = '';
-        return null;
-      }
-      if (passwordValue.length === 0) {
-        this.passwordRecommendation = 'login-module.form-errors.password.required';
-        return { value: control.value };
-      }
-      if (passwordValue.length < 8 && passwordValue.length !== 0) {
-        this.passwordRecommendation = 'login-module.form-errors.password.enough_chars';
-        return { value: control.value };
-      }
+  private checkHasError(control: AbstractControl): boolean {
+    return !!(control.errors && Object.keys(control.errors).length !== 0);
+  }
 
-      switch (false) {
-        case lowerCaseChar.test(passwordValue):
-          this.passwordRecommendation = 'login-module.form-errors.password.lowercase';
-          break;
-        case upperCaseChar.test(passwordValue):
-          this.passwordRecommendation = 'login-module.form-errors.password.uppercase';
-          break;
-        case number.test(passwordValue):
-          this.passwordRecommendation = 'login-module.form-errors.password.numeric';
-          break;
-        case specialChars.test(passwordValue):
-          this.passwordRecommendation = 'login-module.form-errors.password.specials';
-          break;
-        default:
-          this.passwordRecommendation = '';
-          return null;
-          break;
-      }
-      return { value: control.value };
-    };
+  private checkErrors() {
+    const password = this.password;
+    if (!password) return;
+
+    this.hasPasswordError = this.checkHasError(password);
+  }
+
+  public get password() {
+    return this.editProfileForm.get('password');
+  }
+
+  public getPasswordErrorMessage(): string {
+    const password = this.password;
+
+    switch (true) {
+      case password?.hasError(PasswordFieldErrors.REQUIRED):
+        return signUpErrorsLocale.password.required;
+      case password?.hasError(PasswordFieldErrors.ENOUGH_CHARS):
+        return signUpErrorsLocale.password.enough_chars;
+      case password?.hasError(PasswordFieldErrors.LOWERCASE) ||
+      password?.hasError(PasswordFieldErrors.UPPERCASE):
+        return signUpErrorsLocale.password.lowercase;
+      case password?.hasError(PasswordFieldErrors.NUMERIC):
+        return signUpErrorsLocale.password.numeric;
+      case password?.hasError(PasswordFieldErrors.SPECIALS):
+        return signUpErrorsLocale.password.specials;
+      default:
+        return '';
+    }
   }
 
 
