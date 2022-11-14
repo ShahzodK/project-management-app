@@ -80,6 +80,14 @@
       "403": "Login or password is wrong!"
     }
   },
+  "editProfile": {
+    "edit-profile": "Edit Profile",
+    "name": "name",
+    "login": "login",
+    "password": "password",
+    "saveUser": "save user",
+    "deleteUser": "delete user"
+  },
 	"languages": {
 		"en": "ENG",
 		"ru": "RUS",
