@@ -1,0 +1,5 @@
+<ul class="columns" *ngIf="columns">
+  <li class="columns-item" *ngFor="let column of columns">
+    <app-columns-item [column]="column"></app-columns-item>
+  </li>
+</ul>
