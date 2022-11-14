@@ -1,26 +1,29 @@
 <mat-toolbar class="header">
-  <mat-toolbar-row class="container">
-      <div class="header-logo">{{ 'header.title' | translate }}</div>
-      <div class="header-btns">
-        <button *ngIf="isLogged$ | async" mat-button>{{ 'header.editProfile' | translate }}</button>
-        <button *ngIf="isLogged$ | async" mat-button
+  <mat-toolbar-row class="header-container container">
+    <div class="header-logo">{{ 'header.title' | translate }}</div>
+    <nav class="header-nav">
+      <ng-container *ngIf="isLogged$ | async">
+        <button mat-button>{{ 'header.editProfile' | translate }}</button>
+        <button mat-button
                 (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
           {{ 'header.createNewBoard' | translate }}
         </button>
         <button
-          *ngIf="isLogged$ | async"
-          mat-button
           (click)="logout()"
-        >{{ 'common.logout' | translate }}</button>
-        <a
-          *ngIf="!!!(isLogged$ | async)"
           mat-button
-          routerLink="login"
-        >{{ 'common.login' | translate }}</a>
-        <mat-slide-toggle
-          color="primary"
-          (toggleChange)="changeLocale()"
-        >{{ localeName | translate }}</mat-slide-toggle>
-      </div>
+        >{{ 'common.logout' | translate }}</button>
+      </ng-container>
+
+      <a
+        *ngIf="!(isLogged$ | async)"
+        mat-button
+        routerLink="login"
+      >{{ 'common.login' | translate }}</a>
+
+      <mat-slide-toggle
+        color="primary"
+        (toggleChange)="changeLocale()"
+      >{{ localeName | translate }}</mat-slide-toggle>
+    </nav>
   </mat-toolbar-row>
 </mat-toolbar>
