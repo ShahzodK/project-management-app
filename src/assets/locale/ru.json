@@ -97,13 +97,17 @@
       }
     }
   },
-  "editProfile": {
-    "edit-profile": "Редактировать профиль",
-    "name": "Имя",
-    "login": "Email",
-    "password": "Пароль",
-    "saveUser": "Сохранить",
-    "deleteUser": "Удалить профиль",
+  "edit-profile": {
+    "title": "Редактировать профиль",
+    "form": {
+      "field-names": {
+        "name": "Имя",
+        "email": "Email",
+        "password": "Пароль"
+      },
+      "submit-btn": "Сохранить",
+      "delete-btn": "Удалить профиль"
+    },
     "notification": {
       "success": "Сохранено!",
       "close-btn": "Закрыть"

@@ -1,35 +1,35 @@
 <div class="container edit-profile-container">
   <mat-card class="edit-profile-card">
     <mat-card-header>
-      <mat-card-title>{{'editProfile.edit-profile' | translate}}</mat-card-title>
+      <mat-card-title>{{'edit-profile.title' | translate}}</mat-card-title>
     </mat-card-header>
 
     <form (ngSubmit)='submit()' [formGroup]="editProfileForm" class="edit-profile-form">
       <mat-form-field appearance="fill">
-        <mat-label>{{'editProfile.name' | translate}}</mat-label>
+        <mat-label>{{'edit-profile.form.field-names.name' | translate}}</mat-label>
         <input type="text" matInput name="name" formControlName="name">
 
         <mat-error *ngIf="hasNameError">{{getNameErrorMessage() | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>{{'editProfile.login' | translate}}</mat-label>
+        <mat-label>{{'edit-profile.form.field-names.email' | translate}}</mat-label>
         <input type="text" matInput name="email" formControlName="email">
 
         <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>{{'editProfile.password' | translate}}</mat-label>
+        <mat-label>{{'edit-profile.form.field-names.password' | translate}}</mat-label>
         <input type="password" matInput name="password" formControlName="password">
 
         <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
       </mat-form-field>
-      <button mat-button color="primary">{{'editProfile.saveUser' | translate}}</button>
+      <button mat-button color="primary">{{'edit-profile.form.submit-btn' | translate}}</button>
     </form>
 
     <button mat-button color="warn" class="delete-user-button" (click)="deleteUser()">
-      {{'editProfile.deleteUser' | translate}}
+      {{'edit-profile.form.delete-btn' | translate}}
     </button>
   </mat-card>
 </div>

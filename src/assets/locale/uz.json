@@ -45,6 +45,22 @@
     "no": "Yo'q",
     "yes": "Ha"
   },
+  "edit-profile": {
+    "title": "Profilni tahrirlash",
+    "form": {
+      "field-names": {
+        "name": "Ism",
+        "email": "Email",
+        "password": "Parol"
+      },
+      "submit-btn": "Saqlash",
+      "delete-btn": "Profilni o'chirib tashlash"
+    },
+    "notification": {
+      "success": "Saqalandi!",
+      "close-btn": "Yopish"
+    }
+  },
   "auth": {
     "sign-in": {
       "title": "Kirish",

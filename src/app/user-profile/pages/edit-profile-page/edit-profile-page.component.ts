@@ -188,8 +188,8 @@ export class EditProfilePageComponent implements OnInit {
 
       this.store.dispatch(UserActions.setLoggedUser(user));
 
-      const message = this.translateService.instant('editProfile.notification.success');
-      const buttonText = this.translateService.instant('editProfile.notification.close-btn');
+      const message = this.translateService.instant('edit-profile.notification.success');
+      const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
 
       this.showSuccessEdit(message, buttonText);
     });

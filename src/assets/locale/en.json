@@ -1,5 +1,5 @@
 {
-	"common": {
+  "common": {
     "login": "Log In",
     "signup": "Sign Up",
     "main-link": "Go to main page"
@@ -44,7 +44,7 @@
     "newBoard": "New Board",
     "no": "No",
     "yes": "Yes"
-	},
+  },
   "not-found-page": {
     "button-back": "Back to main",
     "not-found-message": "Page not found"
@@ -95,21 +95,25 @@
       }
     }
   },
-  "editProfile": {
-    "edit-profile": "Edit profile",
-    "name": "Name",
-    "login": "Email",
-    "password": "Password",
-    "saveUser": "Save",
-    "deleteUser": "Delete profile",
+  "edit-profile": {
+    "title": "Edit profile",
+    "form": {
+      "field-names": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password"
+      },
+      "submit-btn": "Save",
+      "delete-btn": "Delete profile"
+    },
     "notification": {
       "success": "Saved!",
       "close-btn": "Close"
     }
   },
-	"languages": {
-		"en": "ENG",
-		"ru": "RUS",
+  "languages": {
+    "en": "ENG",
+    "ru": "RUS",
     "uz": "UZB"
-	}
+  }
 }
