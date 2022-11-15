@@ -21,7 +21,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
     public boardService: BoardService,
     public api: BoardApiService,
     private store: Store,
-  ) { }
+  ) {
+  }
 
   public boardError = false;
 

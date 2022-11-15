@@ -26,6 +26,12 @@ import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { LocaleTogglerComponent } from './core/components/locale-toggler/locale-toggler.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -37,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     HeaderComponent,
     FooterComponent,
     NotFoundPageComponent,
+    LocaleTogglerComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +70,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     EffectsModule.forRoot([BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomeModule,
+    MatToolbarModule,
+    MatSelectModule,
+    FormsModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [
     {

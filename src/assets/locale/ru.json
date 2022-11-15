@@ -5,10 +5,12 @@
     "name": "Имя",
     "logout": "Выйти",
     "main-link": "На главную",
-    "password": "Пароль"
+    "password": "Пароль",
+    "boards": "Доски"
   },
   "header":{
-    "title": "Управление проектами",
+    "title": "Teamwork",
+    "greeting": "Привет, ",
     "editProfile": "Редактировать профиль",
     "createNewBoard": "Новый проект",
     "search": "Искать...",
