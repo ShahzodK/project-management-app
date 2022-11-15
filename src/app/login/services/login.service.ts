@@ -12,7 +12,6 @@ import { ISignInResponse, ISignUpResponse } from '../models/auth-api.model';
   providedIn: 'root',
 })
 export class LoginService {
-
   constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
   public login(login: string, password: string): Observable<ISignInResponse> {

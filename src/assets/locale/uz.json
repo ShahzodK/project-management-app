@@ -5,10 +5,12 @@
     "name": "Ism",
     "logout": "Chiqish",
     "main-link": "Bosh sahifa",
-    "password": "Parol"
+    "password": "Parol",
+    "boards": "Taxtalar"
   },
   "header":{
-    "title": "Loyihalarni boshqarish",
+    "title": "Teamwork",
+    "greeting": "Salom, ",
     "editProfile": "Profilni tahrirlash",
     "createNewBoard": "Yangi loyiha",
     "search": "Izlash...",
