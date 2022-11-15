@@ -25,7 +25,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
   },
-  { path: '', redirectTo: 'home', pathMatch:'full' },
   {
     path: 'edit-profile',
     loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
