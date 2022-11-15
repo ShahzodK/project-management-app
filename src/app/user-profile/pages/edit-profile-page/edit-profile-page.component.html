@@ -25,10 +25,10 @@
 
         <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
       </mat-form-field>
-      <button mat-button color="primary">{{'edit-profile.form.submit-btn' | translate}}</button>
+      <button class="submit-btn" mat-raised-button color="primary">{{'edit-profile.form.submit-btn' | translate}}</button>
     </form>
 
-    <button mat-button color="warn" class="delete-user-button" (click)="deleteUser()">
+    <button mat-raised-button color="warn" class="delete-btn" (click)="deleteUser()">
       {{'edit-profile.form.delete-btn' | translate}}
     </button>
   </mat-card>
