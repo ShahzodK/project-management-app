@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Store} from '@ngrx/store';
-import {take} from 'rxjs/operators';
-import {UserApiService} from '../../services/user-api.service';
-import {UserService} from 'src/app/shared/services/user.service';
-import {selectUserLogin, selectUserName} from 'src/app/redux/selectors';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
+import { UserApiService } from '../../services/user-api.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
-import {passwordStrengthValidator} from 'src/app/login/validators/password-strength.validator';
-import {PasswordFieldErrors} from 'src/app/login/models/auth.model';
-import {signUpErrorsLocale} from 'src/app/login/models/locale-errors.const';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {TranslateService} from "@ngx-translate/core";
+import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
+import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/login/models/auth.model';
+import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -19,6 +19,10 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./edit-profile-page.component.scss'],
 })
 export class EditProfilePageComponent implements OnInit {
+
+  public hasNameError = false;
+
+  public hasEmailError = false;
 
   public hasPasswordError = false;
 
@@ -44,6 +48,8 @@ export class EditProfilePageComponent implements OnInit {
         passwordStrengthValidator(),
       ],
     }),
+  }, {
+    updateOn: 'submit',
   });
 
   constructor(
@@ -52,7 +58,7 @@ export class EditProfilePageComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
   }
 
@@ -60,33 +66,15 @@ export class EditProfilePageComponent implements OnInit {
     this.editProfileForm.valueChanges.subscribe(() => {
       if (this.editProfileForm.valid) {
         this.hasPasswordError = false;
+        this.hasNameError = false;
+        this.hasEmailError = false;
         return;
       }
 
       this.checkErrors();
     });
 
-    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
-      this.setControlValue(this.name!, name);
-    });
-    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
-      this.setControlValue(this.email!, email);
-    });
-  }
-
-  private setControlValue(control: AbstractControl, value: string) {
-    control.setValue(value);
-  }
-
-  private checkHasError(control: AbstractControl): boolean {
-    return !!(control.errors && Object.keys(control.errors).length !== 0);
-  }
-
-  private checkErrors() {
-    const password = this.password;
-    if (!password) return;
-
-    this.hasPasswordError = this.checkHasError(password);
+    this.setInitialValues();
   }
 
   public get name() {
@@ -101,26 +89,74 @@ export class EditProfilePageComponent implements OnInit {
     return this.editProfileForm.get('password');
   }
 
-  public getPasswordErrorMessage(): string {
-    const password = this.password;
+  private setInitialValues() {
+    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
+      this.setControlValue(this.name!, name);
+    });
+    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
+      this.setControlValue(this.email!, email);
+    });
+  }
+
+  private setControlValue(control: AbstractControl, value: string) {
+    control.setValue(value);
+  }
+
+  private checkErrors() {
+    const password = this.password!;
+    const name = this.name!;
+    const email = this.email!;
+
+    this.hasPasswordError = this.checkHasError(password);
+    this.hasNameError = this.checkHasError(name);
+    this.hasEmailError = this.checkHasError(email);
+  }
+
+  private checkHasError(control: AbstractControl): boolean {
+    return !!(control.errors && Object.keys(control.errors).length !== 0);
+  }
+
+  public getNameErrorMessage(): string {
+    const name = this.name!;
+
+    if (name.hasError(NameFieldErrors.REQUIRED)) return 'auth.forms.errors.client.name.required';
+    if (name.hasError(NameFieldErrors.MIN_LENGTH)) return 'auth.forms.errors.client.name.minlength';
+
+    return  '';
+  }
+
+  public getEmailErrorMessage(): string {
+    const email = this.email!;
 
     switch (true) {
-      case password?.hasError(PasswordFieldErrors.REQUIRED):
-        return signUpErrorsLocale.password.required;
-      case password?.hasError(PasswordFieldErrors.ENOUGH_CHARS):
-        return signUpErrorsLocale.password.enough_chars;
-      case password?.hasError(PasswordFieldErrors.LOWERCASE) ||
-      password?.hasError(PasswordFieldErrors.UPPERCASE):
-        return signUpErrorsLocale.password.lowercase;
-      case password?.hasError(PasswordFieldErrors.NUMERIC):
-        return signUpErrorsLocale.password.numeric;
-      case password?.hasError(PasswordFieldErrors.SPECIALS):
-        return signUpErrorsLocale.password.specials;
+      case email.hasError(EmailFieldErrors.REQUIRED):
+        return 'auth.forms.errors.client.email.required';
+      case email.hasError(EmailFieldErrors.EMAIL):
+        return 'auth.forms.errors.client.email.email';
       default:
         return '';
     }
   }
 
+  public getPasswordErrorMessage(): string {
+    const password = this.password!;
+
+    switch (true) {
+      case password.hasError(PasswordFieldErrors.REQUIRED):
+        return signUpErrorsLocale.password.required;
+      case password.hasError(PasswordFieldErrors.ENOUGH_CHARS):
+        return signUpErrorsLocale.password.enough_chars;
+      case password.hasError(PasswordFieldErrors.LOWERCASE) ||
+      password?.hasError(PasswordFieldErrors.UPPERCASE):
+        return signUpErrorsLocale.password.lowercase;
+      case password.hasError(PasswordFieldErrors.NUMERIC):
+        return signUpErrorsLocale.password.numeric;
+      case password.hasError(PasswordFieldErrors.SPECIALS):
+        return signUpErrorsLocale.password.specials;
+      default:
+        return '';
+    }
+  }
 
   public deleteUser(): void {
     this.userApi.deleteUser(this.userService.getUserId()).subscribe({
@@ -132,13 +168,16 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   public submit(): void {
+    if (this.editProfileForm.invalid) {
+      this.checkErrors();
+      return;
+    }
+
     const id = this.userService.getUserId();
     const name = this.editProfileForm.getRawValue().name;
     const email = this.editProfileForm.getRawValue().email;
     const password = this.editProfileForm.getRawValue().password;
-    if (this.editProfileForm.invalid) {
-      return;
-    }
+
 
     this.userApi.updateUser(this.userService.getUserId(), name, email, password).subscribe(() => {
       const user = {
@@ -149,14 +188,12 @@ export class EditProfilePageComponent implements OnInit {
 
       this.store.dispatch(UserActions.setLoggedUser(user));
 
-      const message = this.translateService.instant(`editProfile.notification.success`);
+      const message = this.translateService.instant('editProfile.notification.success');
       const buttonText = this.translateService.instant('editProfile.notification.close-btn');
 
       this.showSuccessEdit(message, buttonText);
-      this.setControlValue(this.password!, '');
     });
   }
-
 
   private showSuccessEdit(message: string, buttonText: string): void {
     this.snackBar.open(message, buttonText, {
