@@ -47,33 +47,39 @@
     "no": "Yo'q",
     "yes": "Ha"
 	},
-  "login-module": {
-    "login-welcome": "Iltimos, kiring yoki ro'yxatdan o'ting" ,
-    "login-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting.",
-    "signup-welcome": "Iltimos, ro'yxatdan o'ting",
-    "signup-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring.",
-    "form-errors": {
-      "name": {
-        "required": "Ismni yozing",
-        "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
-      },
-      "email": {
-        "required": "Emailni yozing",
-        "email": "To'g'ri emailni yozing"
-      },
-      "password": {
-        "required": "Parloni yozing",
-        "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
-        "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-        "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-        "numeric": "Parolda raqamlar bo'lishi kerak",
-        "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
-      }
+  "auth": {
+    "login": {
+      "title": "Kirish",
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting"
+    },
+    "signup": {
+      "title": "Ro'yxatga olish",
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring"
     },
     "errors": {
-      "409": "Bunday loginlik foydalanuvchi mavjud!",
-      "404": "Tarmoq xatosi!",
-      "403": "Login yoki Parol xato!"
+      "client": {
+        "name": {
+          "required": "Ismni yozing",
+          "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
+        },
+        "email": {
+          "required": "Emailni yozing",
+          "email": "To'g'ri emailni yozing"
+        },
+        "password": {
+          "required": "Parloni yozing",
+          "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+          "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+          "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+          "numeric": "Parolda raqamlar bo'lishi kerak",
+          "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
+        }
+      },
+      "server": {
+        "409": "Bunday loginlik foydalanuvchi mavjud!",
+        "404": "Tarmoq xatosi!",
+        "403": "Login yoki Parol xato!"
+      }
     }
   },
 	"languages": {

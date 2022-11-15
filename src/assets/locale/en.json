@@ -51,33 +51,39 @@
     "button-back": "Back to main",
     "not-found-message": "Page not found"
   },
-  "login-module": {
-    "login-welcome": "Please login or sign up if not yet.",
-    "login-warning": "Something went wrong. Please try again or sign up.",
-    "signup-welcome": "Please fill form for sign up",
-    "signup-warning": "Something went wrong. Please try again later.",
-    "form-errors": {
-      "email": {
-        "required": "Enter your email",
-        "email": "Email is invalid"
-      },
-      "name": {
-        "required": "Enter your name",
-        "minlength": "Name must be more than 3 letters"
-      },
-      "password": {
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "warning": "Something went wrong. Please try again or sign up"
+    },
+    "signup": {
+      "title": "Sign up",
+      "warning": "Something went wrong. Please try again later"
+    },
+    "errors": {
+      "client": {
+        "email": {
+          "required": "Enter your email",
+          "email": "Email is invalid"
+        },
+        "name": {
+          "required": "Enter your name",
+          "minlength": "Name must be more than 3 letters"
+        },
+        "password": {
           "required": "Enter your password",
           "enough_chars": "Your password must be at least 8 characters",
           "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
           "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
           "numeric": "Your password must contain numbers",
           "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
+        }
+      },
+      "server": {
+        "409": "User login already exists!",
+        "404": "Network error!",
+        "403": "Login or password is wrong!"
       }
-    },
-    "errors": {
-      "409": "User login already exists!",
-      "404": "Network error!",
-      "403": "Login or password is wrong!"
     }
   },
   "editProfile": {

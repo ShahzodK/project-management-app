@@ -8,17 +8,17 @@
         <mat-label>{{'editProfile.name' | translate}}</mat-label>
         <input type="text" matInput name="name" formControlName="name">
         <mat-error *ngIf="editProfileForm.get('name')!.hasError('required')">
-          {{"login-module.form-errors.name.required" | translate}}
+          {{"auth.errors.client.name.required" | translate}}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>{{'editProfile.login' | translate}}</mat-label>
         <input type="text" matInput name="login" formControlName="login">
         <mat-error *ngIf="editProfileForm.get('login')!.hasError('required')">
-          {{"login-module.form-errors.email.required" | translate}}
+          {{"auth.errors.client.email.required" | translate}}
         </mat-error>
         <mat-error *ngIf="editProfileForm.get('login')!.hasError('email')">
-          {{"login-module.form-errors.email.email" | translate}}
+          {{"auth.errors.client.email.email" | translate}}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
