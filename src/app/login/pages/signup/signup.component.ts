@@ -1,9 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
@@ -19,9 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SignupComponent implements OnInit {
   public hasNameError: boolean = false;
 
-  public hasEmailError: boolean = false;
+  public hasEmailError = false;
 
-  public hasPasswordError: boolean = false;
+  public hasPasswordError = false;
 
   signupForm = new FormGroup({
     name: new FormControl<string>('', [
@@ -41,7 +39,6 @@ export class SignupComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private userService: UserService,
-    private router: Router,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
   ) {
@@ -60,7 +57,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  public signup() {
+  public signup(): void {
     if (this.signupForm.invalid) return;
     if (!this.name || !this.email || !this.password) return;
 
@@ -69,10 +66,8 @@ export class SignupComponent implements OnInit {
       this.email.value,
       this.password.value,
     ).subscribe({
-      next: (res) => {
+      next: () => {
         this.signupForm.reset();
-        localStorage.setItem('authToken', (res as { token: string }).token);
-        this.router.navigate(['']);
       },
       error: (res: HttpErrorResponse) => {
         const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);

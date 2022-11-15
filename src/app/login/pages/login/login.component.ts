@@ -1,14 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
 import { signInErrorsLocale } from '../../models/locale-errors.const';
-import { passwordStrengthValidator } from '../../validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -17,11 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public errMessage = '';
+  public hasEmailError = false;
 
-  public hasEmailError: boolean = false;
-
-  public hasPasswordError: boolean = false;
+  public hasPasswordError = false;
 
   loginForm = new FormGroup({
     email: new FormControl<string>('', [
@@ -30,14 +25,12 @@ export class LoginComponent implements OnInit {
     ]),
     password: new FormControl<string>('', [
       Validators.required,
-      passwordStrengthValidator(),
     ]),
   });
 
   constructor(
     private loginService: LoginService,
     private userService: UserService,
-    private router: Router,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
   ) {
@@ -68,10 +61,8 @@ export class LoginComponent implements OnInit {
       this.email.value,
       this.password.value,
     ).subscribe({
-      next: (res) => {
+      next: () => {
         this.loginForm.reset();
-        localStorage.setItem('authToken', (res as { token: string }).token);
-        this.router.navigate(['']);
       },
       error: (res: HttpErrorResponse) => {
         const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
@@ -98,7 +89,7 @@ export class LoginComponent implements OnInit {
     return !!(control.errors && Object.keys(control.errors).length !== 0);
   }
 
-  private checkErrors() {
+  private checkErrors(): void {
     const email = this.email;
     const password = this.password;
     if (!email || !password) return;
