@@ -41,7 +41,7 @@ export class SignupPageComponent implements OnInit {
   });
 
   constructor(
-    private loginService: AuthService,
+    private authService: AuthService,
     private userService: UserService,
     public translateService: TranslateService,
   ) {
@@ -64,7 +64,7 @@ export class SignupPageComponent implements OnInit {
     if (this.signupForm.invalid) return;
     if (!this.name || !this.email || !this.password) return;
 
-    this.loginService.signup(
+    this.authService.signup(
       this.name.getRawValue(),
       this.email.getRawValue(),
       this.password.getRawValue(),

@@ -6,8 +6,8 @@ import { NotFoundPageComponent } from './core/components/not-found-page/not-foun
 const routes: Routes = [
   {
     path: 'welcome',
-    loadChildren: () => import('./welcome-page/welcome-page.module')
-      .then((mod) => mod.WelcomePageModule),
+    loadChildren: () => import('./welcome/welcome.module')
+      .then((mod) => mod.WelcomeModule),
   },
   {
     path: 'login',

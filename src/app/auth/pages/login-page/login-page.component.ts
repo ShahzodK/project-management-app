@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
   });
 
   constructor(
-    private loginService: AuthService,
+    private authService: AuthService,
     private userService: UserService,
     public translateService: TranslateService,
   ) {
@@ -59,7 +59,7 @@ export class LoginPageComponent implements OnInit {
   public login(): void {
     if (!this.email || !this.password) return;
 
-    this.loginService.login(
+    this.authService.login(
       this.email.getRawValue(),
       this.password.getRawValue(),
     ).subscribe({
