@@ -33,12 +33,19 @@
         </mat-menu>
       </ng-container>
 
-      <a
-        *ngIf="(isLogged$ | async) === false"
-        mat-raised-button
-        color="primary"
-        routerLink="login"
-      >{{ 'common.login' | translate }}</a>
+      <ng-container *ngIf="(isLogged$ | async) === false">
+        <a
+          mat-raised-button
+          color="primary"
+          routerLink="login"
+        >{{ 'common.login' | translate }}</a>
+        <a
+          mat-raised-button
+          color="primary"
+          routerLink="login/signup"
+        >{{ 'common.signup' | translate }}</a>
+      </ng-container>
+
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
