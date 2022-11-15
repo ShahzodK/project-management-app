@@ -21,6 +21,8 @@ export class SignupComponent implements OnInit {
 
   public hasPasswordError = false;
 
+  public hidePassword = true;
+
   signupForm = new FormGroup({
     name: new FormControl<string>('', [
       Validators.required,
@@ -151,5 +153,9 @@ export class SignupComponent implements OnInit {
       panelClass: 'notification',
       duration: 2000,
     });
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }

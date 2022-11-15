@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatIconModule} from "@angular/material/icon";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -39,9 +40,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
-      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
       useDefaultLang: false,
     }),
+    MatIconModule,
   ],
   providers: [
     UserApiService,

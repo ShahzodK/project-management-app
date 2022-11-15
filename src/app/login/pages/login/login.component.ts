@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   public hasPasswordError = false;
 
+  public hidePassword = true;
+
   loginForm = new FormGroup({
     email: new FormControl<string>('', [
       Validators.required,
@@ -122,4 +124,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
+  }
 }

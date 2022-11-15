@@ -1,43 +1,50 @@
 <section class="auth-page">
   <div class="auth-page-container container">
     <h1 class="auth-page-title">{{ 'auth.sign-up.title' | translate }}</h1>
-    <form class="auth-page-form" [formGroup]="signupForm" (ngSubmit)="signup()">
+    <form (ngSubmit)="signup()" [formGroup]="signupForm" class="auth-page-form">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'auth.forms.field-names.name' | translate }}</mat-label>
         <input
-          matInput
-          type="text"
           formControlName="name"
+          matInput
           name="name"
+          type="text"
         >
         <mat-error *ngIf="hasNameError">{{ getNameErrorMessage() | translate }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>{{ 'auth.forms.field-names.email' | translate }}</mat-label>
         <input
-          matInput
-          type="text"
           formControlName="email"
+          matInput
           name="login"
+          type="text"
         >
         <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
-        <mat-label>{{ 'auth.forms.field-names.password' | translate }}</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="password"
-          name="password"
-        >
-        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
-      </mat-form-field>
+        <mat-label>{{'auth.forms.field-names.password' | translate}}</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput/>
         <button
-          class="auth-page-submit-btn"
-          mat-raised-button
-          color="primary"
-          type="submit"
-        >{{ 'auth.sign-up.submit' | translate }}</button>
+          (click)="setHidePassword()"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword"
+          mat-icon-button
+          matSuffix
+          type="button"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate}}</mat-error>
+      </mat-form-field>
+
+      <button
+        class="auth-page-submit-btn"
+        color="primary"
+        mat-raised-button
+        type="submit"
+      >{{ 'auth.sign-up.submit' | translate }}</button>
     </form>
   </div>
 </section>

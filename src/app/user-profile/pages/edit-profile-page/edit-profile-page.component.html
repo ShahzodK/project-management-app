@@ -7,28 +7,39 @@
     <form (ngSubmit)='submit()' [formGroup]="editProfileForm" class="edit-profile-form">
       <mat-form-field appearance="fill">
         <mat-label>{{'edit-profile.form.field-names.name' | translate}}</mat-label>
-        <input type="text" matInput name="name" formControlName="name">
+        <input formControlName="name" matInput name="name" type="text">
 
         <mat-error *ngIf="hasNameError">{{getNameErrorMessage() | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>{{'edit-profile.form.field-names.email' | translate}}</mat-label>
-        <input type="text" matInput name="email" formControlName="email">
+        <input formControlName="email" matInput name="email" type="text">
 
         <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>{{'edit-profile.form.field-names.password' | translate}}</mat-label>
-        <input type="password" matInput name="password" formControlName="password">
-
-        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput/>
+        <button
+          (click)="setHidePassword()"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword"
+          mat-icon-button
+          matSuffix
+          type="button"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate}}</mat-error>
       </mat-form-field>
-      <button class="submit-btn" mat-raised-button color="primary">{{'edit-profile.form.submit-btn' | translate}}</button>
+
+      <button class="submit-btn" color="primary"
+              mat-raised-button>{{'edit-profile.form.submit-btn' | translate}}</button>
     </form>
 
-    <button mat-raised-button color="warn" class="delete-btn" (click)="deleteUser()">
+    <button (click)="deleteUser()" class="delete-btn" color="warn" mat-raised-button>
       {{'edit-profile.form.delete-btn' | translate}}
     </button>
   </mat-card>

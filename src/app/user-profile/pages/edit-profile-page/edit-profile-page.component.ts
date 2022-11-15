@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
-import { UserApiService } from '../../services/user-api.service';
-import { UserService } from 'src/app/shared/services/user.service';
-import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {take} from 'rxjs/operators';
+import {UserApiService} from '../../services/user-api.service';
+import {UserService} from 'src/app/shared/services/user.service';
+import {selectUserLogin, selectUserName} from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
-import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
-import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/login/models/auth.model';
-import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import {passwordStrengthValidator} from 'src/app/login/validators/password-strength.validator';
+import {EmailFieldErrors, NameFieldErrors, PasswordFieldErrors} from 'src/app/login/models/auth.model';
+import {signUpErrorsLocale} from 'src/app/login/models/locale-errors.const';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -25,6 +25,9 @@ export class EditProfilePageComponent implements OnInit {
   public hasEmailError = false;
 
   public hasPasswordError = false;
+
+  public hidePassword = true;
+
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -63,16 +66,16 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.editProfileForm.valueChanges.subscribe(() => {
-      if (this.editProfileForm.valid) {
-        this.hasPasswordError = false;
-        this.hasNameError = false;
-        this.hasEmailError = false;
-        return;
-      }
-
-      this.checkErrors();
-    });
+    // this.editProfileForm.valueChanges.subscribe(() => {
+    //   if (this.editProfileForm.valid) {
+    //     this.hasPasswordError = false;
+    //     this.hasNameError = false;
+    //     this.hasEmailError = false;
+    //     return;
+    //   }
+    //
+    //   this.checkErrors();
+    // });
 
     this.setInitialValues();
   }
@@ -122,7 +125,7 @@ export class EditProfilePageComponent implements OnInit {
     if (name.hasError(NameFieldErrors.REQUIRED)) return 'auth.forms.errors.client.name.required';
     if (name.hasError(NameFieldErrors.MIN_LENGTH)) return 'auth.forms.errors.client.name.minlength';
 
-    return  '';
+    return '';
   }
 
   public getEmailErrorMessage(): string {
@@ -199,5 +202,9 @@ export class EditProfilePageComponent implements OnInit {
     this.snackBar.open(message, buttonText, {
       panelClass: 'notification',
     });
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }
