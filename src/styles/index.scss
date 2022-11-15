@@ -43,7 +43,9 @@
   }
 }
 
-.server-error {
+.notification {
   position: relative;
   bottom: 120px;
+
+  &-success {}
 }

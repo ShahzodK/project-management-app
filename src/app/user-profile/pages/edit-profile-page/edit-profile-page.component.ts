@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { UserApiService } from '../../services/user-api.service';
-import { UserService } from 'src/app/shared/services/user.service';
-import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {take} from 'rxjs/operators';
+import {UserApiService} from '../../services/user-api.service';
+import {UserService} from 'src/app/shared/services/user.service';
+import {selectUserLogin, selectUserName} from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
-import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
-import { PasswordFieldErrors } from 'src/app/login/models/auth.model';
-import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
+import {passwordStrengthValidator} from 'src/app/login/validators/password-strength.validator';
+import {PasswordFieldErrors} from 'src/app/login/models/auth.model';
+import {signUpErrorsLocale} from 'src/app/login/models/locale-errors.const';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -20,50 +22,16 @@ export class EditProfilePageComponent implements OnInit {
 
   public hasPasswordError = false;
 
-  public nameValue = '';
-
-  public loginValue = '';
-
-  public passwordRecommendation = '';
-
-  constructor(
-    private store: Store,
-    private userApi: UserApiService,
-    private userService: UserService,
-    private router: Router,
-  ) { }
-
-  ngOnInit(): void {
-    this.editProfileForm.valueChanges.subscribe(() => {
-      if (this.editProfileForm.valid) {
-        this.hasPasswordError = false;
-        return;
-      }
-
-      this.checkErrors();
-    });
-
-    this.store.select(selectUserName).pipe(take(1)).subscribe({
-      next: (name) => this.nameValue = name,
-    });
-    this.store.select(selectUserLogin).pipe(take(1)).subscribe({
-      next: (login) => this.loginValue = login,
-    });
-
-    this.editProfileForm.get('name')!.setValue(this.nameValue);
-    this.editProfileForm.get('login')!.setValue(this.loginValue);
-  }
-
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
-      nonNullable:true,
+      nonNullable: true,
       validators: [
         Validators.required,
         Validators.minLength(3),
       ],
     }),
-    login: new FormControl<string>('', {
-      nonNullable:true,
+    email: new FormControl<string>('', {
+      nonNullable: true,
       validators: [
         Validators.required,
         Validators.email,
@@ -78,6 +46,38 @@ export class EditProfilePageComponent implements OnInit {
     }),
   });
 
+  constructor(
+    private store: Store,
+    private userApi: UserApiService,
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.editProfileForm.valueChanges.subscribe(() => {
+      if (this.editProfileForm.valid) {
+        this.hasPasswordError = false;
+        return;
+      }
+
+      this.checkErrors();
+    });
+
+    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
+      this.setControlValue(this.name!, name);
+    });
+    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
+      this.setControlValue(this.email!, email);
+    });
+  }
+
+  private setControlValue(control: AbstractControl, value: string) {
+    control.setValue(value);
+  }
+
   private checkHasError(control: AbstractControl): boolean {
     return !!(control.errors && Object.keys(control.errors).length !== 0);
   }
@@ -87,6 +87,14 @@ export class EditProfilePageComponent implements OnInit {
     if (!password) return;
 
     this.hasPasswordError = this.checkHasError(password);
+  }
+
+  public get name() {
+    return this.editProfileForm.get('name');
+  }
+
+  public get email() {
+    return this.editProfileForm.get('email');
   }
 
   public get password() {
@@ -126,22 +134,33 @@ export class EditProfilePageComponent implements OnInit {
   public submit(): void {
     const id = this.userService.getUserId();
     const name = this.editProfileForm.getRawValue().name;
-    const login = this.editProfileForm.getRawValue().login;
+    const email = this.editProfileForm.getRawValue().email;
     const password = this.editProfileForm.getRawValue().password;
     if (this.editProfileForm.invalid) {
       return;
     }
 
-    this.userApi.updateUser(this.userService.getUserId(), name, login, password).subscribe(() =>{
-        const user = {
-          name,
-          id,
-          login,
-        };
+    this.userApi.updateUser(this.userService.getUserId(), name, email, password).subscribe(() => {
+      const user = {
+        name,
+        id,
+        login: email,
+      };
 
-        this.store.dispatch(UserActions.setLoggedUser(user));
+      this.store.dispatch(UserActions.setLoggedUser(user));
+
+      const message = this.translateService.instant(`editProfile.notification.success`);
+      const buttonText = this.translateService.instant('editProfile.notification.close-btn');
+
+      this.showSuccessEdit(message, buttonText);
+      this.setControlValue(this.password!, '');
     });
-
   }
 
+
+  private showSuccessEdit(message: string, buttonText: string): void {
+    this.snackBar.open(message, buttonText, {
+      panelClass: 'notification',
+    });
+  }
 }

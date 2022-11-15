@@ -13,11 +13,11 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>{{'editProfile.login' | translate}}</mat-label>
-        <input type="text" matInput name="login" formControlName="login">
-        <mat-error *ngIf="editProfileForm.get('login')!.hasError('required')">
+        <input type="text" matInput name="email" formControlName="email">
+        <mat-error *ngIf="editProfileForm.get('email')!.hasError('required')">
           {{"auth.forms.errors.client.email.required" | translate}}
         </mat-error>
-        <mat-error *ngIf="editProfileForm.get('login')!.hasError('email')">
+        <mat-error *ngIf="editProfileForm.get('email')!.hasError('email')">
           {{"auth.forms.errors.client.email.email" | translate}}
         </mat-error>
       </mat-form-field>

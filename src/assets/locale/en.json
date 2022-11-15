@@ -96,12 +96,16 @@
     }
   },
   "editProfile": {
-    "edit-profile": "Edit Profile",
-    "name": "name",
-    "login": "login",
-    "password": "password",
-    "saveUser": "save user",
-    "deleteUser": "delete user"
+    "edit-profile": "Edit profile",
+    "name": "Name",
+    "login": "Email",
+    "password": "Password",
+    "saveUser": "Save",
+    "deleteUser": "Delete profile",
+    "notification": {
+      "success": "Saved!",
+      "close-btn": "Close"
+    }
   },
 	"languages": {
 		"en": "ENG",
