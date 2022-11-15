@@ -2,18 +2,16 @@
 	"common": {
     "login": "Log In",
     "signup": "Sign Up",
-    "name": "Name",
-    "logout": "Logout",
-    "main-link": "Go to main page",
-    "password": "Password"
+    "main-link": "Go to main page"
   },
   "header": {
-    "title": "Projects management",
-    "editProfile": "Edit profile",
-    "createNewBoard": "Create new board",
-    "search": "Search...",
-    "no-logged": "No User logged in",
-    "logged": "Logged user:"
+    "logo": "Projects management",
+    "nav": {
+      "edit-profile": "Edit profile",
+      "create-new-board": "Create new board",
+      "sign-out": "Sign out",
+      "sign-in": "Sign in"
+    }
   },
   "welcome-app": {
     "title": "Manage projects easier with us",
@@ -52,37 +50,46 @@
     "not-found-message": "Page not found"
   },
   "auth": {
-    "login": {
+    "sign-in": {
       "title": "Sign in",
-      "warning": "Something went wrong. Please try again or sign up"
+      "warning": "Something went wrong. Please try again or sign up",
+      "submit": "Sign in"
     },
-    "signup": {
+    "sign-up": {
       "title": "Sign up",
-      "warning": "Something went wrong. Please try again later"
+      "warning": "Something went wrong. Please try again later",
+      "submit": "Sign up"
     },
-    "errors": {
-      "client": {
-        "email": {
-          "required": "Enter your email",
-          "email": "Email is invalid"
-        },
-        "name": {
-          "required": "Enter your name",
-          "minlength": "Name must be more than 3 letters"
-        },
-        "password": {
-          "required": "Enter your password",
-          "enough_chars": "Your password must be at least 8 characters",
-          "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
-          "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
-          "numeric": "Your password must contain numbers",
-          "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
-        }
+    "forms": {
+      "field-names": {
+        "email": "Email",
+        "password": "Password",
+        "name": "Name"
       },
-      "server": {
-        "409": "User login already exists!",
-        "404": "Network error!",
-        "403": "Login or password is wrong!"
+      "errors": {
+        "client": {
+          "email": {
+            "required": "Enter your email",
+            "email": "Email is invalid"
+          },
+          "name": {
+            "required": "Enter your name",
+            "minlength": "Name must be more than 3 letters"
+          },
+          "password": {
+            "required": "Enter your password",
+            "enough_chars": "Your password must be at least 8 characters",
+            "lowercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+            "uppercase": "Your password must contain 1 lowercase and 1 uppercase letter",
+            "numeric": "Your password must contain numbers",
+            "specials": "Your password must contain at least 1 special character, e.g., ! @ # ? ]"
+          }
+        },
+        "server": {
+          "409": "User login already exists!",
+          "404": "Network error!",
+          "403": "Login or password is wrong!"
+        }
       }
     }
   },

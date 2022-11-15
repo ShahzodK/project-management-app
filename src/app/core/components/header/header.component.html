@@ -1,6 +1,6 @@
 <header class="header">
   <div>
-    <div class="title">{{ 'header.title' | translate }}</div>
+    <div class="title">{{ 'header.logo' | translate }}</div>
     <div class="user" *ngIf="isLogged$ | async">{{ 'header.logged' | translate }} {{ userName$ | async }}</div>
     <div class="user" *ngIf="!!!(isLogged$ | async)">{{ 'header.no-logged' | translate }}</div>
   </div>
@@ -12,22 +12,22 @@
   </div>
   <nav>
     <button *ngIf="isLogged$ | async" mat-button routerLink="edit-profile">
-      {{ 'header.editProfile' | translate }}
+      {{ 'header.nav.edit-profile' | translate }}
     </button>
     <button *ngIf="isLogged$ | async" mat-button
     (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
-      {{ 'header.createNewBoard' | translate }}
+      {{ 'header.nav.create-new-board' | translate }}
     </button>
     <button
       *ngIf="isLogged$ | async"
       mat-button
       (click)="logout()"
-    >{{ 'common.logout' | translate }}</button>
+    >{{ 'header.nav.sign-out' | translate }}</button>
     <a
       *ngIf="!!!(isLogged$ | async)"
       mat-button
       routerLink="login"
-    >{{ 'common.login' | translate }}</a>
+    >{{ 'header.nav.sign-in' | translate }}</a>
     <mat-slide-toggle
       color="primary"
       (toggleChange)="changeLocale()"

@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
       },
       error: (res: HttpErrorResponse) => {
         this.isSignupError = true;
-        this.errMessage = `auth.errors.client.${res.status}`;
+        this.errMessage = `auth.forms.errors.client.${res.status}`;
       },
       complete: () => {
         this.userService.check();

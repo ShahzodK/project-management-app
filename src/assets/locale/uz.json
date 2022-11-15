@@ -1,19 +1,17 @@
 {
-	"common": {
+  "common": {
     "login": "Kirish",
     "signup": "Ro'yxatdan o'tish",
-    "name": "Ism",
-    "logout": "Chiqish",
-    "main-link": "Bosh sahifa",
-    "password": "Parol"
+    "main-link": "Bosh sahifa"
   },
-  "header":{
-    "title": "Loyihalarni boshqarish",
-    "editProfile": "Profilni tahrirlash",
-    "createNewBoard": "Yangi loyiha",
-    "search": "Izlash...",
-    "no-logged": "Siz dasturga kirmadingiz",
-    "logged": "Siz kirdingiz"
+  "header": {
+    "logo": "Loyihalarni boshqarish",
+    "nav": {
+      "edit-profile": "Profilni tahrirlash",
+      "create-new-board": "Yangi loyiha",
+      "sign-out": "Chiqish",
+      "sign-in": "Kirish"
+    }
   },
   "welcome-app": {
     "title": "Biz bilan loyihalaringizni osonroq boshqaring",
@@ -34,7 +32,7 @@
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Dimitrii Shabanov"
   },
-   "main-page": {
+  "main-page": {
     "title": "Sarlavha",
     "description": "Tavsifi",
     "boards": "Loyihalar",
@@ -46,45 +44,54 @@
     "newBoard": "Yangi loyiha",
     "no": "Yo'q",
     "yes": "Ha"
-	},
+  },
   "auth": {
-    "login": {
+    "sign-in": {
       "title": "Kirish",
-      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting"
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting",
+      "submit": "Kirish"
     },
-    "signup": {
+    "sign-up": {
       "title": "Ro'yxatga olish",
-      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring"
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring",
+      "submit": "Ro'yxatga olish"
     },
-    "errors": {
-      "client": {
-        "name": {
-          "required": "Ismni yozing",
-          "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
-        },
-        "email": {
-          "required": "Emailni yozing",
-          "email": "To'g'ri emailni yozing"
-        },
-        "password": {
-          "required": "Parloni yozing",
-          "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
-          "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-          "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-          "numeric": "Parolda raqamlar bo'lishi kerak",
-          "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
-        }
+    "forms": {
+      "field-names": {
+        "email": "Email",
+        "password": "Parol",
+        "name": "Ism"
       },
-      "server": {
-        "409": "Bunday loginlik foydalanuvchi mavjud!",
-        "404": "Tarmoq xatosi!",
-        "403": "Login yoki Parol xato!"
+      "errors": {
+        "client": {
+          "name": {
+            "required": "Ismni yozing",
+            "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
+          },
+          "email": {
+            "required": "Emailni yozing",
+            "email": "To'g'ri emailni yozing"
+          },
+          "password": {
+            "required": "Parloni yozing",
+            "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+            "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+            "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+            "numeric": "Parolda raqamlar bo'lishi kerak",
+            "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
+          }
+        },
+        "server": {
+          "409": "Bunday loginlik foydalanuvchi mavjud!",
+          "404": "Tarmoq xatosi!",
+          "403": "Login yoki Parol xato!"
+        }
       }
     }
   },
-	"languages": {
-		"en": "ENG",
-		"ru": "RUS",
+  "languages": {
+    "en": "ENG",
+    "ru": "RUS",
     "uz": "UZB"
-	}
+  }
 }

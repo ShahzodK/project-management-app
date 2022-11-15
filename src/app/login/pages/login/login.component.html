@@ -1,8 +1,8 @@
 <app-form-section>
-  <h2>{{ 'auth.login.title' | translate }}</h2>
+  <h2>{{ 'auth.sign-in.title' | translate }}</h2>
   <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="submit()">
     <mat-form-field appearance="standard">
-      <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
+      <mat-label for="login">{{ 'auth.forms.field-names.email' | translate }}</mat-label>
       <input
         matInput
         type="text"
@@ -12,7 +12,7 @@
       <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard">
-      <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
+      <mat-label for="password">{{ 'auth.forms.field-names.password' | translate }}</mat-label>
       <input
         matInput
         type="password"
@@ -27,7 +27,7 @@
       <button
         mat-button
         type="submit"
-      >{{ 'common.login' | translate }}</button>
+      >{{ 'auth.sign-in.submit' | translate }}</button>
     </div>
   </form>
   <div *ngIf="!!isLoginError" class="warning">{{ errMessage | translate }}</div>
