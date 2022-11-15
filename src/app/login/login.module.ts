@@ -16,6 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { UserService } from '../shared/services/user.service';
     MatInputModule,
     ReactiveFormsModule,
     LoginRoutingModule,
+    MatSnackBarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

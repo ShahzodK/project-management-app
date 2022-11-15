@@ -90,7 +90,8 @@
           "409": "User login already exists!",
           "404": "Network error!",
           "403": "Login or password is wrong!"
-        }
+        },
+        "close-btn": "Close"
       }
     }
   },

@@ -9,6 +9,7 @@ import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
 import { signInErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,6 @@ import { passwordStrengthValidator } from '../../validators/password-strength.va
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public isLoginError?: boolean;
-
   public errMessage = '';
 
   public hasEmailError: boolean = false;
@@ -40,7 +39,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     public translateService: TranslateService,
-  ) {
+    private snackBar: MatSnackBar
+) {
   }
 
   ngOnInit(): void {
@@ -69,14 +69,15 @@ export class LoginComponent implements OnInit {
       this.password.value,
     ).subscribe({
       next: (res) => {
-        this.isLoginError = false;
         this.loginForm.reset();
         localStorage.setItem('authToken', (res as { token: string }).token);
         this.router.navigate(['']);
       },
       error: (res: HttpErrorResponse) => {
-        this.isLoginError = true;
-        this.errMessage = `auth.forms.errors.server.${res.status}`;
+        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
+        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
+
+        this.showServerError(errorMessage, closeButtonText)
       },
       complete: () => {
         this.userService.check();
@@ -122,4 +123,12 @@ export class LoginComponent implements OnInit {
 
     return '';
   }
+
+  private showServerError(errorMessage: string, closeButtonText: string): void {
+    this.snackBar.open(errorMessage, closeButtonText, {
+      panelClass: 'server-error',
+      duration: 2000
+    });
+  }
+
 }

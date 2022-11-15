@@ -86,7 +86,8 @@
           "409": "Bunday loginlik foydalanuvchi mavjud!",
           "404": "Tarmoq xatosi!",
           "403": "Login yoki Parol xato!"
-        }
+        },
+        "close-btn": "Yopish"
       }
     }
   },

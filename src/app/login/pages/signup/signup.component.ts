@@ -9,6 +9,7 @@ import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-signup',
@@ -16,10 +17,6 @@ import { passwordStrengthValidator } from '../../validators/password-strength.va
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  public isSignupError?: boolean;
-
-  public errMessage = '';
-
   public hasNameError: boolean = false;
 
   public hasEmailError: boolean = false;
@@ -46,6 +43,7 @@ export class SignupComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     public translateService: TranslateService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -72,14 +70,15 @@ export class SignupComponent implements OnInit {
       this.password.value,
     ).subscribe({
       next: (res) => {
-        this.isSignupError = false;
         this.signupForm.reset();
         localStorage.setItem('authToken', (res as { token: string }).token);
         this.router.navigate(['']);
       },
       error: (res: HttpErrorResponse) => {
-        this.isSignupError = true;
-        this.errMessage = `auth.forms.errors.client.${res.status}`;
+        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
+        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
+
+        this.showServerError(errorMessage, closeButtonText)
       },
       complete: () => {
         this.userService.check();
@@ -150,5 +149,12 @@ export class SignupComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  private showServerError(errorMessage: string, closeButtonText: string): void {
+    this.snackBar.open(errorMessage, closeButtonText, {
+      panelClass: 'server-error',
+      duration: 2000
+    });
   }
 }
