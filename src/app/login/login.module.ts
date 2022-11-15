@@ -16,14 +16,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
-import { FormSectionComponent } from '../shared/components/form-section/form-section/form-section.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
-    FormSectionComponent,
   ],
   imports: [
     CommonModule,

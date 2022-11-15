@@ -49,7 +49,8 @@
     "sign-in": {
       "title": "Kirish",
       "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting",
-      "submit": "Kirish"
+      "submit": "Kirish",
+      "sign-up-link": "Akkauntingiz yo'qmi? Ro'yxatdan o'ting!"
     },
     "sign-up": {
       "title": "Ro'yxatga olish",
