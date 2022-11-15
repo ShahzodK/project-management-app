@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from 'src/app/shared/services/user.service';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
 import { signInErrorsLocale } from '../../models/locale-errors.const';
-import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
   public isLoginError?: boolean;
 
   public errMessage = '';
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private userService: UserService,
     private router: Router,
     public translateService: TranslateService,

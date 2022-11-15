@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap  } from 'rxjs';
 
 @Injectable()
-export class LoginService {
+export class AuthService {
 
   constructor(private http: HttpClient) {}
 

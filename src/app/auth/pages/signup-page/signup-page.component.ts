@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from 'src/app/shared/services/user.service';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
-import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-signup-page',
+  templateUrl: './signup-page.component.html',
+  styleUrls: ['./signup-page.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupPageComponent implements OnInit {
   public isSignupError?: boolean;
 
   public errMessage = '';
@@ -42,7 +42,7 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private userService: UserService,
     private router: Router,
     public translateService: TranslateService,

@@ -8,12 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginService } from './services/login.service';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AuthService } from './services/auth.service';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
 import { FormSectionComponent } from '../shared/components/form-section/form-section/form-section.component';
@@ -21,8 +21,8 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    SignupComponent,
+    LoginPageComponent,
+    SignupPageComponent,
     FormSectionComponent,
   ],
   imports: [
@@ -32,7 +32,7 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    LoginRoutingModule,
+    AuthRoutingModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -44,8 +44,8 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
     }),
   ],
   providers: [
-    LoginService,
+    AuthService,
     UserService,
   ],
 })
-export class LoginModule { }
+export class AuthModule { }
