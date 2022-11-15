@@ -1,17 +1,13 @@
 {
-	"common": {
-    "login": "Log In",
-    "signup": "Sign Up",
-    "boards": "Boards",
-    "main-link": "Go to main page"
-  },
   "header": {
     "logo": "Teamwork",
     "nav": {
       "edit-profile": "Edit profile",
       "create-new-board": "Create new board",
       "sign-out": "Sign out",
-      "sign-in": "Sign in"
+      "sign-in": "Sign in",
+      "sign-up": "Sign up",
+      "boards": "Boards"
     },
     "greeting": "Hello, "
   },

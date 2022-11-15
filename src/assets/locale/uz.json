@@ -1,17 +1,13 @@
 {
-	"common": {
-    "login": "Kirish",
-    "signup": "Ro'yxatdan o'tish",
-    "main-link": "Bosh sahifa",
-    "boards": "Taxtalar"
-  },
   "header": {
-    "logo": "Loyihalarni boshqarish",
+    "logo": "Teamwork",
     "nav": {
       "edit-profile": "Profilni tahrirlash",
       "create-new-board": "Yangi loyiha",
       "sign-out": "Chiqish",
-      "sign-in": "Kirish"
+      "sign-in": "Kirish",
+      "sign-up": "Ro'yxatdan o'tish",
+      "boards": "Taxtalar"
     },
     "greeting": "Salom, "
   },

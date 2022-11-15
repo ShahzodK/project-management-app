@@ -1,17 +1,13 @@
 {
-	"common": {
-    "login": "Войти",
-    "signup": "Регистрация",
-    "boards": "Доски",
-    "main-link": "На главную"
-  },
   "header": {
     "logo": "Teamwork",
     "nav": {
       "edit-profile": "Изм. профиль",
       "create-new-board": "Новая доска",
       "sign-out": "Выйти",
-      "sign-in": "Войти"
+      "sign-in": "Войти",
+      "sign-up": "Регистрация",
+      "boards": "Доски"
     },
     "greeting": "Привет, "
   },
