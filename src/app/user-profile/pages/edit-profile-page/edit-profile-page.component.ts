@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { UserApiService } from './../../services/user-api.service';
+import { UserApiService } from '../../services/user-api.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
@@ -132,16 +132,14 @@ export class EditProfilePageComponent implements OnInit {
       return;
     }
 
-    this.userApi.updateUser(this.userService.getUserId(), name, login, password).subscribe({
-      next: () => {
+    this.userApi.updateUser(this.userService.getUserId(), name, login, password).subscribe(() =>{
         const user = {
           name,
           id,
           login,
         };
+
         this.store.dispatch(UserActions.setLoggedUser(user));
-        this.router.navigateByUrl('main');
-      },
     });
 
   }
