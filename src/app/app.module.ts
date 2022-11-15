@@ -15,7 +15,7 @@ import { MatInputModule  } from '@angular/material/input';
 import { MatCardModule  } from '@angular/material/card';
 
 import { environment } from '../environments/environment';
-import { WelcomePageModule } from './welcome-page/welcome-page.module';
+import { WelcomeModule } from './welcome/welcome.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,7 +62,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
     EffectsModule.forRoot([BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    WelcomePageModule,
+    WelcomeModule,
   ],
   providers: [
     {
