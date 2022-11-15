@@ -66,18 +66,12 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.editProfileForm.valueChanges.subscribe(() => {
-    //   if (this.editProfileForm.valid) {
-    //     this.hasPasswordError = false;
-    //     this.hasNameError = false;
-    //     this.hasEmailError = false;
-    //     return;
-    //   }
-    //
-    //   this.checkErrors();
-    // });
-
-    this.setInitialValues();
+    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
+      this.name!.setValue(name);
+    });
+    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
+      this.email!.setValue(email);
+    });
   }
 
   public get name() {
@@ -90,19 +84,6 @@ export class EditProfilePageComponent implements OnInit {
 
   public get password() {
     return this.editProfileForm.get('password');
-  }
-
-  private setInitialValues() {
-    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
-      this.setControlValue(this.name!, name);
-    });
-    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
-      this.setControlValue(this.email!, email);
-    });
-  }
-
-  private setControlValue(control: AbstractControl, value: string) {
-    control.setValue(value);
   }
 
   private checkErrors() {
@@ -165,7 +146,7 @@ export class EditProfilePageComponent implements OnInit {
     this.userApi.deleteUser(this.userService.getUserId()).subscribe({
       complete: () => {
         this.store.dispatch(UserActions.resetUser());
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('welcome');
       },
     });
   }
