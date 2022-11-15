@@ -1,20 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap  } from 'rxjs';
+import { resetUser } from '../../redux/actions';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { ISignInResponse, ISignUpResponse } from '../models/auth-api.model';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
-  public login(login: string, password: string): Observable<Object> {
-    return this.http.post('signin', {
+  public login(login: string, password: string): Observable<ISignInResponse> {
+    return this.http.post<ISignInResponse>('signin', {
       login,
       password,
-    });
+    }).pipe(
+      map((signedInUser) => {
+        localStorage.setItem('authToken', signedInUser.token);
+        this.router.navigate(['main']);
+
+        return signedInUser;
+      }),
+    );
   }
 
-  public signup(name: string, login: string, password: string): Observable<Object> {
-    return this.http.post('signup', {
+  public signup(name: string, login: string, password: string): Observable<ISignInResponse> {
+    return this.http.post<ISignUpResponse>('signup', {
       name,
       login,
       password,
@@ -23,4 +38,9 @@ export class LoginService {
     );
   }
 
+  public logout() {
+    localStorage.removeItem('authToken');
+    this.store.dispatch(resetUser());
+    this.router.navigate(['login']);
+  }
 }
