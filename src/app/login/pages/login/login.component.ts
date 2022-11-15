@@ -9,7 +9,7 @@ import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
 import { signInErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../validators/password-strength.validator';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     public translateService: TranslateService,
-    private snackBar: MatSnackBar
-) {
+    private snackBar: MatSnackBar,
+  ) {
   }
 
   ngOnInit(): void {
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
         const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
 
-        this.showServerError(errorMessage, closeButtonText)
+        this.showServerError(errorMessage, closeButtonText);
       },
       complete: () => {
         this.userService.check();
@@ -127,7 +127,7 @@ export class LoginComponent implements OnInit {
   private showServerError(errorMessage: string, closeButtonText: string): void {
     this.snackBar.open(errorMessage, closeButtonText, {
       panelClass: 'server-error',
-      duration: 2000
+      duration: 2000,
     });
   }
 
