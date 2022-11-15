@@ -6,7 +6,6 @@ import { BoardService } from '../../../main/services/board.service';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
-import { ELocales } from 'src/app/shared/models';
 import { LoginService } from '../../../login/services/login.service';
 
 @Component({
@@ -15,8 +14,6 @@ import { LoginService } from '../../../login/services/login.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public localeName = 'languages.en';
-
   public userName$ = this.store.select(selectUserName);
 
   public isLogged$ = this.store.select(selectIsLogged);
@@ -43,12 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.URLSub.unsubscribe();
-  }
-
-  public changeLocale(): void {
-    const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
-    this.translateService.use(lang);
-    this.localeName = `languages.${lang}`;
   }
 
   public logout(): void {
