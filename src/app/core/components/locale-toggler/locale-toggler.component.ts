@@ -10,7 +10,7 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./locale-toggler.component.scss'],
 })
 export class LocaleTogglerComponent implements OnInit {
-  public selectedLocale: string | undefined;
+  public selectedLocale!: string;
 
   public locales: string[] = this.getLocaleTranslations();
 

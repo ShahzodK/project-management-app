@@ -14,9 +14,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  userName$ = this.store.select(selectUserName);
+  public userName$ = this.store.select(selectUserName);
 
-  isLogged$ = this.store.select(selectIsLogged);
+  public isLogged$ = this.store.select(selectIsLogged);
 
   public isWelcomePage: boolean | null = null;
 
