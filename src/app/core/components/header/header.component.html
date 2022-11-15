@@ -25,7 +25,7 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>{{ 'header.editProfile' | translate }}</button>
+          <a routerLink="edit-profile" mat-menu-item>{{ 'header.editProfile' | translate }}</a>
           <button
             mat-menu-item
             (click)="logout()"
