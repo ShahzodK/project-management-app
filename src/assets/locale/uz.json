@@ -1,8 +1,9 @@
 {
-  "common": {
+	"common": {
     "login": "Kirish",
     "signup": "Ro'yxatdan o'tish",
-    "main-link": "Bosh sahifa"
+    "main-link": "Bosh sahifa",
+    "boards": "Taxtalar"
   },
   "header": {
     "logo": "Loyihalarni boshqarish",
@@ -11,7 +12,8 @@
       "create-new-board": "Yangi loyiha",
       "sign-out": "Chiqish",
       "sign-in": "Kirish"
-    }
+    },
+    "greeting": "Salom, "
   },
   "welcome-app": {
     "title": "Biz bilan loyihalaringizni osonroq boshqaring",

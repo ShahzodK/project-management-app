@@ -1,36 +1,51 @@
-<header class="header">
-  <div>
-    <div class="title">{{ 'header.logo' | translate }}</div>
-    <div class="user" *ngIf="isLogged$ | async">{{ 'header.logged' | translate }} {{ userName$ | async }}</div>
-    <div class="user" *ngIf="!!!(isLogged$ | async)">{{ 'header.no-logged' | translate }}</div>
-  </div>
-  <div *ngIf="isLogged$ | async">
-    <mat-form-field appearance="standard">
-      <mat-label>{{ 'header.search' | translate }}</mat-label>
-      <input matInput (input)="boardService.searchValue = (input.value)" #input>
-    </mat-form-field>
-  </div>
-  <nav>
-    <button *ngIf="isLogged$ | async" mat-button routerLink="edit-profile">
-      {{ 'header.nav.edit-profile' | translate }}
-    </button>
-    <button *ngIf="isLogged$ | async" mat-button
-    (click)="boardService.IsCreateBoardModalVisible = !boardService.IsCreateBoardModalVisible">
-      {{ 'header.nav.create-new-board' | translate }}
-    </button>
-    <button
-      *ngIf="isLogged$ | async"
-      mat-button
-      (click)="logout()"
-    >{{ 'header.nav.sign-out' | translate }}</button>
-    <a
-      *ngIf="!!!(isLogged$ | async)"
-      mat-button
-      routerLink="login"
-    >{{ 'header.nav.sign-in' | translate }}</a>
-    <mat-slide-toggle
-      color="primary"
-      (toggleChange)="changeLocale()"
-    >{{ localeName | translate }}</mat-slide-toggle>
-  </nav>
-</header>
+<mat-toolbar class="header">
+  <mat-toolbar-row class="header-container container">
+    <a class="header-logo" mat-button routerLink="welcome">{{ 'header.logo' | translate }}</a>
+    <nav class="header-nav">
+      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
+
+      <ng-container *ngIf="isLogged$ | async">
+        <ng-container *ngIf="isWelcomePage !== null">
+          <button (click)="toggleModal()" *ngIf="!isWelcomePage"
+                  mat-button>
+            {{ 'header.nav.create-new-board' | translate }}
+          </button>
+
+          <a
+            *ngIf="isWelcomePage"
+            mat-button
+            routerLink="main"
+          >{{ 'common.boards' | translate }}</a>
+        </ng-container>
+
+
+        <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu"
+                aria-label="Open menu">
+          {{ 'header.greeting' | translate }}{{ userName$ | async }}!
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a routerLink="edit-profile" mat-menu-item>{{ 'header.nav.edit-profile' | translate }}</a>
+          <button
+            mat-menu-item
+            (click)="logout()"
+          >{{ 'header.nav.sign-out' | translate }}</button>
+        </mat-menu>
+      </ng-container>
+
+      <ng-container *ngIf="(isLogged$ | async) === false">
+        <a
+          mat-raised-button
+          color="primary"
+          routerLink="login"
+        >{{ 'header.nav.sign-in' | translate }}</a>
+        <a
+          mat-raised-button
+          color="primary"
+          routerLink="login/signup"
+        >{{ 'header.nav.sign-up' | translate }}</a>
+      </ng-container>
+
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>

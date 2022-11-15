@@ -1,17 +1,19 @@
 {
-  "common": {
+	"common": {
     "login": "Log In",
     "signup": "Sign Up",
+    "boards": "Boards",
     "main-link": "Go to main page"
   },
   "header": {
-    "logo": "Projects management",
+    "logo": "Teamwork",
     "nav": {
       "edit-profile": "Edit profile",
       "create-new-board": "Create new board",
       "sign-out": "Sign out",
       "sign-in": "Sign in"
-    }
+    },
+    "greeting": "Hello, "
   },
   "welcome-app": {
     "title": "Manage projects easier with us",

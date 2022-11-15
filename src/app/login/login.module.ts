@@ -16,7 +16,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatIconModule} from "@angular/material/icon";
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -24,26 +24,26 @@ import {MatIconModule} from "@angular/material/icon";
     LoginComponent,
     SignupComponent,
   ],
-    imports: [
-        CommonModule,
-        DirectivesModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        LoginRoutingModule,
-        MatSnackBarModule,
-        TranslateModule.forChild({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient],
-            },
-            missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
-            useDefaultLang: false,
-        }),
-        MatIconModule,
-    ],
+  imports: [
+    CommonModule,
+    DirectivesModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    LoginRoutingModule,
+    MatSnackBarModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    }),
+    MatIconModule,
+  ],
   providers: [
     UserService,
   ],

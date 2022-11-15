@@ -5,7 +5,7 @@ import { NotFoundPageComponent } from './core/components/not-found-page/not-foun
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'welcome',
     loadChildren: () => import('./welcome-page/welcome-page.module')
       .then((mod) => mod.WelcomePageModule),
   },
@@ -25,16 +25,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
   },
-  { path: '', redirectTo: 'home', pathMatch:'full' },
   {
     path: 'edit-profile',
     loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
   },
   {
-    path: '', redirectTo: 'home', pathMatch:'full',
+    path: '', redirectTo: 'welcome', pathMatch: 'full',
   },
   {
-    path: '**', pathMatch:'full', component: NotFoundPageComponent, // 404 page
+    path: '**', component: NotFoundPageComponent,
   },
 ];
 

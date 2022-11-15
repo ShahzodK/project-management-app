@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
-import { ELocales } from './shared/models';
 import { UserService } from './shared/services/user.service';
 
 @Component({
@@ -11,20 +10,18 @@ import { UserService } from './shared/services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'project-management-app';
-
-  selectedLanguage: ELocales = ELocales.EN;
+  title = 'Teamwork';
 
   languages: { id: string, title: string }[] = [];
 
   constructor(
     private translateService: TranslateService,
     private userService: UserService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.translateService.use(environment.defaultLocale);
-    this.selectedLanguage = environment.defaultLocale;
     this.userService.check();
   }
 }

@@ -2,16 +2,18 @@
 	"common": {
     "login": "Войти",
     "signup": "Регистрация",
+    "boards": "Доски",
     "main-link": "На главную"
   },
   "header": {
-    "logo": "Управление проектами",
+    "logo": "Teamwork",
     "nav": {
       "edit-profile": "Изм. профиль",
       "create-new-board": "Новая доска",
       "sign-out": "Выйти",
       "sign-in": "Войти"
-    }
+    },
+    "greeting": "Привет, "
   },
   "welcome-app": {
     "title": "Управляйте проектами проще вместе с нами",
