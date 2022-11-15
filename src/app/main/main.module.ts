@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
 import { Interceptor } from '../core/services/interceptor';
-import { MainComponent } from './pages/main/main.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
 import { CreateBoardFormComponent } from './components/create-board-form/create-board-form.component';
@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
 }
 @NgModule({
   declarations: [
-    MainComponent,
+    MainPageComponent,
     BoardItemComponent,
     CreateBoardFormComponent,
     DeleteModalComponent,
