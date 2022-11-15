@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from 'src/app/shared/services/user.service';
@@ -16,15 +15,15 @@ import { passwordStrengthValidator } from '../../../core/validators/password-str
   styleUrls: ['./signup-page.component.scss'],
 })
 export class SignupPageComponent implements OnInit {
-  public isSignupError?: boolean;
+  public isSignupError = false;
 
   public errMessage = '';
 
-  public hasNameError: boolean = false;
+  public hasNameError = false;
 
-  public hasEmailError: boolean = false;
+  public hasEmailError = false;
 
-  public hasPasswordError: boolean = false;
+  public hasPasswordError = false;
 
   signupForm = new FormGroup({
     name: new FormControl<string>('', [
@@ -44,7 +43,6 @@ export class SignupPageComponent implements OnInit {
   constructor(
     private loginService: AuthService,
     private userService: UserService,
-    private router: Router,
     public translateService: TranslateService,
   ) {
   }
@@ -62,20 +60,18 @@ export class SignupPageComponent implements OnInit {
     });
   }
 
-  public signup() {
+  public signup(): void {
     if (this.signupForm.invalid) return;
     if (!this.name || !this.email || !this.password) return;
 
     this.loginService.signup(
-      this.name.value,
-      this.email.value,
-      this.password.value,
+      this.name.getRawValue(),
+      this.email.getRawValue(),
+      this.password.getRawValue(),
     ).subscribe({
-      next: (res) => {
+      next: () => {
         this.isSignupError = false;
         this.signupForm.reset();
-        localStorage.setItem('authToken', (res as { token: string }).token);
-        this.router.navigate(['']);
       },
       error: (res: HttpErrorResponse) => {
         this.isSignupError = true;
