@@ -1,5 +1,5 @@
 <section class="board-page">
-  <app-board-page-header [boardTitle]="board.title || ''" (back)="navigateBack()"></app-board-page-header>
+  <app-board-page-header *ngIf="board" [boardTitle]="board.title || ''" (back)="navigateBack()"></app-board-page-header>
 
   <div class="board-page-content">
     <button (click)="createColumn()" mat-stroked-button class="create-column-btn">
