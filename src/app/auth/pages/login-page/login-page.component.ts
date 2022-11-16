@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
   public hasEmailError = false;
 
   public hasPasswordError = false;

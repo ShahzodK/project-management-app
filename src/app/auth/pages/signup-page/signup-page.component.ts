@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupPageComponent implements OnInit {
   public hasNameError: boolean = false;
 
   public hasEmailError = false;
