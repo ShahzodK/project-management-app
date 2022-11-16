@@ -1,10 +1,10 @@
 .delete-board-modal-container {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 0;
   right: 0;
   background: grey;
-  padding: 30px;
+  padding: 10px;
   padding-top: 5px;
   margin-right: auto;
   margin-left: auto;
@@ -28,10 +28,12 @@
   }
   .no-button {
     background: red;
-    margin-right: 13px;
+    margin-right: 5px;
+    margin-left: auto;
   }
   .yes-button {
     background: green;
-    margin-left: 15px;
+    margin-left: 5px;
+    margin-right: auto;
   }
 }
