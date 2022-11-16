@@ -5,7 +5,7 @@
       "edit-profile": "Edit profile",
       "create-new-board": "Create new board",
       "sign-out": "Sign out",
-      "sign-in": "Sign in",
+      "sign-in": "Login",
       "sign-up": "Sign up",
       "boards": "Boards"
     },
@@ -49,9 +49,9 @@
   },
   "auth": {
     "sign-in": {
-      "title": "Sign in",
+      "title": "Login",
       "warning": "Something went wrong. Please try again or sign up",
-      "submit": "Sign in",
+      "submit": "Log in",
       "sign-up-link": "Don't have an account? Sign up!"
     },
     "sign-up": {
