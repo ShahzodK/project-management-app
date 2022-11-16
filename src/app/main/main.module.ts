@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
 import { Interceptor } from '../core/services/interceptor';
 import { MainComponent } from './pages/main/main.component';
@@ -18,6 +18,7 @@ import { BoardItemComponent } from './components/board-item/board-item/board-ite
 import { CreateBoardFormComponent } from './components/create-board-form/create-board-form.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -29,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     CreateBoardFormComponent,
     DeleteModalComponent,
     SearchPipe,
+    CreateBoardFormComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    FormsModule,
     MatIconModule,
+    MatDialogModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -49,8 +53,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
   ],
+  exports: [
+    CreateBoardFormComponent,
+  ],
   providers: [
     BoardApiService,
+    CreateBoardFormComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

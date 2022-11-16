@@ -1,17 +1,33 @@
 <section class="create-board">
   <div class="form-container" *ngIf="boardService.IsCreateBoardModalVisible">
-    <form (ngSubmit)='submit()' [formGroup]="createBoard">
+
+    <form (ngSubmit)='submit()' >
+
       <h3>{{'main-page.newBoard' | translate}}</h3>
+
       <mat-form-field appearance="fill">
         <mat-label for="title">{{'main-page.title' | translate}}</mat-label>
-        <input type="text" matInput name="title" formControlName="title">
-      </mat-form-field>
+        <input type="text"
+        matInput required
+        name="title"
+        [(ngModel)]="boardTitle"
+        ></mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label for="description">{{'main-page.description' | translate}}</mat-label>
-        <input type="text" matInput name="description" formControlName="description">
-      </mat-form-field>
-      <button mat-button> {{'main-page.createBoard' | translate}}</button>
+        <input type="text"
+        matInput required
+        name="description"
+        [(ngModel)]="boardDescription"
+        ></mat-form-field>
+
+      <button
+      type="submit" mat-button>
+      {{'main-page.createBoard' | translate}}
+      </button>
+
     </form>
+
   </div>
   <p *ngIf="boardError">{{'main-page.boardCreateError' | translate}}</p>
 </section>
