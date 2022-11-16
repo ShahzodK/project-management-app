@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { UserApiService } from './../../services/user-api.service';
+import { UserApiService } from '../../services/user-api.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
 import { passwordStrengthValidator } from 'src/app/login/validators/password-strength.validator';
-import { PasswordFieldErrors } from 'src/app/login/models/auth.model';
+import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/login/models/auth.model';
 import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -18,52 +20,25 @@ import { signUpErrorsLocale } from 'src/app/login/models/locale-errors.const';
 })
 export class EditProfilePageComponent implements OnInit {
 
+  public hasNameError = false;
+
+  public hasEmailError = false;
+
   public hasPasswordError = false;
 
-  public nameValue = '';
+  public hidePassword = true;
 
-  public loginValue = '';
-
-  public passwordRecommendation = '';
-
-  constructor(
-    private store: Store,
-    private userApi: UserApiService,
-    private userService: UserService,
-    private router: Router,
-  ) { }
-
-  ngOnInit(): void {
-    this.editProfileForm.valueChanges.subscribe(() => {
-      if (this.editProfileForm.valid) {
-        this.hasPasswordError = false;
-        return;
-      }
-
-      this.checkErrors();
-    });
-
-    this.store.select(selectUserName).pipe(take(1)).subscribe({
-      next: (name) => this.nameValue = name,
-    });
-    this.store.select(selectUserLogin).pipe(take(1)).subscribe({
-      next: (login) => this.loginValue = login,
-    });
-
-    this.editProfileForm.get('name')!.setValue(this.nameValue);
-    this.editProfileForm.get('login')!.setValue(this.loginValue);
-  }
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
-      nonNullable:true,
+      nonNullable: true,
       validators: [
         Validators.required,
         Validators.minLength(3),
       ],
     }),
-    login: new FormControl<string>('', {
-      nonNullable:true,
+    email: new FormControl<string>('', {
+      nonNullable: true,
       validators: [
         Validators.required,
         Validators.email,
@@ -76,74 +51,141 @@ export class EditProfilePageComponent implements OnInit {
         passwordStrengthValidator(),
       ],
     }),
+  }, {
+    updateOn: 'submit',
   });
 
-  private checkHasError(control: AbstractControl): boolean {
-    return !!(control.errors && Object.keys(control.errors).length !== 0);
+  constructor(
+    private store: Store,
+    private userApi: UserApiService,
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService,
+  ) {
   }
 
-  private checkErrors() {
-    const password = this.password;
-    if (!password) return;
+  ngOnInit(): void {
+    this.store.select(selectUserName).pipe(take(1)).subscribe((name) => {
+      this.name!.setValue(name);
+    });
+    this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
+      this.email!.setValue(email);
+    });
+  }
 
-    this.hasPasswordError = this.checkHasError(password);
+  public get name() {
+    return this.editProfileForm.get('name');
+  }
+
+  public get email() {
+    return this.editProfileForm.get('email');
   }
 
   public get password() {
     return this.editProfileForm.get('password');
   }
 
-  public getPasswordErrorMessage(): string {
-    const password = this.password;
+  private checkErrors() {
+    const password = this.password!;
+    const name = this.name!;
+    const email = this.email!;
+
+    this.hasPasswordError = this.checkHasError(password);
+    this.hasNameError = this.checkHasError(name);
+    this.hasEmailError = this.checkHasError(email);
+  }
+
+  private checkHasError(control: AbstractControl): boolean {
+    return !!(control.errors && Object.keys(control.errors).length !== 0);
+  }
+
+  public getNameErrorMessage(): string {
+    const name = this.name!;
+
+    if (name.hasError(NameFieldErrors.REQUIRED)) return 'auth.forms.errors.client.name.required';
+    if (name.hasError(NameFieldErrors.MIN_LENGTH)) return 'auth.forms.errors.client.name.minlength';
+
+    return '';
+  }
+
+  public getEmailErrorMessage(): string {
+    const email = this.email!;
 
     switch (true) {
-      case password?.hasError(PasswordFieldErrors.REQUIRED):
+      case email.hasError(EmailFieldErrors.REQUIRED):
+        return 'auth.forms.errors.client.email.required';
+      case email.hasError(EmailFieldErrors.EMAIL):
+        return 'auth.forms.errors.client.email.email';
+      default:
+        return '';
+    }
+  }
+
+  public getPasswordErrorMessage(): string {
+    const password = this.password!;
+
+    switch (true) {
+      case password.hasError(PasswordFieldErrors.REQUIRED):
         return signUpErrorsLocale.password.required;
-      case password?.hasError(PasswordFieldErrors.ENOUGH_CHARS):
+      case password.hasError(PasswordFieldErrors.ENOUGH_CHARS):
         return signUpErrorsLocale.password.enough_chars;
-      case password?.hasError(PasswordFieldErrors.LOWERCASE) ||
+      case password.hasError(PasswordFieldErrors.LOWERCASE) ||
       password?.hasError(PasswordFieldErrors.UPPERCASE):
         return signUpErrorsLocale.password.lowercase;
-      case password?.hasError(PasswordFieldErrors.NUMERIC):
+      case password.hasError(PasswordFieldErrors.NUMERIC):
         return signUpErrorsLocale.password.numeric;
-      case password?.hasError(PasswordFieldErrors.SPECIALS):
+      case password.hasError(PasswordFieldErrors.SPECIALS):
         return signUpErrorsLocale.password.specials;
       default:
         return '';
     }
   }
 
-
   public deleteUser(): void {
     this.userApi.deleteUser(this.userService.getUserId()).subscribe({
       complete: () => {
         this.store.dispatch(UserActions.resetUser());
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('welcome');
       },
     });
   }
 
   public submit(): void {
-    const id = this.userService.getUserId();
-    const name = this.editProfileForm.getRawValue().name;
-    const login = this.editProfileForm.getRawValue().login;
-    const password = this.editProfileForm.getRawValue().password;
     if (this.editProfileForm.invalid) {
+      this.checkErrors();
       return;
     }
 
-    this.userApi.updateUser(this.userService.getUserId(), name, login, password).subscribe({
-      next: () => {
-        const user = {
-          name,
-          id,
-          login,
-        };
-        this.store.dispatch(UserActions.setLoggedUser(user));
-        this.router.navigateByUrl('main');
-      },
-    });
+    const id = this.userService.getUserId();
+    const name = this.editProfileForm.getRawValue().name;
+    const email = this.editProfileForm.getRawValue().email;
+    const password = this.editProfileForm.getRawValue().password;
 
+
+    this.userApi.updateUser(this.userService.getUserId(), name, email, password).subscribe(() => {
+      const user = {
+        name,
+        id,
+        login: email,
+      };
+
+      this.store.dispatch(UserActions.setLoggedUser(user));
+
+      const message = this.translateService.instant('edit-profile.notification.success');
+      const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
+
+      this.showSuccessEdit(message, buttonText);
+    });
   }
 
+  private showSuccessEdit(message: string, buttonText: string): void {
+    this.snackBar.open(message, buttonText, {
+      panelClass: 'notification',
+    });
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
+  }
 }

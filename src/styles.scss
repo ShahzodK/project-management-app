@@ -20,7 +20,9 @@ main > *:nth-child(2) {
 }
 
 .container {
-  max-width: 1280px;
-  padding: 20px;
+  max-width: 1290px;
+  padding: 0 15px;
   margin: auto;
 }
+
+@import "./styles/index.scss";

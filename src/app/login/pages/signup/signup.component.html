@@ -1,43 +1,50 @@
-<app-form-section>
-  <h2>{{ 'login-module.signup-welcome' | translate }}</h2>
-  <form class="formLogin" [formGroup]="signupForm" (ngSubmit)="signup()">
-    <mat-form-field appearance="standard">
-      <mat-label for="name">{{ 'common.name' | translate }}</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="name"
-        name="name"
-      >
-      <mat-error *ngIf="hasNameError">{{ getNameErrorMessage() | translate }}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="standard">
-      <mat-label for="login">{{ 'common.login' | translate }}</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="email"
-        name="login"
-      >
-      <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="standard">
-      <mat-label for="password">{{ 'common.password' | translate }}</mat-label>
-      <input
-        matInput
-        type="password"
-        formControlName="password"
-        name="password"
-      >
-      <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate }}</mat-error>
-    </mat-form-field>
-    <div class="buttons">
-      <a mat-button routerLink="">{{ 'common.main-link' | translate }}</a>
+<section class="auth-page">
+  <div class="auth-page-container container">
+    <h1 class="auth-page-title">{{ 'auth.sign-up.title' | translate }}</h1>
+    <form (ngSubmit)="signup()" [formGroup]="signupForm" class="auth-page-form">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auth.forms.field-names.name' | translate }}</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          name="name"
+          type="text"
+        >
+        <mat-error *ngIf="hasNameError">{{ getNameErrorMessage() | translate }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'auth.forms.field-names.email' | translate }}</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          name="login"
+          type="text"
+        >
+        <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{'auth.forms.field-names.password' | translate}}</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput/>
+        <button
+          (click)="setHidePassword()"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePassword"
+          mat-icon-button
+          matSuffix
+          type="button"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasPasswordError">{{ getPasswordErrorMessage() | translate}}</mat-error>
+      </mat-form-field>
+
       <button
-        mat-button
+        class="auth-page-submit-btn"
+        color="primary"
+        mat-raised-button
         type="submit"
-      >{{ 'common.signup' | translate }}</button>
-    </div>
-  </form>
-  <div *ngIf="isSignupError" class="warning">{{ errMessage | translate }}</div>
-</app-form-section>
+      >{{ 'auth.sign-up.submit' | translate }}</button>
+    </form>
+  </div>
+</section>

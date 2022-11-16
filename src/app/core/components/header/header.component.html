@@ -1,6 +1,6 @@
 <mat-toolbar class="header">
   <mat-toolbar-row class="header-container container">
-    <a class="header-logo" mat-button routerLink="welcome">{{ 'header.title' | translate }}</a>
+    <a class="header-logo" mat-button routerLink="welcome">{{ 'header.logo' | translate }}</a>
     <nav class="header-nav">
       <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
 
@@ -8,14 +8,14 @@
         <ng-container *ngIf="isWelcomePage !== null">
           <button (click)="toggleModal()" *ngIf="!isWelcomePage"
                   mat-button>
-            {{ 'header.createNewBoard' | translate }}
+            {{ 'header.nav.create-new-board' | translate }}
           </button>
 
           <a
             *ngIf="isWelcomePage"
             mat-button
             routerLink="main"
-          >{{ 'common.boards' | translate }}</a>
+          >{{ 'header.nav.boards' | translate }}</a>
         </ng-container>
 
 
@@ -25,11 +25,11 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <a routerLink="edit-profile" mat-menu-item>{{ 'header.editProfile' | translate }}</a>
+          <a routerLink="edit-profile" mat-menu-item>{{ 'header.nav.edit-profile' | translate }}</a>
           <button
             mat-menu-item
             (click)="logout()"
-          >{{ 'common.logout' | translate }}</button>
+          >{{ 'header.nav.sign-out' | translate }}</button>
         </mat-menu>
       </ng-container>
 
@@ -38,12 +38,12 @@
           mat-raised-button
           color="primary"
           routerLink="login"
-        >{{ 'common.login' | translate }}</a>
+        >{{ 'header.nav.sign-in' | translate }}</a>
         <a
           mat-raised-button
           color="primary"
           routerLink="login/signup"
-        >{{ 'common.signup' | translate }}</a>
+        >{{ 'header.nav.sign-up' | translate }}</a>
       </ng-container>
 
     </nav>

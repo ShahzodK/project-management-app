@@ -6,6 +6,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
 import { signInErrorsLocale } from '../../models/locale-errors.const';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,11 @@ import { signInErrorsLocale } from '../../models/locale-errors.const';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public isLoginError = false;
-
-  public errMessage = '';
-
   public hasEmailError = false;
 
   public hasPasswordError = false;
+
+  public hidePassword = true;
 
   loginForm = new FormGroup({
     email: new FormControl<string>('', [
@@ -35,6 +34,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private userService: UserService,
     public translateService: TranslateService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -64,12 +64,13 @@ export class LoginComponent implements OnInit {
       this.password.value,
     ).subscribe({
       next: () => {
-        this.isLoginError = false;
         this.loginForm.reset();
       },
       error: (res: HttpErrorResponse) => {
-        this.isLoginError = true;
-        this.errMessage = `login-module.errors.${res.status}`;
+        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
+        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
+
+        this.showServerError(errorMessage, closeButtonText);
       },
       complete: () => {
         this.userService.check();
@@ -114,5 +115,16 @@ export class LoginComponent implements OnInit {
     if (password?.hasError(PasswordFieldErrors.REQUIRED)) return signInErrorsLocale.password.required;
 
     return '';
+  }
+
+  private showServerError(errorMessage: string, closeButtonText: string): void {
+    this.snackBar.open(errorMessage, closeButtonText, {
+      panelClass: 'notification',
+      duration: 2000,
+    });
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }

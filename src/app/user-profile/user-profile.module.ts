@@ -13,6 +13,8 @@ import { Interceptor } from '../core/services/interceptor';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -31,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatSnackBarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -40,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+    MatIconModule,
   ],
   providers: [
     UserApiService,

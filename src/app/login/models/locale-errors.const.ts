@@ -1,28 +1,28 @@
 export const signUpErrorsLocale = {
   name: {
-    required: 'login-module.form-errors.name.required',
-    minLength: 'login-module.form-errors.name.minlength',
+    required: 'auth.forms.errors.client.name.required',
+    minLength: 'auth.forms.errors.client.name.minlength',
   },
   email: {
-    required: 'login-module.form-errors.email.required',
-    email: 'login-module.form-errors.email.email',
+    required: 'auth.forms.errors.client.email.required',
+    email: 'auth.forms.errors.client.email.email',
   },
   password: {
-    required: 'login-module.form-errors.password.required',
-    enough_chars: 'login-module.form-errors.password.enough_chars',
-    lowercase: 'login-module.form-errors.password.lowercase',
-    uppercase: 'login-module.form-errors.password.uppercase',
-    numeric: 'login-module.form-errors.password.numeric',
-    specials: 'login-module.form-errors.password.specials',
+    required: 'auth.forms.errors.client.password.required',
+    enough_chars: 'auth.forms.errors.client.password.enough_chars',
+    lowercase: 'auth.forms.errors.client.password.lowercase',
+    uppercase: 'auth.forms.errors.client.password.uppercase',
+    numeric: 'auth.forms.errors.client.password.numeric',
+    specials: 'auth.forms.errors.client.password.specials',
   },
 };
 
 export const signInErrorsLocale = {
   email: {
-    required: 'login-module.form-errors.email.required',
-    email: 'login-module.form-errors.email.email',
+    required: 'auth.forms.errors.client.email.required',
+    email: 'auth.forms.errors.client.email.email',
   },
   password: {
-    required: 'login-module.form-errors.password.required',
+    required: 'auth.forms.errors.client.password.required',
   },
 };

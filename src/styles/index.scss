@@ -1,0 +1,51 @@
+
+.auth-page {
+  height: 100%;
+  padding: 50px 0;
+  background-color: #fafafa;
+
+  &-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-title {
+    color: #3f51b5;
+    font-weight: 700;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 190px;
+    padding: 20px 30px;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+    box-shadow: rgba(60, 66, 87, 0.12) 0 7px 14px 0, rgba(0, 0, 0, 0.12) 0 3px 6px 0;
+  }
+
+  &-sign-up-link {
+    margin-top: 30px;
+    text-decoration: none;
+    color: #3f51b5;
+  }
+
+  &-sign-up-link:hover {
+    text-decoration: underline;
+  }
+
+  &-submit-btn {
+    align-self: flex-end;
+  }
+}
+
+.notification {
+  position: relative;
+  bottom: 120px;
+
+  &-success {}
+}

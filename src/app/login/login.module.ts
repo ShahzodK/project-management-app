@@ -15,14 +15,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
-import { FormSectionComponent } from '../shared/components/form-section/form-section/form-section.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
-    FormSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +32,7 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
     MatInputModule,
     ReactiveFormsModule,
     LoginRoutingModule,
+    MatSnackBarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -41,6 +42,7 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+    MatIconModule,
   ],
   providers: [
     UserService,

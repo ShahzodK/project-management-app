@@ -2,12 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-
 import { UserService } from 'src/app/shared/services/user.service';
 import { LoginService } from '../../services/login.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -15,15 +15,13 @@ import { passwordStrengthValidator } from '../../validators/password-strength.va
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  public isSignupError = false;
-
-  public errMessage = '';
-
-  public hasNameError = false;
+  public hasNameError: boolean = false;
 
   public hasEmailError = false;
 
   public hasPasswordError = false;
+
+  public hidePassword = true;
 
   signupForm = new FormGroup({
     name: new FormControl<string>('', [
@@ -44,6 +42,7 @@ export class SignupComponent implements OnInit {
     private loginService: LoginService,
     private userService: UserService,
     public translateService: TranslateService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -70,12 +69,13 @@ export class SignupComponent implements OnInit {
       this.password.value,
     ).subscribe({
       next: () => {
-        this.isSignupError = false;
         this.signupForm.reset();
       },
       error: (res: HttpErrorResponse) => {
-        this.isSignupError = true;
-        this.errMessage = `login-module.errors.${res.status}`;
+        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
+        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
+
+        this.showServerError(errorMessage, closeButtonText);
       },
       complete: () => {
         this.userService.check();
@@ -146,5 +146,16 @@ export class SignupComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  private showServerError(errorMessage: string, closeButtonText: string): void {
+    this.snackBar.open(errorMessage, closeButtonText, {
+      panelClass: 'notification',
+      duration: 2000,
+    });
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }

@@ -1,21 +1,15 @@
 {
-	"common": {
-    "login": "Kirish",
-    "signup": "Ro'yxatdan o'tish",
-    "name": "Ism",
-    "logout": "Chiqish",
-    "main-link": "Bosh sahifa",
-    "password": "Parol",
-    "boards": "Taxtalar"
-  },
-  "header":{
-    "title": "Teamwork",
-    "greeting": "Salom, ",
-    "editProfile": "Profilni tahrirlash",
-    "createNewBoard": "Yangi loyiha",
-    "search": "Izlash...",
-    "no-logged": "Siz dasturga kirmadingiz",
-    "logged": "Siz kirdingiz"
+  "header": {
+    "logo": "Teamwork",
+    "nav": {
+      "edit-profile": "Profilni tahrirlash",
+      "create-new-board": "Yangi loyiha",
+      "sign-out": "Chiqish",
+      "sign-in": "Kirish",
+      "sign-up": "Ro'yxatdan o'tish",
+      "boards": "Taxtalar"
+    },
+    "greeting": "Salom, "
   },
   "welcome-app": {
     "title": "Biz bilan loyihalaringizni osonroq boshqaring",
@@ -36,7 +30,7 @@
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Dimitrii Shabanov"
   },
-   "main-page": {
+  "main-page": {
     "title": "Sarlavha",
     "description": "Tavsifi",
     "boards": "Loyihalar",
@@ -48,39 +42,72 @@
     "newBoard": "Yangi loyiha",
     "no": "Yo'q",
     "yes": "Ha"
-	},
-  "login-module": {
-    "login-welcome": "Iltimos, kiring yoki ro'yxatdan o'ting" ,
-    "login-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting.",
-    "signup-welcome": "Iltimos, ro'yxatdan o'ting",
-    "signup-warning": "Xatolik. Iltimos, qaytadan urinib ko'ring.",
-    "form-errors": {
-      "name": {
-        "required": "Ismni yozing",
-        "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
+  },
+  "edit-profile": {
+    "title": "Profilni tahrirlash",
+    "form": {
+      "field-names": {
+        "name": "Ism",
+        "email": "Email",
+        "password": "Parol"
       },
-      "email": {
-        "required": "Emailni yozing",
-        "email": "To'g'ri emailni yozing"
-      },
-      "password": {
-        "required": "Parloni yozing",
-        "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
-        "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-        "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
-        "numeric": "Parolda raqamlar bo'lishi kerak",
-        "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
-      }
+      "submit-btn": "Saqlash",
+      "delete-btn": "Profilni o'chirib tashlash"
     },
-    "errors": {
-      "409": "Bunday loginlik foydalanuvchi mavjud!",
-      "404": "Tarmoq xatosi!",
-      "403": "Login yoki Parol xato!"
+    "notification": {
+      "success": "Saqalandi!",
+      "close-btn": "Yopish"
     }
   },
-	"languages": {
-		"en": "ENG",
-		"ru": "RUS",
+  "auth": {
+    "sign-in": {
+      "title": "Kirish",
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring yoki ro'yxatdan o'ting",
+      "submit": "Kirish",
+      "sign-up-link": "Akkauntingiz yo'qmi? Ro'yxatdan o'ting!"
+    },
+    "sign-up": {
+      "title": "Ro'yxatga olish",
+      "warning": "Xatolik. Iltimos, qaytadan urinib ko'ring",
+      "submit": "Ro'yxatga olish"
+    },
+    "forms": {
+      "field-names": {
+        "email": "Email",
+        "password": "Parol",
+        "name": "Ism"
+      },
+      "errors": {
+        "client": {
+          "name": {
+            "required": "Ismni yozing",
+            "minlength": "Ism 3 yoki undan ko'p harfdan bo'lishi kerak"
+          },
+          "email": {
+            "required": "Emailni yozing",
+            "email": "To'g'ri emailni yozing"
+          },
+          "password": {
+            "required": "Parloni yozing",
+            "enough_chars": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+            "lowercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+            "uppercase": "Parol kamida 1 ta katta va 1 ta kichkina harfdan iborat bo'lishi kerak",
+            "numeric": "Parolda raqamlar bo'lishi kerak",
+            "specials": "Parolda maxsus belgilar bo'lishi kerak, masalan: ! @ # ? ]"
+          }
+        },
+        "server": {
+          "409": "Bunday loginlik foydalanuvchi mavjud!",
+          "404": "Tarmoq xatosi!",
+          "403": "Login yoki Parol xato!"
+        },
+        "close-btn": "Yopish"
+      }
+    }
+  },
+  "languages": {
+    "en": "ENG",
+    "ru": "RUS",
     "uz": "UZB"
-	}
+  }
 }
