@@ -6,7 +6,6 @@ import { BoardService } from '../../../main/services/board.service';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
-import { ELocales } from 'src/app/shared/models';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
@@ -15,8 +14,6 @@ import { AuthService } from '../../../auth/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public localeName = 'languages.en';
-
   public userName$ = this.store.select(selectUserName);
 
   public isLogged$ = this.store.select(selectIsLogged);
@@ -31,25 +28,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private boardService: BoardService,
     private store: Store,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.URLSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isWelcomePage = event.urlAfterRedirects.includes('welcome');
       }
-    },
-    );
+    });
   }
 
   ngOnDestroy(): void {
     this.URLSub.unsubscribe();
-  }
-
-  public changeLocale(): void {
-    const lang = this.translateService.currentLang === ELocales.EN ? ELocales.RU : ELocales.EN;
-    this.translateService.use(lang);
-    this.localeName = `languages.${lang}`;
   }
 
   public logout(): void {
@@ -59,5 +50,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public toggleModal(): void {
     this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
   }
-
 }

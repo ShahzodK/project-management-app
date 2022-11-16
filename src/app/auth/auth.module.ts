@@ -17,6 +17,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { UserService } from '../shared/services/user.service';
     ReactiveFormsModule,
     AuthRoutingModule,
     SharedModule,
+    MatSnackBarModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -42,6 +45,7 @@ import { UserService } from '../shared/services/user.service';
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+    MatIconModule,
   ],
   providers: [
     AuthService,
