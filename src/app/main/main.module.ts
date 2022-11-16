@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
-import { Interceptor } from '../core/services/interceptor';
+import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
@@ -53,7 +53,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     BoardApiService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

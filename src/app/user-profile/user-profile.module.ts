@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { UserApiService } from './services/user-api.service';
 import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
-import { Interceptor } from '../core/services/interceptor';
+import { AuthInterceptor } from '../core/interceptors//AuthInterceptor';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
@@ -45,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     UserApiService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

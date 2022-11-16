@@ -17,7 +17,7 @@ export const signUpErrorsLocale = {
   },
 };
 
-export const signInErrorsLocale = {
+export const loginErrorsLocale = {
   email: {
     required: 'login-module.form-errors.email.required',
     email: 'login-module.form-errors.email.email',

@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { AuthRoutingModule } from './auth-routing.module';
+import { SharedModule } from './../shared/shared.module';
 import { AuthService } from './services/auth.service';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
@@ -16,14 +17,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
-import { FormSectionComponent } from '../shared/components/form-section/form-section/form-section.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     SignupPageComponent,
-    FormSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +32,7 @@ import { FormSectionComponent } from '../shared/components/form-section/form-sec
     MatInputModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    SharedModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
