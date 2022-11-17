@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from './auth/guards/login.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
@@ -16,20 +16,20 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then((mod) => mod.MainModule),
-    canActivate: [LoginGuard],
-    canLoad: [LoginGuard],
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'main/board',
     loadChildren: () => import('./board/board.module').then((mod) => mod.BoardModule),
-    canActivate: [LoginGuard],
-    canLoad: [LoginGuard],
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'edit-profile',
     loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
-    canActivate: [LoginGuard],
-    canLoad: [LoginGuard],
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: '', redirectTo: 'welcome', pathMatch: 'full',
