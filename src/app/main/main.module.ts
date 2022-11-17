@@ -54,11 +54,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
   ],
   exports: [
-    CreateBoardFormComponent,
   ],
   providers: [
     BoardApiService,
-    CreateBoardFormComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
