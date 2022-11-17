@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isWelcomePage: boolean | null = null;
 
+  public isAuthPage: boolean | null = null;
+
   private URLSub!: Subscription;
 
   constructor(
@@ -35,6 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.URLSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isWelcomePage = event.urlAfterRedirects.includes('welcome');
+        this.isAuthPage = event.urlAfterRedirects.includes('login');
       }
     });
   }
@@ -51,3 +54,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
   }
 }
+

@@ -5,19 +5,18 @@
       <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
 
       <ng-container *ngIf="isLogged$ | async">
-        <ng-container *ngIf="isWelcomePage !== null">
-          <button (click)="toggleModal()" *ngIf="!isWelcomePage"
+        <ng-container *ngIf="isWelcomePage !== null && isAuthPage !== null">
+          <button (click)="toggleModal()" *ngIf="!isWelcomePage && !isAuthPage"
                   mat-button>
             {{ 'header.nav.create-new-board' | translate }}
           </button>
-
-          <a
-            *ngIf="isWelcomePage"
-            mat-button
-            routerLink="main"
-          >{{ 'header.nav.boards' | translate }}</a>
         </ng-container>
 
+        <a
+          *ngIf="isWelcomePage"
+          mat-button
+          routerLink="main"
+        >{{ 'header.nav.boards' | translate }}</a>
 
         <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu"
                 aria-label="Open menu">
@@ -33,7 +32,7 @@
         </mat-menu>
       </ng-container>
 
-      <ng-container *ngIf="(isLogged$ | async) === false">
+      <ng-container *ngIf="(isLogged$ | async) === false && isAuthPage">
         <a
           mat-raised-button
           color="primary"
