@@ -115,6 +115,9 @@
     "uz": "UZB"
 	},
   "task": {
-    "create": "Create task"
+    "create": "Create task",
+    "confirmDelete": "Are you sure you want to delete the task",
+    "no": "No",
+    "yes": "Yes"
   }
 }

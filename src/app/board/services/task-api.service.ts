@@ -37,7 +37,7 @@ export class TaskApiService {
   }
 
   public deleteTask(boardId: string, columnId: string, taskId: string): Observable<Object> {
-    return this.http.delete(`boards/${boardId}/columns/${columnId}tasks/${taskId}`);
+    return this.http.delete(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
 }

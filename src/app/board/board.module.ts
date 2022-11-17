@@ -21,7 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
+import { DeleteTaskModalComponent } from './components/tasks/delete-task-modal/delete-task-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -37,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     HeaderComponent,
     CreateColumnModalComponent,
     CreateTaskModalComponent,
+    DeleteTaskModalComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCardModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

@@ -111,6 +111,9 @@
     "uz": "UZB"
 	},
   "task": {
-    "create": "Vazifa yaratish"
+    "create": "Vazifa yaratish",
+    "confirmDelete": "Loyihani o'chirib tashlashga aminmisiz",
+    "no": "Ha",
+    "yes": "Yo'q"
   }
 }

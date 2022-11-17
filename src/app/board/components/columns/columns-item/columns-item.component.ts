@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { TaskApiService } from './../../../services/task-api.service';
@@ -30,7 +30,6 @@ export class ColumnsItemComponent implements OnChanges {
         },
       });
     }
-
   }
 
 
