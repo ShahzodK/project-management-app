@@ -28,6 +28,8 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./user-profile/user-profile.module').then((mod) => mod.UserProfileModule),
+    canActivate: [LoginGuard],
+    canLoad: [LoginGuard],
   },
   {
     path: '', redirectTo: 'welcome', pathMatch: 'full',
