@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WelcomePageRoutingModule } from './welcome-page-routing.module';
+import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +22,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    WelcomePageRoutingModule,
+    WelcomeRoutingModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -34,4 +34,4 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
   ],
 })
-export class WelcomePageModule { }
+export class WelcomeModule { }

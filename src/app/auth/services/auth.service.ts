@@ -5,17 +5,17 @@ import { resetUser } from '../../redux/actions';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { ISignInResponse, ISignUpResponse } from '../models/auth-api.model';
-
+import { ILoginResponse, ISignUpResponse } from '../models/auth-api.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AuthService {
+
   constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
-  public login(login: string, password: string): Observable<ISignInResponse> {
-    return this.http.post<ISignInResponse>('signin', {
+  public login(login: string, password: string): Observable<ILoginResponse> {
+    return this.http.post<ILoginResponse>('signin', {
       login,
       password,
     }).pipe(
@@ -28,7 +28,7 @@ export class LoginService {
     );
   }
 
-  public signup(name: string, login: string, password: string): Observable<ISignInResponse> {
+  public signup(name: string, login: string, password: string): Observable<ILoginResponse> {
     return this.http.post<ISignUpResponse>('signup', {
       name,
       login,

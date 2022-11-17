@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
+import { LoginGuard } from './auth/guards/login.guard';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {
     path: 'welcome',
-    loadChildren: () => import('./welcome-page/welcome-page.module')
-      .then((mod) => mod.WelcomePageModule),
+    loadChildren: () => import('./welcome/welcome.module')
+      .then((mod) => mod.WelcomeModule),
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then((mod) => mod.LoginModule),
+    loadChildren: () => import('./auth/auth.module').then((mod) => mod.AuthModule),
   },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then((mod) => mod.MainModule),
-    canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
+    canActivate: [LoginGuard],
+    canLoad: [LoginGuard],
   },
   {
     path: 'main/board',
     loadChildren: () => import('./board/board.module').then((mod) => mod.BoardModule),
-    canActivate: [AuthGuard],
-    canLoad: [AuthGuard],
+    canActivate: [LoginGuard],
+    canLoad: [LoginGuard],
   },
   {
     path: 'edit-profile',

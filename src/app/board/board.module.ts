@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ColumnApiService } from './services/column-api.service';
 import { TaskApiService } from './services/task-api.service';
-import { Interceptor } from '../core/services/interceptor';
+import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { ColumnsListComponent } from './components/columns/columns-list/columns-list.component';
 import { ColumnsItemComponent } from './components/columns/columns-item/columns-item.component';
@@ -45,7 +45,7 @@ import { MatInputModule } from '@angular/material/input';
     TaskApiService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

@@ -4,7 +4,7 @@ import { CanActivate, CanLoad, Router, UrlTree } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class LoginGuard implements CanActivate, CanLoad {
 
   constructor(private router: Router) {}
 

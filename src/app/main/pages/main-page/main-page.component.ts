@@ -9,11 +9,11 @@ import { BoardApiService } from '../../services/board-api.service';
 import { getBoards } from '../../../redux/actions/board-action';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'app-main-page',
+  templateUrl: './main-page.component.html',
+  styleUrls: ['./main-page.component.scss'],
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit, OnDestroy {
 
   constructor(
     public translateService: TranslateService,

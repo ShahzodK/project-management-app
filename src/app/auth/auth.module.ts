@@ -8,11 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { LoginRoutingModule } from './login-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
+import { SharedModule } from './../shared/shared.module';
+import { AuthService } from './services/auth.service';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { UserService } from '../shared/services/user.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -21,8 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    SignupComponent,
+    LoginPageComponent,
+    SignupPageComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    LoginRoutingModule,
+    AuthRoutingModule,
+    SharedModule,
     MatSnackBarModule,
     TranslateModule.forChild({
       loader: {
@@ -45,7 +48,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   providers: [
+    AuthService,
     UserService,
   ],
 })
-export class LoginModule { }
+export class AuthModule { }

@@ -3,18 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/shared/services/user.service';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
-import { passwordStrengthValidator } from '../../validators/password-strength.validator';
+import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-signup-page',
+  templateUrl: './signup-page.component.html',
+  styleUrls: ['./signup-page.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupPageComponent implements OnInit {
   public hasNameError: boolean = false;
 
   public hasEmailError = false;
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private userService: UserService,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
@@ -63,10 +63,10 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.invalid) return;
     if (!this.name || !this.email || !this.password) return;
 
-    this.loginService.signup(
-      this.name.value,
-      this.email.value,
-      this.password.value,
+    this.authService.signup(
+      this.name.getRawValue(),
+      this.email.getRawValue(),
+      this.password.getRawValue(),
     ).subscribe({
       next: () => {
         this.signupForm.reset();

@@ -1,4 +1,4 @@
-export enum SignInFormFields {
+export enum LoginFormFields {
   EMAIL = 'email',
   PASSWORD = 'password',
 }

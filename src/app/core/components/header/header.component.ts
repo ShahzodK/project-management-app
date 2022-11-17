@@ -6,7 +6,7 @@ import { BoardService } from '../../../main/services/board.service';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
-import { LoginService } from '../../../login/services/login.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private translateService: TranslateService,
     private router: Router,
-    private loginService: LoginService,
+    private authService: AuthService,
     private boardService: BoardService,
     private store: Store,
   ) {
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    this.loginService.logout();
+    this.authService.logout();
   }
 
   public toggleModal(): void {

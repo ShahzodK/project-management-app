@@ -3,17 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/shared/services/user.service';
-import { LoginService } from '../../services/login.service';
-import { EmailFieldErrors, PasswordFieldErrors, SignInFormFields } from '../../models/auth.model';
-import { signInErrorsLocale } from '../../models/locale-errors.const';
+import { AuthService } from '../../services/auth.service';
+import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/auth.model';
+import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
   public hasEmailError = false;
 
   public hasPasswordError = false;
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private userService: UserService,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
@@ -59,9 +59,9 @@ export class LoginComponent implements OnInit {
   public login(): void {
     if (!this.email || !this.password) return;
 
-    this.loginService.login(
-      this.email.value,
-      this.password.value,
+    this.authService.login(
+      this.email.getRawValue(),
+      this.password.getRawValue(),
     ).subscribe({
       next: () => {
         this.loginForm.reset();
@@ -80,11 +80,11 @@ export class LoginComponent implements OnInit {
   }
 
   public get email() {
-    return this.loginForm.get(SignInFormFields.EMAIL);
+    return this.loginForm.get(LoginFormFields.EMAIL);
   }
 
   public get password() {
-    return this.loginForm.get(SignInFormFields.PASSWORD);
+    return this.loginForm.get(LoginFormFields.PASSWORD);
   }
 
   private checkHasError(control: AbstractControl): boolean {
@@ -103,8 +103,8 @@ export class LoginComponent implements OnInit {
   public getEmailErrorMessage(): string {
     const email = this.email;
 
-    if (email?.hasError(EmailFieldErrors.REQUIRED)) return signInErrorsLocale.email.required;
-    if (email?.hasError(EmailFieldErrors.EMAIL)) return signInErrorsLocale.email.email;
+    if (email?.hasError(EmailFieldErrors.REQUIRED)) return loginErrorsLocale.email.required;
+    if (email?.hasError(EmailFieldErrors.EMAIL)) return loginErrorsLocale.email.email;
 
     return '';
   }
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
   public getPasswordErrorMessage(): string {
     const password = this.password;
 
-    if (password?.hasError(PasswordFieldErrors.REQUIRED)) return signInErrorsLocale.password.required;
+    if (password?.hasError(PasswordFieldErrors.REQUIRED)) return loginErrorsLocale.password.required;
 
     return '';
   }

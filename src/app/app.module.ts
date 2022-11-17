@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CoreModule } from './core/core.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule  } from '@angular/material/form-field';
@@ -15,21 +16,17 @@ import { MatInputModule  } from '@angular/material/input';
 import { MatCardModule  } from '@angular/material/card';
 
 import { environment } from '../environments/environment';
-import { WelcomePageModule } from './welcome-page/welcome-page.module';
+import { WelcomeModule } from './welcome/welcome.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './core/components/header/header.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
-import { Interceptor } from './core/services/interceptor';
+import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
-import { FooterComponent } from './core/components/footer/footer.component';
-import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { LocaleTogglerComponent } from './core/components/locale-toggler/locale-toggler.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -40,14 +37,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    NotFoundPageComponent,
-    LocaleTogglerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     HttpClientModule,
     MatSlideToggleModule,
     MatButtonModule,
@@ -69,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
     EffectsModule.forRoot([BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    WelcomePageModule,
+    WelcomeModule,
     MatToolbarModule,
     MatSelectModule,
     FormsModule,
@@ -79,7 +73,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
     UserService,

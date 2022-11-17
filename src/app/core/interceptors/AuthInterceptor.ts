@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 
 
 @Injectable()
-export class Interceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.url.includes('assets')) {
       return next.handle(request);
