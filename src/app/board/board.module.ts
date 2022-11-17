@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { ColumnApiService } from './services/column-api.service';
 import { TaskApiService } from './services/task-api.service';
 import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
@@ -18,6 +21,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -28,6 +36,7 @@ import { MatInputModule } from '@angular/material/input';
     TasksItemComponent,
     HeaderComponent,
     CreateColumnModalComponent,
+    CreateTaskModalComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +48,15 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    }),
   ],
   providers: [
     ColumnApiService,

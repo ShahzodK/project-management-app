@@ -109,5 +109,8 @@
     "en": "ENG",
     "ru": "RUS",
     "uz": "UZB"
+	},
+  "task": {
+    "create": "Vazifa yaratish"
   }
 }

@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { IColumn } from '../../../models/column.model';
+import { Component, Input, OnChanges, OnInit, AfterViewInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { TaskApiService } from './../../../services/task-api.service';
+import { CreateTaskModalComponent } from '../../create-task-modal/create-task-modal.component';
+import { IBoard } from 'src/app/main/models/board.model';
+import { IColumn } from '../../../models/column.model';
 import { ITask } from '../../../models/task.model';
 
 @Component({
@@ -8,8 +12,38 @@ import { ITask } from '../../../models/task.model';
   templateUrl: './columns-item.component.html',
   styleUrls: ['./columns-item.component.scss'],
 })
-export class ColumnsItemComponent {
+export class ColumnsItemComponent implements OnChanges {
+
+  constructor(public dialog: MatDialog, public taskApi: TaskApiService) {}
+  
   @Input() column: IColumn | undefined;
 
-  tasks$: Observable<ITask[]> | undefined;
+  @Input() board: IBoard | undefined;
+
+  public tasks$: Observable<ITask[]> | undefined;
+
+  ngOnChanges(): void {
+    if (this.board && this.column) {
+      this.taskApi.getTasks(this.board!.id, this.column!.id).subscribe({
+        next: () => {
+          this.tasks$ = this.taskApi.getTasks(this.board!.id, this.column!.id);
+        },
+      });
+    }
+
+  }
+
+
+  public openTaskModal(): void {
+    const dialogRef = this.dialog.open(CreateTaskModalComponent, {
+      data: {
+        boardId: this.board?.id,
+        columnId: this.column?.id,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(
+      () => this.tasks$ = this.taskApi.getTasks(this.board!.id, this.column!.id),
+    );
+  }
 }

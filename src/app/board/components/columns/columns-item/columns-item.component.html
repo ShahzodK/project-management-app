@@ -3,5 +3,9 @@
     {{ column?.title }}
   </h3>
   <app-tasks-list *ngIf="(tasks$ | async) as tasks" [tasks]="tasks"></app-tasks-list>
+  <button mat-stroked-button class="create-task-btn" (click)="openTaskModal()">
+    <mat-icon>add</mat-icon>
+    {{"task.create" | translate}}
+  </button>
 </div>
 

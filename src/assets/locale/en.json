@@ -113,5 +113,8 @@
     "en": "ENG",
     "ru": "RUS",
     "uz": "UZB"
+	},
+  "task": {
+    "create": "Create task"
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IBoard } from 'src/app/main/models/board.model';
 import { IColumn } from '../../../models/column.model';
 
 @Component({
@@ -7,5 +8,7 @@ import { IColumn } from '../../../models/column.model';
   styleUrls: ['./columns-list.component.scss'],
 })
 export class ColumnsListComponent {
-  @Input() columns: IColumn[] | undefined;
+  @Input() columns: IColumn[] = [];
+
+  @Input() board: IBoard | undefined;
 }

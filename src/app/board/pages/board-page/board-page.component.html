@@ -7,6 +7,7 @@
       Create column
     </button>
 
-    <app-columns-list *ngIf="(columns$ | async) as columns" [columns]="columns" class="columns-list"></app-columns-list>
+    <app-columns-list *ngIf="(columns$ | async) as columns" [board]="board" [columns]="columns" class="columns-list">
+    </app-columns-list>
   </div>
 </section>
