@@ -32,7 +32,7 @@
         </mat-menu>
       </ng-container>
 
-      <ng-container *ngIf="(isLogged$ | async) === false && isAuthPage">
+      <ng-container *ngIf="(isLogged$ | async) === false && (isAuthPage || isWelcomePage)">
         <a
           mat-raised-button
           color="primary"
