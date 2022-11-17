@@ -6,16 +6,11 @@ import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ng
 import { HttpLoaderFactory } from '../app.module';
 import { FormsModule } from '@angular/forms';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { LocaleTogglerComponent } from './components/locale-toggler/locale-toggler.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -29,12 +24,7 @@ import { HeaderComponent } from './components/header/header.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    MatSelectModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
