@@ -6,7 +6,7 @@
 
       <ng-container *ngIf="isLogged$ | async">
         <ng-container *ngIf="isWelcomePage !== null">
-          <button (click)="toggleModal()" *ngIf="!isWelcomePage"
+          <button (click)="this.createBoardForm.openDialog()" *ngIf="!isWelcomePage"
                   mat-button>
             {{ 'header.nav.create-new-board' | translate }}
           </button>

@@ -32,6 +32,7 @@ import { FormsModule } from '@angular/forms';
 import { LocaleTogglerComponent } from './core/components/locale-toggler/locale-toggler.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateBoardFormComponent } from './main/components/create-board-form/create-board-form.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -83,6 +84,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       multi: true,
     },
     UserService,
+    CreateBoardFormComponent,
   ],
   bootstrap: [AppComponent],
 })

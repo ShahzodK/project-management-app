@@ -7,6 +7,7 @@ import { BoardService } from '../../../main/services/board.service';
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../../../login/services/login.service';
+import { CreateBoardFormComponent } from 'src/app/main/components/create-board-form/create-board-form.component';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private boardService: BoardService,
     private store: Store,
+    public createBoardForm: CreateBoardFormComponent,
   ) {
   }
 
