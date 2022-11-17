@@ -9,15 +9,11 @@ import { ColumnsListComponent } from './components/columns/columns-list/columns-
 import { ColumnsItemComponent } from './components/columns/columns-item/columns-item.component';
 import { TasksListComponent } from './components/tasks/tasks-list/tasks-list.component';
 import { TasksItemComponent } from './components/tasks/tasks-item/tasks-item.component';
-import { MatButtonModule } from '@angular/material/button';
 import { BoardRoutingModule } from './board-routing.module';
 import { HeaderComponent } from './components/header/header.component';
-import { MatIconModule } from '@angular/material/icon';
 import { CreateColumnModalComponent } from './components/create-column-modal/create-column-modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,14 +27,10 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     BoardRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
+    SharedModule,
+    HttpClientModule,
     FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
   ],
   providers: [
     ColumnApiService,
