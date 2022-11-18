@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { ILoginResponse, ISignUpResponse } from '../models/auth.model';
-import { FullRoutePaths } from '../../core/consts/routes.const';
-import {AppRoutePaths} from "../../core/models/routes.model";
+import { FullRoutePaths } from '../../core/constants/routes';
+import { AppRoutePaths } from '../../core/enums/routes.enum';
 
 @Injectable({
   providedIn: 'root',

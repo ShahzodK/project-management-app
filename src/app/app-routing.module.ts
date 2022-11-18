@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { NotFoundPageComponent } from './core/components/not-found-page/not-found-page.component';
 import { AuthLoggedGuard } from './auth/guards/auth-logged.guard';
-import { AppRoutePaths } from './core/models/routes.model';
+import { AppRoutePaths } from './core/enums/routes.enum';
 
 const routes: Routes = [
   {

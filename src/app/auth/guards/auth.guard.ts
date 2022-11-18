@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { FullRoutePaths } from '../../core/consts/routes.const';
+import { FullRoutePaths } from '../../core/constants/routes';
 
 @Injectable({
   providedIn: 'root',

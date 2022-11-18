@@ -7,7 +7,7 @@ import { selectBoards } from 'src/app/redux/selectors/boards-selector';
 import { BoardService } from '../../services/board.service';
 import { BoardApiService } from '../../services/board-api.service';
 import { getBoards } from '../../../redux/actions/board-action';
-import {AppRoutePaths} from "../../../core/models/routes.model";
+import { AppRoutePaths } from '../../../core/enums/routes.enum';
 
 @Component({
   selector: 'app-main-page',

@@ -7,8 +7,8 @@ import { BoardService } from '../../../main/services/board.service';
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
-import { FullRoutePaths } from '../../consts/routes.const';
-import {AppRoutePaths} from "../../models/routes.model";
+import { FullRoutePaths } from '../../constants/routes';
+import { AppRoutePaths } from '../../enums/routes.enum';
 
 @Component({
   selector: 'app-header',

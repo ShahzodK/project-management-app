@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/forms.model';
 import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FullRoutePaths } from '../../../core/consts/routes.const';
+import { FullRoutePaths } from '../../../core/constants/routes';
 
 @Component({
   selector: 'app-login-page',

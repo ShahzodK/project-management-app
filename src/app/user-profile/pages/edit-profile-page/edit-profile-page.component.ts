@@ -12,7 +12,7 @@ import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import {AppRoutePaths} from "../../../core/models/routes.model";
+import { AppRoutePaths } from '../../../core/enums/routes.enum';
 
 
 @Component({

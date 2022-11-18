@@ -1,5 +1,5 @@
-import { AuthRoutePaths } from '../../auth/models/routes.model';
-import { AppRoutePaths } from '../models/routes.model';
+import { AuthRoutePaths } from '../../auth/enums/routes.enum';
+import { AppRoutePaths } from '../enums/routes.enum';
 
 export const FullRoutePaths = {
   LOGIN: `${AppRoutePaths.AUTH}/${AuthRoutePaths.LOGIN}`,
