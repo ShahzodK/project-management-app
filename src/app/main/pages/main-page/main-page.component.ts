@@ -44,6 +44,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   onBoardClick(ID: string): void {
-    this.router.navigate([`main/board/${ID}`]);
+    this.router.navigate([`board/${ID}`]);
   }
 }

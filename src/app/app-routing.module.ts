@@ -23,7 +23,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: 'main/board',
+    path: 'board',
     loadChildren: () => import('./board/board.module').then((mod) => mod.BoardModule),
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
