@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { ILoginResponse, ISignUpResponse } from '../models/auth.model';
+import { FullRoutePaths } from '../../core/consts/routes.const';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +42,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('authToken');
     this.store.dispatch(resetUser());
-    this.router.navigate(['login']);
+    this.router.navigate([FullRoutePaths.LOGIN]);
   }
 
   public isLoggedIn(): boolean {

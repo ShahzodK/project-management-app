@@ -36,6 +36,7 @@
         type="submit"
       >{{ 'auth.sign-in.submit' | translate }}</button>
     </form>
-    <a class="auth-page-sign-up-link" routerLink="signup">{{ 'auth.sign-in.sign-up-link' | translate }}</a>
+    <a [routerLink]="SIGN_UP_ROUTE_PATH"
+       class="auth-page-sign-up-link">{{ 'auth.sign-in.sign-up-link' | translate }}</a>
   </div>
 </section>

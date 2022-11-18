@@ -6,6 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { FullRoutePaths } from '../../core/consts/routes.const';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,10 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(): Promise<boolean> | boolean | UrlTree {
-    return this.authService.isLoggedIn() ? true : this.router.parseUrl('/login');
+    return this.authService.isLoggedIn() ? true : this.router.parseUrl(FullRoutePaths.LOGIN);
   }
 
   canLoad(): Promise<boolean> | boolean | UrlTree {
-    return this.authService.isLoggedIn() ? true : this.router.parseUrl('/login');
+    return this.authService.isLoggedIn() ? true : this.router.parseUrl(FullRoutePaths.LOGIN);
   }
 }

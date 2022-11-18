@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/forms.model';
 import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FullRoutePaths } from '../../../core/consts/routes.const';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
+  public readonly SIGN_UP_ROUTE_PATH = '/' + FullRoutePaths.SIGN_UP;
+
   public hasEmailError = false;
 
   public hasPasswordError = false;

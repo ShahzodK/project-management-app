@@ -7,4 +7,3 @@ export interface ISignUpResponse {
   login: string;
   name: string;
 }
-
