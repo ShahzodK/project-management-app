@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { ILoginResponse, ISignUpResponse } from '../models/auth.model';
 import { FullRoutePaths } from '../../core/consts/routes.const';
+import {AppRoutePaths} from "../../core/models/routes.model";
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class AuthService {
     }).pipe(
       map((signedInUser) => {
         localStorage.setItem('authToken', signedInUser.token);
-        this.router.navigate(['main']);
+        this.router.navigate([AppRoutePaths.MAIN]);
 
         return signedInUser;
       }),

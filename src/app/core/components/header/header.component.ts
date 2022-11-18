@@ -8,6 +8,7 @@ import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 import { FullRoutePaths } from '../../consts/routes.const';
+import {AppRoutePaths} from "../../models/routes.model";
 
 @Component({
   selector: 'app-header',
@@ -41,8 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.URLSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isWelcomePage = event.urlAfterRedirects.includes('welcome');
-        this.isAuthPage = event.urlAfterRedirects.includes('auth');
+        this.isWelcomePage = event.urlAfterRedirects.includes(AppRoutePaths.WELCOME);
+        this.isAuthPage = event.urlAfterRedirects.includes(AppRoutePaths.AUTH);
       }
     });
   }
