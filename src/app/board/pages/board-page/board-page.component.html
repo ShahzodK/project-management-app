@@ -1,5 +1,7 @@
 <section class="board-page">
-  <app-board-page-header *ngIf="board" [boardTitle]="board.title || ''" (back)="navigateBack()"></app-board-page-header>
+  <app-board-page-header *ngIf="(board$ | async) as board"
+  [boardTitle]="board.title || ''" (back)="navigateBack()">
+  </app-board-page-header>
 
   <div class="board-page-content">
     <button (click)="createColumn()" mat-stroked-button class="create-column-btn">
@@ -7,7 +9,8 @@
       Create column
     </button>
 
-    <app-columns-list *ngIf="(columns$ | async) as columns" [board]="board" [columns]="columns" class="columns-list">
+    <app-columns-list *ngIf="(columns$ | async) as columns"
+     [board]="(board$ | async)!"  [columns]="columns" class="columns-list">
     </app-columns-list>
   </div>
 </section>

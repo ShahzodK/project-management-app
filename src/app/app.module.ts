@@ -24,6 +24,7 @@ import { MissingTranslationService } from './shared/services/missing-translation
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
+import { CurrentBoardEffects } from './redux/effects/current-board-effects';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
@@ -61,7 +62,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    EffectsModule.forRoot([BoardEffects]),
+    EffectsModule.forRoot([BoardEffects, CurrentBoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomeModule,
     MatToolbarModule,

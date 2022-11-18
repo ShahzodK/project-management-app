@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskApiService } from './../../../services/task-api.service';
-import { IColumn } from './../../../models/column.model';
-import { IBoard } from 'src/app/main/models/board.model';
 
 @Component({
   selector: 'app-delete-task-modal',

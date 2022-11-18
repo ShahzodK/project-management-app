@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ITask } from '../models/task.model';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TaskApiService {
 
   constructor(private http: HttpClient) { }

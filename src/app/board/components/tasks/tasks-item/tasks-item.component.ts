@@ -29,6 +29,6 @@ export class TasksItemComponent {
         taskId: this.task?.id,
       },
     });
-    dialogRef.afterClosed().subscribe()
+    dialogRef.afterClosed().subscribe();
   }
 }

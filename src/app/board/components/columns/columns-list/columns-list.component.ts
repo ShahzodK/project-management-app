@@ -8,6 +8,7 @@ import { IColumn } from '../../../models/column.model';
   styleUrls: ['./columns-list.component.scss'],
 })
 export class ColumnsListComponent {
+
   @Input() columns: IColumn[] = [];
 
   @Input() board: IBoard | undefined;

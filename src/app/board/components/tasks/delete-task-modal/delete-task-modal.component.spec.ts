@@ -8,9 +8,9 @@ describe('DeleteTaskModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteTaskModalComponent ]
+      declarations: [ DeleteTaskModalComponent ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DeleteTaskModalComponent);
     component = fixture.componentInstance;

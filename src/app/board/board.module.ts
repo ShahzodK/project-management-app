@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { ColumnApiService } from './services/column-api.service';
-import { TaskApiService } from './services/task-api.service';
+import { MissingTranslationService } from '../shared/services/missing-translation.service'; 
 import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { ColumnsListComponent } from './components/columns/columns-list/columns-list.component';
@@ -63,8 +61,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     }),
   ],
   providers: [
-    ColumnApiService,
-    TaskApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { TaskApiService } from './../../../services/task-api.service';
 import { CreateTaskModalComponent } from '../../create-task-modal/create-task-modal.component';
 import { IBoard } from 'src/app/main/models/board.model';
@@ -14,7 +15,10 @@ import { ITask } from '../../../models/task.model';
 })
 export class ColumnsItemComponent implements OnChanges {
 
-  constructor(public dialog: MatDialog, public taskApi: TaskApiService) {}
+  constructor(
+    public dialog: MatDialog,
+    public taskApi: TaskApiService, 
+    private store: Store) {}
   
   @Input() column: IColumn | undefined;
 

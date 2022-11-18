@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IColumn } from '../models/column.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ColumnApiService {
 
   constructor(private http: HttpClient) { }
