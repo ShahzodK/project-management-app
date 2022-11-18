@@ -38,9 +38,13 @@ export class AuthService {
     );
   }
 
-  public logout() {
+  public logout(): void {
     localStorage.removeItem('authToken');
     this.store.dispatch(resetUser());
     this.router.navigate(['login']);
+  }
+
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken');
   }
 }
