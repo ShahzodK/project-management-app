@@ -3,7 +3,7 @@
   <button (click)="cancelDeletingBoard()" class="no-button" fill="red" mat-button>
     {{"main-page.no" | translate}}
   </button>
-  <button (click)="deleteBoard(boardService.deletingBoard)" class="yes-button" fill="green" mat-button>
+  <button (click)="deleteBoard()" class="yes-button" fill="green" mat-button>
     {{"main-page.yes" | translate}}
   </button>
   <p *ngIf="deleteBoardError">{{"main-page.deleteBoardError" | translate}}</p>
