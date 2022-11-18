@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { PasswordStrengthErrors, PasswordStrengthErrorsKey } from '../../auth/models/auth.model';
+import { PasswordStrengthErrors, PasswordStrengthErrorsKey } from '../../auth/models/forms.model';
 
 export function passwordStrengthValidator(): ValidatorFn {
   const getErrors = (errors: PasswordStrengthErrors): PasswordStrengthErrors => {

@@ -8,7 +8,7 @@ import { selectUserLogin, selectUserName } from 'src/app/redux/selectors';
 import * as UserActions from '../../../redux/actions/index';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
 import { signUpErrorsLocale } from 'src/app/auth/models/locale-errors.const';
-import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/auth.model';
+import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/forms.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';

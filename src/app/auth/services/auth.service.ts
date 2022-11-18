@@ -5,7 +5,7 @@ import { resetUser } from '../../redux/actions';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { ILoginResponse, ISignUpResponse } from '../models/auth-api.model';
+import { ILoginResponse, ISignUpResponse } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',

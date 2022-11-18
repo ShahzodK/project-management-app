@@ -4,7 +4,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/app/shared/services/user.service';
 import { AuthService } from '../../services/auth.service';
-import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/auth.model';
+import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/forms.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
