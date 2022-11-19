@@ -3,8 +3,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectBoard, selectColumns } from './../../../redux/selectors/current-board-selector';
-import * as currentBoardActions from './../../../redux/actions/current-board-action';
+import { selectBoard, selectColumns } from '../../redux/selectors/board.selectors';
+import * as BoardActions from '../../redux/actions/board.actions';
 import { IColumn } from '../../models/column.model';
 import { ColumnApiService } from '../../services/column-api.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -43,11 +43,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
       if (!this.boardID) throw new Error("Board don't have an ID: URL doesn't contain board's ID");
 
-      // this.boardSub  = this.store.select(selectBoard).subscribe(board => {
-      //   this.board = board;
-      // });
-
-      this.store.dispatch(currentBoardActions.getCurrentBoardId({ id: this.boardID }));
+      this.store.dispatch(BoardActions.fetchBoard({ id: this.boardID }));
 
       this.columns$ = this.getColumns$(this.boardID);
     });

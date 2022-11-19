@@ -17,6 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
 import { DeleteTaskModalComponent } from './components/tasks/delete-task-modal/delete-task-modal.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { BoardsEffects } from '../main/redux/effects/boards.effects';
+import { boardReducer } from './redux/reducers/board.reducer';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -49,6 +53,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+    StoreModule.forFeature('board', boardReducer),
+    EffectsModule.forFeature([BoardsEffects]),
   ],
   providers: [
     {

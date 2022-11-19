@@ -4,8 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BoardApiService } from '../../services/board-api.service';
 import { BoardService } from '../../services/board.service';
 import { Store } from '@ngrx/store';
-import * as BoardActions from './../../../redux/actions/board-action';
-import { IBoard } from './../../models/board.model';
+import * as BoardActions from '../../redux/actions/boards.actions';
+import { IBoard } from '../../models/board.model';
 
 @Component({
   selector: 'app-create-board-form',

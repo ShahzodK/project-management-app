@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBoard } from 'src/app/main/models/board.model';
-import { BoardService } from '../../../services/board.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-board-item',

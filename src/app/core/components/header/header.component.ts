@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { BoardService } from '../../../main/services/board.service';
 
-import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
+import { selectIsLogged, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 import { FullRoutePaths } from '../../constants/routes';

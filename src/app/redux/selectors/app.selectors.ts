@@ -1,24 +1,24 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ICommonSliceState } from '../reducers';
+import { IAppState } from '../app.model';
 
-export const selectCommonSlice = createFeatureSelector<ICommonSliceState>('common');
+export const selectAppState = createFeatureSelector<IAppState>('app');
 
 export const selectIsLogged = createSelector(
-  selectCommonSlice,
+  selectAppState,
   (state) => state.isLogged,
 );
 
 export const selectUserName = createSelector(
-  selectCommonSlice,
+  selectAppState,
   (state) => state.userName,
 );
 
 export const selectUserLogin = createSelector(
-  selectCommonSlice,
+  selectAppState,
   (state) => state.login,
 );
 
 export const selectUserId = createSelector(
-  selectCommonSlice,
+  selectAppState,
   (state) => state.login,
 );

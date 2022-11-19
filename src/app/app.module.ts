@@ -5,7 +5,6 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
@@ -23,13 +22,14 @@ import { AppComponent } from './app.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 import { UserService } from './shared/services/user.service';
-import { BoardEffects } from './redux/effects/board-effects';
-import { CurrentBoardEffects } from './redux/effects/current-board-effects';
+import { BoardsEffects } from './main/redux/effects/boards.effects';
+import { BoardEffects } from './board/redux/effects/board.effects';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { appReducer } from './redux/reducers/app.reducer';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -59,10 +59,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
-    EffectsModule.forRoot([BoardEffects, CurrentBoardEffects]),
+    StoreModule.forRoot({ app: appReducer }, {}),
+    EffectsModule.forRoot([BoardsEffects, BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomeModule,
     MatToolbarModule,
