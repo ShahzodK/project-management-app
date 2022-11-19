@@ -1,9 +1,9 @@
 <mat-card class="delete-board-modal-container">
   <h3>{{'main-page.areYouSureDelete' | translate}}</h3>
-  <button mat-button fill="red" (click)="cancelDeletingBoard()" class="no-button">
+  <button (click)="cancelDeletingBoard()" class="no-button" fill="red" mat-button>
     {{"main-page.no" | translate}}
   </button>
-  <button mat-button fill="green" (click)="deleteBoard(boardService.deletingBoard)" class="yes-button">
+  <button (click)="deleteBoard()" class="yes-button" fill="green" mat-button>
     {{"main-page.yes" | translate}}
   </button>
   <p *ngIf="deleteBoardError">{{"main-page.deleteBoardError" | translate}}</p>

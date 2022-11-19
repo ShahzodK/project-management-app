@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Store } from '@ngrx/store';
 import { resetUser, setLoggedUser } from 'src/app/redux/actions';
-import { IUser } from './../../user-profile/models/user.model';
+import { IUser } from '../../user-profile/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +26,7 @@ export class UserService {
     const id = this.getUserId();
     if (id.length === 0) {
       this.store.dispatch(resetUser());
+      return;
     }
 
     this.http.get<IUser>(`users/${id}`).subscribe({
