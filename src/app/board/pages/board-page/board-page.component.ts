@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectBoard, selectColumns } from '../../redux/selectors/board.selectors';
 import * as BoardActions from '../../redux/actions/board.actions';
-import { IColumn } from '../../models/column.model';
-import { ColumnApiService } from '../../services/column-api.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../../components/create-column-modal/create-column-modal.component';
 
@@ -19,19 +17,15 @@ import { CreateColumnModalComponent } from '../../components/create-column-modal
 export class BoardPageComponent implements OnInit, OnDestroy {
   public board$ = this.store.select(selectBoard);
 
-  private routeParamsSub!: Subscription;
-
-  private boardSub!: Subscription;
-
   public columns$ = this.store.select(selectColumns);
 
-  public boardID: string | undefined;
+  private routeParamsSub!: Subscription;
 
+  private boardId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private columnApiService: ColumnApiService,
     public dialog: MatDialog,
     public store: Store,
   ) {
@@ -39,28 +33,27 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeParamsSub = this.route.paramMap.subscribe((params) => {
-      this.boardID = params.get('id')!;
+      const boardId = params.get('id')!;
 
-      if (!this.boardID) throw new Error("Board don't have an ID: URL doesn't contain board's ID");
+      if (!boardId) throw this.getBoardIdError();
 
-      this.store.dispatch(BoardActions.fetchBoard({ id: this.boardID }));
+      this.store.dispatch(BoardActions.fetchBoard({ id: boardId }));
 
-      this.columns$ = this.getColumns$(this.boardID);
+      this.boardId = boardId;
     });
 
   }
 
+  private getBoardIdError(): Error {
+    return new Error("Board don't have an ID: URL doesn't contain board's ID");
+  }
+
   ngOnDestroy(): void {
-    this.routeParamsSub?.unsubscribe();
-    this.boardSub?.unsubscribe();
+    this.routeParamsSub.unsubscribe();
   }
 
   public navigateBack(): void {
     this.location.back();
-  }
-
-  private getColumns$(boardID: string): Observable<IColumn[]> {
-    return this.columnApiService.getColumns(boardID);
   }
 
   public createColumn(): void {
@@ -76,11 +69,15 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialog.open(CreateColumnModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(
-      columnData => {
-        this.columnApiService.createColumn(this.boardID!, columnData).subscribe(() => {
-          this.columns$ = this.getColumns$(this.boardID!);
-        });
+    dialogRef.afterClosed().pipe().subscribe(
+      columnTitle => {
+        if (!this.boardId) throw this.getBoardIdError();
+
+        console.log(this.boardId);
+        this.store.dispatch(BoardActions.createColumn({
+          boardId: this.boardId,
+          columnTitle,
+        }));
       },
     );
   }

@@ -1,16 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IBoardState } from '../board.model';
 
-export const selectBoardSlice = createFeatureSelector<IBoardState>('board');
+export const selectBoardState = createFeatureSelector<IBoardState>('board');
 
 export const selectBoard = createSelector(
-  selectBoardSlice,
+  selectBoardState,
   (state) => state.board,
 );
 
 export const selectColumns = createSelector(
-  selectBoardSlice,
+  selectBoardState,
   (state) => state.board.columns,
+);
+
+export const selectBoardId = createSelector(
+  selectBoardState,
+  (state) => state.board.id,
 );
 
 // export const selectBoards = createSelector(

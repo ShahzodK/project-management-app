@@ -13,8 +13,17 @@ export const initialState: IBoardState = {
 
 export const boardReducer = createReducer(
   initialState,
-  on(BoardActions.setBoard, (state, { board }): IBoardState => ({
+  on(BoardActions.fetchBoardSuccess, (state, { board }): IBoardState => ({
     ...state,
     board: board,
   })),
+  on(BoardActions.fetchColumnsSuccess, (state, { columns }): IBoardState => {
+    return {
+      ...state,
+      board: {
+        ...state.board,
+        columns,
+      },
+    };
+  }),
 );
