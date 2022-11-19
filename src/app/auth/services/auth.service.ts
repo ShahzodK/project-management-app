@@ -5,7 +5,9 @@ import { resetUser } from '../../redux/actions';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { ILoginResponse, ISignUpResponse } from '../models/auth-api.model';
+import { ILoginResponse, ISignUpResponse } from '../models/auth.model';
+import { FullRoutePaths } from '../../core/constants/routes';
+import { AppRoutePaths } from '../../core/enums/routes.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,7 @@ export class AuthService {
     }).pipe(
       map((signedInUser) => {
         localStorage.setItem('authToken', signedInUser.token);
-        this.router.navigate(['main']);
+        this.router.navigate([AppRoutePaths.MAIN]);
 
         return signedInUser;
       }),
@@ -38,9 +40,13 @@ export class AuthService {
     );
   }
 
-  public logout() {
+  public logout(): void {
     localStorage.removeItem('authToken');
     this.store.dispatch(resetUser());
-    this.router.navigate(['login']);
+    this.router.navigate([FullRoutePaths.LOGIN]);
+  }
+
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken');
   }
 }

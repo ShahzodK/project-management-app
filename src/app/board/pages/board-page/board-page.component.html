@@ -1,8 +1,8 @@
 <section class="board-page">
-  <app-board-page-header *ngIf="board" [boardTitle]="board.title || ''" (back)="navigateBack()"></app-board-page-header>
+  <app-board-page-header (back)="navigateBack()" *ngIf="board" [boardTitle]="board.title || ''"></app-board-page-header>
 
   <div class="board-page-content">
-    <button (click)="createColumn()" mat-stroked-button class="create-column-btn">
+    <button (click)="createColumn()" class="create-column-btn" mat-stroked-button>
       <mat-icon>add</mat-icon>
       Create column
     </button>

@@ -5,10 +5,10 @@
     </div>
     <div class="board-items-block">
       <app-board-item
-       *ngFor="let board of (stateBoards$ | async)!.boards
+        (boardClick)="onBoardClick($event)"
+        *ngFor="let board of (stateBoards$ | async)!.boards
        | search: boardService.searchValue"
-       [board]="board"
-       (boardClick)="onBoardClick($event)"
+        [board]="board"
       >
       </app-board-item>
       <app-create-board-form></app-create-board-form>

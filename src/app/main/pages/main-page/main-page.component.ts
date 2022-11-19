@@ -7,6 +7,7 @@ import { selectBoards } from 'src/app/redux/selectors/boards-selector';
 import { BoardService } from '../../services/board.service';
 import { BoardApiService } from '../../services/board-api.service';
 import { getBoards } from '../../../redux/actions/board-action';
+import { AppRoutePaths } from '../../../core/enums/routes.enum';
 
 @Component({
   selector: 'app-main-page',
@@ -44,6 +45,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   onBoardClick(ID: string): void {
-    this.router.navigate([`main/board/${ID}`]);
+    this.router.navigate([`${AppRoutePaths.BOARD}/${ID}`]);
   }
 }

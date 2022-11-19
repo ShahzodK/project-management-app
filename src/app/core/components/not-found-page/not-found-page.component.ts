@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FullRoutePaths } from '../../constants/routes';
 
 
 @Component({
@@ -9,10 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./not-found-page.component.scss'],
 })
 export class NotFoundPageComponent {
+  public readonly MAIN_ROUTE_PATH = FullRoutePaths.MAIN;
 
   constructor(
     private router: Router,
-    private translateService: TranslateService,
+    public translateService: TranslateService,
   ) {}
 
   public goBackOnMain(link: string): void {
