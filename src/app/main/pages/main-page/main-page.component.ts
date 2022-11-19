@@ -30,12 +30,6 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(BoardsActions.fetchBoards());
-    // this.getBoardsSub = this.api.getBoards().subscribe({
-    //   next: (boards) => {
-    //     this.store.dispatch(fetchBoards({ boards }));
-    //   },
-    //   error: () => this.boardError = true,
-    // });
   }
 
   onBoardClick(ID: string): void {

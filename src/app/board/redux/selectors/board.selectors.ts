@@ -17,8 +17,3 @@ export const selectBoardId = createSelector(
   selectBoardState,
   (state) => state.board.id,
 );
-
-// export const selectBoards = createSelector(
-//   selectTasksSlice,
-//   (state) => state.board.columns[0].
-// )
