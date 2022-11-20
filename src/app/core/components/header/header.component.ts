@@ -28,13 +28,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isAuthPage: boolean | null = null;
 
+  public isMainPage: boolean | null = null;
+
   private URLSub!: Subscription;
 
   constructor(
     private translateService: TranslateService,
     private router: Router,
     private authService: AuthService,
-    private boardService: BoardService,
+    public boardService: BoardService,
     private store: Store,
   ) {
   }
@@ -44,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.isWelcomePage = event.urlAfterRedirects.includes(AppRoutePaths.WELCOME);
         this.isAuthPage = event.urlAfterRedirects.includes(AppRoutePaths.AUTH);
+        this.isMainPage = event.urlAfterRedirects.includes(AppRoutePaths.MAIN);
       }
     });
   }
