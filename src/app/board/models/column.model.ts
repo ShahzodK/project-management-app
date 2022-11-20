@@ -4,5 +4,5 @@ export interface IColumn {
   id:string,
   title: string,
   order: number,
-  tasks?: ITask[];
+  tasks: ITask[];
 }

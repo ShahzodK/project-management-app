@@ -51,6 +51,7 @@ export class CreateBoardFormComponent implements OnDestroy {
             id,
             title,
             description,
+            columns: [],
           };
           this.store.dispatch(BoardActions.createBoard({ board }));
           this.boardService.IsCreateBoardModalVisible = false;

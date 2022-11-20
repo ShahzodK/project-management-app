@@ -4,5 +4,5 @@ export interface IBoard {
   id: string;
   title: string;
   description: string;
-  columns?: IColumn[];
+  columns: IColumn[];
 }

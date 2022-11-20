@@ -17,3 +17,22 @@ export const selectBoardId = createSelector(
   selectBoardState,
   (state) => state.board.id,
 );
+
+export const selectTasks = (columnId: string) => createSelector(
+  selectColumns,
+  (columns) => {
+    const currentColumn = columns.find(column => column.id === columnId);
+    if (!currentColumn) return;
+
+    console.log(currentColumn.tasks);
+
+    return currentColumn.tasks;
+  },
+);
+
+// export const selectTasks = createSelector(
+//   selectBoardState,
+//   (state) => {
+//     return state.tasks;
+//   }
+// )

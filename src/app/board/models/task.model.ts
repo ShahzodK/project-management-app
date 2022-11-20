@@ -8,5 +8,7 @@ export interface ITask {
   files: [{
     filename: string;
     filesize: number;
-  }]
+  }],
+  boardId: string;
+  columnId: string;
 }

@@ -1,0 +1,16 @@
+<div class="column">
+  <h3 class="column-title">
+    {{ column.title }}
+  </h3>
+  <ul class="tasks-list" *ngIf="(tasks$ | async) as tasks">
+    <li class="task" *ngFor="let task of tasks">
+      <app-task [task]="task" [boardId]="boardId" [columnId]="column.id">
+      </app-task>
+    </li>
+  </ul>
+  <button (click)="openCreateTaskModal()" class="create-task-btn" mat-stroked-button>
+    <mat-icon>add</mat-icon>
+    {{"task.create" | translate}}
+  </button>
+</div>
+

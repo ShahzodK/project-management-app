@@ -9,6 +9,8 @@ export const initialState: IBoardState = {
     description: '',
     columns: [],
   },
+  columns: [],
+  tasks: [],
 };
 
 export const boardReducer = createReducer(
@@ -17,13 +19,32 @@ export const boardReducer = createReducer(
     ...state,
     board: board,
   })),
-  on(BoardActions.fetchColumnsSuccess, (state, { columns }): IBoardState => {
+  on(BoardActions.fetchColumnsSuccess, (state, { columns }): IBoardState => ({
+    ...state,
+    columns,
+  })),
+  on(BoardActions.fetchTasksSuccess, (state, { tasks }): IBoardState => {
+    // const newColumns = [...state.columns].map(column => {
+    //   if (column.id === columnId) {
+    //     column = {
+    //       ...column,
+    //       tasks
+    //     };
+    //   }
+    //   return column;
+    // })
+    //
+    // return {
+    //   ...state,
+    //   // board: {
+    //   //   ...state.board,
+    //   //   columns: newColumns
+    //   // }
+    //   columns: newColumns
+    // }
     return {
       ...state,
-      board: {
-        ...state.board,
-        columns,
-      },
+      tasks,
     };
   }),
 );

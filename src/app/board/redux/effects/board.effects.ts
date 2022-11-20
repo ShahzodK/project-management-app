@@ -7,6 +7,7 @@ import { of, switchMap } from 'rxjs';
 import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectBoardId } from '../selectors/board.selectors';
+import { TaskApiService } from '../../services/task-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +17,29 @@ export class BoardEffects {
 
   constructor(
     private actions$: Actions,
+    private store: Store,
     private boardApiService: BoardApiService,
     private columnApiService: ColumnApiService,
-    private store: Store,
+    private taskApiService: TaskApiService,
   ) {
   }
+
+  public boardPageOpened$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.boardPageOpened),
+        switchMap(({ boardId }) => of(
+          BoardActions.fetchBoard({ boardId }),
+          BoardActions.fetchColumns({ boardId }),
+        )),
+      );
+  });
 
   public fetchBoard$ = createEffect(() => {
     return this.actions$
       .pipe(
         ofType(BoardActions.fetchBoard),
-        switchMap(({ id }) => this.boardApiService.getBoard(id)),
+        switchMap(({ boardId }) => this.boardApiService.getBoard(boardId)),
         map(board => BoardActions.fetchBoardSuccess({ board })),
         catchError(() => of(BoardActions.fetchBoardFailed())),
       );
@@ -57,6 +70,68 @@ export class BoardEffects {
           this.columnApiService.getColumns(boardId)),
         map(columns => BoardActions.fetchColumnsSuccess({ columns })),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
+      );
+  });
+
+  public fetchTasks$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.fetchTasks, BoardActions.createTaskSuccess, BoardActions.deleteTaskSuccess),
+        switchMap(({ boardId, columnId }) =>
+          this.taskApiService
+            .getTasks(boardId, columnId)
+            // of([])
+            .pipe(
+              map((tasks) => ({
+                tasks,
+                columnId,
+              }),
+              ),
+            ),
+        ),
+        map(({ tasks, columnId }) =>
+          BoardActions.fetchTasksSuccess({ tasks, columnId }),
+        ),
+        catchError(() => of(BoardActions.fetchTasksFailed())),
+      );
+  });
+
+  public deleteTask$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.deleteTask),
+        switchMap(({ boardId, columnId, taskId }) =>
+          this.taskApiService
+            .deleteTask(boardId, columnId, taskId)
+            .pipe(
+              map(() => ({ boardId, columnId })),
+            ),
+        ),
+        map(({ boardId, columnId }) => BoardActions.deleteTaskSuccess({ boardId, columnId })),
+        catchError(() => of(BoardActions.deleteTaskFailed())),
+      );
+  });
+
+  public createTask$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.createTask),
+        switchMap(({ boardId, columnId, taskTitle, taskDescription, userId }) =>
+          this.taskApiService
+            .createTask(boardId, columnId, taskTitle, taskDescription, userId)
+            .pipe(
+              map(() => ({ boardId, columnId, taskTitle, taskDescription })),
+            ),
+        ),
+        map(({ boardId, columnId, taskTitle, taskDescription }) =>
+          BoardActions.createTaskSuccess({
+            boardId,
+            columnId,
+            taskTitle,
+            taskDescription,
+          }),
+        ),
+        catchError(() => of(BoardActions.createTaskFailed())),
       );
   });
 }

@@ -7,6 +7,7 @@ import { selectBoard, selectColumns } from '../../redux/selectors/board.selector
 import * as BoardActions from '../../redux/actions/board.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../../components/create-column-modal/create-column-modal.component';
+import { selectUserId } from '../../../redux/selectors/app.selectors';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   private boardId: string | null = null;
 
+  public userId$ = this.store.select(selectUserId);
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -37,11 +40,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
       if (!boardId) throw this.getBoardIdError();
 
-      this.store.dispatch(BoardActions.fetchBoard({ id: boardId }));
+      this.store.dispatch(BoardActions.boardPageOpened({ boardId }));
 
       this.boardId = boardId;
     });
-
   }
 
   private getBoardIdError(): Error {
@@ -56,24 +58,18 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  public createColumn(): void {
-    this.openModal();
-  }
-
-  private openModal(): void {
+  public openCreateColumnModal(): void {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = 'dialog';
-    dialogConfig.disableClose = false;
 
     const dialogRef = this.dialog.open(CreateColumnModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().pipe().subscribe(
+    dialogRef.afterClosed().subscribe(
       columnTitle => {
+        if (!columnTitle) return;
         if (!this.boardId) throw this.getBoardIdError();
 
-        console.log(this.boardId);
         this.store.dispatch(BoardActions.createColumn({
           boardId: this.boardId,
           columnTitle,

@@ -59,7 +59,15 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useDefaultLang: false,
     }),
     BrowserAnimationsModule,
-    StoreModule.forRoot({ app: appReducer }, {}),
+    StoreModule.forRoot({ app: appReducer }, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+      },
+    }),
     EffectsModule.forRoot([BoardsEffects, BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     WelcomeModule,
