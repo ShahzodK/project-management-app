@@ -1,5 +1,5 @@
-<button mat-button class="header-locales">
-  <mat-select *ngIf="selectedLocale" [(ngModel)]="selectedLocale" (selectionChange)="changeLocale($event)">
+<button class="header-locales" mat-button>
+  <mat-select (selectionChange)="changeLocale($event)" *ngIf="selectedLocale" [(ngModel)]="selectedLocale">
     <mat-option *ngFor="let locale of locales" [value]="locale">
       {{ locale | translate }}
     </mat-option>

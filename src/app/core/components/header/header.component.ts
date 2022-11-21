@@ -6,7 +6,9 @@ import { BoardService } from '../../../main/services/board.service';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors';
 import { Subscription } from 'rxjs';
-import { LoginService } from '../../../login/services/login.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { FullRoutePaths } from '../../constants/routes';
+import { AppRoutePaths } from '../../enums/routes.enum';
 
 @Component({
   selector: 'app-header',
@@ -14,18 +16,24 @@ import { LoginService } from '../../../login/services/login.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  public readonly LOGIN_ROUTE_PATH = FullRoutePaths.LOGIN;
+
+  public readonly SIGN_UP_ROUTE_PATH = FullRoutePaths.SIGN_UP;
+
   public userName$ = this.store.select(selectUserName);
 
   public isLogged$ = this.store.select(selectIsLogged);
 
   public isWelcomePage: boolean | null = null;
 
+  public isAuthPage: boolean | null = null;
+
   private URLSub!: Subscription;
 
   constructor(
     private translateService: TranslateService,
     private router: Router,
-    private loginService: LoginService,
+    private authService: AuthService,
     public boardService: BoardService,
     private store: Store,
   ) {
@@ -34,7 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.URLSub = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isWelcomePage = event.urlAfterRedirects.includes('welcome');
+        this.isWelcomePage = event.urlAfterRedirects.includes(AppRoutePaths.WELCOME);
+        this.isAuthPage = event.urlAfterRedirects.includes(AppRoutePaths.AUTH);
       }
     });
   }
@@ -44,10 +53,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    this.loginService.logout();
+    this.authService.logout();
   }
 
   public toggleModal(): void {
     this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
   }
 }
+

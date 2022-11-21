@@ -5,44 +5,43 @@
       <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
 
       <ng-container *ngIf="isLogged$ | async">
-        <ng-container *ngIf="isWelcomePage !== null">
-          <button (click)="this.boardService.openCreateBoardModal()" *ngIf="!isWelcomePage"
+        <ng-container *ngIf="isWelcomePage !== null && isAuthPage !== null">
+          <button (click)="this.boardService.openCreateBoardModal()" *ngIf="!isWelcomePage && !isAuthPage"
                   mat-button>
             {{ 'header.nav.create-new-board' | translate }}
           </button>
-
-          <a
-            *ngIf="isWelcomePage"
-            mat-button
-            routerLink="main"
-          >{{ 'header.nav.boards' | translate }}</a>
         </ng-container>
 
+        <a
+          *ngIf="isWelcomePage"
+          mat-button
+          routerLink="main"
+        >{{ 'header.nav.boards' | translate }}</a>
 
-        <button class="header-profile-menu" mat-raised-button color="primary" [matMenuTriggerFor]="menu"
-                aria-label="Open menu">
+        <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="header-profile-menu" color="primary"
+                mat-raised-button>
           {{ 'header.greeting' | translate }}{{ userName$ | async }}!
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <a routerLink="edit-profile" mat-menu-item>{{ 'header.nav.edit-profile' | translate }}</a>
+          <a mat-menu-item routerLink="edit-profile">{{ 'header.nav.edit-profile' | translate }}</a>
           <button
-            mat-menu-item
             (click)="logout()"
+            mat-menu-item
           >{{ 'header.nav.sign-out' | translate }}</button>
         </mat-menu>
       </ng-container>
 
-      <ng-container *ngIf="(isLogged$ | async) === false">
+      <ng-container *ngIf="(isLogged$ | async) === false && (isAuthPage || isWelcomePage)">
         <a
-          mat-raised-button
+          [routerLink]="LOGIN_ROUTE_PATH"
           color="primary"
-          routerLink="login"
+          mat-raised-button
         >{{ 'header.nav.sign-in' | translate }}</a>
         <a
-          mat-raised-button
+          [routerLink]="SIGN_UP_ROUTE_PATH"
           color="primary"
-          routerLink="login/signup"
+          mat-raised-button
         >{{ 'header.nav.sign-up' | translate }}</a>
       </ng-container>
 
