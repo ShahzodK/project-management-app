@@ -1,18 +1,17 @@
-import { resetUser } from 'src/app/redux/actions';
-import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { Store } from '@ngrx/store';
+import { AuthService } from './../../auth/services/auth.service';
+import { FullRoutePaths } from './../constants/routes';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authToken = localStorage.getItem('authToken');
@@ -31,13 +30,11 @@ export class AuthInterceptor implements HttpInterceptor {
     });
 
     return next.handle(customReq).pipe(catchError((err) => {
-      if (err instanceof HttpErrorResponse || !request.url.includes('auth/login') || !request.url.includes('auth/signup')) {
+      if (err instanceof HttpErrorResponse || !request.url.includes(FullRoutePaths.LOGIN) || !request.url.includes(FullRoutePaths.SIGN_UP)) {
         if (err.status !== 401) {
           throw Error(err);
         }
-        this.store.dispatch(resetUser());
-        localStorage.removeItem('authToken');
-        this.router.navigateByUrl('/welcome');
+        this.authService.logout(FullRoutePaths.WELCOME);
       }
       throw Error(err);
     }));
