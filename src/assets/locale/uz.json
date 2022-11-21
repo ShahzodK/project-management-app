@@ -7,8 +7,7 @@
       "sign-out": "Chiqish",
       "sign-in": "Kirish",
       "sign-up": "Ro'yxatdan o'tish",
-      "boards": "Taxtalar",
-      "search": "Izlash"
+      "boards": "Taxtalar"
     },
     "greeting": "Salom, "
   },
@@ -34,6 +33,7 @@
   "main-page": {
     "title": "Sarlavha",
     "description": "Tavsifi",
+    "search": "Izlash",
     "boards": "Loyihalar",
     "createBoard": "Loyiha yaratish",
     "areYouSureDelete": "Loyihani o'chirib tashlashga aminmisiz",

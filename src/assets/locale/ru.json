@@ -7,8 +7,7 @@
       "sign-out": "Выйти",
       "sign-in": "Войти",
       "sign-up": "Регистрация",
-      "boards": "Доски",
-      "search": "Поиск"
+      "boards": "Доски"
     },
     "greeting": "Привет, "
   },
@@ -36,6 +35,7 @@
    "main-page": {
     "title": "Заголовок",
     "description": "Описание",
+    "search": "Поиск",
     "boards": "Проекты",
     "createBoard": "Создать Проект",
     "areYouSureDelete": "Вы уверены что хотите удалить проект",

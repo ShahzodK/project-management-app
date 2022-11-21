@@ -46,7 +46,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.isWelcomePage = event.urlAfterRedirects.includes(AppRoutePaths.WELCOME);
         this.isAuthPage = event.urlAfterRedirects.includes(AppRoutePaths.AUTH);
-        this.isMainPage = event.urlAfterRedirects.includes(AppRoutePaths.MAIN);
       }
     });
   }

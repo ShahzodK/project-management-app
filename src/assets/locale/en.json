@@ -7,8 +7,7 @@
       "sign-out": "Sign out",
       "sign-in": "Login",
       "sign-up": "Sign up",
-      "boards": "Boards",
-      "search": "Search"
+      "boards": "Boards"
     },
     "greeting": "Hello, "
   },
@@ -34,6 +33,7 @@
   "main-page": {
     "title": "Title",
     "description": "Description",
+    "search": "Search",
     "boards": "Boards",
     "createBoard": "Create board",
     "areYouSureDelete": "Are you sure you want to delete the board",
