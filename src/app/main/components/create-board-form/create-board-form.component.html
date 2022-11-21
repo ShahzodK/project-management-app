@@ -1,7 +1,9 @@
 <section class="create-board">
-  <div class="form-container" *ngIf="boardService.IsCreateBoardModalVisible">
+  <!-- <div class="form-container" *ngIf="boardService.IsCreateBoardModalVisible"> -->
+  <div class="form-container">
 
-    <form (ngSubmit)='submit()' >
+    <form
+    #createBoardModalForm="ngForm" >
 
       <h3>{{'main-page.newBoard' | translate}}</h3>
 
@@ -10,7 +12,7 @@
         <input type="text"
         matInput required
         name="title"
-        [(ngModel)]="boardTitle"
+        [(ngModel)]="this.boardService.boardTitle"
         ></mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -18,17 +20,21 @@
         <input type="text"
         matInput required
         name="description"
-        [(ngModel)]="boardDescription"
+        [(ngModel)]="this.boardService.boardDescription"
         ></mat-form-field>
 
       <button
-      type="submit" mat-button>
+      type="submit"
+      mat-button
+      [disabled]="!createBoardModalForm.form.valid"
+      [mat-dialog-close]="createBoardModalForm.form.value | json"
+      >
       {{'main-page.createBoard' | translate}}
       </button>
 
     </form>
 
   </div>
-  <p *ngIf="boardError">{{'main-page.boardCreateError' | translate}}</p>
+  <p *ngIf="this.boardService.boardError">{{'main-page.boardCreateError' | translate}}</p>
 </section>
 

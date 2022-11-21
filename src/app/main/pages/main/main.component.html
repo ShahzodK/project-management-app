@@ -11,7 +11,7 @@
        (boardClick)="onBoardClick($event)"
       >
       </app-board-item>
-      <app-create-board-form></app-create-board-form>
+      <!-- <app-create-board-form></app-create-board-form> -->
     </div>
     <app-delete-modal *ngIf="boardService.deletingBoard"></app-delete-modal>
     <p *ngIf="boardError">{{'main-page.boardsError' | translate}}</p>

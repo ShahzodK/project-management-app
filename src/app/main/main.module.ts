@@ -18,7 +18,7 @@ import { BoardItemComponent } from './components/board-item/board-item/board-ite
 import { CreateBoardFormComponent } from './components/create-board-form/create-board-form.component';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
@@ -30,7 +30,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     CreateBoardFormComponent,
     DeleteModalComponent,
     SearchPipe,
-    CreateBoardFormComponent,
   ],
   imports: [
     CommonModule,
