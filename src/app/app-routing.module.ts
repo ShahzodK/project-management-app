@@ -36,7 +36,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: '', redirectTo: AppRoutePaths.WELCOME, pathMatch: 'full',
+    path: '', redirectTo: AppRoutePaths.MAIN, pathMatch: 'full',
   },
   {
     path: '**', component: NotFoundPageComponent,
