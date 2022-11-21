@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateBoardFormComponent } from '../components/create-board-form/create-board-form.component';
+import { CreateBoardFormComponent } from '../components/create-board-modal/create-board-form.component';
 import { Subscription } from 'rxjs';
 import { BoardApiService } from '../services/board-api.service';
 import { Store } from '@ngrx/store';

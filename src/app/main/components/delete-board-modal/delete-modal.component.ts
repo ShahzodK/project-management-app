@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BoardApiService } from '../../services/board-api.service';
 import { BoardService } from '../../services/board.service';
-import * as BoardActions from './../../../redux/actions/board-action';
+import * as BoardActions from '../../../redux/actions/board-action';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class DeleteModalComponent implements OnDestroy {
 
   constructor(
     private api: BoardApiService,
-    private boardService: BoardService,
+    public boardService: BoardService,
     private store: Store,
   ) { }
 
