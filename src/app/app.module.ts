@@ -9,11 +9,6 @@ import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule  } from '@angular/material/form-field';
-import { MatInputModule  } from '@angular/material/input';
-import { MatCardModule  } from '@angular/material/card';
 
 import { environment } from '../environments/environment';
 import { WelcomeModule } from './welcome/welcome.module';
@@ -24,12 +19,7 @@ import { MissingTranslationService } from './shared/services/missing-translation
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
 import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './redux/effects/board-effects';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -44,12 +34,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
-    MatSlideToggleModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatDialogModule,
+    WelcomeModule,
+    FormsModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -59,18 +46,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
-    BrowserAnimationsModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
     EffectsModule.forRoot([BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    WelcomeModule,
-    MatToolbarModule,
-    MatSelectModule,
-    FormsModule,
-    MatMenuModule,
-    MatIconModule,
   ],
   providers: [
     {
