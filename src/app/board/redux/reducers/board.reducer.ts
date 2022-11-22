@@ -42,6 +42,7 @@ export const boardReducer = createReducer(
     //   // }
     //   columns: newColumns
     // }
+    console.log(tasks)
     return {
       ...state,
       tasks,

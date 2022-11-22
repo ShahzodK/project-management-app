@@ -12,6 +12,7 @@
     <ul class="columns-list" *ngIf="(columns$ | async) as columns">
       <li class="columns-item" *ngFor="let column of columns">
         <app-column [column]="column" [boardId]="board.id" [userId]="userId"></app-column>
+<!--        <app-column *ngIf="columns[0]" [column]="columns[0]" [boardId]="board.id" [userId]="userId"></app-column>-->
       </li>
     </ul>
   </div>

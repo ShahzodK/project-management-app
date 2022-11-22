@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map } from 'rxjs/operators';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import * as BoardActions from '../actions/board.actions';
 import { BoardApiService } from 'src/app/main/services/board-api.service';
-import { of, switchMap } from 'rxjs';
+import {forkJoin, of, switchMap} from 'rxjs';
 import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectBoardId } from '../selectors/board.selectors';
@@ -73,25 +73,44 @@ export class BoardEffects {
       );
   });
 
+  // public fetchTasks$ = createEffect(() => {
+  //   return this.actions$
+  //     .pipe(
+  //       ofType(BoardActions.fetchTasks, BoardActions.createTaskSuccess, BoardActions.deleteTaskSuccess),
+  //       switchMap(({ boardId, columnId }) =>
+  //         this.taskApiService
+  //           .getTasks(boardId, columnId)
+  //           // of([])
+  //           .pipe(
+  //             map((tasks) => ({
+  //               tasks,
+  //               columnId,
+  //             }),
+  //             ),
+  //           ),
+  //       ),
+  //       map(({ tasks, columnId }) =>
+  //         BoardActions.fetchTasksSuccess({ tasks, columnId }),
+  //       ),
+  //       catchError(() => of(BoardActions.fetchTasksFailed())),
+  //     );
+  // });
+
   public fetchTasks$ = createEffect(() => {
     return this.actions$
       .pipe(
-        ofType(BoardActions.fetchTasks, BoardActions.createTaskSuccess, BoardActions.deleteTaskSuccess),
-        switchMap(({ boardId, columnId }) =>
-          this.taskApiService
-            .getTasks(boardId, columnId)
-            // of([])
-            .pipe(
-              map((tasks) => ({
-                tasks,
-                columnId,
-              }),
-              ),
-            ),
-        ),
-        map(({ tasks, columnId }) =>
-          BoardActions.fetchTasksSuccess({ tasks, columnId }),
-        ),
+        ofType(BoardActions.fetchTasks),
+        mergeMap(({ boardId, columnIds }) => {
+          return columnIds.map(columnId => {
+            return this.taskApiService
+              .getTasks(boardId, columnId)
+          });
+        }),
+        switchMap((tasks ) => tasks),
+        map((tasks) => {
+          console.log(tasks)
+          return BoardActions.fetchTasksSuccess({ tasks })
+        }),
         catchError(() => of(BoardActions.fetchTasksFailed())),
       );
   });

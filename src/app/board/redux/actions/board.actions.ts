@@ -50,14 +50,23 @@ export const fetchColumnsFailed = createAction(
   '[Board] Fetch Columns Failed',
 );
 
+// export const fetchTasks = createAction(
+//   '[Board] Fetch Tasks',
+//   props<{ boardId: string, columnId: string }>(),
+// );
+
 export const fetchTasks = createAction(
   '[Board] Fetch Tasks',
-  props<{ boardId: string, columnId: string }>(),
+  props<{ boardId: string, columnIds: string[] }>(),
 );
 
+// export const fetchTasksSuccess = createAction(
+//   '[Board] Fetch Tasks Success',
+//   props<{ columnId: string, tasks: ITask[] }>(),
+// );
 export const fetchTasksSuccess = createAction(
   '[Board] Fetch Tasks Success',
-  props<{ columnId: string, tasks: ITask[] }>(),
+  props<{ tasks: ITask[] }>(),
 );
 
 export const fetchTasksFailed = createAction(

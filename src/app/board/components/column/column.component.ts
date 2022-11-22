@@ -32,14 +32,15 @@ export class ColumnComponent implements OnInit {
   ngOnInit(): void {
     if (!(this.boardId && this.column)) return;
 
-    console.log('init', this.boardId, this.column.id);
+    console.log('init column', this.column.id);
 
-    this.store.dispatch(BoardActions.fetchTasks({
-      boardId: this.boardId,
-      columnId: this.column.id,
-    }));
+    // this.store.dispatch(BoardActions.fetchTasks({
+    //   boardId: this.boardId,
+    //   columnId: this.column.id,
+    // }));
 
-    this.tasks$ = this.store.select(selectTasks(this.column.id));
+    // this.tasks$ = this.store.select(selectTasks(this.column.id));
+    this.tasks$ = this.store.select(selectTasks);
   }
 
   public openCreateTaskModal(): void {
