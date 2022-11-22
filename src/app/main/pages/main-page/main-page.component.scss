@@ -11,6 +11,12 @@
     align-items: center;
     border-bottom: 1px solid grey;
   }
+  &-search-label {
+    font-size: 17px;
+  }
+  &-search-input {
+    font-size: 17px;
+  }
 }
 
 h2 {
@@ -20,6 +26,7 @@ h2 {
   padding-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
 }
 
 .board-items-block {
