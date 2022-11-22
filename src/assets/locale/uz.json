@@ -33,6 +33,7 @@
   "main-page": {
     "title": "Sarlavha",
     "description": "Tavsifi",
+    "search": "Izlash",
     "boards": "Loyihalar",
     "createBoard": "Loyiha yaratish",
     "areYouSureDelete": "Loyihani o'chirib tashlashga aminmisiz",

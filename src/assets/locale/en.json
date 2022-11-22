@@ -33,6 +33,7 @@
   "main-page": {
     "title": "Title",
     "description": "Description",
+    "search": "Search",
     "boards": "Boards",
     "createBoard": "Create board",
     "areYouSureDelete": "Are you sure you want to delete the board",
