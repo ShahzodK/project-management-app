@@ -2,12 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from 'src/app/shared/services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/forms.model';
 import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FullRoutePaths } from '../../../core/constants/routes';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-login-page',

@@ -16,7 +16,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
-import { UserService } from './shared/services/user.service';
 import { BoardEffects } from './board/redux/effects/board.effects';
 import { FormsModule } from '@angular/forms';
 import { appReducer } from './redux/reducers/app.reducer';
@@ -66,7 +65,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useClass: AuthInterceptor,
       multi: true,
     },
-    UserService,
   ],
   bootstrap: [AppComponent],
 })

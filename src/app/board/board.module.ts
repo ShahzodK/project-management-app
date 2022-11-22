@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BoardRoutingModule } from './board-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -16,7 +15,7 @@ import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { BoardsEffects } from '../main/redux/effects/boards.effects';
+import { BoardEffects } from './redux/effects/board.effects';
 import { boardReducer } from './redux/reducers/board.reducer';
 
 import { HttpLoaderFactory } from '../app.module';
@@ -50,14 +49,7 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
       useDefaultLang: false,
     }),
     StoreModule.forFeature('board', boardReducer),
-    EffectsModule.forFeature([BoardsEffects]),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    EffectsModule.forFeature([BoardEffects]),
   ],
 })
 export class BoardModule {

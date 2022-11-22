@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { MainRoutingModule } from './main-routing.module';
 
+import { MainRoutingModule } from './main-routing.module';
+import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { BoardApiService } from './services/board-api.service';
-import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { BoardItemComponent } from './components/board-item/board-item.component';
+
 import { SearchPipe } from './pipes/search.pipe';
-import { SharedModule } from '../shared/shared.module';
+
 import { HttpLoaderFactory } from '../app.module';
+import { MissingTranslationService } from '../shared/services/missing-translation.service';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from './redux/effects/boards.effects';
@@ -47,11 +50,6 @@ import { boardsReducer } from './redux/reducers/boards.reducer';
   ],
   providers: [
     BoardApiService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
   ],
 })
 export class MainModule { }

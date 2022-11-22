@@ -5,13 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { AuthService } from './services/auth.service';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
-import { UserService } from '../shared/services/user.service';
 
 
 @NgModule({
@@ -34,10 +32,6 @@ import { UserService } from '../shared/services/user.service';
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
-  ],
-  providers: [
-    AuthService,
-    UserService,
   ],
 })
 export class AuthModule { }
