@@ -3,7 +3,7 @@
     <div class="main-page-header">
       <h2>{{'main.boards' | translate}}</h2>
       <mat-form-field appearance="standard">
-        <mat-label class="main-page-search-label">{{ 'main-page.search' | translate }}</mat-label>
+        <mat-label class="main-page-search-label">{{ 'main.search' | translate }}</mat-label>
         <input class="main-page-search-input"
         matInput (input)="boardService.searchValue = (inputValue.value)" #inputValue>
       </mat-form-field>

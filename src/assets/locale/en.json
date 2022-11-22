@@ -47,6 +47,7 @@
   },
   "main": {
     "boards": "Boards",
+    "search": "Search",
     "boards-error": "We cannot load boards, please try again"
   },
   "not-found-page": {

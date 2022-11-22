@@ -54,7 +54,8 @@
   },
   "main": {
     "boards": "Loyihalar",
-    "boards-error": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring"
+    "boards-error": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring",
+    "search": "Qidirmoq"
   },
   "edit-profile": {
     "title": "Profilni tahrirlash",
