@@ -80,7 +80,7 @@ export const deleteTask = createAction(
 
 export const deleteTaskSuccess = createAction(
   '[Board] Delete Task Success',
-  props<{ boardId: string, columnId: string }>(),
+  props<{ boardId: string, columnId: string, taskId: string }>(),
 );
 
 export const deleteTaskFailed = createAction(
@@ -103,8 +103,7 @@ export const createTaskSuccess = createAction(
   props<{
     boardId: string,
     columnId: string,
-    taskTitle: string,
-    taskDescription: string,
+    createdTask: ITask,
   }>(),
 );
 

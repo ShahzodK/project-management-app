@@ -26,6 +26,8 @@ export const boardReducer = createReducer(
   on(BoardActions.fetchTasksSuccess, (state, { tasks }): IBoardState => {
     return {
       ...state,
+      // написал так потому что пока что в эффекте в mergeMap fetchTasksScucess диспатчится
+      // на каждый запрос. Когда исправлю, перезаписать без рест и спред
       tasks: [...state.tasks, ...tasks],
     };
   }),

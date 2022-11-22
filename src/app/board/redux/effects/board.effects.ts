@@ -73,29 +73,6 @@ export class BoardEffects {
       );
   });
 
-  // public fetchTasks$ = createEffect(() => {
-  //   return this.actions$
-  //     .pipe(
-  //       ofType(BoardActions.fetchTasks, BoardActions.createTaskSuccess, BoardActions.deleteTaskSuccess),
-  //       switchMap(({ boardId, columnId }) =>
-  //         this.taskApiService
-  //           .getTasks(boardId, columnId)
-  //           // of([])
-  //           .pipe(
-  //             map((tasks) => ({
-  //               tasks,
-  //               columnId,
-  //             }),
-  //             ),
-  //           ),
-  //       ),
-  //       map(({ tasks, columnId }) =>
-  //         BoardActions.fetchTasksSuccess({ tasks, columnId }),
-  //       ),
-  //       catchError(() => of(BoardActions.fetchTasksFailed())),
-  //     );
-  // });
-
   public fetchTasks$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -123,10 +100,10 @@ export class BoardEffects {
           this.taskApiService
             .deleteTask(boardId, columnId, taskId)
             .pipe(
-              map(() => ({ boardId, columnId })),
+              map(() => ({ boardId, columnId, taskId })),
             ),
         ),
-        map(({ boardId, columnId }) => BoardActions.deleteTaskSuccess({ boardId, columnId })),
+        map(({ boardId, columnId, taskId }) => BoardActions.deleteTaskSuccess({ boardId, columnId, taskId })),
         catchError(() => of(BoardActions.deleteTaskFailed())),
       );
   });
@@ -139,15 +116,14 @@ export class BoardEffects {
           this.taskApiService
             .createTask(boardId, columnId, taskTitle, taskDescription, userId)
             .pipe(
-              map(() => ({ boardId, columnId, taskTitle, taskDescription })),
+              map((createdTask) => ({ boardId, columnId, createdTask })),
             ),
         ),
-        map(({ boardId, columnId, taskTitle, taskDescription }) =>
+        map(({ boardId, columnId, createdTask }) =>
           BoardActions.createTaskSuccess({
             boardId,
             columnId,
-            taskTitle,
-            taskDescription,
+            createdTask
           }),
         ),
         catchError(() => of(BoardActions.createTaskFailed())),
