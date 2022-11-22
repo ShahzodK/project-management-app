@@ -11,7 +11,6 @@ import { TaskComponent } from './components/task/task.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateColumnModalComponent } from './components/create-column-modal/create-column-modal.component';
 import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
-import { DeleteTaskModalComponent } from './components/delete-task-modal/delete-task-modal.component';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -30,7 +29,6 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
     HeaderComponent,
     CreateColumnModalComponent,
     CreateTaskModalComponent,
-    DeleteTaskModalComponent,
   ],
   imports: [
     CommonModule,

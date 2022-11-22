@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { DeleteTaskModalComponent } from '../delete-task-modal/delete-task-modal.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ITask } from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
-import { TaskApiService } from '../../services/task-api.service';
+import {ConfirmModalComponent} from "../../../shared/components/confirm-modal/confirm-modal.component";
 
 @Component({
   selector: 'app-task',
@@ -13,7 +12,7 @@ import { TaskApiService } from '../../services/task-api.service';
 })
 export class TaskComponent {
 
-  constructor(private dialog: MatDialog, private taskApiService: TaskApiService, private store: Store) {}
+  constructor(private dialog: MatDialog, private store: Store) {}
 
   @Input() boardId!: string;
 
@@ -26,7 +25,7 @@ export class TaskComponent {
 
     dialogConfig.autoFocus = 'dialog';
 
-    const dialogRef = this.dialog.open(DeleteTaskModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
       if (isConfirmed) {
