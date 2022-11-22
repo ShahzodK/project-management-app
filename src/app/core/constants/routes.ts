@@ -7,4 +7,5 @@ export const FullRoutePaths = {
   BOARD: `${AppRoutePaths.BOARD}/:id`,
   EDIT_PROFILE: AppRoutePaths.EDIT_PROFILE,
   MAIN: AppRoutePaths.MAIN,
+  WELCOME: AppRoutePaths.WELCOME,
 };
