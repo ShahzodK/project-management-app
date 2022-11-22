@@ -6,7 +6,7 @@
 
       <ng-container *ngIf="isLogged$ | async">
         <ng-container *ngIf="isWelcomePage !== null && isAuthPage !== null">
-          <button (click)="this.boardService.openCreateBoardModal()" *ngIf="!isWelcomePage && !isAuthPage"
+          <button (click)="showCreateBoardModal()" *ngIf="!isWelcomePage && !isAuthPage"
                   mat-button>
             {{ 'header.nav.create-new-board' | translate }}
           </button>

@@ -1,7 +1,7 @@
 <section class="main-page">
   <div class="container main-page-container">
     <div class="main-page-header">
-      <h2>{{'main-page.boards' | translate}}</h2>
+      <h2>{{'main.boards' | translate}}</h2>
     </div>
     <div class="board-items-block">
       <app-board-item
@@ -11,9 +11,8 @@
         [board]="board"
       >
       </app-board-item>
-      <!-- <app-create-board-form></app-create-board-form> -->
     </div>
     <app-delete-modal *ngIf="boardService.deletingBoard"></app-delete-modal>
-    <p *ngIf="boardError">{{'main-page.boardsError' | translate}}</p>
+    <p *ngIf="boardError">{{'main.boardsError' | translate}}</p>
   </div>
 </section>

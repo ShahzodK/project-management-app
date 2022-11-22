@@ -30,7 +30,7 @@
     "forth-member-description": "Developed the application components",
     "forth-member-name": "Dimitrii Shabanov"
   },
-  "main-page": {
+  "main": {
     "title": "Title",
     "description": "Description",
     "boards": "Boards",

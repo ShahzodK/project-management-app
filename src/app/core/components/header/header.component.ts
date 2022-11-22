@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private router: Router,
     private authService: AuthService,
-    public boardService: BoardService,
+    private boardService: BoardService,
     private store: Store,
   ) {
   }
@@ -56,8 +56,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  public toggleModal(): void {
-    this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
+  public showCreateBoardModal(): void {
+    this.boardService.openCreateBoardModal();
   }
 }
 

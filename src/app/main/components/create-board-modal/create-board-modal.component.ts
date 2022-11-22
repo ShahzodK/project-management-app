@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BoardService } from '../../services/board.service';
-
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-board-form',
@@ -8,8 +7,18 @@ import { BoardService } from '../../services/board.service';
   styleUrls: ['./create-board-modal.component.scss'],
 })
 export class CreateBoardModalComponent {
+  public boardTitle = '';
+
+  public boardDescription = '';
 
   constructor(
-    public boardService: BoardService,
+    private dialogRef: MatDialogRef<CreateBoardModalComponent>,
   ) { }
+
+  save() {
+    this.dialogRef.close({
+      title: this.boardTitle,
+      description: this.boardDescription,
+    });
+  }
 }

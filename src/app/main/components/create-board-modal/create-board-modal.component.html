@@ -1,40 +1,29 @@
-<section class="create-board">
-  <!-- <div class="form-container" *ngIf="boardService.IsCreateBoardModalVisible"> -->
-  <div class="form-container">
+<form class="modal" (ngSubmit)="save()" (keydown.enter)="save()" #createBoard="ngForm">
+  <header class="header">
+    <button mat-button [mat-dialog-close]="false" class="close-btn"><mat-icon>close</mat-icon></button>
+    <h1 mat-dialog-title>{{'main.newBoard' | translate}}</h1>
+  </header>
+  <div class="content" mat-dialog-content>
+    <mat-form-field>
+      <mat-label>{{ 'main.title' | translate}}</mat-label>
+      <input matInput required
+             [(ngModel)]="boardTitle" name="title">
+    </mat-form-field>
 
-    <form
-    #createBoardModalForm="ngForm" >
-
-      <h3>{{'main-page.newBoard' | translate}}</h3>
-
-      <mat-form-field appearance="fill">
-        <mat-label for="title">{{'main-page.title' | translate}}</mat-label>
-        <input type="text"
-        matInput required
-        name="title"
-        [(ngModel)]="this.boardService.boardTitle"
-        ></mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label for="description">{{'main-page.description' | translate}}</mat-label>
-        <input type="text"
-        matInput required
-        name="description"
-        [(ngModel)]="this.boardService.boardDescription"
-        ></mat-form-field>
-
-      <button
-      type="submit"
-      mat-button
-      [disabled]="!createBoardModalForm.form.valid"
-      [mat-dialog-close]="createBoardModalForm.form.value | json"
-      >
-      {{'main-page.createBoard' | translate}}
-      </button>
-
-    </form>
-
+    <mat-form-field>
+      <mat-label>{{'main.description' | translate}}</mat-label>
+      <input matInput required
+             [(ngModel)]="boardDescription" name="description">
+    </mat-form-field>
   </div>
-  <p *ngIf="this.boardService.boardError">{{'main-page.boardCreateError' | translate}}</p>
-</section>
-
+  <footer class="footer" mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="!createBoard.form.valid">
+      {{'main.createBoard' | translate}}
+    </button>
+  </footer>
+</form>
