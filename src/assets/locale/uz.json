@@ -30,6 +30,13 @@
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Dimitrii Shabanov"
   },
+  "board": {
+    "create-column-btn": "Ustun yaratish",
+    "create-task-btn": "Vazifa yarating",
+    "header": {
+      "back-btn": "Orqaga"
+    }
+  },
   "main-page": {
     "title": "Sarlavha",
     "description": "Tavsifi",
@@ -109,11 +116,5 @@
     "en": "ENG",
     "ru": "RUS",
     "uz": "UZB"
-	},
-  "task": {
-    "create": "Vazifa yaratish",
-    "confirmDelete": "Loyihani o'chirib tashlashga aminmisiz",
-    "no": "Ha",
-    "yes": "Yo'q"
-  }
+	}
 }

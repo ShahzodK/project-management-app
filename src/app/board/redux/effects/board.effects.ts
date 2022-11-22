@@ -123,7 +123,7 @@ export class BoardEffects {
           BoardActions.createTaskSuccess({
             boardId,
             columnId,
-            createdTask
+            createdTask,
           }),
         ),
         catchError(() => of(BoardActions.createTaskFailed())),

@@ -30,6 +30,13 @@
     "forth-member-description": "Developed the application components",
     "forth-member-name": "Dimitrii Shabanov"
   },
+  "board": {
+    "create-column-btn": "Create column",
+    "create-task-btn": "Create task",
+    "header": {
+      "back-btn": "Back to main"
+    }
+  },
   "main-page": {
     "title": "Title",
     "description": "Description",
@@ -113,11 +120,5 @@
     "en": "ENG",
     "ru": "RUS",
     "uz": "UZB"
-	},
-  "task": {
-    "create": "Create task",
-    "confirmDelete": "Are you sure you want to delete the task",
-    "no": "No",
-    "yes": "Yes"
   }
 }

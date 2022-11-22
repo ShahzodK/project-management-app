@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
@@ -19,10 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BoardsEffects } from '../main/redux/effects/boards.effects';
 import { boardReducer } from './redux/reducers/board.reducer';
-
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
-}
+import { HttpLoaderFactory } from '../app.module';
 
 @NgModule({
   declarations: [

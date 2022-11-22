@@ -6,13 +6,12 @@
   <div class="board-page-content" *ngIf="userId$ | async as userId">
     <button (click)="openCreateColumnModal()" class="create-column-btn" mat-stroked-button>
       <mat-icon>add</mat-icon>
-      Create column
+      {{ "board.create-column-btn" | translate }}
     </button>
 
     <ul class="columns-list" *ngIf="(columns$ | async) as columns">
       <li class="columns-item" *ngFor="let column of columns">
         <app-column [column]="column" [boardId]="board.id" [userId]="userId"></app-column>
-<!--        <app-column *ngIf="columns[0]" [column]="columns[0]" [boardId]="board.id" [userId]="userId"></app-column>-->
       </li>
     </ul>
   </div>

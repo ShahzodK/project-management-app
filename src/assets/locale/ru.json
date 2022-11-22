@@ -30,7 +30,13 @@
     "second-member-name": "Adilet Maksatuly",
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Дмитрий Шабанов"
-
+  },
+  "board": {
+    "create-column-btn": "Создать колонку",
+    "create-task-btn": "Создать задачу",
+    "header": {
+      "back-btn": "Назад"
+    }
   },
    "main-page": {
     "title": "Заголовок",
@@ -115,11 +121,5 @@
 		"en": "АНГ",
 		"ru": "РУС",
     "uz": "УЗБ"
-	},
-  "task": {
-    "create": "Создать таск",
-    "confirmDelete": "Вы уверены что хотите удалить задачу",
-    "no": "Нет",
-    "yes": "Да"
-  }
+	}
 }
