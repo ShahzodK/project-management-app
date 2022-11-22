@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import * as BoardActions from './../../redux/actions/board-action';
 import { IBoard } from '../models/board.model';
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
+import {FullRoutePaths} from "../../core/constants/routes";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -19,6 +21,7 @@ export class BoardService {
     private dialog: MatDialog,
     private boardApiService: BoardApiService,
     private store: Store,
+    private router: Router,
   ) {
   }
 
@@ -49,6 +52,7 @@ export class BoardService {
         };
 
         this.store.dispatch(BoardActions.createBoard({ board }));
+        this.router.navigate([FullRoutePaths.MAIN]);
       });
   }
 
