@@ -40,7 +40,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
       if (!boardId) throw this.getBoardIdError();
 
-      this.store.dispatch(BoardActions.boardPageOpened({boardId}));
+      this.store.dispatch(BoardActions.boardPageOpened({ boardId }));
 
       this.boardId = boardId;
 
@@ -48,7 +48,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.store.dispatch(BoardActions.fetchTasks({
           boardId: boardId,
           columnIds: columns.map(column => column.id),
-        }))
+        }));
       });
     });
   }

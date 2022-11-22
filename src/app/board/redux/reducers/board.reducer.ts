@@ -24,28 +24,9 @@ export const boardReducer = createReducer(
     columns,
   })),
   on(BoardActions.fetchTasksSuccess, (state, { tasks }): IBoardState => {
-    // const newColumns = [...state.columns].map(column => {
-    //   if (column.id === columnId) {
-    //     column = {
-    //       ...column,
-    //       tasks
-    //     };
-    //   }
-    //   return column;
-    // })
-    //
-    // return {
-    //   ...state,
-    //   // board: {
-    //   //   ...state.board,
-    //   //   columns: newColumns
-    //   // }
-    //   columns: newColumns
-    // }
-    console.log(tasks)
     return {
       ...state,
-      tasks,
+      tasks: [...state.tasks, ...tasks],
     };
   }),
 );

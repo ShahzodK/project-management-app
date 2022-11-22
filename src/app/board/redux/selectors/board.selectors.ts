@@ -18,21 +18,6 @@ export const selectColumns = createSelector(
   (state) => state.columns,
 );
 
-// export const selectTasks = (columnId: string) => createSelector(
-//   selectColumns,
-//   (columns) => {
-//     const currentColumn = columns.find(column => column.id === columnId);
-//     if (!currentColumn) return;
-//
-//     console.log(currentColumn.tasks);
-//
-//     return currentColumn.tasks;
-//   },
-// );
-
 export const selectTasks = createSelector(
   selectBoardState,
-  (state) => {
-    return state.tasks;
-  }
-)
+  (state) => state.tasks);

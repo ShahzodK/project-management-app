@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import {catchError, map, mergeMap} from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as BoardActions from '../actions/board.actions';
 import { BoardApiService } from 'src/app/main/services/board-api.service';
-import {forkJoin, of, switchMap} from 'rxjs';
+import { of, switchMap } from 'rxjs';
 import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectBoardId } from '../selectors/board.selectors';
@@ -103,13 +103,13 @@ export class BoardEffects {
         mergeMap(({ boardId, columnIds }) => {
           return columnIds.map(columnId => {
             return this.taskApiService
-              .getTasks(boardId, columnId)
+              .getTasks(boardId, columnId);
           });
         }),
-        switchMap((tasks ) => tasks),
+        mergeMap((tasks) => tasks),
         map((tasks) => {
-          console.log(tasks)
-          return BoardActions.fetchTasksSuccess({ tasks })
+          console.log(tasks);
+          return BoardActions.fetchTasksSuccess({ tasks });
         }),
         catchError(() => of(BoardActions.fetchTasksFailed())),
       );
