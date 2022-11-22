@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateBoardFormComponent } from './create-board-form.component';
+import { CreateBoardModalComponent } from './create-board-modal.component';
 
 describe('CreateBoardFormComponent', () => {
-  let component: CreateBoardFormComponent;
-  let fixture: ComponentFixture<CreateBoardFormComponent>;
+  let component: CreateBoardModalComponent;
+  let fixture: ComponentFixture<CreateBoardModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateBoardFormComponent ],
+      declarations: [ CreateBoardModalComponent ],
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(CreateBoardFormComponent);
+    fixture = TestBed.createComponent(CreateBoardModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

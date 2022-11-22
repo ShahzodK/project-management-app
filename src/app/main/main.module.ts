@@ -4,10 +4,6 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainRoutingModule } from './main-routing.module';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
@@ -15,10 +11,9 @@ import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
-import { CreateBoardFormComponent } from './components/create-board-modal/create-board-form.component';
-import { DeleteModalComponent } from './components/delete-board-modal/delete-modal.component';
+import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
+import { DeleteBoardModalComponent } from './components/delete-board-modal/delete-board-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SharedModule } from '../shared/shared.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
@@ -28,8 +23,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   declarations: [
     MainPageComponent,
     BoardItemComponent,
-    CreateBoardFormComponent,
-    DeleteModalComponent,
+    CreateBoardModalComponent,
+    DeleteBoardModalComponent,
     SearchPipe,
   ],
   imports: [
@@ -39,8 +34,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule,
-    MatDialogModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

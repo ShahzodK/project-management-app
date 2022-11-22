@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-delete-modal',
-  templateUrl: './delete-modal.component.html',
-  styleUrls: ['./delete-modal.component.scss'],
+  templateUrl: './delete-board-modal.component.html',
+  styleUrls: ['./delete-board-modal.component.scss'],
 })
-export class DeleteModalComponent implements OnDestroy {
+export class DeleteBoardModalComponent implements OnDestroy {
 
   constructor(
     private api: BoardApiService,

@@ -4,10 +4,10 @@ import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-create-board-form',
-  templateUrl: './create-board-form.component.html',
-  styleUrls: ['./create-board-form.component.scss'],
+  templateUrl: './create-board-modal.component.html',
+  styleUrls: ['./create-board-modal.component.scss'],
 })
-export class CreateBoardFormComponent  {
+export class CreateBoardModalComponent {
 
   constructor(
     public boardService: BoardService,

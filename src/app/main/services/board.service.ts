@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateBoardFormComponent } from '../components/create-board-modal/create-board-form.component';
+import { CreateBoardModalComponent } from '../components/create-board-modal/create-board-modal.component';
 import { Subscription } from 'rxjs';
 import { BoardApiService } from '../services/board-api.service';
 import { Store } from '@ngrx/store';
@@ -35,7 +35,7 @@ export class BoardService {
 
 
   openCreateBoardModal() {
-    const dialogRef = this.dialog.open(CreateBoardFormComponent);
+    const dialogRef = this.dialog.open(CreateBoardModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       this.createNewBoard(result);
