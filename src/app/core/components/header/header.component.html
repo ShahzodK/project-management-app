@@ -5,7 +5,7 @@
       <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
       <ng-container *ngIf="isLogged$ | async">
         <ng-container *ngIf="isWelcomePage !== null && isAuthPage !== null">
-          <button (click)="toggleModal()" *ngIf="!isWelcomePage && !isAuthPage"
+          <button (click)="showCreateBoardModal()" *ngIf="!isWelcomePage && !isAuthPage"
                   mat-button>
             {{ 'header.nav.create-new-board' | translate }}
           </button>

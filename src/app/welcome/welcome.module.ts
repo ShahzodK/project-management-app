@@ -3,14 +3,11 @@ import { CommonModule } from '@angular/common';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { SharedModule } from '../shared/shared.module';
+import { HttpLoaderFactory } from '../app.module';
 
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
-}
 @NgModule({
   declarations: [
     WelcomePageComponent,

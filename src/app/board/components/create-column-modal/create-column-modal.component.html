@@ -1,7 +1,7 @@
 <form class="modal" (ngSubmit)="save()" (keydown.enter)="save()" #createColumn="ngForm">
   <header class="header">
     <button mat-button [mat-dialog-close]="null" class="close-btn"><mat-icon>close</mat-icon></button>
-    <h1 mat-dialog-title>Create column</h1>
+    <h3 mat-dialog-title>{{ "board.create-column-modal.title" | translate }}</h3>
   </header>
   <div class="content" mat-dialog-content>
     <mat-form-field>

@@ -58,8 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  public toggleModal(): void {
-    this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
+  public showCreateBoardModal(): void {
+    this.boardService.showCreateBoardModal();
   }
 }
 

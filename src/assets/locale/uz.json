@@ -1,4 +1,11 @@
 {
+  "core": {
+    "confirm-modal": {
+      "title": "Ishonchingiz komilmi?",
+      "confirm": "Ha",
+      "cancel": "Bekor qilish"
+    }
+  },
   "header": {
     "logo": "Teamwork",
     "nav": {
@@ -9,7 +16,14 @@
       "sign-up": "Ro'yxatdan o'tish",
       "boards": "Taxtalar"
     },
-    "greeting": "Salom, "
+    "greeting": "Salom, ",
+    "create-board-modal": {
+      "title": "Yangi loyiha",
+      "board-title": "Yangi loyiha",
+      "board-description": "Tavsif",
+      "submit-btn": "Yaratmoq",
+      "cancel-btn": "Bekor qilish"
+    }
   },
   "welcome-app": {
     "title": "Biz bilan loyihalaringizni osonroq boshqaring",
@@ -30,19 +44,18 @@
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Dimitrii Shabanov"
   },
-  "main-page": {
-    "title": "Sarlavha",
-    "description": "Tavsifi",
-    "search": "Izlash",
+  "board": {
+    "create-column-modal": {
+      "title": "Yangi ustun",
+      "column-title": "Sarlavha",
+      "cancel-btn": "Bekor qilish",
+      "submit-btn": "Saqlash"
+    }
+  },
+  "main": {
     "boards": "Loyihalar",
-    "createBoard": "Loyiha yaratish",
-    "areYouSureDelete": "Loyihani o'chirib tashlashga aminmisiz",
-    "boardsError": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring",
-    "boardCreateError": "Loyihani o'chirishni imkoni yo'q, qaytadan urinib ko'ring",
-    "deleteBoardError": "Loyihani o'chirishni imkoni yo'q, qaytadan urinib ko'ring",
-    "newBoard": "Yangi loyiha",
-    "no": "Yo'q",
-    "yes": "Ha"
+    "boards-error": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring",
+    "search": "Qidirmoq"
   },
   "edit-profile": {
     "title": "Profilni tahrirlash",
