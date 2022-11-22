@@ -44,6 +44,14 @@
     "forth-member-description": "Developed the application components",
     "forth-member-name": "Dimitrii Shabanov"
   },
+  "board": {
+    "create-column-modal": {
+      "title": "Create column",
+      "column-title": "Title",
+      "cancel-btn": "Cancel",
+      "submit-btn": "Save"
+    }
+  },
   "main": {
     "boards": "Boards",
     "boards-error": "We cannot load boards, please try again"

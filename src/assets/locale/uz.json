@@ -44,6 +44,14 @@
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Dimitrii Shabanov"
   },
+  "board": {
+    "create-column-modal": {
+      "title": "Yangi ustun",
+      "column-title": "Sarlavha",
+      "cancel-btn": "Bekor qilish",
+      "submit-btn": "Saqlash"
+    }
+  },
   "main": {
     "boards": "Loyihalar",
     "boards-error": "Loyihani yuklab bo'lmayapti, qaytadan urinib ko'ring"
