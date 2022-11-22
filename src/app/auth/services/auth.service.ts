@@ -40,10 +40,10 @@ export class AuthService {
     );
   }
 
-  public logout(): void {
+  public logout(path = FullRoutePaths.LOGIN): void {
     localStorage.removeItem('authToken');
     this.store.dispatch(resetUser());
-    this.router.navigate([FullRoutePaths.LOGIN]);
+    this.router.navigate([path]);
   }
 
   public isLoggedIn(): boolean {

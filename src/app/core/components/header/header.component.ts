@@ -28,13 +28,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isAuthPage: boolean | null = null;
 
+  public isMainPage: boolean | null = null;
+
   private URLSub!: Subscription;
 
   constructor(
     private translateService: TranslateService,
     private router: Router,
     private authService: AuthService,
-    private boardService: BoardService,
+    public boardService: BoardService,
     private store: Store,
   ) {
   }
