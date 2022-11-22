@@ -13,6 +13,6 @@ export class DeleteTaskModalComponent {
   ) { }
 
   public confirm() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

@@ -28,12 +28,14 @@ export class TaskComponent {
 
     const dialogRef = this.dialog.open(DeleteTaskModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.store.dispatch(BoardActions.deleteTask({
-        boardId: this.boardId,
-        columnId: this.columnId,
-        taskId: this.task.id,
-      }));
+    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
+      if (isConfirmed) {
+        this.store.dispatch(BoardActions.deleteTask({
+          boardId: this.boardId,
+          columnId: this.columnId,
+          taskId: this.task.id,
+        }));
+      }
     });
   }
 }
