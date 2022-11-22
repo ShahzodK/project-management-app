@@ -1,29 +1,34 @@
-<form class="modal" (ngSubmit)="save()" (keydown.enter)="save()" #createBoard="ngForm">
+<form #createBoard="ngForm" (keydown.enter)="save()" (ngSubmit)="save()" class="modal">
   <header class="header">
-    <button mat-button [mat-dialog-close]="false" class="close-btn"><mat-icon>close</mat-icon></button>
-    <h1 mat-dialog-title>{{'main.newBoard' | translate}}</h1>
+    <button [mat-dialog-close]="false" class="close-btn" mat-button>
+      <mat-icon>close</mat-icon>
+    </button>
+    <h3 mat-dialog-title>{{'header.create-board-modal.title' | translate}}</h3>
   </header>
   <div class="content" mat-dialog-content>
     <mat-form-field>
-      <mat-label>{{ 'main.title' | translate}}</mat-label>
-      <input matInput required
-             [(ngModel)]="boardTitle" name="title">
+      <mat-label>{{ 'header.create-board-modal.board-title' | translate}}</mat-label>
+      <input [(ngModel)]="boardTitle" matInput
+             name="title" required>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>{{'main.description' | translate}}</mat-label>
-      <input matInput required
-             [(ngModel)]="boardDescription" name="description">
+      <mat-label>{{'header.create-board-modal.board-description' | translate}}</mat-label>
+      <input [(ngModel)]="boardDescription" matInput
+             name="description" required>
     </mat-form-field>
   </div>
   <footer class="footer" mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="false">Cancel</button>
     <button
-      mat-raised-button
-      type="submit"
+      [mat-dialog-close]="false"
+      mat-button>{{"header.create-board-modal.cancel-btn" | translate}}
+    </button>
+    <button
+      [disabled]="!createBoard.form.valid"
       color="primary"
-      [disabled]="!createBoard.form.valid">
-      {{'main.createBoard' | translate}}
+      mat-raised-button
+      type="submit">
+      {{'header.create-board-modal.submit-btn' | translate}}
     </button>
   </footer>
 </form>

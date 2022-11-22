@@ -12,7 +12,6 @@
       >
       </app-board-item>
     </div>
-    <app-delete-modal *ngIf="boardService.deletingBoard"></app-delete-modal>
-    <p *ngIf="boardError">{{'main.boardsError' | translate}}</p>
+    <p *ngIf="boardError">{{'main.boards-error' | translate}}</p>
   </div>
 </section>

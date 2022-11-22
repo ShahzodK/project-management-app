@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public showCreateBoardModal(): void {
-    this.boardService.openCreateBoardModal();
+    this.boardService.showCreateBoardModal();
   }
 }
 

@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBoardModalComponent } from '../components/create-board-modal/create-board-modal.component';
-import { concatMap, of, Subscription } from 'rxjs';
+import { concatMap, of } from 'rxjs';
 import { BoardApiService } from './board-api.service';
 import { Store } from '@ngrx/store';
 import * as BoardActions from './../../redux/actions/board-action';
 import { IBoard } from '../models/board.model';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoardService {
-  public createBoardSub!: Subscription;
-
-  public deletingBoard = '';
-
   public searchValue = '';
 
   constructor(
@@ -25,7 +22,7 @@ export class BoardService {
   ) {
   }
 
-  openCreateBoardModal() {
+  public showCreateBoardModal() {
     const dialogRef = this.dialog.open(CreateBoardModalComponent);
 
     dialogRef
@@ -55,4 +52,24 @@ export class BoardService {
       });
   }
 
+  public showDeleteBoardModal(id: string | undefined): void {
+    if (!id) return;
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent);
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        concatMap((result: boolean) => {
+          if (!result) return of(null);
+
+          return this.boardApiService.deleteBoard(id);
+        }),
+      )
+      .subscribe((result) => {
+        if (result === null) return;
+
+        this.store.dispatch(BoardActions.deleteBoard({ id }));
+      });
+  }
 }

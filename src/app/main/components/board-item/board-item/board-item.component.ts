@@ -10,17 +10,18 @@ import { BoardService } from '../../../services/board.service';
 export class BoardItemComponent {
   @Output() public boardClick = new EventEmitter<string>();
 
-  constructor(public boardService: BoardService) { }
 
   @Input() public board: IBoard | undefined;
 
-  onBoardClick(): void {
+  constructor(public boardService: BoardService) { }
+
+  public onBoardClick(): void {
     this.boardClick.emit(this.board?.id);
   }
 
-  onDeleteClick(event: MouseEvent): void {
+  public onDeleteClick(event: MouseEvent): void {
     event.stopPropagation();
 
-    this.boardService.deletingBoard = this.board!.id!;
+    this.boardService.showDeleteBoardModal(this.board?.id);
   }
 }

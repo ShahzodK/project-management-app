@@ -11,6 +11,7 @@ import { LocaleTogglerComponent } from './components/locale-toggler/locale-toggl
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
+import { ConfirmModalComponent } from '../shared/components/confirm-modal/confirm-modal.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     FooterComponent,
     LocaleTogglerComponent,
     NotFoundPageComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,

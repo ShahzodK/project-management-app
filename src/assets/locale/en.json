@@ -1,15 +1,29 @@
 {
+  "core": {
+    "confirm-modal": {
+      "title": "Are you sure?",
+      "confirm": "Yes",
+      "cancel": "Cancel"
+    }
+  },
   "header": {
     "logo": "Teamwork",
     "nav": {
       "edit-profile": "Edit profile",
-      "create-new-board": "Create new board",
+      "create-new-board": "New board",
       "sign-out": "Sign out",
       "sign-in": "Login",
       "sign-up": "Sign up",
       "boards": "Boards"
     },
-    "greeting": "Hello, "
+    "greeting": "Hello, ",
+    "create-board-modal": {
+      "title": "New Board",
+      "board-title": "Title",
+      "board-description": "Description",
+      "submit-btn": "Create board",
+      "cancel-btn": "Cancel"
+    }
   },
   "welcome-app": {
     "title": "Manage projects easier with us",
@@ -31,17 +45,8 @@
     "forth-member-name": "Dimitrii Shabanov"
   },
   "main": {
-    "title": "Title",
-    "description": "Description",
     "boards": "Boards",
-    "createBoard": "Create board",
-    "areYouSureDelete": "Are you sure you want to delete the board",
-    "boardsError": "We cannot load boards, please try again",
-    "boardCreateError": "Cannot create board, please try again",
-    "deleteBoardError": "Cannot delete board, please try again",
-    "newBoard": "New Board",
-    "no": "No",
-    "yes": "Yes"
+    "boards-error": "We cannot load boards, please try again"
   },
   "not-found-page": {
     "button-back": "Back to main",

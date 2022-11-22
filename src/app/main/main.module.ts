@@ -12,7 +12,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
-import { DeleteBoardModalComponent } from './components/delete-board-modal/delete-board-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,7 +23,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MainPageComponent,
     BoardItemComponent,
     CreateBoardModalComponent,
-    DeleteBoardModalComponent,
     SearchPipe,
   ],
   imports: [
