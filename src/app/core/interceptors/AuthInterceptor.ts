@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { AuthService } from './../../auth/services/auth.service';
-import { FullRoutePaths } from './../constants/routes';
+import { AuthService } from '../../auth/services/auth.service';
+import { FullRoutePaths } from '../constants/routes';
 
 
 @Injectable()

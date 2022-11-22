@@ -3,13 +3,20 @@
     "logo": "Teamwork",
     "nav": {
       "edit-profile": "Edit profile",
-      "create-new-board": "Create new board",
+      "create-new-board": "New board",
       "sign-out": "Sign out",
       "sign-in": "Login",
       "sign-up": "Sign up",
       "boards": "Boards"
     },
-    "greeting": "Hello, "
+    "greeting": "Hello, ",
+    "create-board-modal": {
+      "title": "New Board",
+      "board-title": "Title",
+      "board-description": "Description",
+      "submit-btn": "Create board",
+      "cancel-btn": "Cancel"
+    }
   },
   "welcome-app": {
     "title": "Manage projects easier with us",
@@ -30,19 +37,18 @@
     "forth-member-description": "Developed the application components",
     "forth-member-name": "Dimitrii Shabanov"
   },
-  "main-page": {
-    "title": "Title",
-    "description": "Description",
-    "search": "Search",
+  "board": {
+    "create-column-modal": {
+      "title": "Create column",
+      "column-title": "Title",
+      "cancel-btn": "Cancel",
+      "submit-btn": "Save"
+    }
+  },
+  "main": {
     "boards": "Boards",
-    "createBoard": "Create board",
-    "areYouSureDelete": "Are you sure you want to delete the board",
-    "boardsError": "We cannot load boards, please try again",
-    "boardCreateError": "Cannot create board, please try again",
-    "deleteBoardError": "Cannot delete board, please try again",
-    "newBoard": "New Board",
-    "no": "No",
-    "yes": "Yes"
+    "search": "Search",
+    "boards-error": "We cannot load boards, please try again"
   },
   "not-found-page": {
     "button-back": "Back to main",

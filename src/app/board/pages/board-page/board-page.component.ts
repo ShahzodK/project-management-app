@@ -61,11 +61,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return this.columnApiService.getColumns(boardID);
   }
 
-  public createColumn(): void {
-    this.openModal();
-  }
-
-  private openModal(): void {
+  public showCreateColumnModal(): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

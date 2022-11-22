@@ -7,14 +7,10 @@ import { UserApiService } from './services/user-api.service';
 import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
-
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
-}
+import { HttpLoaderFactory } from '../app.module';
 
 @NgModule({
   declarations: [

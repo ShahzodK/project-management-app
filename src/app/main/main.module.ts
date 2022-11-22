@@ -2,28 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainRoutingModule } from './main-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardApiService } from './services/board-api.service';
 import { AuthInterceptor } from '../core/interceptors/AuthInterceptor';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { BoardItemComponent } from './components/board-item/board-item/board-item.component';
-import { CreateBoardFormComponent } from './components/create-board-form/create-board-form.component';
-import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { HttpLoaderFactory } from '../app.module';
 
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
-}
 @NgModule({
   declarations: [
     MainPageComponent,
     BoardItemComponent,
-    CreateBoardFormComponent,
-    DeleteModalComponent,
+    CreateBoardModalComponent,
     SearchPipe,
   ],
   imports: [
@@ -32,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
+    FormsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,
@@ -41,6 +38,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+  ],
+  exports: [
   ],
   providers: [
     BoardApiService,

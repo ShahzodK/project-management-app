@@ -2,7 +2,7 @@
   <app-board-page-header (back)="navigateBack()" *ngIf="board" [boardTitle]="board.title || ''"></app-board-page-header>
 
   <div class="board-page-content">
-    <button (click)="createColumn()" class="create-column-btn" mat-stroked-button>
+    <button (click)="showCreateColumnModal()" class="create-column-btn" mat-stroked-button>
       <mat-icon>add</mat-icon>
       Create column
     </button>
