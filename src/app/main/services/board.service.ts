@@ -7,8 +7,8 @@ import { Store } from '@ngrx/store';
 import * as BoardActions from './../../redux/actions/board-action';
 import { IBoard } from '../models/board.model';
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
-import {FullRoutePaths} from "../../core/constants/routes";
-import {Router} from "@angular/router";
+import { FullRoutePaths } from '../../core/constants/routes';
+import { Router } from '@angular/router';
 
 
 @Injectable({

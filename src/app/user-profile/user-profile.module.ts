@@ -10,7 +10,7 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
-import {HttpLoaderFactory} from "../app.module";
+import { HttpLoaderFactory } from '../app.module';
 
 @NgModule({
   declarations: [

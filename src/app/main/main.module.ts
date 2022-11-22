@@ -13,7 +13,7 @@ import { BoardItemComponent } from './components/board-item/board-item/board-ite
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
-import {HttpLoaderFactory} from "../app.module";
+import { HttpLoaderFactory } from '../app.module';
 
 @NgModule({
   declarations: [
