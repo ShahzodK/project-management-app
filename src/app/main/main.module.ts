@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainRoutingModule } from './main-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,10 +13,8 @@ import { BoardItemComponent } from './components/board-item/board-item/board-ite
 import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
+import {HttpLoaderFactory} from "../app.module";
 
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, '../../assets/locale/', '.json');
-}
 @NgModule({
   declarations: [
     MainPageComponent,
