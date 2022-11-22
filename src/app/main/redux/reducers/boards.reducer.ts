@@ -12,5 +12,17 @@ export const boardsReducer = createReducer(
     ...state,
     boards,
   })),
+  on(BoardsActions.createBoardSuccess, (state, { createdBoard }): IBoardsState => ({
+    ...state,
+    boards: [...state.boards, createdBoard],
+  })),
+  on(BoardsActions.deleteBoardSuccess, (state, { id }): IBoardsState => {
+    const newBoards = [...state.boards].filter(board => board.id !== id);
+
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
 );
 

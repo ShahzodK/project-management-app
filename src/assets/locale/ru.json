@@ -1,4 +1,11 @@
 {
+  "core": {
+    "confirm-modal": {
+      "title": "Вы уверены?",
+      "confirm": "Да",
+      "cancel": "Отменить"
+    }
+  },
   "header": {
     "logo": "Teamwork",
     "nav": {
@@ -9,7 +16,14 @@
       "sign-up": "Регистрация",
       "boards": "Доски"
     },
-    "greeting": "Привет, "
+    "greeting": "Привет, ",
+    "create-board-modal": {
+      "title": "Новая доска",
+      "board-title": "Заголовок",
+      "board-description": "Описание",
+      "submit-btn": "Создать доску",
+      "cancel-btn": "Отменить"
+    }
   },
   "welcome-app": {
     "title": "Управляйте проектами проще вместе с нами",
@@ -36,22 +50,19 @@
     "create-task-btn": "Создать задачу",
     "header": {
       "back-btn": "Назад"
+    },
+    "create-column-modal": {
+      "title": "Новая колонка",
+      "column-title": "Название",
+      "cancel-btn": "Отменить",
+      "submit-btn": "Сохранить"
     }
   },
-   "main-page": {
-    "title": "Заголовок",
-    "description": "Описание",
-    "search": "Поиск",
-    "boards": "Проекты",
-    "createBoard": "Создать Проект",
-    "areYouSureDelete": "Вы уверены что хотите удалить проект",
-    "boardsError": "Мы не можем загрузить проект, попробуйте еще раз",
-    "boardCreateError": "Невозможно создать проект, попробуйте еще раз",
-    "deleteBoardError": "Невозможно удалить проект, попробуйте еще раз",
-    "newBoard": "Новый проект",
-    "no": "Нет",
-    "yes": "Да"
-	},
+  "main": {
+    "boards": "Доски",
+    "boards-error": "Произошла ошибка при загрузке досок",
+    "search": "Поиск"
+  },
   "not-found-page": {
     "button-back": "На главную",
     "not-found-message": "Страница не найдена"

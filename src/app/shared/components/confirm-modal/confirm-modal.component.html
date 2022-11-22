@@ -1,0 +1,12 @@
+<div class="modal">
+  <header class="header">
+    <button [mat-dialog-close]="false" class="close-btn" mat-button>
+      <mat-icon>close</mat-icon>
+    </button>
+    <h3 mat-dialog-title>{{"core.confirm-modal.title" | translate}}</h3>
+  </header>
+  <footer class="footer" mat-dialog-actions>
+    <button [mat-dialog-close]="false" mat-raised-button>{{"core.confirm-modal.cancel" | translate}}</button>
+    <button (click)="confirm()" color="warn" mat-raised-button>{{"core.confirm-modal.confirm" | translate}}</button>
+  </footer>
+</div>

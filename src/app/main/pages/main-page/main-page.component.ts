@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { selectBoards } from 'src/app/main/redux/selectors/boards.selectors';
-import { BoardService } from '../../services/board.service';
-import { BoardApiService } from '../../services/board-api.service';
 import { AppRoutePaths } from '../../../core/enums/routes.enum';
 import * as BoardsActions from '../../redux/actions/boards.actions';
 
@@ -17,9 +15,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     public translateService: TranslateService,
-    public router: Router,
-    public boardService: BoardService,
-    public api: BoardApiService,
+    private router: Router,
     private store: Store,
   ) {
   }

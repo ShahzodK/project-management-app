@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBoard } from 'src/app/main/models/board.model';
-import { BoardService } from '../../services/board.service';
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { Store } from '@ngrx/store';
+import { MatDialog } from '@angular/material/dialog';
+import * as BoardsActions from '../../redux/actions/boards.actions';
 
 @Component({
   selector: 'app-board-item',
@@ -10,17 +13,33 @@ import { BoardService } from '../../services/board.service';
 export class BoardItemComponent {
   @Output() public boardClick = new EventEmitter<string>();
 
-  constructor(public boardService: BoardService) { }
 
   @Input() public board: IBoard | undefined;
 
-  onBoardClick(): void {
+  constructor(
+    private store: Store,
+    private dialog: MatDialog) { }
+
+  public onBoardClick(): void {
     this.boardClick.emit(this.board?.id);
   }
 
-  onDeleteClick(event: MouseEvent): void {
+  public onDeleteClick(event: MouseEvent): void {
     event.stopPropagation();
 
-    this.boardService.deletingBoard = this.board!.id!;
+    if (!this.board?.id) return;
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((isConfirmed: boolean) => {
+        if (!isConfirmed) return;
+        if (!this.board) return;
+
+        this.store.dispatch(BoardsActions.deleteBoard({
+          id: this.board.id,
+        }));
+      });
   }
 }

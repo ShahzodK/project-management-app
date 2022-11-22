@@ -2,13 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { BoardService } from '../../../main/services/board.service';
 
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 import { FullRoutePaths } from '../../constants/routes';
 import { AppRoutePaths } from '../../enums/routes.enum';
+import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
+import * as BoardActions from '../../../main/redux/actions/boards.actions';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -28,16 +30,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isAuthPage: boolean | null = null;
 
-  public isMainPage: boolean | null = null;
-
   private URLSub!: Subscription;
 
   constructor(
     private translateService: TranslateService,
     private router: Router,
     private authService: AuthService,
-    public boardService: BoardService,
     private store: Store,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -58,8 +58,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  public toggleModal(): void {
-    this.boardService.IsCreateBoardModalVisible = !this.boardService.IsCreateBoardModalVisible;
+  public showCreateBoardModal(): void {
+    const dialogRef = this.dialog.open(CreateBoardModalComponent);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((result: false | {
+        title: string,
+        description: string,
+      }) => {
+        if (!result) return;
+
+        const { title, description } = result;
+
+        this.store.dispatch(BoardActions.createBoard({ title, description }));
+        this.router.navigate([FullRoutePaths.MAIN]);
+      });
   }
 }
 

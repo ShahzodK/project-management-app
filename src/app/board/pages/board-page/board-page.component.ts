@@ -65,7 +65,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  public openCreateColumnModal(): void {
+  public showCreateColumnModal(): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = 'dialog';

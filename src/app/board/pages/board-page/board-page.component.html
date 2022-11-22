@@ -4,7 +4,7 @@
   </app-board-page-header>
 
   <div class="board-page-content" *ngIf="userId$ | async as userId">
-    <button (click)="openCreateColumnModal()" class="create-column-btn" mat-stroked-button>
+    <button (click)="showCreateColumnModal()" class="create-column-btn" mat-stroked-button>
       <mat-icon>add</mat-icon>
       {{ "board.create-column-btn" | translate }}
     </button>

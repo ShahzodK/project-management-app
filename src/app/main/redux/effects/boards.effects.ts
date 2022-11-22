@@ -17,10 +17,36 @@ export class BoardsEffects {
   public fetchBoards$ = createEffect(() => {
     return this.actions$
       .pipe(
-        ofType(BoardsActions.fetchBoards, BoardsActions.createBoard, BoardsActions.deleteBoard),
+        ofType(BoardsActions.fetchBoards),
         switchMap(() => this.boardApiService.getBoards()),
         map((boards) => BoardsActions.fetchBoardsSuccess({ boards })),
         catchError(() => of(BoardsActions.fetchBoardsFailed())),
+      );
+  });
+
+  public createBoard$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardsActions.createBoard),
+        switchMap(({ title, description }) =>
+          this.boardApiService.createBoard(title, description)),
+        map((createdBoard) => BoardsActions.createBoardSuccess({ createdBoard })),
+        catchError(() => of(BoardsActions.createBoardFailed())),
+      );
+  });
+
+  public deleteBoard$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardsActions.deleteBoard),
+        switchMap(({ id }) =>
+          this.boardApiService.deleteBoard(id)
+            .pipe(
+              map(() => ({ id })),
+            ),
+        ),
+        map(({ id }) => BoardsActions.deleteBoardSuccess({ id })),
+        catchError(() => of(BoardsActions.deleteBoardFailed())),
       );
   });
 
