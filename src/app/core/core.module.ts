@@ -12,7 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { ConfirmModalComponent } from '../shared/components/confirm-modal/confirm-modal.component';
-import {UserService} from "./services/user.service";
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import {UserService} from "./services/user.service";
     NotFoundPageComponent,
   ],
   providers: [
-    UserService
-  ]
+    UserService,
+  ],
 })
 export class CoreModule { }

@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ITask } from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
-import {ConfirmModalComponent} from "../../../shared/components/confirm-modal/confirm-modal.component";
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-task',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { TaskApiService } from '../../services/task-api.service';
 import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
@@ -7,6 +7,7 @@ import { IColumn } from '../../models/column.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { selectTasks } from '../../redux/selectors/board.selectors';
 import { map } from 'rxjs/operators';
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-column',
@@ -53,5 +54,22 @@ export class ColumnComponent implements OnInit {
       }));
     },
     );
+  }
+
+  public showDeleteColumnModal(): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
+      if (isConfirmed) {
+        this.store.dispatch(BoardActions.deleteColumn({
+          boardId: this.boardId,
+          columnId: this.column.id,
+        }));
+      }
+    });
   }
 }

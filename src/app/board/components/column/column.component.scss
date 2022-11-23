@@ -1,31 +1,45 @@
 .column {
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+  min-width: 200px;
   width: fit-content;
-  width: 350px;
-  height: 500px;
-  overflow: auto;
+  height: 100%;
+  overflow-y: auto;
 
   border: 1px solid lightgrey;
   border-radius: 5px;
   background-color: #ffffff;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 5px 0 15px
+  }
+
   &-title {
-    align-self: center;
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    word-break: break-all;
+  }
+
+  &-delete-btn {
+    min-width: 40px;
+    padding: 0;
   }
 }
 
 .create-task-btn {
-  width: 200px;
-  margin-top: auto;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 10px;
 }
 
-ul {
-  padding: 0;
+.tasks-list {
   list-style-type: none;
-  li {
-    margin-left: 15px;
-  }
+  padding: 20px 10px 0 10px;
+}
+
+.task {
+  margin-bottom: 15px;
 }

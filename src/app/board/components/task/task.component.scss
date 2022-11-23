@@ -1,25 +1,30 @@
 .task {
-  width: 90%;
-  overflow-x: auto;
-  text-align: left;
-  margin-bottom: 15px;
+  padding: 15px 10px 15px 0;
+
   &:hover {
     background: darken(#fff, 10% )
   }
+
   &-header {
     display: flex;
     justify-content:space-between;
     align-items: center;
   }
+
   &-title {
-    margin-bottom: 0;
+    margin: 0 !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    word-break: break-all;
   }
-  p {
-    padding-left: 15px;
+
+  &-delete-btn {
+    min-width: 40px;
+    padding: 0;
   }
-  .delete-task {
-    &:hover {
-      cursor: pointer;
-    }
+
+  &-content {
+    padding-left: 16px;
+    word-break: break-all;
   }
 }

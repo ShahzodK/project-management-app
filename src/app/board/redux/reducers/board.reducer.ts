@@ -31,4 +31,41 @@ export const boardReducer = createReducer(
       tasks: [...state.tasks, ...tasks],
     };
   }),
+  on(BoardActions.createColumnSuccess, (state, { createdColumn }): IBoardState => {
+    return {
+      ...state,
+      columns: [...state.columns, createdColumn],
+    };
+  }),
+  on(BoardActions.createTaskSuccess, (state, { createdTask }): IBoardState => {
+
+    return {
+      ...state,
+      tasks: [...state.tasks, createdTask],
+    };
+  }),
+  on(BoardActions.deleteColumnSuccess, (state, { columnId }): IBoardState => {
+    const newColumns = [...state.columns].filter(column => column.id !== columnId);
+
+    return {
+      ...state,
+      columns: newColumns,
+    };
+  }),
+  on(BoardActions.deleteTaskSuccess, (state, { taskId }): IBoardState => {
+    const newTasks = [...state.tasks].filter(task => task.id !== taskId);
+
+    return {
+      ...state,
+      tasks: newTasks,
+    };
+  }),
+  on(BoardActions.deleteTasksSuccess, (state, { columnId }): IBoardState => {
+    const newTasks = [...state.tasks].filter(task => task.columnId !== columnId);
+
+    return {
+      ...state,
+      tasks: newTasks,
+    };
+  }),
 );
