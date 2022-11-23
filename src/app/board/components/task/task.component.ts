@@ -32,7 +32,7 @@ export class TaskComponent {
         this.store.dispatch(BoardActions.deleteTask({
           boardId: this.boardId,
           columnId: this.columnId,
-          taskId: this.task.id,
+          taskId: this.task._id,
         }));
       }
     });

@@ -10,7 +10,7 @@ export const selectBoard = createSelector(
 
 export const selectBoardId = createSelector(
   selectBoardState,
-  (state) => state.board.id,
+  (state) => state.board._id,
 );
 
 export const selectColumns = createSelector(

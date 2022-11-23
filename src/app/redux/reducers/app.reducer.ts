@@ -4,7 +4,7 @@ import * as AppActions from '../actions/app.actions';
 import { IAppState } from '../app.model';
 
 export const initialState: IAppState = {
-  id: '',
+  _id: '',
   isLogged: false,
   userName: '',
   login: '',
@@ -12,16 +12,16 @@ export const initialState: IAppState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(AppActions.setLoggedUser, (state, payload): IAppState => ({
+  on(AppActions.setLoggedUser, (state, { user }): IAppState => ({
     ...state,
-    id: payload.id,
+    _id: user._id,
     isLogged: true,
-    userName: payload.name,
-    login: payload.login,
+    userName: user.name,
+    login: user.login,
   })),
   on(AppActions.resetUser, (state): IAppState => ({
     ...state,
-    id: '',
+    _id: '',
     isLogged: false,
     userName: '',
     login: '',

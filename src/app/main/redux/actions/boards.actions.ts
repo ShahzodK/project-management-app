@@ -15,7 +15,7 @@ export const fetchBoardsFailed = createAction('[Boards] Fetch Failed');
 
 export const createBoard = createAction(
   '[Boards] Create',
-  props<{ title: string, description: string }>(),
+  props<{ title: string, owner: string, users: string[] }>(),
 );
 
 export const createBoardSuccess = createAction(

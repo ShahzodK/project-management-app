@@ -14,7 +14,7 @@ export class UserService {
     const token = localStorage.getItem('authToken');
 
     if (token) {
-      return (jwt_decode(token) as unknown as { userId: string }).userId;
+      return (jwt_decode(token) as unknown as { id: string }).id;
     }
 
     return '';
@@ -30,9 +30,11 @@ export class UserService {
     this.http.get<IUser>(`users/${id}`).subscribe({
       next: (user) => {
         this.store.dispatch(setLoggedUser({
-          id: user.id,
-          name: user.name,
-          login: user.login,
+          user: {
+            _id: user._id,
+            name: user.name,
+            login: user.login,
+          },
         }));
       },
       error: () => {

@@ -4,10 +4,10 @@ import * as BoardActions from '../actions/board.actions';
 
 export const initialState: IBoardState = {
   board: {
-    id: '',
+    _id: '',
     title: '',
-    description: '',
-    columns: [],
+    owner: '',
+    users: [],
   },
   columns: [],
   tasks: [],
@@ -26,9 +26,7 @@ export const boardReducer = createReducer(
   on(BoardActions.fetchTasksSuccess, (state, { tasks }): IBoardState => {
     return {
       ...state,
-      // написал так потому что пока что в эффекте в mergeMap fetchTasksScucess диспатчится
-      // на каждый запрос. Когда исправлю, перезаписать без рест и спред
-      tasks: [...state.tasks, ...tasks],
+      tasks,
     };
   }),
   on(BoardActions.createColumnSuccess, (state, { createdColumn }): IBoardState => {
@@ -45,7 +43,7 @@ export const boardReducer = createReducer(
     };
   }),
   on(BoardActions.deleteColumnSuccess, (state, { columnId }): IBoardState => {
-    const newColumns = [...state.columns].filter(column => column.id !== columnId);
+    const newColumns = [...state.columns].filter(column => column._id !== columnId);
 
     return {
       ...state,
@@ -53,14 +51,14 @@ export const boardReducer = createReducer(
     };
   }),
   on(BoardActions.deleteTaskSuccess, (state, { taskId }): IBoardState => {
-    const newTasks = [...state.tasks].filter(task => task.id !== taskId);
+    const newTasks = [...state.tasks].filter(task => task._id !== taskId);
 
     return {
       ...state,
       tasks: newTasks,
     };
   }),
-  on(BoardActions.deleteTasksSuccess, (state, { columnId }): IBoardState => {
+  on(BoardActions.deleteTasksAfterColumnDelete, (state, { columnId }): IBoardState => {
     const newTasks = [...state.tasks].filter(task => task.columnId !== columnId);
 
     return {

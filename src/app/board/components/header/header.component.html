@@ -1,7 +1,13 @@
 <div class="header">
-  <button (click)="onNavigateBackClick()" mat-raised-button color="primary">
-    <mat-icon>arrow_back</mat-icon>
-    {{"board.header.back-btn" | translate}}
-  </button>
+  <div class="header-btns">
+    <button (click)="onNavigateBackClick()" mat-raised-button color="primary">
+      <mat-icon>arrow_back</mat-icon>
+      {{"board.header.back-btn" | translate}}
+    </button>
+    <button (click)="showCreateColumnModal()" class="create-column-btn" mat-stroked-button>
+      <mat-icon>add</mat-icon>
+      {{ "board.create-column-btn" | translate }}
+    </button>
+  </div>
   <h1 class="title">{{ boardTitle }}</h1>
 </div>

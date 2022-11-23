@@ -1,5 +1,5 @@
 export interface IAppState {
-  id: string,
+  _id: string,
   isLogged: boolean,
   userName: string,
   login: string,

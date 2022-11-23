@@ -9,8 +9,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class CreateBoardModalComponent {
   public boardTitle = '';
 
-  public boardDescription = '';
-
   constructor(
     private dialogRef: MatDialogRef<CreateBoardModalComponent>,
   ) { }
@@ -18,7 +16,6 @@ export class CreateBoardModalComponent {
   public save(): void {
     this.dialogRef.close({
       title: this.boardTitle,
-      description: this.boardDescription,
     });
   }
 }

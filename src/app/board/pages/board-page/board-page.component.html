@@ -1,18 +1,22 @@
-<section class="board-page" *ngIf="(board$ | async) as board">
+<section *ngIf="(board$ | async) as board" class="board-page">
   <app-board-page-header
-  [boardTitle]="board.title || ''" (back)="navigateBack()">
+    [boardId]="board._id" (back)="navigateBack()" [boardTitle]="board.title || ''">
   </app-board-page-header>
 
-  <div class="board-page-content" *ngIf="userId$ | async as userId">
-    <button (click)="showCreateColumnModal()" class="create-column-btn" mat-button>
-      <mat-icon>add</mat-icon>
-      {{ "board.create-column-btn" | translate }}
-    </button>
+  <div *ngIf="userId$ | async as userId" class="board-page-content">
+    <ng-container *ngIf="(columns$ | async) as columns">
+      <ul *ngIf="columns.length; else noColumns" class="columns-list">
+        <li *ngFor="let column of columns" class="columns-item">
+          <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
+        </li>
+      </ul>
 
-    <ul class="columns-list" *ngIf="(columns$ | async) as columns">
-      <li class="columns-item" *ngFor="let column of columns">
-        <app-column [column]="column" [boardId]="board.id" [userId]="userId"></app-column>
-      </li>
-    </ul>
+      <ng-template #noColumns>
+        <div class="no-data">
+          <h1 class="no-data-title">No columns! Create one.</h1>
+          <app-no-data-svg class="no-data-image"></app-no-data-svg>
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
 </section>

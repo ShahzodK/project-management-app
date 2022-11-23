@@ -21,13 +21,13 @@ export class BoardItemComponent {
     private dialog: MatDialog) { }
 
   public onBoardClick(): void {
-    this.boardClick.emit(this.board?.id);
+    this.boardClick.emit(this.board?._id);
   }
 
   public onDeleteClick(event: MouseEvent): void {
     event.stopPropagation();
 
-    if (!this.board?.id) return;
+    if (!this.board?._id) return;
 
     const dialogRef = this.dialog.open(ConfirmModalComponent);
 
@@ -38,7 +38,7 @@ export class BoardItemComponent {
         if (!this.board) return;
 
         this.store.dispatch(BoardsActions.deleteBoard({
-          id: this.board.id,
+          id: this.board._id,
         }));
       });
   }

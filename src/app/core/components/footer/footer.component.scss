@@ -1,7 +1,10 @@
 .footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
   background-color: black;
+
+  @media (max-width: 768px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
   &-container {
     display: flex;

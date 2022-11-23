@@ -8,9 +8,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateTaskModalComponent {
 
-  public taskTitle = '';
+  public title = '';
 
-  public taskDescription = '';
+  public description = '';
 
   constructor(
     private dialogRef: MatDialogRef<CreateTaskModalComponent>,
@@ -18,8 +18,8 @@ export class CreateTaskModalComponent {
 
   public save(): void {
     this.dialogRef.close({
-      taskTitle: this.taskTitle,
-      taskDescription: this.taskDescription,
+      title: this.title,
+      description: this.description,
     });
   }
 }
