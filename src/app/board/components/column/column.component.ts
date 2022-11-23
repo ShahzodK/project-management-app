@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { TaskApiService } from '../../services/task-api.service';
@@ -21,8 +21,11 @@ export class ColumnComponent implements OnInit {
 
   @Input() userId!: string;
 
+  @ViewChild('tasksContainer') tasksContainerRef!: ElementRef;
+
+
   public tasks$ = this.store.select(selectTasks).pipe(
-    map((tasks) => tasks.filter(task => task.columnId === this.column.id)),
+    map((tasks) => tasks.filter(task => task.columnId === this.column._id)),
   );
 
   constructor(
@@ -34,23 +37,29 @@ export class ColumnComponent implements OnInit {
   ngOnInit(): void {
     if (!(this.boardId && this.column)) return;
 
-    console.log('init column', this.column.id);
+    console.log('init column', this.column._id);
   }
 
   public openCreateTaskModal(): void {
     const dialogRef = this.dialog.open(CreateTaskModalComponent);
 
-    dialogRef.afterClosed().subscribe((task: { taskTitle: string, taskDescription: string }) => {
+    dialogRef.afterClosed().subscribe((task: { title: string, description: string }) => {
       if (!task) return;
 
-      const { taskTitle, taskDescription } = task;
+      const { title, description } = task;
+
+      const $tasks = this.tasksContainerRef.nativeElement.children;
 
       this.store.dispatch(BoardActions.createTask({
-        boardId: this.boardId,
-        columnId: this.column.id,
-        taskTitle,
-        taskDescription,
-        userId: this.userId,
+        task: {
+          boardId: this.boardId,
+          columnId: this.column._id,
+          title,
+          description,
+          userId: this.userId,
+          users: [],
+          order: $tasks.length,
+        },
       }));
     },
     );
@@ -67,7 +76,7 @@ export class ColumnComponent implements OnInit {
       if (isConfirmed) {
         this.store.dispatch(BoardActions.deleteColumn({
           boardId: this.boardId,
-          columnId: this.column.id,
+          columnId: this.column._id,
         }));
       }
     });

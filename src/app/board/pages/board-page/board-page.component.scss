@@ -1,14 +1,15 @@
 .board-page {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 77px calc(100% - 77px);
+  height: 100%;
 }
 
 .board-page-content {
   flex-grow: 1;
-  padding: 10px 16px;
-
   display: flex;
   flex-direction: column;
+  background-color: #fafafa;
+  padding: 10px 16px;
 }
 
 .create-column-btn {
@@ -18,7 +19,7 @@
 
 .columns-list {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 100%;
   grid-auto-flow: column dense;
   justify-content: flex-start;
   gap: 10px;
@@ -26,11 +27,23 @@
   max-width: 100%;
   height: 100%;
   margin: 0;
-  padding: 15px;
+  padding: 0;
   overflow-x: auto;
 
   flex-grow: 1;
 
   list-style-type: none;
-  background-color: #fafafa;
+}
+
+.no-data {
+  margin: auto;
+  max-width: 500px;
+
+  &-title {
+
+  }
+
+  &-image {
+    max-width: 100%;
+  }
 }

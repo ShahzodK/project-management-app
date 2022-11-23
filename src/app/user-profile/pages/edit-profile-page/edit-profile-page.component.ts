@@ -165,14 +165,14 @@ export class EditProfilePageComponent implements OnInit {
     const password = this.editProfileForm.getRawValue().password;
 
 
-    this.userApi.updateUser(this.userService.getUserId(), name, email, password).subscribe(() => {
+    this.userApi.updateUser(id, name, email, password).subscribe(() => {
       const user = {
         name,
-        id,
+        _id: id,
         login: email,
       };
 
-      this.store.dispatch(UserActions.setLoggedUser(user));
+      this.store.dispatch(UserActions.setLoggedUser({ user }));
 
       const message = this.translateService.instant('edit-profile.notification.success');
       const buttonText = this.translateService.instant('edit-profile.notification.close-btn');

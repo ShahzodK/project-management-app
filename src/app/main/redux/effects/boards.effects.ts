@@ -28,8 +28,8 @@ export class BoardsEffects {
     return this.actions$
       .pipe(
         ofType(BoardsActions.createBoard),
-        switchMap(({ title, description }) =>
-          this.boardApiService.createBoard(title, description)),
+        switchMap(({ title, owner, users }) =>
+          this.boardApiService.createBoard({ title, owner, users })),
         map((createdBoard) => BoardsActions.createBoardSuccess({ createdBoard })),
         catchError(() => of(BoardsActions.createBoardFailed())),
       );

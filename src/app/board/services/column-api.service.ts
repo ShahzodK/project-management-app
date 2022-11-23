@@ -18,13 +18,18 @@ export class ColumnApiService {
     return this.http.get<IColumn>(`boards/${boardId}/columns/${columnId}`);
   }
 
-  public createColumn(boardId:string, title: string): Observable<IColumn> {
+  public createColumn(column: Omit<IColumn, '_id'>): Observable<IColumn> {
+    const { title, order, boardId } = column;
+
     return this.http.post<IColumn>(`boards/${boardId}/columns`, {
       title,
+      order,
     });
   }
 
-  public updateColumn(boardId: string, columnId: string, title: string, order: number): Observable<IColumn> {
+  public updateColumn(columnId: string, column: Omit<IColumn, '_id'>): Observable<IColumn> {
+    const { title, order, boardId } = column;
+
     return this.http.put<IColumn>(`boards/${boardId}/columns/${columnId}`, {
       title,
       order,
@@ -34,5 +39,4 @@ export class ColumnApiService {
   public deleteColumn(boardId: string, columnId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}`);
   }
-
 }

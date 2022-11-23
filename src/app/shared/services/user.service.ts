@@ -10,7 +10,8 @@ import { IUser } from '../../user-profile/models/user.model';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private store: Store) {}
+  constructor(private http: HttpClient, private store: Store) {
+  }
 
   public getUserId(): string {
     const token = localStorage.getItem('authToken');
@@ -32,9 +33,11 @@ export class UserService {
     this.http.get<IUser>(`users/${id}`).subscribe({
       next: (user) => {
         this.store.dispatch(setLoggedUser({
-          id: user.id,
-          name: user.name,
-          login: user.login,
+          user: {
+            _id: user._id,
+            name: user.name,
+            login: user.login,
+          },
         }));
       },
       error: () => {

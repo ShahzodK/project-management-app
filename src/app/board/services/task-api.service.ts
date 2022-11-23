@@ -15,19 +15,29 @@ export class TaskApiService {
     });
   }
 
+  public getTasksSet(boardId: string) {
+    return this.http.get<ITask[]>(`tasksSet/${boardId}`);
+  }
+
   public getTask(boardId: string, columnId: string, taskId: string): Observable<ITask> {
     return this.http.get<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
-  public createTask(boardId:string, columnId: string, title: string, description: string, userId: string): Observable<ITask> {
+  public createTask(task: Omit<ITask, '_id'>): Observable<ITask> {
+    const { boardId, columnId, title, description, userId, order, users } = task;
+
     return this.http.post<ITask>(`boards/${boardId}/columns/${columnId}/tasks`, {
       title,
       description,
       userId,
+      order,
+      users,
     });
   }
 
-  public updateTask(boardId: string, columnId: string, taskId: string, title: string, order: number, description: string, userId:string): Observable<ITask> {
+  public updateTask(taskId: string, task: Omit<ITask, '_id'>): Observable<ITask> {
+    const { boardId, columnId, title, order, description, userId, users } = task;
+
     return this.http.put<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, {
       title,
       order,
@@ -35,6 +45,7 @@ export class TaskApiService {
       userId,
       boardId,
       columnId,
+      users,
     });
   }
 

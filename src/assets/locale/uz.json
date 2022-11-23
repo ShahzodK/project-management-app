@@ -20,7 +20,6 @@
     "create-board-modal": {
       "title": "Yangi loyiha",
       "board-title": "Yangi loyiha",
-      "board-description": "Tavsif",
       "submit-btn": "Yaratmoq",
       "cancel-btn": "Bekor qilish"
     }

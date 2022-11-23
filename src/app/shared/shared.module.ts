@@ -10,10 +10,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.component';
 
 
 @NgModule({
   declarations: [
+    NoDataSvgComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatCardModule,
     MatMenuModule,
     MatToolbarModule,
+    NoDataSvgComponent,
   ],
 })
 export class SharedModule { }

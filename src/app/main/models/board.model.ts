@@ -1,8 +1,7 @@
-import { IColumn } from '../../board/models/column.model';
 
 export interface IBoard {
-  id: string;
+  readonly _id: string;
   title: string;
-  description: string;
-  columns: IColumn[];
+  owner: string; // owner id
+  users: string[]; // list of ids of invited users
 }
