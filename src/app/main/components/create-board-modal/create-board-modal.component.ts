@@ -15,7 +15,7 @@ export class CreateBoardModalComponent {
     private dialogRef: MatDialogRef<CreateBoardModalComponent>,
   ) { }
 
-  save() {
+  public save(): void {
     this.dialogRef.close({
       title: this.boardTitle,
       description: this.boardDescription,

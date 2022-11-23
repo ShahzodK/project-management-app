@@ -1,0 +1,30 @@
+.task {
+  padding: 15px 10px 15px 0;
+
+  &:hover {
+    background: darken(#fff, 10% )
+  }
+
+  &-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+
+  &-title {
+    margin: 0 !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    word-break: break-all;
+  }
+
+  &-delete-btn {
+    min-width: 40px;
+    padding: 0;
+  }
+
+  &-content {
+    padding-left: 16px;
+    word-break: break-all;
+  }
+}

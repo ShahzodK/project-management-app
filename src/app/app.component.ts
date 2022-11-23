@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
-import { UserService } from './shared/services/user.service';
+import { UserService } from './core/services/user.service';
 
 @Component({
   selector: 'app-root',

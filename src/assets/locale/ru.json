@@ -44,9 +44,13 @@
     "second-member-name": "Adilet Maksatuly",
     "third-member-name": "Shahzod Kakhkhorov",
     "forth-member-name": "Дмитрий Шабанов"
-
   },
   "board": {
+    "create-column-btn": "Создать колонку",
+    "create-task-btn": "Создать задачу",
+    "header": {
+      "back-btn": "Назад"
+    },
     "create-column-modal": {
       "title": "Новая колонка",
       "column-title": "Название",

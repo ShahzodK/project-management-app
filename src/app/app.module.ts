@@ -5,7 +5,6 @@ import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ng
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
@@ -17,9 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
-import { UserService } from './shared/services/user.service';
-import { BoardEffects } from './redux/effects/board-effects';
+import { BoardEffects } from './board/redux/effects/board.effects';
 import { FormsModule } from '@angular/forms';
+import { appReducer } from './redux/reducers/app.reducer';
+import { BoardsEffects } from './main/redux/effects/boards.effects';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -46,10 +46,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({ app: appReducer }, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+      },
     }),
-    EffectsModule.forRoot([BoardEffects]),
+    EffectsModule.forRoot([BoardsEffects, BoardEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [
@@ -58,7 +65,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       useClass: AuthInterceptor,
       multi: true,
     },
-    UserService,
   ],
   bootstrap: [AppComponent],
 })

@@ -2,12 +2,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from 'src/app/shared/services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/forms.model';
 import { signUpErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-signup-page',

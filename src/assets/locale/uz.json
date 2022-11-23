@@ -45,6 +45,11 @@
     "forth-member-name": "Dimitrii Shabanov"
   },
   "board": {
+    "create-column-btn": "Ustun yaratish",
+    "create-task-btn": "Vazifa yarating",
+    "header": {
+      "back-btn": "Orqaga"
+    },
     "create-column-modal": {
       "title": "Yangi ustun",
       "column-title": "Sarlavha",

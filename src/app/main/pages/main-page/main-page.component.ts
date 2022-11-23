@@ -1,47 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { selectBoards } from 'src/app/redux/selectors/boards-selector';
-import { BoardService } from '../../services/board.service';
-import { BoardApiService } from '../../services/board-api.service';
-import { getBoards } from '../../../redux/actions/board-action';
+import { selectBoards } from 'src/app/main/redux/selectors/boards.selectors';
 import { AppRoutePaths } from '../../../core/enums/routes.enum';
+import * as BoardsActions from '../../redux/actions/boards.actions';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit {
 
   constructor(
     public translateService: TranslateService,
-    public router: Router,
-    public boardService: BoardService,
-    public api: BoardApiService,
+    private router: Router,
     private store: Store,
   ) {
   }
 
   public boardError = false;
 
-  public stateBoards$ = this.store.select(selectBoards);
-
-  public getBoardsSub: Subscription | undefined;
+  public boards$ = this.store.select(selectBoards);
 
   ngOnInit(): void {
-    this.getBoardsSub = this.api.getBoards().subscribe({
-      next: (boards) => {
-        this.store.dispatch(getBoards({ boards }));
-      },
-      error: () => this.boardError = true,
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.getBoardsSub?.unsubscribe();
+    this.store.dispatch(BoardsActions.fetchBoards());
   }
 
   onBoardClick(ID: string): void {

@@ -1,0 +1,45 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  min-width: 200px;
+  width: fit-content;
+  height: 100%;
+  overflow-y: auto;
+
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: #ffffff;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 5px 0 15px
+  }
+
+  &-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    word-break: break-all;
+  }
+
+  &-delete-btn {
+    min-width: 40px;
+    padding: 0;
+  }
+}
+
+.create-task-btn {
+  margin: 10px;
+}
+
+.tasks-list {
+  list-style-type: none;
+  padding: 20px 10px 0 10px;
+}
+
+.task {
+  margin-bottom: 15px;
+}

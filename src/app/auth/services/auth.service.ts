@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap  } from 'rxjs';
-import { resetUser } from '../../redux/actions';
+import { resetUser } from '../../redux/actions/app.actions';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';

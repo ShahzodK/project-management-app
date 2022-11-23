@@ -1,0 +1,24 @@
+.modal {
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  padding: 10px 40px 0;
+}
+
+.content {
+  text-align: center;
+}
+
+.close-btn {
+  min-width: 40px;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  padding: 0
+}
+
+.footer {
+  justify-content: flex-end;
+}

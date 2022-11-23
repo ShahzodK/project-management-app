@@ -1,4 +1,11 @@
 {
+  "core": {
+    "confirm-modal": {
+      "title": "Are you sure?",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
   "header": {
     "logo": "Teamwork",
     "nav": {
@@ -38,6 +45,11 @@
     "forth-member-name": "Dimitrii Shabanov"
   },
   "board": {
+    "create-column-btn": "Create column",
+    "create-task-btn": "Create task",
+    "header": {
+      "back-btn": "Back to main"
+    },
     "create-column-modal": {
       "title": "Create column",
       "column-title": "Title",

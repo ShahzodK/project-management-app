@@ -1,0 +1,21 @@
+<div class="column">
+  <header class="column-header">
+    <h3 class="column-title">
+      {{ column.title }}
+    </h3>
+    <button mat-button class="column-delete-btn">
+      <mat-icon (click)="showDeleteColumnModal()" class="delete-task">delete</mat-icon>
+    </button>
+  </header>
+  <ul *ngIf="(tasks$ | async) as tasks" class="tasks-list">
+    <li *ngFor="let task of tasks" class="task">
+      <app-task [boardId]="boardId" [columnId]="column.id" [task]="task">
+      </app-task>
+    </li>
+  </ul>
+  <button (click)="openCreateTaskModal()" class="create-task-btn" mat-button>
+    <mat-icon>add</mat-icon>
+    {{"board.create-task-btn" | translate}}
+  </button>
+</div>
+

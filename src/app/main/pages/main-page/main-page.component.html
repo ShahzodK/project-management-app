@@ -5,14 +5,13 @@
       <mat-form-field appearance="standard">
         <mat-label class="main-page-search-label">{{ 'main.search' | translate }}</mat-label>
         <input class="main-page-search-input"
-        matInput (input)="boardService.searchValue = (inputValue.value)" #inputValue>
+        matInput #searchValue>
       </mat-form-field>
     </div>
-    <div class="board-items-block" *ngIf="stateBoards$ | async as stateBoards">
+    <div class="board-items-block" *ngIf="(boards$ | async) as boards">
       <app-board-item
         (boardClick)="onBoardClick($event)"
-        *ngFor="let board of stateBoards.boards
-       | search: boardService.searchValue"
+        *ngFor="let board of boards | search: searchValue.value"
         [board]="board"
       >
       </app-board-item>

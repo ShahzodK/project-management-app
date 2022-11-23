@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 import { Store } from '@ngrx/store';
-import { resetUser, setLoggedUser } from 'src/app/redux/actions';
+import { resetUser, setLoggedUser } from 'src/app/redux/actions/app.actions';
 import { IUser } from '../../user-profile/models/user.model';
 
 @Injectable({

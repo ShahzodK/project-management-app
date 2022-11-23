@@ -1,7 +1,0 @@
-<div class="column">
-  <h3 class="column-title">
-    {{ column?.title }}
-  </h3>
-  <app-tasks-list *ngIf="(tasks$ | async) as tasks" [tasks]="tasks"></app-tasks-list>
-</div>
-
