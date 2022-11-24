@@ -8,6 +8,7 @@ import * as BoardActions from '../../redux/actions/board.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../../components/create-column-modal/create-column-modal.component';
 import { selectUserId } from '../../../redux/selectors/app.selectors';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -83,5 +84,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         }));
       },
     );
+  }
+
+  public dropColumns(event: CdkDragDrop<string[]>) {
+    console.log(event);
   }
 }

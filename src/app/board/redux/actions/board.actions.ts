@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { IBoard } from '../../../main/models/board.model';
 import { IColumn } from '../../models/column.model';
+import { IUpdatedColumn } from './../../models/column.model';
 import { ITask } from '../../models/task.model';
 
 export const boardPageOpened = createAction(
@@ -47,6 +48,20 @@ export const createColumnSuccess = createAction(
 );
 
 export const createColumnFailed = createAction(
+  '[Board] Create Column Failed',
+);
+
+export const updateColumn = createAction(
+  '[Board] Updae Column',
+  props<{ boardId: string, columnTitle: string, order: number, }>(),
+);
+
+export const updateColumnSuccess = createAction(
+  '[Board] Create Column Success',
+  props<{ updatedColumn: IUpdatedColumn }>(),
+);
+
+export const updateColumnFailed = createAction(
   '[Board] Create Column Failed',
 );
 

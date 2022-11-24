@@ -9,8 +9,9 @@
       {{ "board.create-column-btn" | translate }}
     </button>
 
-    <ul class="columns-list" *ngIf="(columns$ | async) as columns">
-      <li class="columns-item" *ngFor="let column of columns">
+    <ul class="columns-list" *ngIf="(columns$ | async) as columns" cdkDropList
+    (cdkDropListDropped)='dropColumns($event)'>
+      <li class="columns-item" *ngFor="let column of columns" cdkDrag>
         <app-column [column]="column" [boardId]="board.id" [userId]="userId"></app-column>
       </li>
     </ul>

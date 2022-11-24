@@ -6,3 +6,8 @@ export interface IColumn {
   order: number,
   tasks: ITask[];
 }
+
+export interface IUpdatedColumn {
+  _id: string,
+  order: number;
+}

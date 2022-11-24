@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardRoutingModule } from './board-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -46,6 +47,7 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
       missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
       useDefaultLang: false,
     }),
+    DragDropModule,
     StoreModule.forFeature('board', boardReducer),
     EffectsModule.forFeature([BoardEffects]),
   ],
