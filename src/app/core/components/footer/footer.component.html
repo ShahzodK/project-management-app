@@ -1,24 +1,17 @@
 <footer class="footer">
-  <div class="container footer-container">
-    <div class="footer-info">
-      <p>&copy; 2022</p>
-      <div class="footer-links">
-        <a href="https://github.com/Guseff" target="_blank" class="footer-link">
-          Vasily Gusev
-        </a>
-        <a href="https://github.com/adiletmaksatuly" target="_blank" class="footer-link">
-          Adilet Maksatuly
-        </a>
-        <a href="https://github.com/ShahzodK" target="_blank" class="footer-link">
-          Shahzod Kakhkhorov
-        </a>
-        <a href="https://github.com/dsh91698" target="_blank" class="footer-link">
-          Dimitrii Shabanov
-        </a>
-      </div>
+  <div class="container footer__content">
+    <div class="footer__info">
+      <p class="footer__year">&copy; 2022</p>
+      <ul class="footer__links">
+        <li *ngFor="let member of members">
+          <a [href]="member.github" class="footer__link" target="_blank">
+            {{ member.name | translate }}
+          </a>
+        </li>
+      </ul>
     </div>
-    <a href="https://rs.school/angular/" target="_blank" class="logo">
-      <img src="https://i.postimg.cc/DZWQtjYS/school-logo.png" alt="RS-school">
+    <a class="footer__logo-link" href="https://rs.school/angular/" target="_blank">
+      <img alt="RS-school" class="footer__logo-img" src="https://i.postimg.cc/DZWQtjYS/school-logo.png">
     </a>
   </div>
 </footer>
