@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import * as BoardActions from '../actions/board.actions';
 import { BoardApiService } from 'src/app/main/services/board-api.service';
 import { of, switchMap } from 'rxjs';
 import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
-import { selectTasks } from '../selectors/board.selectors';
+import { selectColumns } from '../selectors/board.selectors';
 import { TaskApiService } from '../../services/task-api.service';
 
 @Injectable({
@@ -60,8 +60,15 @@ export class BoardEffects {
     return this.actions$
       .pipe(
         ofType(BoardActions.createColumn),
-        switchMap(({ boardId, columnTitle }) =>
-          this.columnApiService.createColumn(boardId, columnTitle)),
+        concatLatestFrom(() => this.store.select(selectColumns)),
+        switchMap(([{ column }, columns]) => {
+          const order = columns.length;
+
+          return this.columnApiService.createColumn({
+            ...column,
+            order,
+          });
+        }),
         map((createdColumn) =>
           BoardActions.createColumnSuccess({ createdColumn }),
         ),
@@ -76,13 +83,14 @@ export class BoardEffects {
         switchMap(({ boardId, columnId }) =>
           this.columnApiService.deleteColumn(boardId, columnId)
             .pipe(
-              map(() => ({ columnId, boardId })),
+              map(() => ({ columnId })),
             ),
         ),
-        switchMap(({ columnId, boardId }) =>
+        switchMap(({ columnId }) =>
           of(
             BoardActions.deleteColumnSuccess({ columnId }),
-            BoardActions.deleteTasks({ columnId, boardId }),
+            // когда удаляешь колонку, ее таски сами удаляются сервером
+            BoardActions.deleteTasksAfterColumnDelete({ columnId }),
           )),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
       );
@@ -92,13 +100,11 @@ export class BoardEffects {
     return this.actions$
       .pipe(
         ofType(BoardActions.fetchTasks),
-        mergeMap(({ boardId, columnIds }) => {
-          return columnIds.map(columnId => {
-            return this.taskApiService
-              .getTasks(boardId, columnId);
-          });
+        switchMap(({ boardId }) => {
+
+          return this.taskApiService
+            .getTasksSet(boardId);
         }),
-        mergeMap((tasks) => tasks),
         map((tasks) => {
           return BoardActions.fetchTasksSuccess({ tasks });
         }),
@@ -110,10 +116,8 @@ export class BoardEffects {
     return this.actions$
       .pipe(
         ofType(BoardActions.createTask),
-        switchMap(({ boardId, columnId, taskTitle, taskDescription, userId }) =>
-          this.taskApiService
-            .createTask(boardId, columnId, taskTitle, taskDescription, userId),
-        ),
+        switchMap(({ task }) =>
+          this.taskApiService.createTask(task)),
         map((createdTask) =>
           BoardActions.createTaskSuccess({
             createdTask,
@@ -135,28 +139,6 @@ export class BoardEffects {
             ),
         ),
         map(({ taskId }) => BoardActions.deleteTaskSuccess({ taskId })),
-        catchError(() => of(BoardActions.deleteTaskFailed())),
-      );
-  });
-
-  public deleteTasks$ = createEffect(() => {
-    return this.actions$
-      .pipe(
-        ofType(BoardActions.deleteTasks),
-        concatLatestFrom(() => this.store.select(selectTasks)),
-        mergeMap(([{ boardId, columnId }, tasks]) => {
-          const tasksToDelete = tasks.filter(task => task.columnId === columnId);
-
-          return tasksToDelete.map(task => {
-            return this.taskApiService
-              .deleteTask(boardId, task.columnId, task.id)
-              .pipe(
-                map(() => ({ columnId })),
-              );
-          });
-        }),
-        mergeMap((columnId) => columnId),
-        map(({ columnId }) => BoardActions.deleteTasksSuccess({ columnId })),
         catchError(() => of(BoardActions.deleteTaskFailed())),
       );
   });

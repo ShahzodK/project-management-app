@@ -21,6 +21,7 @@ import { boardReducer } from './redux/reducers/board.reducer';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
+import { SortTasksPipe } from './pipes/sort-tasks.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MissingTranslationService } from '../shared/services/missing-translatio
     HeaderComponent,
     CreateColumnModalComponent,
     CreateTaskModalComponent,
+    SortTasksPipe,
   ],
   imports: [
     CommonModule,

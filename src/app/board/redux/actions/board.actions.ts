@@ -39,7 +39,7 @@ export const fetchColumnsFailed = createAction(
 
 export const createColumn = createAction(
   '[Board] Create Column',
-  props<{ boardId: string, columnTitle: string }>(),
+  props<{ column: Omit<IColumn, '_id' | 'order'> }>(),
 );
 
 export const createColumnSuccess = createAction(
@@ -111,11 +111,7 @@ export const deleteTaskFailed = createAction(
 export const createTask = createAction(
   '[Board] Create Task',
   props<{
-    boardId: string,
-    columnId: string,
-    taskTitle: string,
-    taskDescription: string,
-    userId: string
+    task: Omit<ITask, '_id'>,
   }>(),
 );
 
@@ -130,16 +126,7 @@ export const createTaskFailed = createAction(
   '[Board] Create Task Failed',
 );
 
-export const deleteTasks = createAction(
+export const deleteTasksAfterColumnDelete = createAction(
   '[Board] Delete Tasks After Delete Column',
-  props<{ boardId: string, columnId: string }>(),
-);
-
-export const deleteTasksSuccess = createAction(
-  '[Board] Delete Tasks After Delete Column Success',
   props<{ columnId: string }>(),
-);
-
-export const deleteTasksFailed = createAction(
-  '[Board] Delete Tasks After Delete Column Failed',
 );

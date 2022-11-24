@@ -20,7 +20,6 @@
     "create-board-modal": {
       "title": "New Board",
       "board-title": "Title",
-      "board-description": "Description",
       "submit-btn": "Create board",
       "cancel-btn": "Cancel"
     }

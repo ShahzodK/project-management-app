@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
+import { IUser } from '../../user-profile/models/user.model';
 
 export const setLoggedUser = createAction(
   '[App] setUser',
-  props<{ name: string, id: string, login: string, }>(),
+  props<{ user: IUser }>(),
 );
 
 export const resetUser = createAction(

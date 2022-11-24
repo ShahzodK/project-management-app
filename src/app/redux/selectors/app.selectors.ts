@@ -20,5 +20,5 @@ export const selectUserLogin = createSelector(
 
 export const selectUserId = createSelector(
   selectAppState,
-  (state) => state.id,
+  (state) => state._id,
 );

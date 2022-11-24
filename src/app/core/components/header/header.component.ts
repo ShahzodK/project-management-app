@@ -11,6 +11,7 @@ import { AppRoutePaths } from '../../enums/routes.enum';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
 import { MatDialog } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -38,6 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private store: Store,
     private dialog: MatDialog,
+    private userService: UserService,
   ) {
   }
 
@@ -69,9 +71,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }) => {
         if (!result) return;
 
-        const { title, description } = result;
+        const { title } = result;
+        const owner = this.userService.getUserId();
+        const users: string[] = [];
 
-        this.store.dispatch(BoardActions.createBoard({ title, description }));
+        this.store.dispatch(BoardActions.createBoard({ title, owner, users }));
         this.router.navigate([FullRoutePaths.MAIN]);
       });
   }

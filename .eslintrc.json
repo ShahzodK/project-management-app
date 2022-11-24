@@ -23,6 +23,7 @@
         "airbnb-typescript/base"
       ],
       "rules": {
+        "max-len": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -59,12 +60,7 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {
-        "max-len": [
-          "error",
-          {
-            "code": 120
-          }
-        ]
+        "max-len": "off"
       }
     },
     {

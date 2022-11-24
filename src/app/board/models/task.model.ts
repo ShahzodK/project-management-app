@@ -1,14 +1,10 @@
 export interface ITask {
-  id: string;
+  _id: string;
   title: string;
   order: number;
-  done: boolean;
-  description: string;
-  userId: string;
-  files: [{
-    filename: string;
-    filesize: number;
-  }],
   boardId: string;
   columnId: string;
+  description: string;
+  userId: string;
+  users: string[];
 }

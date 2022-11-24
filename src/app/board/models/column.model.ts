@@ -1,10 +1,8 @@
-import { ITask } from './task.model';
-
 export interface IColumn {
-  id:string,
+  readonly _id: string,
   title: string,
   order: number,
-  tasks: ITask[];
+  boardId: string
 }
 
 export interface IUpdatedColumn {

@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
   public login(login: string, password: string): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('signin', {
+    return this.http.post<ILoginResponse>('auth/signin', {
       login,
       password,
     }).pipe(
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   public signup(name: string, login: string, password: string): Observable<ILoginResponse> {
-    return this.http.post<ISignUpResponse>('signup', {
+    return this.http.post<ISignUpResponse>('auth/signup', {
       name,
       login,
       password,

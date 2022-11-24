@@ -20,7 +20,6 @@
     "create-board-modal": {
       "title": "Новая доска",
       "board-title": "Заголовок",
-      "board-description": "Описание",
       "submit-btn": "Создать доску",
       "cancel-btn": "Отменить"
     }
