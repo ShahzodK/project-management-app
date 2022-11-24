@@ -2,6 +2,7 @@
   &__content {
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -14,8 +15,6 @@
   }
 
   &__form {
-    display: flex;
-    flex-direction: column;
   }
 
   &__delete-btn {
@@ -25,6 +24,9 @@
 }
 
 .edit-profile-form {
+  display: flex;
+  flex-direction: column;
+
   &__name {}
 
   &__email {}

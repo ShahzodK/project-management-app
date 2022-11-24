@@ -1,10 +1,7 @@
 <section class="section edit-profile">
   <div class="container edit-profile__content">
+    <h1 class="section__title">{{'edit-profile.title' | translate}}</h1>
     <mat-card class="edit-profile__form-container">
-      <mat-card-header>
-        <mat-card-title>{{'edit-profile.title' | translate}}</mat-card-title>
-      </mat-card-header>
-
       <form (ngSubmit)='submit()'
             [formGroup]="editProfileForm"
             class="edit-profile__form edit-profile-form">
