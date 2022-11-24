@@ -1,0 +1,37 @@
+app-root {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
+main > *:nth-child(2) {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+main > app-board-page {
+  height: calc(100vh - 64px - 47px);
+  display: flex !important;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1290px;
+  padding: 0 15px;
+  margin: auto;
+}
+
+.section {
+  padding: 50px 0;
+
+  @media (max-width: 576px) {
+    padding: 30px 0;
+  }
+
+  &__title {
+    font-size: 26px;
+  }
+}
