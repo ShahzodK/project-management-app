@@ -1,8 +1,8 @@
-<section class="auth-page">
-  <div class="auth-page-container container">
-    <h1 class="auth-page-title">{{ 'auth.sign-up.title' | translate }}</h1>
-    <form (ngSubmit)="signup()" [formGroup]="signupForm" class="auth-page-form">
-      <mat-form-field appearance="outline">
+<section class="auth">
+  <div class="auth__content container">
+    <h1 class="auth__title section__title">{{ 'auth.sign-up.title' | translate }}</h1>
+    <form (ngSubmit)="signup()" [formGroup]="signupForm" class="auth__form auth-form">
+      <mat-form-field class="auth-form__name" appearance="outline">
         <mat-label>{{ 'auth.forms.field-names.name' | translate }}</mat-label>
         <input
           formControlName="name"
@@ -12,7 +12,8 @@
         >
         <mat-error *ngIf="hasNameError">{{ getNameErrorMessage() | translate }}</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+
+      <mat-form-field class="auth-form__email" appearance="outline">
         <mat-label>{{ 'auth.forms.field-names.email' | translate }}</mat-label>
         <input
           formControlName="email"
@@ -23,7 +24,7 @@
         <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field class="auth-form__password" appearance="outline">
         <mat-label>{{'auth.forms.field-names.password' | translate}}</mat-label>
         <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput/>
         <button
@@ -40,7 +41,7 @@
       </mat-form-field>
 
       <button
-        class="auth-page-submit-btn"
+        class="auth-form__submit-btn"
         color="primary"
         mat-raised-button
         type="submit"

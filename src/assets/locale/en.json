@@ -4,6 +4,24 @@
       "title": "Are you sure?",
       "confirm": "Confirm",
       "cancel": "Cancel"
+    },
+    "members": {
+      "first": {
+        "desc": "Made login and improved app performance",
+        "name": "Vasily Gusev"
+      },
+      "second": {
+        "name": "Adilet Maksatuly",
+        "desc": "Made Drag and Drop and implemented communication with the server"
+      },
+      "third": {
+        "name": "Shahzod Kakhkhorov",
+        "desc": "Developed the application architecture, routing and configured NgRx"
+      },
+      "fourth": {
+        "name": "Dimitrii Shabanov",
+        "desc": "Developed the application components"
+      }
     }
   },
   "header": {
@@ -24,24 +42,18 @@
       "cancel-btn": "Cancel"
     }
   },
-  "welcome-app": {
-    "title": "Manage projects easier with us",
-    "description": "Application name - Free application to improve work efficiency and manage projects together with other team members!"
-  },
-  "welcome-course": {
-    "title": "Course",
-    "description": "This project was developed as part of the free Angular course from Rolling Scopes School. In this course, you will learn how to develop web applications using Angular. The course lasts 8 weeks where you will get acquainted with the basic syntax of Angular as well as with NgRx. Click on the link to join the course"
-  },
-  "welcome-team": {
-    "title": "Our Team",
-    "first-member-description": "Made login and improved app performance",
-    "first-member-name": "Vasily Gusev",
-    "second-member-description": "Made Drag and Drop and implemented communication with the server",
-    "second-member-name": "Adilet Maksatuly",
-    "third-member-description": "Developed the application architecture, routing and configured NgRx",
-    "third-member-name": "Shahzod Kakhkhorov",
-    "forth-member-description": "Developed the application components",
-    "forth-member-name": "Dimitrii Shabanov"
+  "welcome": {
+    "welcome": {
+      "title": "Manage projects easier with us",
+      "description": "Teamwork - Free application to improve work efficiency and manage projects together with other team members!"
+    },
+    "course": {
+      "title": "Course",
+      "description": "This project was developed as part of the free Angular course from Rolling Scopes School. In this course, you will learn how to develop web applications using Angular. The course lasts 8 weeks where you will get acquainted with the basic syntax of Angular as well as with NgRx. Click on the link to join the course"
+    },
+    "team": {
+      "title": "Our Team"
+    }
   },
   "board": {
     "create-column-btn": "Create column",

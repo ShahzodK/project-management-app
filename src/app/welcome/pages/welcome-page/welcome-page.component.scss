@@ -1,67 +1,97 @@
-.container {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section {
-  margin-top: 20px;
-}
+@import "src/styles/vars";
 
 .welcome {
-  &-content {
+  &__content {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
   }
-  &-title {
-    font-size: 34px;
+
+  &__info {
+    flex-basis: 400px;
+
+    @media (max-width: 576px) {
+      max-width: 400px;
+      flex-basis: auto;
+    }
   }
-  &-description {
-    width: 36%;
-    text-align: center;
+
+  &__image {
+    flex-basis: 50%;
+  }
+
+  &__title {
     margin-top: 30px;
-    margin-bottom: 30px;
+    font-size: 32px;
+    color: $blue-color;
+  }
+
+  &__description {
   }
 }
 
 .course {
-  &-content {
+  &__content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    text-align: center;
+    gap: 20px;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+    }
   }
-  &-description {
-    margin-top: 25px;
-    width: 50%;
+
+  &__img-container {
+    flex-basis: 50%;
+    max-width: 400px;
+    margin: 0;
+
+    @media (max-width: 576px) {
+      max-width: 250px;
+    }
+  }
+
+  &__img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__info {
+    flex-basis: 400px;
+
+    @media (max-width: 576px) {
+      flex-basis: auto;
+      max-width: 400px;
+      order: -1;
+    }
+  }
+
+  &__title {}
+
+  &__description {
   }
 }
 
-.our-team {
-  &-section {
-    h2 {
-      font-size: 24px;
-      text-align: center;
-    }
-  }
-  &-content {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 25px;
-  }
-  &-block {
+.team {
+  &__content {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    background: #f5f5f5;
-    height: 300px;
-    width: 250px;
-    padding: 20px;
-    border-radius: 20px;
+    align-items: center;
   }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__members {
+    margin: 40px 0;
+  }
+
   &-img {
     &-block {
       width: 80px;
@@ -76,5 +106,49 @@ section {
   }
   &-description {
     margin-top: 15px;
+  }
+}
+
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+
+  &__item {
+    flex-basis: calc(25% - 20px);
+
+    @media (max-width: 768px) {
+      flex-basis: calc(50% - 20px);
+    }
+
+    @media (max-width: 425px) {
+      flex-basis: 100%;
+      max-width: 300px;
+    }
+  }
+
+}
+
+.member {
+  text-align: center;
+
+  &__avatar-container {
+    margin: 0;
+  }
+
+  &__avatar {
+    width: 150px;
+    border-radius: 50%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  &__name {
+  }
+
+  &__description {
   }
 }

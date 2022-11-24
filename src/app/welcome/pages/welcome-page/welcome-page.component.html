@@ -1,65 +1,51 @@
-<section class="welcome-section" id="app">
-  <div class="container welcome-page-container">
-    <div class="welcome-content">
-      <mat-card-title class="welcome-title">{{ 'welcome-app.title' | translate }}</mat-card-title>
-      <mat-card-content class="welcome-description">
-        {{ 'welcome-app.description' | translate }}
-      </mat-card-content>
+<section class="section welcome">
+  <div class="container welcome__content">
+    <div class="welcome__info">
+      <h1 class="welcome__title">
+        {{ 'welcome.welcome.title' | translate }}
+      </h1>
+      <p class="welcome__description">
+        {{ 'welcome.welcome.description' | translate }}
+      </p>
+    </div>
+
+    <div class="welcome__image">
+      <app-team-svg></app-team-svg>
     </div>
   </div>
 </section>
 
-<section class="course-section" id="course">
-  <div class="container course-page-container">
-    <div class="course-content">
-      <mat-card-title class="course-title">{{ 'welcome-course.title' | translate }}</mat-card-title>
-      <mat-card-content class="course-description">
-        {{ 'welcome-course.description' | translate }}
-      </mat-card-content>
+<section class="section course">
+  <div class="container course__content">
+    <figure class="course__img-container">
+      <img class="course__img" src="/assets/img/welcome/rsschool.jpeg" alt="The Rolling Scopes School Logo">
+    </figure>
+    <div class="course__info">
+      <h2 class="course__title section__title">
+        {{ 'welcome.course.title' | translate }}
+      </h2>
+      <p class="course__description">
+        {{ 'welcome.course.description' | translate }}
+      </p>
     </div>
   </div>
 </section>
 
-<section class="our-team-section" id="about-us">
-  <div class="container our-team-container">
-    <h2>{{ 'welcome-team.title' | translate }}</h2>
-    <div class="our-team-content">
-      <div class="our-team-block">
-        <div class="our-team-img-block">
-          <img alt="" mat-card-image src="">
-        </div>
-        <mat-card-title>{{ 'welcome-team.first-member-name' | translate }}</mat-card-title>
-        <mat-card-content class="our-team-description">
-          {{ 'welcome-team.first-member-description' | translate }}
-        </mat-card-content>
-      </div>
-      <div class="our-team-block">
-        <div class="our-team-img-block">
-          <img alt="" mat-card-image src="">
-        </div>
-        <mat-card-title>{{ 'welcome-team.second-member-name' | translate }}</mat-card-title>
-        <mat-card-content class="our-team-description">
-          {{ 'welcome-team.second-member-description' | translate }}
-        </mat-card-content>
-      </div>
-      <div class="our-team-block">
-        <div class="our-team-img-block">
-          <img alt="" mat-card-image src="">
-        </div>
-        <mat-card-title>{{ 'welcome-team.third-member-name' | translate }}</mat-card-title>
-        <mat-card-content class="our-team-description">
-          {{ 'welcome-team.third-member-description' | translate }}
-        </mat-card-content>
-      </div>
-      <div class="our-team-block">
-        <div class="our-team-img-block">
-          <img alt="" mat-card-image src="">
-        </div>
-        <mat-card-title>{{ 'welcome-team.forth-member-name' | translate }}</mat-card-title>
-        <mat-card-content class="our-team-description">
-          {{ 'welcome-team.forth-member-description' | translate }}
-        </mat-card-content>
-      </div>
-    </div>
+<section class="section team">
+  <div class="container team__content">
+    <h2 class="team__title section__title">{{ 'welcome.team.title' | translate }}</h2>
+    <ul class="team__members members">
+      <li class="members__item member" *ngFor="let member of members">
+        <figure class="member__avatar-container">
+          <img class="member__avatar" [src]="member.avatar" alt="Member avatar" >
+          <figcaption>
+            <h3 class="member__name">{{ member.name | translate }}</h3>
+          </figcaption>
+        </figure>
+        <p class="member__description">
+          {{ member.description | translate }}
+        </p>
+      </li>
+    </ul>
   </div>
 </section>

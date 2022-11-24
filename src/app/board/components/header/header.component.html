@@ -1,13 +1,17 @@
-<div class="header">
-  <div class="header-btns">
-    <button (click)="onNavigateBackClick()" mat-raised-button color="primary">
+<header class="header">
+  <div class="header__btns">
+    <button (click)="onNavigateBackClick()" color="primary" mat-raised-button>
       <mat-icon>arrow_back</mat-icon>
-      {{"board.header.back-btn" | translate}}
+      <ng-container *ngIf="screenWidth > 576">
+        {{"board.header.back-btn" | translate}}
+      </ng-container>
     </button>
     <button (click)="showCreateColumnModal()" class="create-column-btn" mat-stroked-button>
       <mat-icon>add</mat-icon>
-      {{ "board.create-column-btn" | translate }}
+      <ng-container *ngIf="screenWidth > 576">
+        {{ "board.create-column-btn" | translate }}
+      </ng-container>
     </button>
   </div>
-  <h1 class="title">{{ boardTitle }}</h1>
-</div>
+  <h1 class="header__title">{{ boardTitle }}</h1>
+</header>

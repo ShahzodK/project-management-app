@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../create-column-modal/create-column-modal.component';
 import * as BoardActions from '../../redux/actions/board.actions';
@@ -10,15 +10,22 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() boardTitle = '';
+  @Input() public boardTitle = '';
 
-  @Input() boardId = '';
+  @Input() public boardId = '';
 
-  @Output() back = new EventEmitter();
+  @Output() private back = new EventEmitter();
+
+  public screenWidth: number;
 
 
-  constructor(    public dialog: MatDialog,
-    private store: Store) {
+  constructor(public dialog: MatDialog, private store: Store) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  private getScreenSize(): void {
+    this.screenWidth = window.innerWidth;
   }
 
   public onNavigateBackClick(): void {
@@ -32,17 +39,14 @@ export class HeaderComponent {
 
     const dialogRef = this.dialog.open(CreateColumnModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(
-      title => {
-        if (!title) return;
+    dialogRef.afterClosed().subscribe(title => {
+      if (!title) return;
 
-        this.store.dispatch(BoardActions.createColumn({
-          column: {
-            boardId: this.boardId,
-            title,
-          },
-        }));
-      },
-    );
+      this.store.dispatch(BoardActions.createColumn({
+        column: {
+          boardId: this.boardId, title,
+        },
+      }));
+    });
   }
 }

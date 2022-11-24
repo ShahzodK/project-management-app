@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { TaskApiService } from '../../services/task-api.service';
@@ -14,15 +14,14 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
-  @Input() column!: IColumn;
+export class ColumnComponent {
+  @Input() public column!: IColumn;
 
-  @Input() boardId!: string;
+  @Input() public boardId!: string;
 
-  @Input() userId!: string;
+  @Input() public userId!: string;
 
   @ViewChild('tasksContainer') tasksContainerRef!: ElementRef;
-
 
   public tasks$ = this.store.select(selectTasks).pipe(
     map((tasks) => tasks.filter(task => task.columnId === this.column._id)),
@@ -32,12 +31,6 @@ export class ColumnComponent implements OnInit {
     private dialog: MatDialog,
     private taskApiService: TaskApiService,
     private store: Store) {
-  }
-
-  ngOnInit(): void {
-    if (!(this.boardId && this.column)) return;
-
-    console.log('init column', this.column._id);
   }
 
   public openCreateTaskModal(): void {
