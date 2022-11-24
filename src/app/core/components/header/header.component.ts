@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private URLSub!: Subscription;
 
-  public screenHeight: number;
-
   public screenWidth: number;
 
   constructor(
@@ -45,18 +43,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private userService: UserService,
   ) {
-    this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-
-    console.log(this.screenHeight, this.screenWidth);
   }
 
   @HostListener('window:resize', ['$event'])
   private getScreenSize(): void {
-    this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-
-    console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
