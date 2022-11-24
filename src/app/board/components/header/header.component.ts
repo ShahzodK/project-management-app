@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../create-column-modal/create-column-modal.component';
 import * as BoardActions from '../../redux/actions/board.actions';
@@ -16,8 +16,16 @@ export class HeaderComponent {
 
   @Output() private back = new EventEmitter();
 
+  public screenWidth: number;
+
 
   constructor(public dialog: MatDialog, private store: Store) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  private getScreenSize(): void {
+    this.screenWidth = window.innerWidth;
   }
 
   public onNavigateBackClick(): void {

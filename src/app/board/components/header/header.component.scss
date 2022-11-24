@@ -1,15 +1,19 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 15px;
   padding: 20px 16px;
   border-bottom: 1px solid #ccc;
-}
 
-.header-btns {
-  display: flex;
-  gap: 15px;
-}
+  white-space: nowrap;
 
-.title {
-  margin: 0 40px 0 0;
+  &__btns {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__title {
+    margin: 0;
+  }
 }
