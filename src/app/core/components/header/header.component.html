@@ -1,49 +1,88 @@
 <mat-toolbar class="header">
-  <mat-toolbar-row class="header-container container">
-    <a class="header-logo" mat-button routerLink="welcome">{{ 'header.logo' | translate }}</a>
-    <nav class="header-nav">
-      <app-locale-toggler class="header-locale-toggler"></app-locale-toggler>
-      <ng-container *ngIf="isLogged$ | async">
-        <ng-container *ngIf="isWelcomePage !== null && isAuthPage !== null">
-          <button (click)="showCreateBoardModal()" *ngIf="!isWelcomePage && !isAuthPage"
-                  mat-button>
+  <mat-toolbar-row class="header__content container">
+    <a class="header__logo"
+       mat-button
+       routerLink="welcome">{{ 'header.logo' | translate }}</a>
+
+    <ng-container *ngIf="screenWidth < 768; else desktop">
+      <button
+        [matMenuTriggerFor]="nav"
+        aria-label="Open menu"
+        mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #nav="matMenu" class="header__nav nav">
+        <app-locale-toggler [isMatMenu]="true" class="nav__locale-toggler"></app-locale-toggler>
+
+        <ng-container *ngIf="isLogged$ | async">
+          <button (click)="showCreateBoardModal()"
+                  *ngIf="isWelcomePage !== null && isAuthPage !== null && !isWelcomePage && !isAuthPage"
+                  class="nav__new-board-btn"
+                  mat-menu-item>
             {{ 'header.nav.create-new-board' | translate }}
           </button>
+          <a
+            *ngIf="isWelcomePage"
+            class="nav__main-page-link"
+            mat-menu-item
+            routerLink="main"
+          >{{ 'header.nav.boards' | translate }}</a>
+          <app-profile-menu (logout)="logout()" [isMatMenu]="true" [username]="(userName$ | async) || ''"></app-profile-menu>
         </ng-container>
 
-        <a
-          *ngIf="isWelcomePage"
-          mat-button
-          routerLink="main"
-        >{{ 'header.nav.boards' | translate }}</a>
-
-        <button [matMenuTriggerFor]="menu" aria-label="Open menu" class="header-profile-menu" color="primary"
-                mat-raised-button>
-          {{ 'header.greeting' | translate }}{{ userName$ | async }}!
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a mat-menu-item routerLink="edit-profile">{{ 'header.nav.edit-profile' | translate }}</a>
-          <button
-            (click)="logout()"
+        <ng-container *ngIf="(isLogged$ | async) === false && (isAuthPage || isWelcomePage)">
+          <a
+            [routerLink]="LOGIN_ROUTE_PATH"
+            class="nav__sign-in-link"
             mat-menu-item
-          >{{ 'header.nav.sign-out' | translate }}</button>
-        </mat-menu>
-      </ng-container>
+          >{{ 'header.nav.sign-in' | translate }}</a>
+          <a
+            [routerLink]="SIGN_UP_ROUTE_PATH"
+            class="nav__sign-up-link"
+            mat-menu-item
+          >{{ 'header.nav.sign-up' | translate }}</a>
+        </ng-container>
+      </mat-menu>
+    </ng-container>
 
-      <ng-container *ngIf="(isLogged$ | async) === false && (isAuthPage || isWelcomePage)">
-        <a
-          [routerLink]="LOGIN_ROUTE_PATH"
-          color="primary"
-          mat-raised-button
-        >{{ 'header.nav.sign-in' | translate }}</a>
-        <a
-          [routerLink]="SIGN_UP_ROUTE_PATH"
-          color="primary"
-          mat-raised-button
-        >{{ 'header.nav.sign-up' | translate }}</a>
-      </ng-container>
+    <ng-template #desktop>
+      <nav class="header__nav nav">
+        <app-locale-toggler [isMatMenu]="false" class="nav__locale-toggler"></app-locale-toggler>
 
-    </nav>
+        <ng-container *ngIf="isLogged$ | async">
+          <button
+            mat-button
+            (click)="showCreateBoardModal()"
+            *ngIf="isWelcomePage !== null && isAuthPage !== null && !isWelcomePage && !isAuthPage"
+            class="nav__new-board-btn">
+            {{ 'header.nav.create-new-board' | translate }}
+          </button>
+          <a
+            *ngIf="isWelcomePage"
+            class="nav__main-page-link"
+            routerLink="main"
+            mat-button
+          >{{ 'header.nav.boards' | translate }}</a>
+          <app-profile-menu (logout)="logout()" [isMatMenu]="false" [username]="(userName$ | async) || ''"></app-profile-menu>
+        </ng-container>
+
+        <ng-container *ngIf="(isLogged$ | async) === false && (isAuthPage || isWelcomePage)">
+          <a
+            [routerLink]="LOGIN_ROUTE_PATH"
+            class="nav__sign-in-link"
+            color="primary"
+            mat-raised-button
+          >{{ 'header.nav.sign-in' | translate }}</a>
+          <a
+            [routerLink]="SIGN_UP_ROUTE_PATH"
+            class="nav__sign-up-link"
+            color="primary"
+            mat-raised-button
+          >{{ 'header.nav.sign-up' | translate }}</a>
+        </ng-container>
+      </nav>
+    </ng-template>
+
   </mat-toolbar-row>
 </mat-toolbar>

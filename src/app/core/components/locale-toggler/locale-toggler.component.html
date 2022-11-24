@@ -1,7 +1,17 @@
-<button class="header-locales" mat-button>
+<button *ngIf="isMatMenu; else notMatMenu" class="header-locales" mat-menu-item>
   <mat-select (selectionChange)="changeLocale($event)" *ngIf="selectedLocale" [(ngModel)]="selectedLocale">
     <mat-option *ngFor="let locale of locales" [value]="locale">
       {{ locale | translate }}
     </mat-option>
   </mat-select>
 </button>
+
+<ng-template #notMatMenu>
+  <button class="header-locales" mat-button>
+  <mat-select (selectionChange)="changeLocale($event)" *ngIf="selectedLocale" [(ngModel)]="selectedLocale">
+    <mat-option *ngFor="let locale of locales" [value]="locale">
+      {{ locale | translate }}
+    </mat-option>
+  </mat-select>
+  </button>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ELocales } from '../../../shared/models';
 import { ELocaleTranslations } from '../../../shared/consts/locale';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,8 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./locale-toggler.component.scss'],
 })
 export class LocaleTogglerComponent implements OnInit {
+  @Input() isMatMenu!: boolean;
+
   public selectedLocale!: string;
 
   public locales: string[] = this.getLocaleTranslations();

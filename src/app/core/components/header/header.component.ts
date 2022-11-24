@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private URLSub!: Subscription;
 
+  public screenHeight: number;
+
+  public screenWidth: number;
+
   constructor(
     private translateService: TranslateService,
     private router: Router,
@@ -41,6 +45,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private userService: UserService,
   ) {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+
+    console.log(this.screenHeight, this.screenWidth);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  private getScreenSize(): void {
+    this.screenHeight = window.innerHeight;
+    this.screenWidth = window.innerWidth;
+
+    console.log(this.screenHeight, this.screenWidth);
   }
 
   ngOnInit(): void {
