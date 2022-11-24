@@ -1,21 +1,22 @@
-<section class="main-page">
-  <div class="container main-page-container">
-    <div class="main-page-header">
-      <h2>{{'main.boards' | translate}}</h2>
-      <mat-form-field appearance="standard">
-        <mat-label class="main-page-search-label">{{ 'main.search' | translate }}</mat-label>
-        <input class="main-page-search-input"
+<section class="main section">
+  <div class="container main__content">
+    <header class="main__header">
+      <h1 class="main__title section__title">{{'main.boards' | translate}}</h1>
+      <mat-form-field class="main__search search" appearance="standard">
+        <mat-label class="search__label">{{ 'main.search' | translate }}</mat-label>
+        <input class="search__input"
         matInput #searchValue>
       </mat-form-field>
-    </div>
-    <div class="board-items-block" *ngIf="(boards$ | async) as boards">
+    </header>
+    <ul class="main__boards boards" *ngIf="(boards$ | async) as boards">
       <app-board-item
+        class="boards__item"
         (boardClick)="onBoardClick($event)"
         *ngFor="let board of boards | search: searchValue.value"
         [board]="board"
       >
       </app-board-item>
-    </div>
+    </ul>
     <p *ngIf="boardError">{{'main.boards-error' | translate}}</p>
   </div>
 </section>

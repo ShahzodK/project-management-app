@@ -1,21 +1,31 @@
-@import '../../../shared/styles/board-item';
-.board{
-  &-card {
-    .delete-button {
-      position: absolute;
-      top: 10px;
-      right: 0;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      img {
-        width: 20px;
-      }
-    }
+@import "src/styles/vars";
+
+.board {
+  height: 100%;
+  background-color: $blue-color-light;
+  cursor: pointer;
+  padding: 40px 35px 30px 15px;
+  overflow: auto;
+
+  &:hover {
+    background: lighten($blue-color-light, 10%);
   }
 
-  &-title {
+  &__title {
     margin-left: auto;
     margin-right: auto;
+    //word-break: break-all;
+    font-weight: 400;
+  }
+
+  &__delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    min-width: auto;
+    padding: 0;
+
+    background-color: transparent;
+    cursor: pointer;
   }
 }
