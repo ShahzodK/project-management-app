@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {CreateColumnModalComponent} from '../create-column-modal/create-column-modal.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CreateColumnModalComponent } from '../create-column-modal/create-column-modal.component';
 import * as BoardActions from '../../redux/actions/board.actions';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-board-page-header',
@@ -39,6 +39,6 @@ export class HeaderComponent {
           boardId: this.boardId, title,
         },
       }));
-    },);
+    });
   }
 }

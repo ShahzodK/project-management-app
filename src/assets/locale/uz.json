@@ -4,6 +4,24 @@
       "title": "Ishonchingiz komilmi?",
       "confirm": "Ha",
       "cancel": "Bekor qilish"
+    },
+    "members": {
+      "first": {
+        "desc": "Made login and improved app performance",
+        "name": "Vasily Gusev"
+      },
+      "second": {
+        "name": "Adilet Maksatuly",
+        "desc": "Made Drag and Drop and implemented communication with the server"
+      },
+      "third": {
+        "name": "Shahzod Kakhkhorov",
+        "desc": "Developed the application architecture, routing and configured NgRx"
+      },
+      "fourth": {
+        "name": "Dimitrii Shabanov",
+        "desc": "Developed the application components"
+      }
     }
   },
   "header": {
@@ -24,24 +42,18 @@
       "cancel-btn": "Bekor qilish"
     }
   },
-  "welcome-app": {
-    "title": "Biz bilan loyihalaringizni osonroq boshqaring",
-    "description": "Dastur nomi - Boshqa jamoa a'zolari bilan loyihalarni qulay va samarali boshqarish uchun bepul dastur!"
-  },
-  "welcome-course": {
-    "title": "Kurs haqida",
-    "description": "Bu loyiha Rolling Scopes Schooldagi bepul Angular kursi doirasida ishlab chiqilgan. Bu kurda siz veb dasturlarni Angular orqali yaratishni o'rganasiz. Kurs 8 hafta davom etadi, unda siz Angularning asosiy sintaksi hamda NgRx bilan tanishasiz. Kursda qatnashish uchun havolani bosing"
-  },
-  "welcome-team": {
-    "title": "Jamoa",
-    "first-member-description": "Dastur ishlashini yaxshiladi va loginni qildi",
-    "second-member-description": "Drag and Drop va server bilan aloqani qildi",
-    "third-member-description": "Dastur Arxitekturasini ishlab chiqdi, routing va NgRx ni sozladi",
-    "forth-member-description": "Dastur komponentlarini ishla chiqdi",
-    "first-member-name": "Vasily Gusev",
-    "second-member-name": "Adilet Maksatuly",
-    "third-member-name": "Shahzod Kakhkhorov",
-    "forth-member-name": "Dimitrii Shabanov"
+  "welcome": {
+    "welcome": {
+      "title": "Biz bilan loyihalaringizni osonroq boshqaring",
+      "description": "Teamwork - Boshqa jamoa a'zolari bilan loyihalarni qulay va samarali boshqarish uchun bepul dastur!"
+    },
+    "course": {
+      "title": "Kurs haqida",
+      "description": "Bu loyiha Rolling Scopes Schooldagi bepul Angular kursi doirasida ishlab chiqilgan. Bu kurda siz veb dasturlarni Angular orqali yaratishni o'rganasiz. Kurs 8 hafta davom etadi, unda siz Angularning asosiy sintaksi hamda NgRx bilan tanishasiz. Kursda qatnashish uchun havolani bosing"
+    },
+    "team": {
+      "title": "Jamoa"
+    }
   },
   "board": {
     "create-column-btn": "Ustun yaratish",

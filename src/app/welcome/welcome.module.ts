@@ -7,10 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { SharedModule } from '../shared/shared.module';
 import { HttpLoaderFactory } from '../app.module';
+import { TeamSvgComponent } from './components/team-svg/team-svg.component';
 
 @NgModule({
   declarations: [
     WelcomePageComponent,
+    TeamSvgComponent,
   ],
   imports: [
     CommonModule,
