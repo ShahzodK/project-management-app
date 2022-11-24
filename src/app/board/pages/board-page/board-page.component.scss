@@ -22,6 +22,7 @@
   display: grid;
   grid-template-rows: 100%;
   grid-auto-flow: column dense;
+  grid-auto-columns: 250px;
   justify-content: flex-start;
   gap: 10px;
 

@@ -27,10 +27,35 @@ export class ColumnComponent {
     map((tasks) => tasks.filter(task => task.columnId === this.column._id)),
   );
 
+  public isEditingTitle: boolean = false;
+
   constructor(
     private dialog: MatDialog,
     private taskApiService: TaskApiService,
     private store: Store) {
+  }
+
+  public editColumn(): void {
+    this.isEditingTitle = true;
+  }
+
+  public cancelEditTitle(): void {
+    this.isEditingTitle = false;
+  }
+
+  public submitEditTitle(newTitle: string): void {
+    this.isEditingTitle = false;
+
+    if (newTitle === this.column.title) return;
+
+    const newColumn: IColumn = {
+      ...this.column,
+      title: newTitle,
+    };
+
+    this.store.dispatch(BoardActions.updateColumnTitle({
+      newColumn,
+    }));
   }
 
   public openCreateTaskModal(): void {

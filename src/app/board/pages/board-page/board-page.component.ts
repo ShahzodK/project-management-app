@@ -44,6 +44,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       this.columns$.subscribe((columns) => {
         if (!columns.length) return;
 
+        // TODO
+        // поместить в эффект
         this.store.dispatch(BoardActions.fetchTasks({
           boardId: boardId,
           columnIds: columns.map(column => column._id),

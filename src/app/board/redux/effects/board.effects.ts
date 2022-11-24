@@ -96,6 +96,21 @@ export class BoardEffects {
       );
   });
 
+  public updateColumnTitle$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnTitle),
+        switchMap(({ newColumn }) =>
+          this.columnApiService.updateColumn(newColumn),
+        ),
+        switchMap((updatedColumn) =>
+          of(
+            BoardActions.updateColumnTitleSuccess({ updatedColumn }),
+          )),
+        catchError(() => of(BoardActions.updateColumnTitleFailed())),
+      );
+  });
+
   public fetchTasks$ = createEffect(() => {
     return this.actions$
       .pipe(
