@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {HttpClient, HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';

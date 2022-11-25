@@ -31,14 +31,14 @@ export class AppEffects {
         switchMap((updatedUser) =>
           of(
             AppActions.updateUserSuccess({ updatedUser }),
-            AppActions.setIsEditSuccess({isSuccess: true})
-          )
+            AppActions.setIsEditSuccess({ isSuccess: true }),
           ),
+        ),
         catchError(() => of(
           AppActions.updateUserFailed(),
-          AppActions.setIsEditSuccess({isSuccess: false})
-          ),
-        )
+          AppActions.setIsEditSuccess({ isSuccess: false }),
+        ),
+        ),
       );
   });
 

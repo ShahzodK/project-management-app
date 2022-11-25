@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { UserApiService } from '../../services/user-api.service';
-import {selectIsEditSuccess, selectUserLogin, selectUserName} from 'src/app/redux/selectors/app.selectors';
+import { selectIsEditSuccess, selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
 import { signUpErrorsLocale } from 'src/app/auth/models/locale-errors.const';
@@ -82,7 +82,7 @@ export class EditProfilePageComponent implements OnInit {
       if (isEditSuccess) {
         this.showSuccessEdit();
       }
-    })
+    });
   }
 
   public get name() {
@@ -185,9 +185,9 @@ export class EditProfilePageComponent implements OnInit {
         _id: id,
         name,
         login: email,
-        password
-      }
-    }))
+        password,
+      },
+    }));
   }
 
   private showSuccessEdit(): void {

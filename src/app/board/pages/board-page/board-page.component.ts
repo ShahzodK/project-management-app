@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { selectBoard, selectColumns } from '../../redux/selectors/board.selectors';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { selectUserId } from '../../../redux/selectors/app.selectors';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { IColumn } from '../../models/column.model';
 
 
