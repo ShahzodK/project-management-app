@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.compone
     MatCardModule,
     MatMenuModule,
     MatToolbarModule,
+    MatTooltipModule,
     NoDataSvgComponent,
   ],
 })

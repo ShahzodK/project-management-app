@@ -76,7 +76,20 @@ export const deleteColumnSuccess = createAction(
 
 export const deleteColumnFailed = createAction(
   '[Board] Delete Column Failed',
-  props<{ columnId: string }>(),
+);
+
+export const updateColumnTitle = createAction(
+  '[Board] Update Column Title',
+  props<{ newColumn: IColumn }>(),
+);
+
+export const updateColumnTitleSuccess = createAction(
+  '[Board] Update Column Title Success',
+  props<{ updatedColumn: IColumn }>(),
+);
+
+export const updateColumnTitleFailed = createAction(
+  '[Board] Update Column Title Failed',
 );
 
 export const fetchTasks = createAction(

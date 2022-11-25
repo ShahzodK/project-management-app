@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClient } from '@angular/common/http';
 import { BoardRoutingModule } from './board-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -21,7 +21,7 @@ import { boardReducer } from './redux/reducers/board.reducer';
 import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { SortTasksPipe } from './pipes/sort-tasks.pipe';
+import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
 
 @NgModule({
   declarations: [
@@ -31,13 +31,12 @@ import { SortTasksPipe } from './pipes/sort-tasks.pipe';
     HeaderComponent,
     CreateColumnModalComponent,
     CreateTaskModalComponent,
-    SortTasksPipe,
+    SortByOrderPipe,
   ],
   imports: [
     CommonModule,
     BoardRoutingModule,
     SharedModule,
-    HttpClientModule,
     FormsModule,
     TranslateModule,
     TranslateModule.forChild({

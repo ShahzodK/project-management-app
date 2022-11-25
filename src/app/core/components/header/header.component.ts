@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { FullRoutePaths } from '../../constants/routes';
 import { AppRoutePaths } from '../../enums/routes.enum';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -33,6 +33,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private URLSub!: Subscription;
 
+  public screenWidth: number;
+
   constructor(
     private translateService: TranslateService,
     private router: Router,
@@ -41,6 +43,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private userService: UserService,
   ) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  private getScreenSize(): void {
+    this.screenWidth = window.innerWidth;
   }
 
   ngOnInit(): void {
@@ -61,7 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public showCreateBoardModal(): void {
-    const dialogRef = this.dialog.open(CreateBoardModalComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(CreateBoardModalComponent, dialogConfig);
 
     dialogRef
       .afterClosed()

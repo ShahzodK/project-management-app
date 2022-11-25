@@ -14,11 +14,11 @@ export class TaskComponent {
 
   constructor(private dialog: MatDialog, private store: Store) {}
 
-  @Input() boardId!: string;
+  @Input() public task!: ITask;
 
-  @Input() columnId!: string;
+  @Input() public boardId!: string;
 
-  @Input() task!: ITask;
+  @Input() public columnId!: string;
 
   public showDeleteTaskModal(): void {
     const dialogConfig = new MatDialogConfig();

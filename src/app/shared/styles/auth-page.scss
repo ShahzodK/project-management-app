@@ -1,0 +1,46 @@
+@import "src/styles/vars";
+
+.auth {
+  height: 100%;
+  padding: 50px 0;
+  background-color: #fafafa;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+  }
+
+  &__form {
+    min-width: 190px;
+
+    background-color: #ffffff;
+    box-shadow: rgba(60, 66, 87, 0.12) 0 7px 14px 0, rgba(0, 0, 0, 0.12) 0 3px 6px 0;
+  }
+
+  &__sign-up-link {
+    margin-top: 30px;
+    text-decoration: none;
+    color: #3f51b5;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  border-radius: 5px;
+
+  &__submit-btn {
+    align-self: flex-end;
+  }
+}

@@ -6,13 +6,13 @@
     padding-bottom: 20px;
   }
 
-  &-container {
+  &__content {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
 
-  &-info {
+  &__info {
     flex-grow: 1;
 
     display: flex;
@@ -26,8 +26,10 @@
     }
   }
 
-  &-links {
+  &__links {
     flex-grow: 1;
+    margin: 0;
+    padding: 0;
 
     display: flex;
     gap: 10px;
@@ -37,22 +39,22 @@
     }
   }
 
-  p {
+  &__year {
     color: white;
     margin-bottom: 0;
   }
 
-  img {
-    max-width: 80px;
-  }
-
-  &-link {
+  &__link {
     color: #ffffff;
     text-decoration: none;
+
+    &:hover {
+      color: darken(#ffffff, 10%) !important;
+    }
   }
 
-  &-link:hover {
-    color: darken(#ffffff, 10%) !important;
+  &__logo-img {
+    max-width: 80px;
   }
 }
 

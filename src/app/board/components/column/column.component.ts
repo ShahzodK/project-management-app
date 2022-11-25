@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { TaskApiService } from '../../services/task-api.service';
@@ -14,19 +14,20 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
-  @Input() column!: IColumn;
+export class ColumnComponent {
+  @Input() public column!: IColumn;
 
-  @Input() boardId!: string;
+  @Input() public boardId!: string;
 
-  @Input() userId!: string;
+  @Input() public userId!: string;
 
   @ViewChild('tasksContainer') tasksContainerRef!: ElementRef;
-
 
   public tasks$ = this.store.select(selectTasks).pipe(
     map((tasks) => tasks.filter(task => task.columnId === this.column._id)),
   );
+
+  public isEditingTitle: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -34,14 +35,35 @@ export class ColumnComponent implements OnInit {
     private store: Store) {
   }
 
-  ngOnInit(): void {
-    if (!(this.boardId && this.column)) return;
+  public editColumn(): void {
+    this.isEditingTitle = true;
+  }
 
-    console.log('init column', this.column._id);
+  public cancelEditTitle(): void {
+    this.isEditingTitle = false;
+  }
+
+  public submitEditTitle(newTitle: string): void {
+    this.isEditingTitle = false;
+
+    if (newTitle === this.column.title) return;
+
+    const newColumn: IColumn = {
+      ...this.column,
+      title: newTitle,
+    };
+
+    this.store.dispatch(BoardActions.updateColumnTitle({
+      newColumn,
+    }));
   }
 
   public openCreateTaskModal(): void {
-    const dialogRef = this.dialog.open(CreateTaskModalComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(CreateTaskModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((task: { title: string, description: string }) => {
       if (!task) return;

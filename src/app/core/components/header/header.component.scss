@@ -1,24 +1,39 @@
 .header {
   border-bottom: 1px solid #3f51b5;
 
-  &-container {
+  &__content {
     justify-content: space-between;
   }
 
-  &-logo {
+  &__logo {
+    flex-shrink: 0;
     font-size: 1.5rem;
     color: inherit;
     text-decoration: none;
   }
 
-  &-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+  &__nav {
   }
+}
 
-  &-profile-menu {
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  &__new-board-btn {}
+  &__main-page-link {}
+
+  &__profile-menu {
     padding: 0 10px 0 16px;
   }
+
+  &__sign-in-link {}
+  &__sign-up-link {}
+}
+
+.profile-menu {
+  &__sign-out-btn {}
+  &__edit-profile-link {}
 }

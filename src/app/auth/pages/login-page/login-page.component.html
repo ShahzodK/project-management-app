@@ -1,8 +1,10 @@
-<section class="auth-page">
-  <div class="auth-page-container container">
-    <h1 class="auth-page-title">{{ 'auth.sign-in.title' | translate }}</h1>
-    <form (ngSubmit)="submit()" [formGroup]="loginForm" class="auth-page-form">
-      <mat-form-field appearance="outline">
+<section class="auth section">
+  <div class="auth__content container">
+    <h1 class="auth__title section__title">{{ 'auth.sign-in.title' | translate }}</h1>
+    <form (ngSubmit)="submit()"
+          [formGroup]="loginForm"
+          class="auth__form auth-form">
+      <mat-form-field class="auth-form__email" appearance="outline">
         <mat-label>{{ 'auth.forms.field-names.email' | translate }}</mat-label>
         <input
           formControlName="email"
@@ -13,7 +15,7 @@
         <mat-error *ngIf="hasEmailError">{{ getEmailErrorMessage() | translate }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field class="auth-form__password" appearance="outline">
         <mat-label>{{'auth.forms.field-names.password' | translate}}</mat-label>
         <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput/>
         <button
@@ -30,13 +32,13 @@
       </mat-form-field>
 
       <button
-        class="auth-page-submit-btn"
+        class="auth-form__submit-btn"
         color="primary"
         mat-raised-button
         type="submit"
       >{{ 'auth.sign-in.submit' | translate }}</button>
     </form>
     <a [routerLink]="SIGN_UP_ROUTE_PATH"
-       class="auth-page-sign-up-link">{{ 'auth.sign-in.sign-up-link' | translate }}</a>
+       class="auth__sign-up-link">{{ 'auth.sign-in.sign-up-link' | translate }}</a>
   </div>
 </section>

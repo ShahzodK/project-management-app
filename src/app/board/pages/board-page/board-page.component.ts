@@ -22,8 +22,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   private routeParamsSub!: Subscription;
 
-  private boardId: string | null = null;
-
   public userId$ = this.store.select(selectUserId);
 
   public draggedColumn: IColumn | undefined;
@@ -44,17 +42,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       if (!boardId) throw this.getBoardIdError();
 
       this.store.dispatch(BoardActions.boardPageOpened({ boardId }));
-
-      this.boardId = boardId;
-
-      this.columns$.subscribe((columns) => {
-        if (!columns.length) return;
-
-        this.store.dispatch(BoardActions.fetchTasks({
-          boardId: boardId,
-          columnIds: columns.map(column => column._id),
-        }));
-      });
     });
   }
 
