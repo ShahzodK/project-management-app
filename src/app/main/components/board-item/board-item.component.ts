@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IBoard } from 'src/app/main/models/board.model';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { Store } from '@ngrx/store';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import * as BoardsActions from '../../redux/actions/boards.actions';
 
 @Component({
@@ -29,7 +29,11 @@ export class BoardItemComponent {
 
     if (!this.board?._id) return;
 
-    const dialogRef = this.dialog.open(ConfirmModalComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
 
     dialogRef
       .afterClosed()

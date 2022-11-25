@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../../core/services/user.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 
 
 @Component({
@@ -63,6 +65,7 @@ export class EditProfilePageComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -143,10 +146,20 @@ export class EditProfilePageComponent implements OnInit {
     }
   }
 
-  public deleteUser(): void {
-    const userId = this.userService.getUserId();
+  public showDeleteUserModal(): void {
+    const dialogConfig = new MatDialogConfig();
 
-    this.store.dispatch(UserActions.deleteUser({ userId }));
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
+      if (isConfirmed) {
+        const userId = this.userService.getUserId();
+
+        this.store.dispatch(UserActions.deleteUser({ userId }));
+      }
+    });
   }
 
   public submit(): void {

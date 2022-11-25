@@ -10,7 +10,7 @@ import { FullRoutePaths } from '../../constants/routes';
 import { AppRoutePaths } from '../../enums/routes.enum';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -69,7 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public showCreateBoardModal(): void {
-    const dialogRef = this.dialog.open(CreateBoardModalComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(CreateBoardModalComponent, dialogConfig);
 
     dialogRef
       .afterClosed()
