@@ -42,7 +42,7 @@
     </ng-template>
   </header>
   <ul #tasksContainer *ngIf="(tasks$ | async) as tasks" class="column__tasks tasks">
-    <li *ngFor="let task of tasks | sortTasks: 'order'" class="tasks__item task">
+    <li *ngFor="let task of tasks | sortByOrder" class="tasks__item task">
       <app-task [boardId]="boardId" [columnId]="column._id" [task]="task">
       </app-task>
     </li>

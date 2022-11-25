@@ -10,7 +10,7 @@
        class="board__content">
     <ng-container *ngIf="(columns$ | async) as columns">
       <ul *ngIf="columns.length; else noColumns" class="board__columns columns">
-        <li *ngFor="let column of columns" class="columns__item">
+        <li *ngFor="let column of columns | sortByOrder" class="columns__item">
           <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
         </li>
       </ul>
