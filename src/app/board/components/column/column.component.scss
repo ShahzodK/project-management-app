@@ -9,7 +9,7 @@
   border-radius: 5px;
   background-color: #ffffff;
 
-  &-header {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -20,30 +20,33 @@
     }
   }
 
-  &-title {
+  &__title {
     margin: 0;
     font-weight: 700;
     font-size: 18px;
     word-break: break-all;
   }
 
-  &-delete-btn {
+  &__delete-btn {
     min-width: 40px;
     padding: 0;
   }
+
+  &__create-task-btn {
+    margin: 0 15px 20px 15px;
+  }
 }
 
-.create-task-btn {
-  margin: 0 15px 20px 15px;
-}
-
-.tasks-list {
+.tasks {
   list-style-type: none;
   padding: 20px 15px 0 15px;
+
+  &__item {
+    margin-bottom: 15px;
+  }
 }
 
 .task {
-  margin-bottom: 15px;
 }
 
 .edit-column-form {
@@ -52,7 +55,9 @@
   &__field {
     max-width: 100%;
   }
-  &__input {}
+
+  &__input {
+  }
 
   &__submit-btn,
   &__cancel-btn {
