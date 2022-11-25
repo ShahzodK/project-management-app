@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BoardRoutingModule } from './board-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -36,7 +36,6 @@ import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
     CommonModule,
     BoardRoutingModule,
     SharedModule,
-    HttpClientModule,
     FormsModule,
     TranslateModule,
     TranslateModule.forChild({

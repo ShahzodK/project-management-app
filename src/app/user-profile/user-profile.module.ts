@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserApiService } from './services/user-api.service';
@@ -17,7 +17,6 @@ import { HttpLoaderFactory } from '../app.module';
   imports: [
     CommonModule,
     UserProfileRoutingModule,
-    HttpClientModule,
     ReactiveFormsModule,
     SharedModule,
     TranslateModule.forChild({

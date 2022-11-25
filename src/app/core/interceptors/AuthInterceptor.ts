@@ -7,7 +7,6 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth/services/auth.service';
 import { FullRoutePaths } from '../constants/routes';
 
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
