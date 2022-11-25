@@ -129,7 +129,8 @@
         "server": {
           "409": "Bunday loginlik foydalanuvchi mavjud!",
           "404": "Tarmoq xatosi!",
-          "403": "Login yoki Parol xato!"
+          "401": "Login yoki Parol xato!",
+          "403": "Invalid token!"
         },
         "close-btn": "Yopish"
       }
