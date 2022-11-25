@@ -8,6 +8,7 @@ import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectColumns } from '../selectors/board.selectors';
 import { TaskApiService } from '../../services/task-api.service';
+import {IColumn} from "../../models/column.model";
 
 @Injectable({
   providedIn: 'root',
@@ -50,8 +51,18 @@ export class BoardEffects {
       .pipe(
         ofType(BoardActions.fetchColumns),
         switchMap(({ boardId }) =>
-          this.columnApiService.getColumns(boardId)),
-        map(columns => BoardActions.fetchColumnsSuccess({ columns })),
+          this.columnApiService.getColumns(boardId)
+            .pipe(
+              map((columns) => ({columns, boardId}))
+            )
+        ),
+        switchMap(({columns, boardId}) => of(
+            BoardActions.fetchColumnsSuccess({ columns }),
+            BoardActions.fetchTasks({
+              columnIds: columns.map((column: IColumn) => column._id),
+              boardId
+            }),
+          )),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
       );
   });
@@ -93,6 +104,21 @@ export class BoardEffects {
             BoardActions.deleteTasksAfterColumnDelete({ columnId }),
           )),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
+      );
+  });
+
+  public updateColumnTitle$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnTitle),
+        switchMap(({ newColumn }) =>
+          this.columnApiService.updateColumn(newColumn),
+        ),
+        switchMap((updatedColumn) =>
+          of(
+            BoardActions.updateColumnTitleSuccess({ updatedColumn }),
+          )),
+        catchError(() => of(BoardActions.updateColumnTitleFailed())),
       );
   });
 

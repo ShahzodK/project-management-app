@@ -27,8 +27,8 @@ export class ColumnApiService {
     });
   }
 
-  public updateColumn(columnId: string, column: Omit<IColumn, '_id'>): Observable<IColumn> {
-    const { title, order, boardId } = column;
+  public updateColumn(column: IColumn): Observable<IColumn> {
+    const { title, order, boardId, _id: columnId } = column;
 
     return this.http.put<IColumn>(`boards/${boardId}/columns/${columnId}`, {
       title,

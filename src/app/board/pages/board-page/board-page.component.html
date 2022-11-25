@@ -1,20 +1,24 @@
-<section *ngIf="(board$ | async) as board" class="board-page">
+<section *ngIf="(board$ | async) as board" class="board">
   <app-board-page-header
-    [boardId]="board._id" (back)="navigateBack()" [boardTitle]="board.title || ''">
+    class="board__header"
+    [boardId]="board._id"
+    (back)="navigateBack()"
+    [boardTitle]="board.title || ''">
   </app-board-page-header>
 
-  <div *ngIf="userId$ | async as userId" class="board-page-content">
+  <div *ngIf="userId$ | async as userId"
+       class="board__content">
     <ng-container *ngIf="(columns$ | async) as columns">
-      <ul *ngIf="columns.length; else noColumns" class="columns-list">
-        <li *ngFor="let column of columns" class="columns-item">
+      <ul *ngIf="columns.length; else noColumns" class="board__columns columns">
+        <li *ngFor="let column of columns | sortByOrder" class="columns__item">
           <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
         </li>
       </ul>
 
       <ng-template #noColumns>
         <div class="no-data">
-          <h1 class="no-data-title">No columns! Create one.</h1>
-          <app-no-data-svg class="no-data-image"></app-no-data-svg>
+          <h1 class="no-data__title">No columns! Create one.</h1>
+          <app-no-data-svg class="no-data__image"></app-no-data-svg>
         </div>
       </ng-template>
     </ng-container>

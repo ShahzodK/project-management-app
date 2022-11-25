@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateColumnModalComponent } from '../create-column-modal/create-column-modal.component';
 import * as BoardActions from '../../redux/actions/board.actions';

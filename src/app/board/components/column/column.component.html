@@ -1,19 +1,53 @@
 <div class="column">
-  <header class="column-header">
-    <h3 class="column-title">
-      {{ column.title }}
-    </h3>
-    <button mat-button class="column-delete-btn">
-      <mat-icon (click)="showDeleteColumnModal()" class="delete-task">delete</mat-icon>
-    </button>
+  <header class="column__header"
+          [ngClass]="isEditingTitle ? 'column__header--editing' : ''">
+    <ng-container *ngIf="isEditingTitle; else notEditing">
+      <form (ngSubmit)="submitEditTitle(editTitleInput.value)"
+            class="edit-column-form">
+        <mat-form-field appearance="standard" class="edit-column-form__field">
+          <input #editTitleInput
+                 [value]="column.title"
+                 class="edit-column-form__input" matInput>
+          <button
+            class="edit-column-form__submit-btn"
+            mat-icon-button
+            matSuffix
+            matTooltip="Submit"
+            type="submit">
+            <mat-icon>check</mat-icon>
+          </button>
+          <button
+            (click)="cancelEditTitle()"
+            type="button"
+            class="edit-column-form__cancel-btn"
+            mat-icon-button
+            matSuffix
+            matTooltip="Cancel">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </ng-container>
+
+    <ng-template #notEditing>
+      <button (click)="editColumn()" mat-button>
+        <h3 class="column__title">
+          {{ column.title }}
+        </h3>
+      </button>
+
+      <button class="column__delete-btn" mat-button>
+        <mat-icon (click)="showDeleteColumnModal()" class="delete-task">delete</mat-icon>
+      </button>
+    </ng-template>
   </header>
-  <ul *ngIf="(tasks$ | async) as tasks" class="tasks-list" #tasksContainer>
-    <li *ngFor="let task of tasks | sortTasks: 'order'" class="task">
+  <ul #tasksContainer *ngIf="(tasks$ | async) as tasks" class="column__tasks tasks">
+    <li *ngFor="let task of tasks | sortByOrder" class="tasks__item task">
       <app-task [boardId]="boardId" [columnId]="column._id" [task]="task">
       </app-task>
     </li>
   </ul>
-  <button (click)="openCreateTaskModal()" class="create-task-btn" mat-button>
+  <button (click)="openCreateTaskModal()" class="column__create-task-btn" mat-button>
     <mat-icon>add</mat-icon>
     {{"board.create-task-btn" | translate}}
   </button>
