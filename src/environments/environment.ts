@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   locales: Object.keys(ELocales),
   defaultLocale: ELocales.EN,
-  baseUrl: 'https://project-management-shahzodk.herokuapp.com/',
+  baseUrl: 'https://final-task-backend-production-b20b.up.railway.app/',
 };
 
 /*
