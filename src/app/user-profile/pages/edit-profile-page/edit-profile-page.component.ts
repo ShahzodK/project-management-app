@@ -11,7 +11,6 @@ import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AppRoutePaths } from '../../../core/enums/routes.enum';
 import { UserService } from '../../../core/services/user.service';
 
 
@@ -145,12 +144,9 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   public deleteUser(): void {
-    this.userApi.deleteUser(this.userService.getUserId()).subscribe({
-      complete: () => {
-        this.store.dispatch(UserActions.resetUser());
-        this.router.navigate([AppRoutePaths.WELCOME]);
-      },
-    });
+    const userId = this.userService.getUserId();
+
+    this.store.dispatch(UserActions.deleteUser({ userId }));
   }
 
   public submit(): void {

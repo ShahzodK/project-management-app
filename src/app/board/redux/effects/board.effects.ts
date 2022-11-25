@@ -8,7 +8,7 @@ import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectColumns } from '../selectors/board.selectors';
 import { TaskApiService } from '../../services/task-api.service';
-import {IColumn} from "../../models/column.model";
+import { IColumn } from '../../models/column.model';
 
 @Injectable({
   providedIn: 'root',
@@ -53,16 +53,16 @@ export class BoardEffects {
         switchMap(({ boardId }) =>
           this.columnApiService.getColumns(boardId)
             .pipe(
-              map((columns) => ({columns, boardId}))
-            )
+              map((columns) => ({ columns, boardId })),
+            ),
         ),
-        switchMap(({columns, boardId}) => of(
-            BoardActions.fetchColumnsSuccess({ columns }),
-            BoardActions.fetchTasks({
-              columnIds: columns.map((column: IColumn) => column._id),
-              boardId
-            }),
-          )),
+        switchMap(({ columns, boardId }) => of(
+          BoardActions.fetchColumnsSuccess({ columns }),
+          BoardActions.fetchTasks({
+            columnIds: columns.map((column: IColumn) => column._id),
+            boardId,
+          }),
+        )),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
       );
   });

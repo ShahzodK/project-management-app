@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '../models/user.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserApiService {
 
   constructor(private http: HttpClient) { }

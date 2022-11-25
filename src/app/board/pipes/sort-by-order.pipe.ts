@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'sortByOrder'
+  name: 'sortByOrder',
 })
 export class SortByOrderPipe implements PipeTransform {
 
-  transform<T extends {order: number}>(items: T[]): T[] {
+  transform<T extends { order: number }>(items: T[]): T[] {
     if (!items.length) return items;
 
     return [...items]
