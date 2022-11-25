@@ -51,7 +51,6 @@ export const boardReducer = createReducer(
     };
   }),
   on(BoardActions.updateColumnOrderSuccess, (state, { updatedColumns }): IBoardState => {
-    console.log(updatedColumns);
     return {
       ...state,
       columns: updatedColumns,

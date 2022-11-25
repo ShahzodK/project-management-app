@@ -101,23 +101,9 @@ export class BoardEffects {
     return this.actions$
       .pipe(
         ofType(BoardActions.updateColumnOrder),
-        concatLatestFrom(() => this.store.select(selectColumns)),
-        switchMap(([{ _id, order }, columns]) => {
-          const columnsClone = JSON.parse(JSON.stringify(columns));
-          columnsClone.forEach((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>) => {
-            delete column.boardId;
-            delete column.title;
-            if (column._id !== _id && column.order >= order) {
-              column.order += 1;
-            }
-            if (column._id !== _id && column.order <= order) {
-              column.order -= 1;
-            }
-            if (column._id == _id) {
-              column.order = order;
-            }
-          });
-          return this.columnApiService.updateColumnOrder(columnsClone);
+        switchMap(({ updatedColumns }) => {
+          console.log(updatedColumns);
+          return this.columnApiService.updateColumnOrder(updatedColumns);
         }),
         map((updatedColumns) => {
           updatedColumns = updatedColumns.sort((a, b) => a.order - b.order);

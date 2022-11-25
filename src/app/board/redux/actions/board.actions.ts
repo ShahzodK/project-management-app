@@ -52,7 +52,7 @@ export const createColumnFailed = createAction(
 
 export const updateColumnOrder = createAction(
   '[Board] Update Column order',
-  props<{ _id: string, title: string, boardId: string, order: number }>(),
+  props<{ updatedColumns: IColumn[] }>(),
 );
 
 export const updateColumnOrderSuccess = createAction(

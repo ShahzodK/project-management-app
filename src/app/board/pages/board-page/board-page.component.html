@@ -5,7 +5,7 @@
 
   <div *ngIf="userId$ | async as userId" class="board-page-content">
     <ng-container *ngIf="(columns$ | async) as columns">
-      <ul *ngIf="columns.length; else noColumns" class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="reorderColumns($event)">
+      <ul *ngIf="columns.length; else noColumns" class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="reorderColumns($event, columns)">
         <li *ngFor="let column of columns" class="columns-item"  cdkDrag [cdkDragData]="column">
           <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
         </li>

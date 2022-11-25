@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { selectBoard, selectColumns } from '../../redux/selectors/board.selectors';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { selectUserId } from '../../../redux/selectors/app.selectors';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { IColumn } from '../../models/column.model';
 
 
@@ -27,6 +27,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   public userId$ = this.store.select(selectUserId);
 
   public draggedColumn: IColumn | undefined;
+
+  public columns: IColumn[] | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,12 +70,42 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  public reorderColumns(event: CdkDragDrop<string[]>) {
-    // console.log(event.previousContainer);
-    const column = JSON.parse(JSON.stringify(event.item.data));
-    console.log(column);
-    const currentId = event.currentIndex;
-    column.order = currentId;
-    this.store.dispatch(BoardActions.updateColumnOrder(column));
+  public reorderColumns(event: CdkDragDrop<string[]>, columns: IColumn[]) {
+    const updatedColumns: IColumn[] = this.moveItemInArray(columns, event.previousIndex, event.currentIndex);
+    this.store.dispatch(BoardActions.updateColumnOrder({ updatedColumns }));
   }
+
+  public clamp(value: number, max: number): number {
+    return Math.max(0, Math.min(max, value));
+  }
+
+  public moveItemInArray(arraySource: IColumn[], fromIndex: number, toIndex: number): IColumn[] {
+    const array = JSON.parse(JSON.stringify(arraySource));
+    const from = this.clamp(fromIndex, array.length - 1);
+    const to = this.clamp(toIndex, array.length - 1);
+
+    if (from === to) {
+      return [];
+    }
+
+    const target = array[from];
+    const delta = to < from ? -1 : 1;
+
+    for (let i = from; i !== to; i += delta) {
+      array[i] = array[i + delta];
+    }
+
+    array.forEach((column: IColumn, i: number) => {
+      column.order = i;
+    });
+
+    array[to] = target;
+    return array.map((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>, i: number) => {
+      delete column.boardId;
+      delete column.title;
+      column.order = i;
+      return column;
+    });
+  }
+
 }
