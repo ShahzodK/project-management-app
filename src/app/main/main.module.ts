@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 import { MainRoutingModule } from './main-routing.module';
@@ -32,7 +32,6 @@ import { boardsReducer } from './redux/reducers/boards.reducer';
   imports: [
     CommonModule,
     MainRoutingModule,
-    HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,

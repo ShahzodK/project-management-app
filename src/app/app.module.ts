@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClient, HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule, MissingTranslationHandler } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -16,10 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MissingTranslationService } from './shared/services/missing-translation.service';
 import { AuthInterceptor } from './core/interceptors/AuthInterceptor';
-import { BoardEffects } from './board/redux/effects/board.effects';
 import { FormsModule } from '@angular/forms';
 import { appReducer } from './redux/reducers/app.reducer';
-import { BoardsEffects } from './main/redux/effects/boards.effects';
+import { AppEffects } from './redux/effects/app.effects';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -56,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         strictActionWithinNgZone: true,
       },
     }),
-    EffectsModule.forRoot([BoardsEffects, BoardEffects]),
+    EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [

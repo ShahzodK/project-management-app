@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '../models/user.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserApiService {
 
   constructor(private http: HttpClient) { }
 
-  public updateUser(id: string, name: string, login: string, password: string): Observable<IUser> {
+  public updateUser(user: IUser): Observable<IUser> {
+    const {_id: id, name, login, password} = user;
+
     return this.http.put<IUser>(`users/${id}`, {
       name,
       login,

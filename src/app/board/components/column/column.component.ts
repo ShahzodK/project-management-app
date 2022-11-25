@@ -59,7 +59,11 @@ export class ColumnComponent {
   }
 
   public openCreateTaskModal(): void {
-    const dialogRef = this.dialog.open(CreateTaskModalComponent);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(CreateTaskModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((task: { title: string, description: string }) => {
       if (!task) return;

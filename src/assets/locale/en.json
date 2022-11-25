@@ -117,7 +117,8 @@
         "server": {
           "409": "User login already exists!",
           "404": "Network error!",
-          "403": "Login or password is wrong!"
+          "401": "Login or password is wrong!",
+          "403": "Invalid token!"
         },
         "close-btn": "Close"
       }
