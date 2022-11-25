@@ -5,18 +5,12 @@
 
   <div *ngIf="userId$ | async as userId" class="board-page-content">
     <ng-container *ngIf="(columns$ | async) as columns">
-      <ul *ngIf="columns.length; else noColumns" class="columns-list">
-        <li *ngFor="let column of columns" class="columns-item">
+      <ul *ngIf="columns.length; else noColumns" class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="reorderColumns($event)">
+        <li *ngFor="let column of columns" class="columns-item"  cdkDrag [cdkDragData]="column">
           <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
         </li>
       </ul>
 
-    <ul class="columns-list" *ngIf="(columns$ | async) as columns" cdkDropList
-    (cdkDropListDropped)='dropColumns($event)'>
-      <li class="columns-item" *ngFor="let column of columns" cdkDrag>
-        <app-column [column]="column" [boardId]="board.id" [userId]="userId"></app-column>
-      </li>
-    </ul>
       <ng-template #noColumns>
         <div class="no-data">
           <h1 class="no-data-title">No columns! Create one.</h1>

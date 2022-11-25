@@ -4,8 +4,3 @@ export interface IColumn {
   order: number,
   boardId: string
 }
-
-export interface IUpdatedColumn {
-  _id: string,
-  order: number;
-}

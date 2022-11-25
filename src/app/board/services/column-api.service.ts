@@ -36,6 +36,13 @@ export class ColumnApiService {
     });
   }
 
+  public updateColumnOrder(columns: IColumn[]): Observable<IColumn[]> {
+    console.log(columns);
+    return this.http.patch<IColumn[]>('columnsSet',
+      columns,
+    );
+  }
+
   public deleteColumn(boardId: string, columnId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}`);
   }

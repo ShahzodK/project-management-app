@@ -8,6 +8,7 @@ import { ColumnApiService } from '../../services/column-api.service';
 import { Store } from '@ngrx/store';
 import { selectColumns } from '../selectors/board.selectors';
 import { TaskApiService } from '../../services/task-api.service';
+import { IColumn } from '../../models/column.model';
 
 @Injectable({
   providedIn: 'root',
@@ -93,6 +94,36 @@ export class BoardEffects {
             BoardActions.deleteTasksAfterColumnDelete({ columnId }),
           )),
         catchError(() => of(BoardActions.fetchColumnsFailed())),
+      );
+  });
+
+  public updateColumnOrder$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnOrder),
+        concatLatestFrom(() => this.store.select(selectColumns)),
+        switchMap(([{ _id, order }, columns]) => {
+          const columnsClone = JSON.parse(JSON.stringify(columns));
+          columnsClone.forEach((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>) => {
+            delete column.boardId;
+            delete column.title;
+            if (column._id !== _id && column.order >= order) {
+              column.order += 1;
+            }
+            if (column._id !== _id && column.order <= order) {
+              column.order -= 1;
+            }
+            if (column._id == _id) {
+              column.order = order;
+            }
+          });
+          return this.columnApiService.updateColumnOrder(columnsClone);
+        }),
+        map((updatedColumns) => {
+          updatedColumns = updatedColumns.sort((a, b) => a.order - b.order);
+          return BoardActions.updateColumnOrderSuccess({ updatedColumns });
+        }),
+        catchError(() => of(BoardActions.updateColumnOrderFailed())),
       );
   });
 

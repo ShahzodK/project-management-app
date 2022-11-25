@@ -50,6 +50,13 @@ export const boardReducer = createReducer(
       columns: newColumns,
     };
   }),
+  on(BoardActions.updateColumnOrderSuccess, (state, { updatedColumns }): IBoardState => {
+    console.log(updatedColumns);
+    return {
+      ...state,
+      columns: updatedColumns,
+    };
+  }),
   on(BoardActions.deleteTaskSuccess, (state, { taskId }): IBoardState => {
     const newTasks = [...state.tasks].filter(task => task._id !== taskId);
 
