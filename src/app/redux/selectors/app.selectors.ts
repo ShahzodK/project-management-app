@@ -22,3 +22,9 @@ export const selectUserId = createSelector(
   selectAppState,
   (state) => state._id,
 );
+
+export const selectIsEditSuccess = createSelector(
+  selectAppState,
+  (state) => state.isEditSuccess,
+);
+

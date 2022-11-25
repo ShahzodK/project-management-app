@@ -20,6 +20,28 @@ export class AppEffects {
   ) {
   }
 
+  public updateUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AppActions.updateUser),
+        switchMap(({ user }) =>
+          this.userApiService
+            .updateUser(user),
+        ),
+        switchMap((updatedUser) =>
+          of(
+            AppActions.updateUserSuccess({ updatedUser }),
+            AppActions.setIsEditSuccess({isSuccess: true})
+          )
+          ),
+        catchError(() => of(
+          AppActions.updateUserFailed(),
+          AppActions.setIsEditSuccess({isSuccess: false})
+          ),
+        )
+      );
+  });
+
   public deleteUser$ = createEffect(() => {
     return this.actions$
       .pipe(

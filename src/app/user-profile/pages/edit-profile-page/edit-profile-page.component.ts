@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { UserApiService } from '../../services/user-api.service';
-import { selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
+import {selectIsEditSuccess, selectUserLogin, selectUserName} from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
 import { signUpErrorsLocale } from 'src/app/auth/models/locale-errors.const';
@@ -31,6 +31,7 @@ export class EditProfilePageComponent implements OnInit {
 
   public hidePassword = true;
 
+  private isEditSuccess$ = this.store.select(selectIsEditSuccess);
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -76,6 +77,12 @@ export class EditProfilePageComponent implements OnInit {
     this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
       this.email!.setValue(email);
     });
+
+    this.isEditSuccess$.subscribe(isEditSuccess => {
+      if (isEditSuccess) {
+        this.showSuccessEdit();
+      }
+    })
   }
 
   public get name() {
@@ -173,26 +180,23 @@ export class EditProfilePageComponent implements OnInit {
     const email = this.editProfileForm.getRawValue().email;
     const password = this.editProfileForm.getRawValue().password;
 
-
-    this.userApi.updateUser(id, name, email, password).subscribe(() => {
-      const user = {
-        name,
+    this.store.dispatch(UserActions.updateUser({
+      user: {
         _id: id,
+        name,
         login: email,
-      };
-
-      this.store.dispatch(UserActions.setLoggedUser({ user }));
-
-      const message = this.translateService.instant('edit-profile.notification.success');
-      const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
-
-      this.showSuccessEdit(message, buttonText);
-    });
+        password
+      }
+    }))
   }
 
-  private showSuccessEdit(message: string, buttonText: string): void {
+  private showSuccessEdit(): void {
+    const message = this.translateService.instant('edit-profile.notification.success');
+    const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
+
     this.snackBar.open(message, buttonText, {
-      panelClass: 'notification',
+      panelClass: ['notification', 'notification--success'],
+      duration: 2000,
     });
   }
 

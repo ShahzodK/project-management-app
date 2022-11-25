@@ -10,7 +10,9 @@ export class UserApiService {
 
   constructor(private http: HttpClient) { }
 
-  public updateUser(id: string, name: string, login: string, password: string): Observable<IUser> {
+  public updateUser(user: IUser): Observable<IUser> {
+    const {_id: id, name, login, password} = user;
+
     return this.http.put<IUser>(`users/${id}`, {
       name,
       login,

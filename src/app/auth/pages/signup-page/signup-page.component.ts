@@ -150,7 +150,7 @@ export class SignupPageComponent implements OnInit {
 
   private showServerError(errorMessage: string, closeButtonText: string): void {
     this.snackBar.open(errorMessage, closeButtonText, {
-      panelClass: 'notification',
+      panelClass: ['notification', 'notification--error'],
       duration: 2000,
     });
   }

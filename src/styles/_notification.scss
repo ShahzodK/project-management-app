@@ -1,0 +1,24 @@
+@import "./vars";
+
+.notification {
+  position: relative;
+  bottom: 120px;
+
+  &--success {
+    background-color: $green-color;
+    color: #ffffff;
+
+    & .mat-simple-snackbar-action {
+      color: #000000;
+    }
+  }
+
+  &--error {
+    background-color: $red-color;
+    color: #ffffff;
+
+    & .mat-simple-snackbar-action {
+      color: #000000;
+    }
+  }
+}

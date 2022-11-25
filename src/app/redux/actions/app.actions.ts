@@ -22,3 +22,22 @@ export const deleteUserSuccess = createAction(
 export const deleteUserFailed = createAction(
   '[App] Delete User Failed',
 );
+
+export const updateUser = createAction(
+  '[App] Update User',
+  props<{ user: IUser }>(),
+);
+
+export const updateUserSuccess = createAction(
+  '[App] Update User Success',
+  props<{ updatedUser: IUser }>(),
+);
+
+export const updateUserFailed = createAction(
+  '[App] Update User Failed',
+);
+
+export const setIsEditSuccess = createAction(
+  '[App] Set isEditSuccess',
+  props<{isSuccess: boolean}>(),
+);
