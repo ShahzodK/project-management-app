@@ -8,6 +8,7 @@ import * as BoardActions from '../../redux/actions/board.actions';
 import { selectUserId } from '../../../redux/selectors/app.selectors';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { IColumn } from '../../models/column.model';
+import { updateArrayOrder } from 'src/app/shared/consts/updateArrayOrder';
 
 
 @Component({
@@ -58,37 +59,11 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   }
 
   public reorderColumns(event: CdkDragDrop<string[]>, columns: IColumn[]) {
-    const updatedColumns: IColumn[] = this.moveItemInArray(columns, event.previousIndex, event.currentIndex);
-    this.store.dispatch(BoardActions.updateColumnOrder({ updatedColumns }));
-  }
-
-  public clamp(value: number, max: number): number {
-    return Math.max(0, Math.min(max, value));
-  }
-
-  public moveItemInArray(arraySource: IColumn[], fromIndex: number, toIndex: number): IColumn[] {
-    const columns = [...arraySource];
-    const from = this.clamp(fromIndex, columns.length - 1);
-    const to = this.clamp(toIndex, columns.length - 1);
-
-    if (from === to) {
-      return [];
+    if (event.previousIndex !== event.currentIndex) {
+      const updatedColumns: IColumn[] = updateArrayOrder(columns, event.previousIndex, event.currentIndex);
+      this.store.dispatch(BoardActions.updateColumnOrder({ updatedColumns }));
     }
 
-    const target = columns[from];
-    const delta = to < from ? -1 : 1;
-
-    for (let i = from; i !== to; i += delta) {
-      columns[i] = columns[i + delta];
-    }
-
-    columns[to] = target;
-    return columns.map((column, i: number) => {
-      return {
-        ...column,
-        order: i,
-      };
-    });
   }
 
 }
