@@ -107,19 +107,27 @@ export class BoardEffects {
       );
   });
 
-  public updateColumnOrder$ = createEffect(() => {
+  public updateColumnOrderInServer$ = createEffect(() => {
     return this.actions$
       .pipe(
         ofType(BoardActions.updateColumnOrder),
         switchMap(({ updatedColumns }) => {
-          console.log(updatedColumns);
           return this.columnApiService.updateColumnOrder(updatedColumns);
         }),
         map((updatedColumns) => {
-          updatedColumns = updatedColumns.sort((a, b) => a.order - b.order);
           return BoardActions.updateColumnOrderSuccess({ updatedColumns });
         }),
         catchError(() => of(BoardActions.updateColumnOrderFailed())),
+      );
+  });
+
+  public updateColumnOrder$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnOrder),
+        switchMap(({ updatedColumns } ) => {
+          return of(BoardActions.updateColumnOrderSuccess({ updatedColumns }));
+        }),
       );
   });
 

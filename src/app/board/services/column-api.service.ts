@@ -37,9 +37,14 @@ export class ColumnApiService {
   }
 
   public updateColumnOrder(columns: IColumn[]): Observable<IColumn[]> {
-    console.log(columns);
+    const columnSetForRequest = JSON.parse(JSON.stringify(columns)).map((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>, i: number) => {
+      delete column.boardId;
+      delete column.title;
+      column.order = i;
+      return column;
+    });
     return this.http.patch<IColumn[]>('columnsSet',
-      columns,
+      columnSetForRequest,
     );
   }
 

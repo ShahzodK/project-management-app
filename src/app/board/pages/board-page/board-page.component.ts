@@ -67,29 +67,27 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   }
 
   public moveItemInArray(arraySource: IColumn[], fromIndex: number, toIndex: number): IColumn[] {
-    const array = JSON.parse(JSON.stringify(arraySource));
-    const from = this.clamp(fromIndex, array.length - 1);
-    const to = this.clamp(toIndex, array.length - 1);
+    const columns = JSON.parse(JSON.stringify(arraySource));
+    const from = this.clamp(fromIndex, columns.length - 1);
+    const to = this.clamp(toIndex, columns.length - 1);
 
     if (from === to) {
       return [];
     }
 
-    const target = array[from];
+    const target = columns[from];
     const delta = to < from ? -1 : 1;
 
     for (let i = from; i !== to; i += delta) {
-      array[i] = array[i + delta];
+      columns[i] = columns[i + delta];
     }
 
-    array.forEach((column: IColumn, i: number) => {
+    columns.forEach((column: IColumn, i: number) => {
       column.order = i;
     });
 
-    array[to] = target;
-    return array.map((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>, i: number) => {
-      delete column.boardId;
-      delete column.title;
+    columns[to] = target;
+    return columns.map((column: IColumn, i: number) => {
       column.order = i;
       return column;
     });

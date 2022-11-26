@@ -50,6 +50,11 @@ export const createColumnFailed = createAction(
   '[Board] Create Column Failed',
 );
 
+export const updateColumnOrderInServer = createAction(
+  '[Board] Update Column order in server',
+  props<{ updatedColumnsForRequest: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>[] }>(),
+);
+
 export const updateColumnOrder = createAction(
   '[Board] Update Column order',
   props<{ updatedColumns: IColumn[] }>(),
