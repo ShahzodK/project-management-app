@@ -67,7 +67,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   }
 
   public moveItemInArray(arraySource: IColumn[], fromIndex: number, toIndex: number): IColumn[] {
-    const columns = JSON.parse(JSON.stringify(arraySource));
+    const columns = [...arraySource];
     const from = this.clamp(fromIndex, columns.length - 1);
     const to = this.clamp(toIndex, columns.length - 1);
 
@@ -82,14 +82,12 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       columns[i] = columns[i + delta];
     }
 
-    columns.forEach((column: IColumn, i: number) => {
-      column.order = i;
-    });
-
     columns[to] = target;
-    return columns.map((column: IColumn, i: number) => {
-      column.order = i;
-      return column;
+    return columns.map((column, i: number) => {
+      return {
+        ...column,
+        order: i,
+      };
     });
   }
 

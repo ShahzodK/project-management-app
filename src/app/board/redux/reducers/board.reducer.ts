@@ -20,7 +20,7 @@ export const boardReducer = createReducer(
     board: board,
   })),
   on(BoardActions.fetchColumnsSuccess, (state, { columns }): IBoardState => {
-    const sortedColumns = JSON.parse(JSON.stringify(columns)).sort((a:any, b:any) => a.order - b.order);
+    const sortedColumns = [...columns].sort((a:any, b:any) => a.order - b.order);
 
     return {
       ...state,
