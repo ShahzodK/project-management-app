@@ -8,6 +8,9 @@ import * as BoardActions from '../../redux/actions/board.actions';
 import { selectTasks } from '../../redux/selectors/board.selectors';
 import { map } from 'rxjs/operators';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ITask } from '../../models/task.model';
+import { updateArrayOrder } from 'src/app/shared/consts/updateArrayOrder';
 
 @Component({
   selector: 'app-column',
@@ -103,4 +106,13 @@ export class ColumnComponent {
       }
     });
   }
+
+  public reorderTasks(event: CdkDragDrop<string[]>, tasks: ITask[]) {
+    if (event.previousIndex !== event.currentIndex) {
+      const updatedTasks: ITask[] = updateArrayOrder(tasks, event.previousIndex, event.currentIndex);
+      this.store.dispatch(BoardActions.updateTaskOrder({ updatedTasks }));
+    }
+
+  }
+
 }

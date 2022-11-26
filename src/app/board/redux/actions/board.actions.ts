@@ -143,6 +143,25 @@ export const createTaskFailed = createAction(
   '[Board] Create Task Failed',
 );
 
+export const updateTaskOrderInServer = createAction(
+  '[Board] Update Task order in server',
+  props<{ updatedTasksForRequest: ITask[] }>(),
+);
+
+export const updateTaskOrder = createAction(
+  '[Board] Update Task order',
+  props<{ updatedTasks: ITask[] }>(),
+);
+
+export const updateTaskOrderSuccess = createAction(
+  '[Board] Update Task order Success',
+  props<{ updatedTasks: ITask[] }>(),
+);
+
+export const updateTaskOrderFailed = createAction(
+  '[Board] Update Task order Failed',
+);
+
 export const deleteTasksAfterColumnDelete = createAction(
   '[Board] Delete Tasks After Delete Column',
   props<{ columnId: string }>(),

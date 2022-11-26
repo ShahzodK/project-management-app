@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { IBoardState } from '../board.model';
 import * as BoardActions from '../actions/board.actions';
+import { IBoardState } from '../board.model';
+import { IColumn } from '../../models/column.model';
+import { ITask } from '../../models/task.model';
 
 export const initialState: IBoardState = {
   board: {
@@ -20,7 +22,7 @@ export const boardReducer = createReducer(
     board: board,
   })),
   on(BoardActions.fetchColumnsSuccess, (state, { columns }): IBoardState => {
-    const sortedColumns = [...columns].sort((a:any, b:any) => a.order - b.order);
+    const sortedColumns = [...columns].sort((a:IColumn, b:IColumn) => a.order - b.order);
 
     return {
       ...state,
@@ -28,9 +30,10 @@ export const boardReducer = createReducer(
     };
   }),
   on(BoardActions.fetchTasksSuccess, (state, { tasks }): IBoardState => {
+    const sortedTasks = [...tasks].sort((a:ITask, b:ITask) => a.order - b.order);
     return {
       ...state,
-      tasks,
+      tasks: sortedTasks,
     };
   }),
   on(BoardActions.createColumnSuccess, (state, { createdColumn }): IBoardState => {
@@ -58,6 +61,12 @@ export const boardReducer = createReducer(
     return {
       ...state,
       columns: updatedColumns,
+    };
+  }),
+  on(BoardActions.updateTaskOrderSuccess, (state, { updatedTasks }): IBoardState => {
+    return {
+      ...state,
+      tasks: [...state.tasks.filter((task: ITask) => task.columnId !== updatedTasks[0].columnId), ...updatedTasks],
     };
   }),
   on(BoardActions.deleteTaskSuccess, (state, { taskId }): IBoardState => {

@@ -38,10 +38,11 @@ export class ColumnApiService {
 
   public updateColumnOrder(columns: IColumn[]): Observable<IColumn[]> {
     const columnSetForRequest = [...columns].map((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>, i: number) => {
-      delete column.boardId;
-      delete column.title;
-      column.order = i;
-      return column;
+      const columnClone = { ...column };
+      delete columnClone.boardId;
+      delete columnClone.title;
+      columnClone.order = i;
+      return columnClone;
     });
     return this.http.patch<IColumn[]>('columnsSet',
       columnSetForRequest,

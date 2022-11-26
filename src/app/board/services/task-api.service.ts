@@ -49,6 +49,22 @@ export class TaskApiService {
     });
   }
 
+  public updateTaskOrder(tasks: ITask[]): Observable<ITask[]> {
+    const taskSetForRequest = [...tasks].map((task: Partial<ITask>, i: number) => {
+      const taskClone = { ...task };
+      delete taskClone.title ;
+      delete taskClone.boardId ;
+      delete taskClone.description ;
+      delete taskClone.userId ;
+      delete taskClone.users;
+      taskClone.order = i;
+      return taskClone;
+    });
+    return this.http.patch<ITask[]>('tasksSet',
+      taskSetForRequest,
+    );
+  }
+
   public deleteTask(boardId: string, columnId: string, taskId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }

@@ -177,6 +177,33 @@ export class BoardEffects {
       );
   });
 
+  public updateTaskOrderInServer$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateTaskOrder),
+        switchMap(({ updatedTasks }) => {
+          return this.taskApiService.updateTaskOrder(updatedTasks);
+        }),
+        map((updatedTasks) => {
+          return BoardActions.updateTaskOrderSuccess({ updatedTasks });
+        }),
+        catchError((err) => {
+          console.log(err);
+          return of(BoardActions.updateTaskOrderFailed());
+        }),
+      );
+  });
+
+  public updateTaskOrder$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateTaskOrder),
+        switchMap(({ updatedTasks } ) => {
+          return of(BoardActions.updateTaskOrderSuccess({ updatedTasks }));
+        }),
+      );
+  });
+
   public deleteTask$ = createEffect(() => {
     return this.actions$
       .pipe(

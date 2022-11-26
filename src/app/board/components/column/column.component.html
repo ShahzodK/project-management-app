@@ -41,8 +41,8 @@
       </button>
     </ng-template>
   </header>
-  <ul #tasksContainer *ngIf="(tasks$ | async) as tasks" class="column__tasks tasks">
-    <li *ngFor="let task of tasks | sortByOrder" class="tasks__item task">
+  <ul #tasksContainer *ngIf="(tasks$ | async) as tasks" class="column__tasks tasks" cdkDropList (cdkDropListDropped)="reorderTasks($event,tasks)">
+    <li *ngFor="let task of tasks | sortByOrder" class="tasks__item task" cdkDrag>
       <app-task [boardId]="boardId" [columnId]="column._id" [task]="task">
       </app-task>
     </li>
