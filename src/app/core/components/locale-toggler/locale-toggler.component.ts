@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ELocales } from '../../../shared/models';
 import { ELocaleTranslations } from '../../../shared/consts/locale';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSelectChange } from '@angular/material/select';
+import { ELocales } from '../../../shared/enums/locales.enum';
 
 @Component({
   selector: 'app-locale-toggler',

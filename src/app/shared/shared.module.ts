@@ -12,13 +12,37 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
+import { HttpClient } from '@angular/common/http';
+import { MissingTranslationService } from './services/missing-translation.service';
 
 @NgModule({
   declarations: [
     NoDataSvgComponent,
+    ModalComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    TranslateModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    }),
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule,
@@ -33,6 +57,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatTooltipModule,
     NoDataSvgComponent,
+    ModalComponent,
+    ConfirmModalComponent,
+    TranslateModule,
   ],
 })
 export class SharedModule { }

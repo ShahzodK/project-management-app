@@ -41,7 +41,7 @@ export class SignupPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    public translateService: TranslateService,
+    private translateService: TranslateService,
     private snackBar: MatSnackBar,
   ) {
   }

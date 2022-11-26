@@ -8,8 +8,6 @@ import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FullRoutePaths } from '../../../core/constants/routes';
 import { UserService } from '../../../core/services/user.service';
-import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-login-page',
@@ -38,7 +36,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    public translateService: TranslateService,
+    private translateService: TranslateService,
     private snackBar: MatSnackBar,
   ) {
   }
@@ -67,11 +65,6 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(
       this.email.getRawValue(),
       this.password.getRawValue(),
-    ).pipe(
-      catchError(err => {
-        console.log('caught mapping error and rethrowing', err);
-        return throwError(() => err);
-      }),
     ).subscribe({
       next: () => {
         this.loginForm.reset();

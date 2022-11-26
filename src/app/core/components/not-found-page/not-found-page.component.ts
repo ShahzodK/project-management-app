@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { FullRoutePaths } from '../../constants/routes';
-
 
 @Component({
   selector: 'app-not-found-page',
@@ -14,7 +12,6 @@ export class NotFoundPageComponent {
 
   constructor(
     private router: Router,
-    public translateService: TranslateService,
   ) {}
 
   public goBackOnMain(link: string): void {

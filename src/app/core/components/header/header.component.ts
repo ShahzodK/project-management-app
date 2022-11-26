@@ -1,8 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
-
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
@@ -36,7 +34,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public screenWidth: number;
 
   constructor(
-    private translateService: TranslateService,
     private router: Router,
     private authService: AuthService,
     private store: Store,
