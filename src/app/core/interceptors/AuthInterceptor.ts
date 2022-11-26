@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import {environment} from '../../../environments/environment';
-import {AuthService} from '../../auth/services/auth.service';
-import {FullRoutePaths} from '../constants/routes';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../auth/services/auth.service';
+import { FullRoutePaths } from '../constants/routes';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.logout(FullRoutePaths.WELCOME);
           }
 
-          throw err;
+          return throwError(() => err);
         }));
   }
 }
