@@ -4,6 +4,7 @@ import { ITask } from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
 
 @Component({
   selector: 'app-task',
@@ -20,7 +21,9 @@ export class TaskComponent {
 
   @Input() public columnId!: string;
 
-  public showDeleteTaskModal(): void {
+  public showDeleteTaskModal(event: MouseEvent): void {
+    event.stopPropagation();
+
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = 'dialog';
@@ -36,5 +39,32 @@ export class TaskComponent {
         }));
       }
     });
+  }
+
+  public showEditTaskModal(): void {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = 'dialog';
+    dialogConfig.data = {
+      title: this.task.title,
+      description: this.task.description,
+    };
+
+    const dialogRef = this.dialog.open(EditTaskModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((task: { title: string, description: string } | false) => {
+      if (!task) return;
+
+      const { title, description } = task;
+
+      this.store.dispatch(BoardActions.updateTask({
+        newTask: {
+          ...this.task,
+          title,
+          description,
+        },
+      }));
+    },
+    );
   }
 }

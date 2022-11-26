@@ -21,6 +21,7 @@ import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
+import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
     CreateColumnModalComponent,
     CreateTaskModalComponent,
     SortByOrderPipe,
+    EditTaskModalComponent,
   ],
   imports: [
     CommonModule,

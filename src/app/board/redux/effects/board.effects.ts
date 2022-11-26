@@ -168,4 +168,14 @@ export class BoardEffects {
         catchError(() => of(BoardActions.deleteTaskFailed())),
       );
   });
+
+  public updateTask$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateTask),
+        switchMap(({ newTask }) => this.taskApiService.updateTask(newTask)),
+        map((updatedTask) => BoardActions.updateTaskSuccess({ updatedTask })),
+        catchError(() => of(BoardActions.updateTaskFailed())),
+      );
+  });
 }

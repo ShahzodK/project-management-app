@@ -1,7 +1,9 @@
-<form class="task-modal modal" (ngSubmit)="save()" #createTaskForm="ngForm">
+<form class="edit-task-modal modal" (ngSubmit)="save()" #editTaskForm="ngForm">
   <header class="header">
-    <button mat-button [mat-dialog-close]="false" class="close-btn"><mat-icon>close</mat-icon></button>
-    <h1 mat-dialog-title>Create task</h1>
+    <button mat-button [mat-dialog-close]="false" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h1 mat-dialog-title>Edit task</h1>
   </header>
   <div class="content" mat-dialog-content>
     <mat-form-field>
@@ -17,6 +19,6 @@
   </div>
   <footer class="footer" mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button type="submit" color="primary" [disabled]="!createTaskForm.form.valid">Save</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="!editTaskForm.form.valid">Save</button>
   </footer>
 </form>

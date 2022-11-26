@@ -58,7 +58,7 @@ export class ColumnComponent {
     }));
   }
 
-  public openCreateTaskModal(): void {
+  public showCreateTaskModal(): void {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = 'dialog';

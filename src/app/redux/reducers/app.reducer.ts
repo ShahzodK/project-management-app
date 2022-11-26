@@ -27,13 +27,13 @@ export const appReducer = createReducer(
     userName: '',
     login: '',
   })),
-  on(AppActions.updateUserSuccess, (state, {updatedUser}): IAppState => ({
+  on(AppActions.updateUserSuccess, (state, { updatedUser }): IAppState => ({
     ...state,
     _id: updatedUser._id,
     userName: updatedUser.name,
     login: updatedUser.login,
   })),
-  on(AppActions.setIsEditSuccess, (state, {isSuccess}): IAppState => ({
+  on(AppActions.setIsEditSuccess, (state, { isSuccess }): IAppState => ({
     ...state,
     isEditSuccess: isSuccess,
   })),

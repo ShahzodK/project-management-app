@@ -35,17 +35,25 @@ export class TaskApiService {
     });
   }
 
-  public updateTask(taskId: string, task: Omit<ITask, '_id'>): Observable<ITask> {
-    const { boardId, columnId, title, order, description, userId, users } = task;
+  public updateTask(task: ITask): Observable<ITask> {
+    const {
+      boardId,
+      columnId,
+      _id: taskId,
+      title,
+      order,
+      description,
+      users,
+      userId,
+    } = task;
 
     return this.http.put<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, {
       title,
       order,
       description,
-      userId,
-      boardId,
-      columnId,
       users,
+      userId,
+      columnId,
     });
   }
 
