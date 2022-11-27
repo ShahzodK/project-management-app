@@ -25,12 +25,12 @@
     },
     "notification": {
       "success": "Saqalandi!",
-      "close-btn": "Yopish"
-    },
-    "errors": {
+      "close-btn": "Yopish",
+      "errors": {
       "500": "Server xatosi",
       "400": "Noto'g'ri so'rov",
       "404": "Soʻralgan manba topilmadi!"
+      }
     }
   },
   "header": {
