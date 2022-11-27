@@ -9,8 +9,8 @@ import { AppRoutePaths } from '../../enums/routes.enum';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
-import {BoardResult, ModalData, ModalResult} from "../../../shared/models/modal.model";
-import {ModalComponent} from "../../../shared/components/modal/modal.component";
+import { BoardResult, ModalData, ModalResult } from '../../../shared/models/modal.model';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-header',
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         {
           label: 'Title',
           name: 'title',
-        }
+        },
       ],
     };
 

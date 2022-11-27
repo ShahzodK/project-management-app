@@ -11,15 +11,15 @@ export interface ModalData {
 
 export type ColumnResult = {
   title: string;
-}
+};
 
 export type TaskResult = {
   title: string;
   description: string;
-}
+};
 
 export type BoardResult = {
   title: string;
-}
+};
 
-export type ModalResult<T> = T | false
+export type ModalResult<T> = T | false;

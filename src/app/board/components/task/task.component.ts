@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {ITask} from '../../models/task.model';
+import { Component, Input } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ITask } from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
-import {Store} from '@ngrx/store';
-import {ConfirmModalComponent} from '../../../shared/components/confirm-modal/confirm-modal.component';
-import {ModalData, ModalResult, TaskResult} from "../../../shared/models/modal.model";
-import {ModalComponent} from "../../../shared/components/modal/modal.component";
+import { Store } from '@ngrx/store';
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { ModalData, ModalResult, TaskResult } from '../../../shared/models/modal.model';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-task',
@@ -54,12 +54,12 @@ export class TaskComponent {
         {
           label: 'Title',
           name: 'title',
-          value: this.task.title
+          value: this.task.title,
         },
         {
           label: 'Description',
           name: 'description',
-          value: this.task.description
+          value: this.task.description,
         },
       ],
     };
@@ -69,18 +69,18 @@ export class TaskComponent {
     dialogRef
       .afterClosed()
       .subscribe((dialogResult: ModalResult<TaskResult>) => {
-          if (!dialogResult) return;
+        if (!dialogResult) return;
 
-          const {title, description} = dialogResult;
+        const { title, description } = dialogResult;
 
-          this.store.dispatch(BoardActions.updateTask({
-            newTask: {
-              ...this.task,
-              title,
-              description,
-            },
-          }));
-        },
+        this.store.dispatch(BoardActions.updateTask({
+          newTask: {
+            ...this.task,
+            title,
+            description,
+          },
+        }));
+      },
       );
   }
 }

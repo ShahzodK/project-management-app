@@ -8,7 +8,7 @@ import { selectTasks } from '../../redux/selectors/board.selectors';
 import { map } from 'rxjs/operators';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
-import {ModalData, ModalResult, TaskResult} from '../../../shared/models/modal.model';
+import { ModalData, ModalResult, TaskResult } from '../../../shared/models/modal.model';
 
 @Component({
   selector: 'app-column',

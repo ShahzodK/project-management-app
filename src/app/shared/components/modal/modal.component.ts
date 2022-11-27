@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ModalData } from '../../models/modal.model';
@@ -28,7 +28,7 @@ export class ModalComponent implements OnInit {
       this.formValues[field.name as keyof FormValues] = field.value || '';
     });
 
-    setTimeout(() => this.modalForm.setValue(this.formValues))
+    setTimeout(() => this.modalForm.setValue(this.formValues));
   }
 
   public save(form: NgForm): void {

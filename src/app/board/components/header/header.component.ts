@@ -1,9 +1,9 @@
-import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import * as BoardActions from '../../redux/actions/board.actions';
-import {Store} from '@ngrx/store';
-import {ColumnResult, ModalData, ModalResult} from "../../../shared/models/modal.model";
-import {ModalComponent} from "../../../shared/components/modal/modal.component";
+import { Store } from '@ngrx/store';
+import { ColumnResult, ModalData, ModalResult } from '../../../shared/models/modal.model';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-board-page-header',
