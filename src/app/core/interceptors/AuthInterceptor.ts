@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth/services/auth.service';
 import { FullRoutePaths } from '../constants/routes';
+import { TOKEN } from '../token';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem(TOKEN);
 
     if (request.url.includes('assets')) {
       return next.handle(request);
@@ -39,8 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.logout(FullRoutePaths.WELCOME);
           }
 
-          // eslint-disable-next-line @typescript-eslint/no-throw-literal
-          throw err;
+          return throwError(() => err);
         }));
   }
 }

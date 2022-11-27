@@ -22,6 +22,20 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "notification": {
+      "success": "Сохранено!",
+      "error": "Ошибка! Пожалуйста, попробуйте позже",
+      "close-btn": "Закрыть",
+      "errors": {
+        "500": "Ошибка сервера",
+        "400": "Некорректный запрос",
+        "404": "Запрашиваемый ресурс не найден!"
+      }
+    },
+    "not-found": {
+      "back-btn": "Назад на главную",
+      "message": "Страница не найдена!"
     }
   },
   "header": {
@@ -72,10 +86,6 @@
     "boards": "Доски",
     "boards-error": "Произошла ошибка при загрузке досок",
     "search": "Поиск"
-  },
-  "not-found-page": {
-    "button-back": "На главную",
-    "not-found-message": "Страница не найдена"
   },
   "auth": {
     "sign-in": {
@@ -134,10 +144,6 @@
       },
       "submit-btn": "Сохранить",
       "delete-btn": "Удалить профиль"
-    },
-    "notification": {
-      "success": "Сохранено!",
-      "close-btn": "Закрыть"
     }
   },
 	"languages": {

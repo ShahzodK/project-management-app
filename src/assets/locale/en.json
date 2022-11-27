@@ -22,6 +22,22 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "notification": {
+      "success": "Success!",
+      "error": "Error! Please, try again later",
+      "close-btn": "Close",
+      "errors": {
+        "500": "Internal Server Error",
+        "400": "Bad Request",
+        "404": "Requested URL Not found!",
+        "401": "Login or password is wrong!",
+        "409": "User login already exists!"
+      }
+    },
+    "not-found": {
+      "back-btn": "Back to main",
+      "message": "Page not found"
     }
   },
   "header": {
@@ -72,10 +88,6 @@
     "boards": "Boards",
     "search": "Search",
     "boards-error": "We cannot load boards, please try again"
-  },
-  "not-found-page": {
-    "button-back": "Back to main",
-    "not-found-message": "Page not found"
   },
   "auth": {
     "sign-in": {
@@ -134,10 +146,6 @@
       },
       "submit-btn": "Save",
       "delete-btn": "Delete profile"
-    },
-    "notification": {
-      "success": "Saved!",
-      "close-btn": "Close"
     }
   },
   "languages": {

@@ -21,9 +21,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public columns$ = this.store.select(selectColumns);
 
+  public userId$ = this.store.select(selectUserId);
+
   private routeParamsSub!: Subscription;
 
-  public userId$ = this.store.select(selectUserId);
 
   public draggedColumn: IColumn | undefined;
 

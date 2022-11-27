@@ -1,8 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateColumnModalComponent } from '../create-column-modal/create-column-modal.component';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
+import { ColumnResult, ModalData, ModalResult } from '../../../shared/models/modal.model';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-board-page-header',
@@ -33,20 +34,32 @@ export class HeaderComponent {
   }
 
   public showCreateColumnModal(): void {
-    const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig<ModalData>();
 
     dialogConfig.autoFocus = 'dialog';
-
-    const dialogRef = this.dialog.open(CreateColumnModalComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(title => {
-      if (!title) return;
-
-      this.store.dispatch(BoardActions.createColumn({
-        column: {
-          boardId: this.boardId, title,
+    dialogConfig.data = {
+      title: 'Create Column',
+      formFields: [
+        {
+          label: 'Title',
+          name: 'title',
         },
-      }));
-    });
+      ],
+    };
+
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((dialogResult: ModalResult<ColumnResult>) => {
+        if (!dialogResult) return;
+
+        this.store.dispatch(BoardActions.createColumn({
+          column: {
+            boardId: this.boardId,
+            title: dialogResult.title,
+          },
+        }));
+      });
   }
 }

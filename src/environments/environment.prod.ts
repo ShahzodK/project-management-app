@@ -1,4 +1,4 @@
-import { ELocales } from '../app/shared/models';
+import { ELocales } from '../app/shared/enums/locales.enum';
 
 export const environment = {
   production: true,

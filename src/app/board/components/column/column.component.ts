@@ -1,8 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { TaskApiService } from '../../services/task-api.service';
-import { CreateTaskModalComponent } from '../create-task-modal/create-task-modal.component';
 import { IColumn } from '../../models/column.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { selectTasks } from '../../redux/selectors/board.selectors';
@@ -11,6 +9,8 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ITask } from '../../models/task.model';
 import { updateArrayOrder } from 'src/app/shared/consts/updateArrayOrder';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
+import { ModalData, ModalResult, TaskResult } from '../../../shared/models/modal.model';
 
 @Component({
   selector: 'app-column',
@@ -34,7 +34,6 @@ export class ColumnComponent {
 
   constructor(
     private dialog: MatDialog,
-    private taskApiService: TaskApiService,
     private store: Store) {
   }
 
@@ -61,33 +60,48 @@ export class ColumnComponent {
     }));
   }
 
-  public openCreateTaskModal(): void {
-    const dialogConfig = new MatDialogConfig();
+  public showCreateTaskModal(): void {
+    const dialogConfig = new MatDialogConfig<ModalData>();
 
     dialogConfig.autoFocus = 'dialog';
-
-    const dialogRef = this.dialog.open(CreateTaskModalComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe((task: { title: string, description: string }) => {
-      if (!task) return;
-
-      const { title, description } = task;
-
-      const $tasks = this.tasksContainerRef.nativeElement.children;
-
-      this.store.dispatch(BoardActions.createTask({
-        task: {
-          boardId: this.boardId,
-          columnId: this.column._id,
-          title,
-          description,
-          userId: this.userId,
-          users: [],
-          order: $tasks.length,
+    dialogConfig.data = {
+      title: 'Create Task',
+      formFields: [
+        {
+          label: 'Title',
+          name: 'title',
         },
-      }));
-    },
-    );
+        {
+          label: 'Description',
+          name: 'description',
+        },
+      ],
+    };
+
+    const dialogRef = this.dialog.open<ModalComponent>(ModalComponent, dialogConfig);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((dialogResult: ModalResult<TaskResult>) => {
+        if (!dialogResult) return;
+
+        const { title, description } = dialogResult;
+
+        const $tasks = this.tasksContainerRef.nativeElement.children;
+
+        this.store.dispatch(BoardActions.createTask({
+          task: {
+            boardId: this.boardId,
+            columnId: this.column._id,
+            title,
+            description,
+            userId: this.userId,
+            users: [],
+            order: $tasks.length,
+          },
+        }));
+      },
+      );
   }
 
   public showDeleteColumnModal(): void {
@@ -110,7 +124,7 @@ export class ColumnComponent {
   public reorderTasks(event: CdkDragDrop<any[]>, tasks: ITask[]) {
     console.log(event.container);
     console.log(event.previousContainer);
-    console.log(event.previousContainer == event.container);  
+    console.log(event.previousContainer == event.container);
     if (event.previousIndex !== event.currentIndex) {
       const updatedTasks: ITask[] = updateArrayOrder(tasks, event.previousIndex, event.currentIndex);
       this.store.dispatch(BoardActions.updateTaskOrder({ updatedTasks }));

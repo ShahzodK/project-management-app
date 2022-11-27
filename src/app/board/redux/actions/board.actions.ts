@@ -166,3 +166,21 @@ export const deleteTasksAfterColumnDelete = createAction(
   '[Board] Delete Tasks After Delete Column',
   props<{ columnId: string }>(),
 );
+
+export const updateTask = createAction(
+  '[Board] Update Task',
+  props<{
+    newTask: ITask,
+  }>(),
+);
+
+export const updateTaskSuccess = createAction(
+  '[Board] Update Task Success',
+  props<{
+    updatedTask: ITask,
+  }>(),
+);
+
+export const updateTaskFailed = createAction(
+  '[Board] Update Task Failed',
+);

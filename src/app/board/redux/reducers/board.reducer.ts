@@ -99,4 +99,17 @@ export const boardReducer = createReducer(
       columns: newColumns,
     };
   }),
+  on(BoardActions.updateTaskSuccess, (state, { updatedTask }): IBoardState => {
+    const newTasks = [...state.tasks].map(task => {
+      if (task._id === updatedTask._id) {
+        task = updatedTask;
+      }
+
+      return task;
+    });
+    return {
+      ...state,
+      tasks: newTasks,
+    };
+  }),
 );

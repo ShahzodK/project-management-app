@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
 import { selectBoards } from 'src/app/main/redux/selectors/boards.selectors';
 import { AppRoutePaths } from '../../../core/enums/routes.enum';
 import * as BoardsActions from '../../redux/actions/boards.actions';
@@ -14,7 +13,6 @@ import * as BoardsActions from '../../redux/actions/boards.actions';
 export class MainPageComponent implements OnInit {
 
   constructor(
-    public translateService: TranslateService,
     private router: Router,
     private store: Store,
   ) {

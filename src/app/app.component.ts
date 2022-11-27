@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from 'src/environments/environment';
-import { UserService } from './core/services/user.service';
+import { Store } from '@ngrx/store';
+import * as AppActions from './redux/actions/app.actions';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +18,18 @@ export class AppComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private userService: UserService,
+    private authService: AuthService,
+    private store: Store,
   ) {
   }
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang(environment.defaultLocale);
     this.translateService.use(environment.defaultLocale);
-    this.userService.check();
+
+    const token = this.authService.getToken();
+    if (token) {
+      this.store.dispatch(AppActions.fetchUser({ token }));
+    }
   }
 }
