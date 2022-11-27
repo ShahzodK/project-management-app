@@ -22,6 +22,10 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "notification": {
+      "success": "Saqalandi!",
+      "close-btn": "Yopish"
     }
   },
   "header": {
@@ -83,10 +87,6 @@
       },
       "submit-btn": "Saqlash",
       "delete-btn": "Profilni o'chirib tashlash"
-    },
-    "notification": {
-      "success": "Saqalandi!",
-      "close-btn": "Yopish"
     }
   },
   "auth": {

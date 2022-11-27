@@ -22,6 +22,11 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "notification": {
+      "success": "Saved!",
+      "error": "Error!",
+      "close-btn": "Close"
     }
   },
   "header": {
@@ -134,10 +139,6 @@
       },
       "submit-btn": "Save",
       "delete-btn": "Delete profile"
-    },
-    "notification": {
-      "success": "Saved!",
-      "close-btn": "Close"
     }
   },
   "languages": {
