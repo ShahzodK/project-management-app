@@ -34,6 +34,9 @@
   overflow-x: auto;
 
   list-style-type: none;
+  &__item {
+    list-style-type: none;
+  }
 }
 
 .no-data {
