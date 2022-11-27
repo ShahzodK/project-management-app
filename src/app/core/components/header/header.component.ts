@@ -6,10 +6,11 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 import { FullRoutePaths } from '../../constants/routes';
 import { AppRoutePaths } from '../../enums/routes.enum';
-import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
+import {BoardResult, ModalData, ModalResult} from "../../../shared/models/modal.model";
+import {ModalComponent} from "../../../shared/components/modal/modal.component";
 
 @Component({
   selector: 'app-header',
@@ -66,21 +67,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public showCreateBoardModal(): void {
-    const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig<ModalData>();
 
     dialogConfig.autoFocus = 'dialog';
+    dialogConfig.data = {
+      title: 'Create Board',
+      formFields: [
+        {
+          label: 'Title',
+          name: 'title',
+        }
+      ],
+    };
 
-    const dialogRef = this.dialog.open(CreateBoardModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
 
     dialogRef
       .afterClosed()
-      .subscribe((result: false | {
-        title: string,
-        description: string,
-      }) => {
-        if (!result) return;
+      .subscribe((dialogResult: ModalResult<BoardResult>) => {
+        if (!dialogResult) return;
 
-        const { title } = result;
+        const { title } = dialogResult;
         const owner = this.userService.getUserId();
         const users: string[] = [];
 

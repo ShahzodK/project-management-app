@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ITask } from '../../models/task.model';
+import {Component, Input} from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ITask} from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
-import { Store } from '@ngrx/store';
-import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
-import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.component';
+import {Store} from '@ngrx/store';
+import {ConfirmModalComponent} from '../../../shared/components/confirm-modal/confirm-modal.component';
+import {ModalData, ModalResult, TaskResult} from "../../../shared/models/modal.model";
+import {ModalComponent} from "../../../shared/components/modal/modal.component";
 
 @Component({
   selector: 'app-task',
@@ -13,7 +14,8 @@ import { EditTaskModalComponent } from '../edit-task-modal/edit-task-modal.compo
 })
 export class TaskComponent {
 
-  constructor(private dialog: MatDialog, private store: Store) {}
+  constructor(private dialog: MatDialog, private store: Store) {
+  }
 
   @Input() public task!: ITask;
 
@@ -42,29 +44,43 @@ export class TaskComponent {
   }
 
   public showEditTaskModal(): void {
-    const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig<ModalData>();
 
     dialogConfig.autoFocus = 'dialog';
+
     dialogConfig.data = {
-      title: this.task.title,
-      description: this.task.description,
+      title: 'Create Task',
+      formFields: [
+        {
+          label: 'Title',
+          name: 'title',
+          value: this.task.title
+        },
+        {
+          label: 'Description',
+          name: 'description',
+          value: this.task.description
+        },
+      ],
     };
 
-    const dialogRef = this.dialog.open(EditTaskModalComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((task: { title: string, description: string } | false) => {
-      if (!task) return;
+    dialogRef
+      .afterClosed()
+      .subscribe((dialogResult: ModalResult<TaskResult>) => {
+          if (!dialogResult) return;
 
-      const { title, description } = task;
+          const {title, description} = dialogResult;
 
-      this.store.dispatch(BoardActions.updateTask({
-        newTask: {
-          ...this.task,
-          title,
-          description,
+          this.store.dispatch(BoardActions.updateTask({
+            newTask: {
+              ...this.task,
+              title,
+              description,
+            },
+          }));
         },
-      }));
-    },
-    );
+      );
   }
 }

@@ -8,8 +8,6 @@ import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CreateColumnModalComponent } from './components/create-column-modal/create-column-modal.component';
-import { CreateTaskModalComponent } from './components/create-task-modal/create-task-modal.component';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,7 +15,6 @@ import { BoardEffects } from './redux/effects/board.effects';
 import { boardReducer } from './redux/reducers/board.reducer';
 
 import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
-import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +22,7 @@ import { EditTaskModalComponent } from './components/edit-task-modal/edit-task-m
     ColumnComponent,
     TaskComponent,
     HeaderComponent,
-    CreateColumnModalComponent,
-    CreateTaskModalComponent,
     SortByOrderPipe,
-    EditTaskModalComponent,
   ],
   imports: [
     CommonModule,

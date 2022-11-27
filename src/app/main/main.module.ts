@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BoardApiService } from './services/board-api.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { CreateBoardModalComponent } from './components/create-board-modal/create-board-modal.component';
 import { BoardItemComponent } from './components/board-item/board-item.component';
 
 import { SearchPipe } from './pipes/search.pipe';
@@ -19,7 +18,6 @@ import { boardsReducer } from './redux/reducers/boards.reducer';
   declarations: [
     MainPageComponent,
     BoardItemComponent,
-    CreateBoardModalComponent,
     SearchPipe,
   ],
   imports: [
