@@ -6,7 +6,7 @@ import { TranslateModule, TranslateLoader, MissingTranslationHandler } from '@ng
 import { HttpLoaderFactory } from '../app.module';
 import { FormsModule } from '@angular/forms';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
-import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { LocaleTogglerComponent } from './components/locale-toggler/locale-toggler.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';

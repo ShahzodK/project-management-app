@@ -31,6 +31,10 @@
       "400": "Noto'g'ri so'rov",
       "404": "Soʻralgan manba topilmadi!"
       }
+    },
+    "not-found": {
+      "back-btn": "Uyga qaytish",
+      "message": "Sahifa topilmadi!"
     }
   },
   "header": {

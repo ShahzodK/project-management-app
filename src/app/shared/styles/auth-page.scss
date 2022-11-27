@@ -3,7 +3,7 @@
 .auth {
   height: 100%;
   padding: 50px 0;
-  background-color: #fafafa;
+  background-color: $white-color;
 
   &__content {
     height: 100%;
@@ -26,7 +26,7 @@
   &__sign-up-link {
     margin-top: 30px;
     text-decoration: none;
-    color: #3f51b5;
+    color: $blue-color;
 
     &:hover {
       text-decoration: underline;

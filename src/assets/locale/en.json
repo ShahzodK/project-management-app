@@ -34,6 +34,10 @@
         "401": "Login or password is wrong!",
         "409": "User login already exists!"
       }
+    },
+    "not-found": {
+      "back-btn": "Back to main",
+      "message": "Page not found"
     }
   },
   "header": {
@@ -84,10 +88,6 @@
     "boards": "Boards",
     "search": "Search",
     "boards-error": "We cannot load boards, please try again"
-  },
-  "not-found-page": {
-    "button-back": "Back to main",
-    "not-found-message": "Page not found"
   },
   "auth": {
     "sign-in": {

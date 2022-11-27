@@ -13,10 +13,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NotifyService } from './services/notify.service';
+import { NotFoundSvgComponent } from './components/not-found-svg/not-found-svg.component';
 
 @NgModule({
   declarations: [
     NoDataSvgComponent,
+    NotFoundSvgComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { NotifyService } from './services/notify.service';
     MatToolbarModule,
     MatTooltipModule,
     NoDataSvgComponent,
+    NotFoundSvgComponent,
   ],
   providers: [
     NotifyService,

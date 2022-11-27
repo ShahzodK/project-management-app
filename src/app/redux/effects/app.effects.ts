@@ -132,7 +132,6 @@ export class AppEffects {
             .deleteUser(userId),
         ),
         map(() => {
-          this.notifyService.success();
           this.authService.logout(FullRoutePaths.WELCOME);
 
           return AppActions.deleteUserSuccess();
