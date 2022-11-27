@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { BoardApiService } from '../../services/board-api.service';
 import * as BoardsActions from '../actions/boards.actions';
 import { of, switchMap } from 'rxjs';
+import {NotifyService} from "../../../shared/services/notify.service";
 
 @Injectable()
 export class BoardsEffects {
@@ -12,6 +13,7 @@ export class BoardsEffects {
   constructor(
     private actions$: Actions,
     private boardApiService: BoardApiService,
+    private notifyService: NotifyService,
   ) {}
 
   public fetchBoards$ = createEffect(() => {
@@ -30,8 +32,16 @@ export class BoardsEffects {
         ofType(BoardsActions.createBoard),
         switchMap(({ title, owner, users }) =>
           this.boardApiService.createBoard({ title, owner, users })),
-        map((createdBoard) => BoardsActions.createBoardSuccess({ createdBoard })),
-        catchError(() => of(BoardsActions.createBoardFailed())),
+        map((createdBoard) => {
+          this.notifyService.success();
+
+          return BoardsActions.createBoardSuccess({ createdBoard })
+        }),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(BoardsActions.createBoardFailed())
+        }),
       );
   });
 
@@ -45,8 +55,16 @@ export class BoardsEffects {
               map(() => ({ id })),
             ),
         ),
-        map(({ id }) => BoardsActions.deleteBoardSuccess({ id })),
-        catchError(() => of(BoardsActions.deleteBoardFailed())),
+        map(({ id }) => {
+          this.notifyService.success();
+
+          return BoardsActions.deleteBoardSuccess({ id })
+        }),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(BoardsActions.deleteBoardFailed())
+        }),
       );
   });
 

@@ -24,7 +24,7 @@
       }
     },
     "notification": {
-      "success": "Saved!",
+      "success": "Success!",
       "error": "Error! Please, try again later",
       "close-btn": "Close",
       "errors": {
