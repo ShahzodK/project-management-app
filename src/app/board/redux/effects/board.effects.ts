@@ -12,9 +12,7 @@ import { IColumn } from '../../models/column.model';
 import { NotifyService } from '../../../shared/services/notify.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 
 export class BoardEffects {
 
