@@ -24,7 +24,7 @@ export class AuthService {
       password,
     }).pipe(
       map((signedInUser) => {
-        localStorage.setItem('authToken', signedInUser.token);
+        localStorage.setItem(TOKEN, signedInUser.token);
         this.router.navigate([AppRoutePaths.MAIN]);
 
         return signedInUser;
@@ -41,17 +41,17 @@ export class AuthService {
   }
 
   public logout(path = FullRoutePaths.LOGIN): void {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem(TOKEN);
     this.store.dispatch(resetUser());
     this.router.navigate([path]);
   }
 
   public isLoggedIn(): boolean {
-    return !!localStorage.getItem('authToken');
+    return !!localStorage.getItem(TOKEN);
   }
 
   public getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem(TOKEN);
   }
 
   public getUserId(): string {
