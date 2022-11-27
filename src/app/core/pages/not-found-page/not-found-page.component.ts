@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FullRoutePaths } from '../../constants/routes';
 
 
@@ -9,13 +8,5 @@ import { FullRoutePaths } from '../../constants/routes';
   styleUrls: ['./not-found-page.component.scss'],
 })
 export class NotFoundPageComponent {
-
-  constructor(
-    private router: Router,
-  ) {}
-
-  public redirectToMain(): void {
-    this.router.navigate([FullRoutePaths.MAIN]);
-  }
-
+  public MAIN_ROUTE_PATH = '/' + FullRoutePaths.MAIN;
 }

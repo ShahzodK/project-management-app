@@ -1,10 +1,25 @@
-mat-card {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
+@import "src/styles/vars";
 
-  width: 200px;
-  margin: 50px auto;
+.not-found {
+  &__content {
+    text-align: center;
+  }
+
+  &__link {
+    color: $blue-color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+  }
+
+  &__image-container {
+    margin: auto;
+    max-width: 500px;
+  }
+
+  &__image {
+    max-width: 100%;
+  }
 }
-

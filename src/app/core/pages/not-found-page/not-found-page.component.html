@@ -1,8 +1,11 @@
-<mat-card>
-  <mat-card-title>404 Error</mat-card-title>
-  <mat-card-subtitle>{{'core.not-found.message' | translate}} :(</mat-card-subtitle>
-  <mat-card-actions>
-    <button mat-stroked-button
-    (click)="redirectToMain()">{{'core.not-found.back-btn' | translate}}</button>
-  </mat-card-actions>
-</mat-card>
+<section class="section not-found">
+  <div class="container not-found__content">
+    <h1 class="section__title not-found__title">
+      {{'core.not-found.message' | translate}}
+    </h1>
+    <a class="not-found__link" [routerLink]="MAIN_ROUTE_PATH">{{ 'core.not-found.back-btn' | translate }}</a>
+    <div class="not-found__image-container">
+      <app-not-found-svg class="not-found__image"></app-not-found-svg>
+    </div>
+  </div>
+</section>
