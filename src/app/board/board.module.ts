@@ -15,6 +15,8 @@ import { BoardEffects } from './redux/effects/board.effects';
 import { boardReducer } from './redux/reducers/board.reducer';
 
 import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
+import { ColumnApiService } from './services/column-api.service';
+import { TaskApiService } from './services/task-api.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,11 @@ import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
     FormsModule,
     StoreModule.forFeature('board', boardReducer),
     EffectsModule.forFeature([BoardEffects]),
+  ],
+  providers: [
+    
+    ColumnApiService,
+    TaskApiService,
   ],
 })
 export class BoardModule {

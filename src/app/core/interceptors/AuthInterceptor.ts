@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../auth/services/auth.service';
 import { FullRoutePaths } from '../constants/routes';
+import { TOKEN } from '../token';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authToken = localStorage.getItem('authToken');
+    const authToken = localStorage.getItem(TOKEN);
 
     if (request.url.includes('assets')) {
       return next.handle(request);

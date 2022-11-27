@@ -3,17 +3,17 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { UserApiService } from '../../services/user-api.service';
-import { selectIsEditSuccess, selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
+import {  selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
-import { signUpErrorsLocale } from 'src/app/auth/models/locale-errors.const';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/forms.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from '../../../core/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { formErrorsLocale } from '../../../auth/models/locale-errors.const';
+import { AuthService } from '../../../auth/services/auth.service';
 
 
 @Component({
@@ -30,8 +30,6 @@ export class EditProfilePageComponent implements OnInit {
   public hasPasswordError = false;
 
   public hidePassword = true;
-
-  private isEditSuccess$ = this.store.select(selectIsEditSuccess);
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -62,7 +60,7 @@ export class EditProfilePageComponent implements OnInit {
   constructor(
     private store: Store,
     private userApi: UserApiService,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
@@ -77,12 +75,6 @@ export class EditProfilePageComponent implements OnInit {
     this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
       this.email!.setValue(email);
     });
-
-    this.isEditSuccess$.subscribe(isEditSuccess => {
-      if (isEditSuccess) {
-        this.showSuccessEdit();
-      }
-    });
   }
 
   public get name() {
@@ -95,6 +87,10 @@ export class EditProfilePageComponent implements OnInit {
 
   public get password() {
     return this.editProfileForm.get('password');
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 
   private checkErrors() {
@@ -138,35 +134,19 @@ export class EditProfilePageComponent implements OnInit {
 
     switch (true) {
       case password.hasError(PasswordFieldErrors.REQUIRED):
-        return signUpErrorsLocale.password.required;
+        return formErrorsLocale.password.required;
       case password.hasError(PasswordFieldErrors.ENOUGH_CHARS):
-        return signUpErrorsLocale.password.enough_chars;
+        return formErrorsLocale.password.enough_chars;
       case password.hasError(PasswordFieldErrors.LOWERCASE) ||
       password?.hasError(PasswordFieldErrors.UPPERCASE):
-        return signUpErrorsLocale.password.lowercase;
+        return formErrorsLocale.password.lowercase;
       case password.hasError(PasswordFieldErrors.NUMERIC):
-        return signUpErrorsLocale.password.numeric;
+        return formErrorsLocale.password.numeric;
       case password.hasError(PasswordFieldErrors.SPECIALS):
-        return signUpErrorsLocale.password.specials;
+        return formErrorsLocale.password.specials;
       default:
         return '';
     }
-  }
-
-  public showDeleteUserModal(): void {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.autoFocus = 'dialog';
-
-    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
-      if (isConfirmed) {
-        const userId = this.userService.getUserId();
-
-        this.store.dispatch(UserActions.deleteUser({ userId }));
-      }
-    });
   }
 
   public submit(): void {
@@ -175,7 +155,7 @@ export class EditProfilePageComponent implements OnInit {
       return;
     }
 
-    const id = this.userService.getUserId();
+    const id = this.authService.getUserId();
     const name = this.editProfileForm.getRawValue().name;
     const email = this.editProfileForm.getRawValue().email;
     const password = this.editProfileForm.getRawValue().password;
@@ -190,17 +170,21 @@ export class EditProfilePageComponent implements OnInit {
     }));
   }
 
-  private showSuccessEdit(): void {
-    const message = this.translateService.instant('edit-profile.notification.success');
-    const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
+  public showDeleteUserModal(): void {
+    const dialogConfig = new MatDialogConfig();
 
-    this.snackBar.open(message, buttonText, {
-      panelClass: ['notification', 'notification--success'],
-      duration: 2000,
-    });
-  }
+    dialogConfig.autoFocus = 'dialog';
 
-  public setHidePassword(): void {
-    this.hidePassword = !this.hidePassword;
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((isConfirmed: boolean) => {
+        if (isConfirmed) {
+          const userId = this.authService.getUserId();
+
+          this.store.dispatch(UserActions.deleteUser({ userId }));
+        }
+      });
   }
 }

@@ -12,6 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoDataSvgComponent } from './components/no-data-svg/no-data-svg.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotifyService } from './services/notify.service';
+import { NotFoundSvgComponent } from './components/not-found-svg/not-found-svg.component';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
@@ -25,6 +27,7 @@ import { MissingTranslationService } from './services/missing-translation.servic
     NoDataSvgComponent,
     ModalComponent,
     ConfirmModalComponent,
+    NotFoundSvgComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,10 @@ import { MissingTranslationService } from './services/missing-translation.servic
     ModalComponent,
     ConfirmModalComponent,
     TranslateModule,
+    NotFoundSvgComponent,
+  ],
+  providers: [
+    NotifyService,
   ],
 })
 export class SharedModule { }

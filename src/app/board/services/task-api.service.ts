@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ITask } from '../models/task.model';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TaskApiService {
 
   constructor(private http: HttpClient) { }
