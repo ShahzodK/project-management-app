@@ -1,13 +1,46 @@
 import { createAction, props } from '@ngrx/store';
 import { IUser } from '../../user-profile/models/user.model';
 
-export const setLoggedUser = createAction(
-  '[App] Set User',
+export const loginUser = createAction(
+  '[App] Login User',
+  props<{ email: string; password: string; }>(),
+);
+
+export const loginUserSuccess = createAction(
+  '[App] Login User Success',
+  props<{ token: string }>(),
+);
+
+export const loginUserFailed = createAction(
+  '[App] Login User Failed',
+);
+
+export const signUpUser = createAction(
+  '[App] Sign Up User',
+  props<{ name: string, email: string; password: string; }>(),
+);
+
+export const signUpUserSuccess = createAction(
+  '[App] Sign Up User Success',
+  props<{ email: string; password: string; }>(),
+);
+
+export const signUpUserFailed = createAction(
+  '[App] Login User Failed',
+);
+
+export const fetchUser = createAction(
+  '[App] Fetch User',
+  props<{ token: string }>(),
+);
+
+export const fetchUserSuccess = createAction(
+  '[App] Fetch User Success',
   props<{ user: IUser }>(),
 );
 
-export const resetUser = createAction(
-  '[App] Reset User',
+export const fetchUserFailed = createAction(
+  '[App] Fetch User Failed',
 );
 
 export const deleteUser = createAction(
@@ -35,4 +68,8 @@ export const updateUserSuccess = createAction(
 
 export const updateUserFailed = createAction(
   '[App] Update User Failed',
+);
+
+export const resetUser = createAction(
+  '[App] Reset User',
 );

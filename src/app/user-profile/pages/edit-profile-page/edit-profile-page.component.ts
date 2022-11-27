@@ -10,10 +10,10 @@ import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from '../../../core/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { formErrorsLocale } from '../../../auth/models/locale-errors.const';
+import { AuthService } from '../../../auth/services/auth.service';
 
 
 @Component({
@@ -60,7 +60,7 @@ export class EditProfilePageComponent implements OnInit {
   constructor(
     private store: Store,
     private userApi: UserApiService,
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
     private translateService: TranslateService,
@@ -155,7 +155,7 @@ export class EditProfilePageComponent implements OnInit {
       return;
     }
 
-    const id = this.userService.getUserId();
+    const id = this.authService.getUserId();
     const name = this.editProfileForm.getRawValue().name;
     const email = this.editProfileForm.getRawValue().email;
     const password = this.editProfileForm.getRawValue().password;
@@ -177,12 +177,14 @@ export class EditProfilePageComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
-      if (isConfirmed) {
-        const userId = this.userService.getUserId();
+    dialogRef
+      .afterClosed()
+      .subscribe((isConfirmed: boolean) => {
+        if (isConfirmed) {
+          const userId = this.authService.getUserId();
 
-        this.store.dispatch(UserActions.deleteUser({ userId }));
-      }
-    });
+          this.store.dispatch(UserActions.deleteUser({ userId }));
+        }
+      });
   }
 }

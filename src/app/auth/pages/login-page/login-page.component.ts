@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,8 +5,10 @@ import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/forms.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FullRoutePaths } from '../../../core/constants/routes';
-import { UserService } from '../../../core/services/user.service';
 import { formErrorsLocale } from '../../models/locale-errors.const';
+import * as AppActions from '../../../redux/actions/app.actions';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-login-page',
@@ -35,9 +36,9 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
+    private store: Store,
   ) {
   }
 
@@ -62,24 +63,10 @@ export class LoginPageComponent implements OnInit {
   public login(): void {
     if (!this.email || !this.password) return;
 
-    this.authService.login(
-      this.email.getRawValue(),
-      this.password.getRawValue(),
-    ).subscribe({
-      next: () => {
-        this.loginForm.reset();
-      },
-      error: (res: HttpErrorResponse) => {
-        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
-        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
-
-        this.showServerError(errorMessage, closeButtonText);
-      },
-      complete: () => {
-        this.userService.check();
-        this.loginForm.reset();
-      },
-    });
+    this.store.dispatch(AppActions.loginUser({
+      email: this.email.value,
+      password: this.password.value,
+    }));
   }
 
   public get email() {
@@ -118,13 +105,6 @@ export class LoginPageComponent implements OnInit {
     if (password?.hasError(PasswordFieldErrors.REQUIRED)) return formErrorsLocale.password.required;
 
     return '';
-  }
-
-  private showServerError(errorMessage: string, closeButtonText: string): void {
-    this.snackBar.open(errorMessage, closeButtonText, {
-      panelClass: ['notification', 'notification--error'],
-      duration: 2000,
-    });
   }
 
   public setHidePassword(): void {

@@ -17,6 +17,10 @@ export class NotifyService {
 
   private readonly SERVER_ERR_CODE = 500;
 
+  private readonly INCORRECT_CREDENTIALS_ERR_CODE = 401;
+
+  private readonly USER_EXISTS_ERR_CODE = 409;
+
   constructor(
     private snackbar: MatSnackBar,
     private translateService: TranslateService) {
@@ -45,6 +49,18 @@ export class NotifyService {
     if (error.status === this.SERVER_ERR_CODE) {
       errorText = this.translateService.instant(
         `core.notification.errors.${this.SERVER_ERR_CODE}`,
+      );
+    }
+
+    if (error.status === this.INCORRECT_CREDENTIALS_ERR_CODE) {
+      errorText = this.translateService.instant(
+        `core.notification.errors.${this.INCORRECT_CREDENTIALS_ERR_CODE}`,
+      );
+    }
+
+    if (error.status === this.USER_EXISTS_ERR_CODE) {
+      errorText = this.translateService.instant(
+        `core.notification.errors.${this.USER_EXISTS_ERR_CODE}`,
       );
     }
 

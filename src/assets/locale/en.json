@@ -30,7 +30,9 @@
       "errors": {
         "500": "Internal Server Error",
         "400": "Bad Request",
-        "404": "Requested URL Not found!"
+        "404": "Requested URL Not found!",
+        "401": "Login or password is wrong!",
+        "409": "User login already exists!"
       }
     }
   },

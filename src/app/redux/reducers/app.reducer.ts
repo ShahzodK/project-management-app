@@ -12,7 +12,7 @@ export const initialState: IAppState = {
 
 export const appReducer = createReducer(
   initialState,
-  on(AppActions.setLoggedUser, (state, { user }): IAppState => ({
+  on(AppActions.fetchUserSuccess, (state, { user }): IAppState => ({
     ...state,
     _id: user._id,
     isLogged: true,

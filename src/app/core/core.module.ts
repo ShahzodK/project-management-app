@@ -12,7 +12,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from '../shared/shared.module';
 import { ConfirmModalComponent } from '../shared/components/confirm-modal/confirm-modal.component';
-import { UserService } from './services/user.service';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
 
 
@@ -45,9 +44,6 @@ import { ProfileMenuComponent } from './components/profile-menu/profile-menu.com
     FooterComponent,
     LocaleTogglerComponent,
     NotFoundPageComponent,
-  ],
-  providers: [
-    UserService,
   ],
 })
 export class CoreModule { }

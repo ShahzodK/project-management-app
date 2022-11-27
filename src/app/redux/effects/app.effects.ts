@@ -7,6 +7,7 @@ import { UserApiService } from '../../user-profile/services/user-api.service';
 import { AuthService } from '../../auth/services/auth.service';
 import { FullRoutePaths } from '../../core/constants/routes';
 import { NotifyService } from '../../shared/services/notify.service';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,81 @@ export class AppEffects {
     private notifyService: NotifyService,
   ) {
   }
+
+  public loginUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AppActions.loginUser, AppActions.signUpUserSuccess),
+        switchMap(({ email, password }) =>
+          this.authService
+            .login(email, password),
+        ),
+        switchMap(({ token }) => {
+          this.notifyService.success();
+
+          return of(
+            AppActions.loginUserSuccess({ token }),
+            AppActions.fetchUser({ token }),
+          );
+        },
+        ),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(
+            AppActions.loginUserFailed(),
+          );
+        },
+        ),
+      );
+  });
+
+  public signUpUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AppActions.signUpUser),
+        switchMap(({ name, email, password }) =>
+          this.authService
+            .signup(name, email, password)
+            .pipe(
+              map(() => ({ email, password })),
+            ),
+        ),
+        map(({ email, password }) =>
+          AppActions.signUpUserSuccess({
+            email,
+            password,
+          })),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(
+            AppActions.signUpUserFailed(),
+          );
+        },
+        ),
+      );
+  });
+
+  public fetchUser$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(AppActions.loginUserSuccess, AppActions.fetchUser),
+        switchMap(({ token }) => {
+          const id = (jwt_decode(token) as unknown as { id: string }).id;
+
+          return this.userApiService.getUser(id);
+        }),
+        map((user) => AppActions.fetchUserSuccess({ user })),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(
+            AppActions.fetchUserFailed(),
+          );
+        }),
+      );
+  });
 
   public updateUser$ = createEffect(() => {
     return this.actions$

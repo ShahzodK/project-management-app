@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,8 +5,9 @@ import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/forms.model';
 import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from '../../../core/services/user.service';
 import { formErrorsLocale } from '../../models/locale-errors.const';
+import * as AppActions from '../../../redux/actions/app.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signup-page',
@@ -40,9 +40,9 @@ export class SignupPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     public translateService: TranslateService,
     private snackBar: MatSnackBar,
+    private store: Store,
   ) {
   }
 
@@ -63,24 +63,11 @@ export class SignupPageComponent implements OnInit {
     if (this.signupForm.invalid) return;
     if (!this.name || !this.email || !this.password) return;
 
-    this.authService.signup(
-      this.name.getRawValue(),
-      this.email.getRawValue(),
-      this.password.getRawValue(),
-    ).subscribe({
-      next: () => {
-        this.signupForm.reset();
-      },
-      error: (res: HttpErrorResponse) => {
-        const errorMessage = this.translateService.instant(`auth.forms.errors.server.${res.status}`);
-        const closeButtonText = this.translateService.instant('auth.forms.errors.close-btn');
-
-        this.showServerError(errorMessage, closeButtonText);
-      },
-      complete: () => {
-        this.userService.check();
-      },
-    });
+    this.store.dispatch(AppActions.signUpUser({
+      name: this.name.value,
+      email: this.email.value,
+      password: this.password.value,
+    }));
   }
 
   private checkHasError(control: AbstractControl): boolean {
@@ -146,13 +133,6 @@ export class SignupPageComponent implements OnInit {
       default:
         return '';
     }
-  }
-
-  private showServerError(errorMessage: string, closeButtonText: string): void {
-    this.snackBar.open(errorMessage, closeButtonText, {
-      panelClass: ['notification', 'notification--error'],
-      duration: 2000,
-    });
   }
 
   public setHidePassword(): void {
