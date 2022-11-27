@@ -3,13 +3,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class NotifyService {
-  private readonly successText = this.getTranslation('core.notification.success');
+  private readonly successLocaleRef = 'core.notification.success';
 
-  private readonly errorText = this.getTranslation('core.notification.error');
+  private readonly errorLocaleRef = 'core.notification.error';
 
-  private readonly closeBtnText = this.getTranslation('core.notification.close-btn');
+  private readonly closeBtnLocaleRef = 'core.notification.close-btn';
 
   private readonly NOT_FOUND_ERR_CODE = 404;
 
@@ -17,35 +19,38 @@ export class NotifyService {
 
   constructor(
     private snackbar: MatSnackBar,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService) {
+  }
 
   public success(): void {
-    this.snackbar.open(this.successText, this.closeBtnText, {
+    const successText = this.translateService.instant(this.successLocaleRef);
+    const closeBtnText = this.translateService.instant(this.closeBtnLocaleRef);
+
+    this.snackbar.open(successText, closeBtnText, {
       panelClass: ['notification', 'notification--success'],
       duration: 3000,
     });
   }
 
   public error(error: HttpErrorResponse): void {
-    let errorText = this.errorText;
+    const closeBtnText = this.translateService.instant(this.closeBtnLocaleRef);
+    let errorText = this.translateService.instant(this.errorLocaleRef);
 
-    if (error) {
-      if (error.status === this.NOT_FOUND_ERR_CODE) {
-        errorText = this.getTranslation(`core.notification.errors.${this.NOT_FOUND_ERR_CODE}`);
-      }
-
-      if (error.status === this.SERVER_ERR_CODE) {
-        errorText = this.getTranslation(`core.notification.errors.${this.SERVER_ERR_CODE}`);
-      }
+    if (error.status === this.NOT_FOUND_ERR_CODE) {
+      errorText = this.translateService.instant(
+        `core.notification.errors.${this.NOT_FOUND_ERR_CODE}`,
+      );
     }
 
-    this.snackbar.open(errorText, this.closeBtnText, {
+    if (error.status === this.SERVER_ERR_CODE) {
+      errorText = this.translateService.instant(
+        `core.notification.errors.${this.SERVER_ERR_CODE}`,
+      );
+    }
+
+    this.snackbar.open(errorText, closeBtnText, {
       panelClass: ['notification', 'notification--error'],
       duration: 3000,
     });
-  }
-
-  private getTranslation(str: string): string {
-    return this.translateService.instant(str);
   }
 }

@@ -36,16 +36,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     WelcomeModule,
     FormsModule,
     BrowserAnimationsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
-      useDefaultLang: false,
-    }),
-    BrowserAnimationsModule,
     StoreModule.forRoot({ app: appReducer }, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -56,6 +46,16 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
       },
     }),
     EffectsModule.forRoot([AppEffects]),
+
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [

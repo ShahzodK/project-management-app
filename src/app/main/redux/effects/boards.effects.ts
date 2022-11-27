@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { BoardApiService } from '../../services/board-api.service';
 import * as BoardsActions from '../actions/boards.actions';
 import { of, switchMap } from 'rxjs';
-import {NotifyService} from "../../../shared/services/notify.service";
+import { NotifyService } from '../../../shared/services/notify.service';
 
 @Injectable()
 export class BoardsEffects {
@@ -35,12 +35,12 @@ export class BoardsEffects {
         map((createdBoard) => {
           this.notifyService.success();
 
-          return BoardsActions.createBoardSuccess({ createdBoard })
+          return BoardsActions.createBoardSuccess({ createdBoard });
         }),
         catchError((error) => {
           this.notifyService.error(error);
 
-          return of(BoardsActions.createBoardFailed())
+          return of(BoardsActions.createBoardFailed());
         }),
       );
   });
@@ -58,12 +58,12 @@ export class BoardsEffects {
         map(({ id }) => {
           this.notifyService.success();
 
-          return BoardsActions.deleteBoardSuccess({ id })
+          return BoardsActions.deleteBoardSuccess({ id });
         }),
         catchError((error) => {
           this.notifyService.error(error);
 
-          return of(BoardsActions.deleteBoardFailed())
+          return of(BoardsActions.deleteBoardFailed());
         }),
       );
   });

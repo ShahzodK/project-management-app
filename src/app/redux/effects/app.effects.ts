@@ -6,6 +6,7 @@ import * as AppActions from '../actions/app.actions';
 import { UserApiService } from '../../user-profile/services/user-api.service';
 import { AuthService } from '../../auth/services/auth.service';
 import { FullRoutePaths } from '../../core/constants/routes';
+import { NotifyService } from '../../shared/services/notify.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AppEffects {
     private actions$: Actions,
     private userApiService: UserApiService,
     private authService: AuthService,
+    private notifyService: NotifyService,
   ) {
   }
 
@@ -28,16 +30,19 @@ export class AppEffects {
           this.userApiService
             .updateUser(user),
         ),
-        switchMap((updatedUser) =>
-          of(
-            AppActions.updateUserSuccess({ updatedUser }),
-            AppActions.setIsEditSuccess({ isSuccess: true }),
-          ),
+        map((updatedUser) => {
+          this.notifyService.success();
+
+          return AppActions.updateUserSuccess({ updatedUser });
+        },
         ),
-        catchError(() => of(
-          AppActions.updateUserFailed(),
-          AppActions.setIsEditSuccess({ isSuccess: false }),
-        ),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(
+            AppActions.updateUserFailed(),
+          );
+        },
         ),
       );
   });
@@ -51,11 +56,16 @@ export class AppEffects {
             .deleteUser(userId),
         ),
         map(() => {
+          this.notifyService.success();
           this.authService.logout(FullRoutePaths.WELCOME);
 
           return AppActions.deleteUserSuccess();
         }),
-        catchError(() => of(AppActions.deleteUserFailed())),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(AppActions.deleteUserFailed());
+        }),
       );
   });
 }

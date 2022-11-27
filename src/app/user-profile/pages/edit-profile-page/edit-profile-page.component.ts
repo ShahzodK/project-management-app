@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { UserApiService } from '../../services/user-api.service';
-import { selectIsEditSuccess, selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
+import {  selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/forms.model';
@@ -30,8 +30,6 @@ export class EditProfilePageComponent implements OnInit {
   public hasPasswordError = false;
 
   public hidePassword = true;
-
-  private isEditSuccess$ = this.store.select(selectIsEditSuccess);
 
   public editProfileForm = new FormGroup({
     name: new FormControl<string>('', {
@@ -77,12 +75,6 @@ export class EditProfilePageComponent implements OnInit {
     this.store.select(selectUserLogin).pipe(take(1)).subscribe((email) => {
       this.email!.setValue(email);
     });
-
-    this.isEditSuccess$.subscribe(isEditSuccess => {
-      if (isEditSuccess) {
-        this.showSuccessEdit();
-      }
-    });
   }
 
   public get name() {
@@ -95,6 +87,10 @@ export class EditProfilePageComponent implements OnInit {
 
   public get password() {
     return this.editProfileForm.get('password');
+  }
+
+  public setHidePassword(): void {
+    this.hidePassword = !this.hidePassword;
   }
 
   private checkErrors() {
@@ -153,22 +149,6 @@ export class EditProfilePageComponent implements OnInit {
     }
   }
 
-  public showDeleteUserModal(): void {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.autoFocus = 'dialog';
-
-    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
-      if (isConfirmed) {
-        const userId = this.userService.getUserId();
-
-        this.store.dispatch(UserActions.deleteUser({ userId }));
-      }
-    });
-  }
-
   public submit(): void {
     if (this.editProfileForm.invalid) {
       this.checkErrors();
@@ -190,17 +170,19 @@ export class EditProfilePageComponent implements OnInit {
     }));
   }
 
-  private showSuccessEdit(): void {
-    const message = this.translateService.instant('edit-profile.notification.success');
-    const buttonText = this.translateService.instant('edit-profile.notification.close-btn');
+  public showDeleteUserModal(): void {
+    const dialogConfig = new MatDialogConfig();
 
-    this.snackBar.open(message, buttonText, {
-      panelClass: ['notification', 'notification--success'],
-      duration: 2000,
+    dialogConfig.autoFocus = 'dialog';
+
+    const dialogRef = this.dialog.open(ConfirmModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((isConfirmed: boolean) => {
+      if (isConfirmed) {
+        const userId = this.userService.getUserId();
+
+        this.store.dispatch(UserActions.deleteUser({ userId }));
+      }
     });
-  }
-
-  public setHidePassword(): void {
-    this.hidePassword = !this.hidePassword;
   }
 }

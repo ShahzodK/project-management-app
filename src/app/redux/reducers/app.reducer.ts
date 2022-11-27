@@ -8,7 +8,6 @@ export const initialState: IAppState = {
   isLogged: false,
   userName: '',
   login: '',
-  isEditSuccess: false,
 };
 
 export const appReducer = createReducer(
@@ -32,10 +31,6 @@ export const appReducer = createReducer(
     _id: updatedUser._id,
     userName: updatedUser.name,
     login: updatedUser.login,
-  })),
-  on(AppActions.setIsEditSuccess, (state, { isSuccess }): IAppState => ({
-    ...state,
-    isEditSuccess: isSuccess,
   })),
 );
 
