@@ -1,24 +1,26 @@
 .modal {
   position: relative;
+
+  &__header {
+    text-align: center;
+    padding: 10px 40px 0;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__footer {
+    justify-content: flex-end;
+  }
 }
 
 .header {
-  text-align: center;
-  padding: 10px 40px 0;
-}
-
-.content {
-  text-align: center;
-}
-
-.close-btn {
-  min-width: 40px;
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  padding: 0
-}
-
-.footer {
-  justify-content: flex-end;
+  &__close-btn {
+    min-width: 40px;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    padding: 0
+  }
 }
