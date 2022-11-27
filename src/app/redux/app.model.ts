@@ -3,5 +3,4 @@ export interface IAppState {
   isLogged: boolean,
   userName: string,
   login: string,
-  isEditSuccess: boolean;
 }

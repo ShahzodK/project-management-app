@@ -11,7 +11,6 @@ import { AppRoutePaths } from '../../enums/routes.enum';
 import { CreateBoardModalComponent } from '../../../main/components/create-board-modal/create-board-modal.component';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -41,7 +40,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private store: Store,
     private dialog: MatDialog,
-    private userService: UserService,
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -84,7 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (!result) return;
 
         const { title } = result;
-        const owner = this.userService.getUserId();
+        const owner = this.authService.getUserId();
         const users: string[] = [];
 
         this.store.dispatch(BoardActions.createBoard({ title, owner, users }));

@@ -3,7 +3,7 @@ export interface ILoginResponse {
 }
 
 export interface ISignUpResponse {
-  id: string;
+  _id: string;
   login: string;
   name: string;
 }

@@ -9,10 +9,10 @@ import { Store } from '@ngrx/store';
 import { selectColumns } from '../selectors/board.selectors';
 import { TaskApiService } from '../../services/task-api.service';
 import { IColumn } from '../../models/column.model';
+import { NotifyService } from '../../../shared/services/notify.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 
 export class BoardEffects {
 
@@ -22,6 +22,7 @@ export class BoardEffects {
     private boardApiService: BoardApiService,
     private columnApiService: ColumnApiService,
     private taskApiService: TaskApiService,
+    private notifyService: NotifyService,
   ) {
   }
 
@@ -80,10 +81,16 @@ export class BoardEffects {
             order,
           });
         }),
-        map((createdColumn) =>
-          BoardActions.createColumnSuccess({ createdColumn }),
-        ),
-        catchError(() => of(BoardActions.createColumnFailed())),
+        map((createdColumn) => {
+          this.notifyService.success();
+
+          return BoardActions.createColumnSuccess({ createdColumn });
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.notifyService.error(error);
+
+          return of(BoardActions.createColumnFailed());
+        }),
       );
   });
 
@@ -97,13 +104,20 @@ export class BoardEffects {
               map(() => ({ columnId })),
             ),
         ),
-        switchMap(({ columnId }) =>
-          of(
+        switchMap(({ columnId }) => {
+          this.notifyService.success();
+
+          return of(
             BoardActions.deleteColumnSuccess({ columnId }),
             // когда удаляешь колонку, ее таски сами удаляются сервером
             BoardActions.deleteTasksAfterColumnDelete({ columnId }),
-          )),
-        catchError(() => of(BoardActions.fetchColumnsFailed())),
+          );
+        }),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(BoardActions.fetchColumnsFailed());
+        }),
       );
   });
 
@@ -114,11 +128,18 @@ export class BoardEffects {
         switchMap(({ newColumn }) =>
           this.columnApiService.updateColumn(newColumn),
         ),
-        switchMap((updatedColumn) =>
-          of(
+        switchMap((updatedColumn) => {
+          this.notifyService.success();
+
+          return of(
             BoardActions.updateColumnTitleSuccess({ updatedColumn }),
-          )),
-        catchError(() => of(BoardActions.updateColumnTitleFailed())),
+          );
+        }),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(BoardActions.updateColumnTitleFailed());
+        }),
       );
   });
 
@@ -131,9 +152,7 @@ export class BoardEffects {
           return this.taskApiService
             .getTasksSet(boardId);
         }),
-        map((tasks) => {
-          return BoardActions.fetchTasksSuccess({ tasks });
-        }),
+        map((tasks) => BoardActions.fetchTasksSuccess({ tasks })),
         catchError(() => of(BoardActions.fetchTasksFailed())),
       );
   });
@@ -144,12 +163,18 @@ export class BoardEffects {
         ofType(BoardActions.createTask),
         switchMap(({ task }) =>
           this.taskApiService.createTask(task)),
-        map((createdTask) =>
-          BoardActions.createTaskSuccess({
+        map((createdTask) => {
+          this.notifyService.success();
+
+          return BoardActions.createTaskSuccess({
             createdTask,
-          }),
+          });
+        },
         ),
-        catchError(() => of(BoardActions.createTaskFailed())),
+        catchError((error) => {
+          this.notifyService.error(error);
+          return of(BoardActions.createTaskFailed());
+        }),
       );
   });
 
@@ -164,8 +189,16 @@ export class BoardEffects {
               map(() => ({ taskId })),
             ),
         ),
-        map(({ taskId }) => BoardActions.deleteTaskSuccess({ taskId })),
-        catchError(() => of(BoardActions.deleteTaskFailed())),
+        map(({ taskId }) => {
+          this.notifyService.success();
+
+          return BoardActions.deleteTaskSuccess({ taskId });
+        }),
+        catchError((error) => {
+          this.notifyService.error(error);
+
+          return of(BoardActions.deleteTaskFailed());
+        }),
       );
   });
 }

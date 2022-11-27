@@ -21,6 +21,8 @@ import { HttpLoaderFactory } from '../app.module';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MissingTranslationService } from '../shared/services/missing-translation.service';
 import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
+import { ColumnApiService } from './services/column-api.service';
+import { TaskApiService } from './services/task-api.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,11 @@ import { SortByOrderPipe } from './pipes/sort-by-order.pipe';
     }),
     StoreModule.forFeature('board', boardReducer),
     EffectsModule.forFeature([BoardEffects]),
+  ],
+  providers: [
+    
+    ColumnApiService,
+    TaskApiService,
   ],
 })
 export class BoardModule {

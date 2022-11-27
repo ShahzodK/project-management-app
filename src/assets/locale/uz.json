@@ -23,6 +23,15 @@
         "desc": "Developed the application components"
       }
     },
+    "notification": {
+      "success": "Saqalandi!",
+      "close-btn": "Yopish",
+      "errors": {
+      "500": "Server xatosi",
+      "400": "Noto'g'ri so'rov",
+      "404": "Soʻralgan manba topilmadi!"
+      }
+    },
     "not-found": {
       "back-btn": "Uyga qaytish",
       "message": "Sahifa topilmadi!"
@@ -87,10 +96,6 @@
       },
       "submit-btn": "Saqlash",
       "delete-btn": "Profilni o'chirib tashlash"
-    },
-    "notification": {
-      "success": "Saqalandi!",
-      "close-btn": "Yopish"
     }
   },
   "auth": {
