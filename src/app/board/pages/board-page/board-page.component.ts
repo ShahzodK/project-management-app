@@ -29,6 +29,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public columns: IColumn[] | undefined;
 
+  public columnsList: IColumn[] | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -43,6 +45,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       if (!boardId) throw this.getBoardIdError();
 
       this.store.dispatch(BoardActions.boardPageOpened({ boardId }));
+    });
+    this.columns$.subscribe((columns) => {
+      this.columnsList = [...columns];
     });
   }
 
