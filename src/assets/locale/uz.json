@@ -7,20 +7,20 @@
     },
     "members": {
       "first": {
-        "desc": "Made login and improved app performance",
-        "name": "Vasily Gusev"
+        "name": "Vasily Gusev",
+        "desc": "Dasturni boshlang'ich strukturasini qildi: lokalizatsiya, routing, avtorizatsiya, API so'rovlari"
       },
       "second": {
         "name": "Adilet Maksatuly",
-        "desc": "Made Drag and Drop and implemented communication with the server"
+        "desc": " Loyiha sahifasini hamda profilni tahrirlash sahifasini qildi. Server xatolarni qalqib chiquvchi oynalar orqali ko'rsatishni qildi. Dasturni adaptivligini qildi. Refaktor qiroli\uD83D\uDE0E"
       },
       "third": {
         "name": "Shahzod Kakhkhorov",
-        "desc": "Developed the application architecture, routing and configured NgRx"
+        "desc": "Bosh va Loyiha sahifalarini, Drag'n'Dropni va server bilan kommunikatsiyani qildi. NgRx ni dastur uchun sozladi"
       },
       "fourth": {
         "name": "Dimitrii Shabanov",
-        "desc": "Developed the application components"
+        "desc": "Not Found sahifasini qildi"
       }
     },
     "notification": {
@@ -79,6 +79,13 @@
       "column-title": "Sarlavha",
       "cancel-btn": "Bekor qilish",
       "submit-btn": "Saqlash"
+    },
+    "create-task-modal": {
+      "title": "Yangi vazifa",
+      "task-title": "Sarlavha",
+      "cancel-btn": "Bekor qilish",
+      "submit-btn": "Saqlash",
+      "description":"tavsifi"
     }
   },
   "main": {
@@ -144,6 +151,10 @@
         "close-btn": "Yopish"
       }
     }
+  },
+  "modal": {
+    "save": "Saqalash",
+    "cancel": "Bekor qilish"
   },
   "languages": {
     "en": "ENG",
