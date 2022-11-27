@@ -212,10 +212,7 @@ export class BoardEffects {
         map((updatedTasks) => {
           return BoardActions.updateTaskOrderSuccess({ updatedTasks });
         }),
-        catchError((err) => {
-          console.log(err);
-          return of(BoardActions.updateTaskOrderFailed());
-        }),
+        catchError(() => of(BoardActions.updateTaskOrderFailed())),
       );
   });
 

@@ -122,9 +122,6 @@ export class ColumnComponent {
   }
 
   public reorderTasks(event: CdkDragDrop<any[]>, tasks: ITask[]) {
-    console.log(event.container);
-    console.log(event.previousContainer);
-    console.log(event.previousContainer == event.container);
     if (event.previousIndex !== event.currentIndex) {
       const updatedTasks: ITask[] = updateArrayOrder(tasks, event.previousIndex, event.currentIndex);
       this.store.dispatch(BoardActions.updateTaskOrder({ updatedTasks }));
