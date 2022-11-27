@@ -10,6 +10,7 @@ import { FullRoutePaths } from '../../core/constants/routes';
 import { AppRoutePaths } from '../../core/enums/routes.enum';
 import { IUser } from '../../user-profile/models/user.model';
 import jwt_decode from 'jwt-decode';
+import { TOKEN } from '../../core/token';
 
 @Injectable({
   providedIn: 'root',
