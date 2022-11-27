@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ITask } from '../../models/task.model';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { ModalData, ModalResult, TaskResult } from '../../../shared/models/modal.model';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
@@ -14,7 +15,7 @@ import { ModalComponent } from '../../../shared/components/modal/modal.component
 })
 export class TaskComponent {
 
-  constructor(private dialog: MatDialog, private store: Store) {
+  constructor(private dialog: MatDialog, private store: Store, private translateService:TranslateService) {
   }
 
   @Input() public task!: ITask;
@@ -49,16 +50,16 @@ export class TaskComponent {
     dialogConfig.autoFocus = 'dialog';
 
     dialogConfig.data = {
-      title: 'Create Task',
+      title: this.translateService.instant('board.edit-task-modal.title'),
       formFields: [
         {
-          label: 'Title',
-          name: 'title',
+          label: this.translateService.instant('board.edit-task-modal.task-title'),
+          name:  this.translateService.instant('board.edit-task-modal.task-title'),
           value: this.task.title,
         },
         {
-          label: 'Description',
-          name: 'description',
+          label: this.translateService.instant('board.edit-task-modal.description'),
+          name: this.translateService.instant('board.edit-task-modal.description'),
           value: this.task.description,
         },
       ],

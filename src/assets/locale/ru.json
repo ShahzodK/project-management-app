@@ -76,13 +76,20 @@
       "back-btn": "Назад"
     },
     "create-column-modal": {
-      "title": "Новая задача",
+      "title": "Новая колонку",
       "column-title": "Название",
       "cancel-btn": "Отменить",
       "submit-btn": "Сохранить"
     },
     "create-task-modal": {
       "title": "Новая задача",
+      "task-title": "Название",
+      "cancel-btn": "Отменить",
+      "submit-btn": "Сохранить",
+      "description":"Описание"
+    },
+    "edit-task-modal": {
+      "title": "Изменить задачу",
       "task-title": "Название",
       "cancel-btn": "Отменить",
       "submit-btn": "Сохранить",
