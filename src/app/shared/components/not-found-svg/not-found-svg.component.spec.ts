@@ -8,9 +8,9 @@ describe('NotFoundSvgComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotFoundSvgComponent ]
+      declarations: [ NotFoundSvgComponent ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NotFoundSvgComponent);
     component = fixture.componentInstance;
