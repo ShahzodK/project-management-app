@@ -7,7 +7,7 @@ import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../mo
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FullRoutePaths } from '../../../core/constants/routes';
 import { UserService } from '../../../core/services/user.service';
-import {formErrorsLocale} from "../../models/locale-errors.const";
+import { formErrorsLocale } from '../../models/locale-errors.const';
 
 @Component({
   selector: 'app-login-page',

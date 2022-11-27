@@ -22,6 +22,10 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "not-found": {
+      "back-btn": "Uyga qaytish",
+      "message": "Sahifa topilmadi!"
     }
   },
   "header": {

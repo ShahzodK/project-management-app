@@ -15,4 +15,4 @@ export const formErrorsLocale = {
     numeric: 'auth.forms.errors.client.password.numeric',
     specials: 'auth.forms.errors.client.password.specials',
   },
-}
+};

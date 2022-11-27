@@ -22,6 +22,10 @@
         "name": "Dimitrii Shabanov",
         "desc": "Developed the application components"
       }
+    },
+    "not-found": {
+      "back-btn": "Назад на главную",
+      "message": "Страница не найдена!"
     }
   },
   "header": {
@@ -72,10 +76,6 @@
     "boards": "Доски",
     "boards-error": "Произошла ошибка при загрузке досок",
     "search": "Поиск"
-  },
-  "not-found-page": {
-    "button-back": "На главную",
-    "not-found-message": "Страница не найдена"
   },
   "auth": {
     "sign-in": {

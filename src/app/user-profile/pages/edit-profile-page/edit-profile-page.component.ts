@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { UserApiService } from '../../services/user-api.service';
-import {selectIsEditSuccess, selectUserLogin, selectUserName} from 'src/app/redux/selectors/app.selectors';
+import { selectIsEditSuccess, selectUserLogin, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/forms.model';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../../core/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
-import {formErrorsLocale} from "../../../auth/models/locale-errors.const";
+import { formErrorsLocale } from '../../../auth/models/locale-errors.const';
 
 
 @Component({
@@ -82,7 +82,7 @@ export class EditProfilePageComponent implements OnInit {
       if (isEditSuccess) {
         this.showSuccessEdit();
       }
-    })
+    });
   }
 
   public get name() {
@@ -185,9 +185,9 @@ export class EditProfilePageComponent implements OnInit {
         _id: id,
         name,
         login: email,
-        password
-      }
-    }))
+        password,
+      },
+    }));
   }
 
   private showSuccessEdit(): void {
