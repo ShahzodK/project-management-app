@@ -2,6 +2,7 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { ColumnResult, ModalData, ModalResult } from '../../../shared/models/modal.model';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
 
@@ -20,7 +21,7 @@ export class HeaderComponent {
   public screenWidth: number;
 
 
-  constructor(public dialog: MatDialog, private store: Store) {
+  constructor(public dialog: MatDialog, private store: Store, private translateService: TranslateService) {
     this.screenWidth = window.innerWidth;
   }
 
@@ -38,11 +39,11 @@ export class HeaderComponent {
 
     dialogConfig.autoFocus = 'dialog';
     dialogConfig.data = {
-      title: 'Create Column',
+      title: this.translateService.instant('board.create-column-modal.title'),
       formFields: [
         {
-          label: 'Title',
-          name: 'title',
+          label: this.translateService.instant('board.create-column-modal.column-title'),
+          name: this.translateService.instant('board.create-column-modal.column-title'),
         },
       ],
     };
