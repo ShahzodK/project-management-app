@@ -15,7 +15,7 @@ main > *:nth-child(2) {
 }
 
 main > app-board-page {
-  height: calc(100vh - 64px - 47px);
+  height: calc(100vh - 65px - 47px);
   display: flex !important;
   flex-direction: column;
 }

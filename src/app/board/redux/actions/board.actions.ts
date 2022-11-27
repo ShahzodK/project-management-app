@@ -50,6 +50,25 @@ export const createColumnFailed = createAction(
   '[Board] Create Column Failed',
 );
 
+export const updateColumnOrderInServer = createAction(
+  '[Board] Update Column order in server',
+  props<{ updatedColumnsForRequest: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>[] }>(),
+);
+
+export const updateColumnOrder = createAction(
+  '[Board] Update Column order',
+  props<{ updatedColumns: IColumn[] }>(),
+);
+
+export const updateColumnOrderSuccess = createAction(
+  '[Board] Update Column order Success',
+  props<{ updatedColumns: IColumn[] }>(),
+);
+
+export const updateColumnOrderFailed = createAction(
+  '[Board] Update Column order Failed',
+);
+
 export const deleteColumn = createAction(
   '[Board] Delete Column',
   props<{ boardId: string, columnId: string }>(),
@@ -122,6 +141,25 @@ export const createTaskSuccess = createAction(
 
 export const createTaskFailed = createAction(
   '[Board] Create Task Failed',
+);
+
+export const updateTaskOrderInServer = createAction(
+  '[Board] Update Task order in server',
+  props<{ updatedTasksForRequest: ITask[] }>(),
+);
+
+export const updateTaskOrder = createAction(
+  '[Board] Update Task order',
+  props<{ updatedTasks: ITask[] }>(),
+);
+
+export const updateTaskOrderSuccess = createAction(
+  '[Board] Update Task order Success',
+  props<{ updatedTasks: ITask[] }>(),
+);
+
+export const updateTaskOrderFailed = createAction(
+  '[Board] Update Task order Failed',
 );
 
 export const deleteTasksAfterColumnDelete = createAction(

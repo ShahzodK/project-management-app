@@ -25,7 +25,8 @@ export class AuthInterceptor implements HttpInterceptor {
     const url = `${environment.baseUrl}${request.url}`;
     const headers = request.headers
       .append('Authorization', `Bearer ${authToken}`)
-      .append('Accept', 'application/json');
+      .append('Accept', 'application/json')
+      .append('Access-Control-Allow-Origin', '*');
 
     const customReq = request.clone({
       url,

@@ -47,6 +47,7 @@
 }
 
 .task {
+  list-style-type: none;
 }
 
 .edit-column-form {
@@ -64,4 +65,22 @@
     min-width: auto;
     padding: 0;
   }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

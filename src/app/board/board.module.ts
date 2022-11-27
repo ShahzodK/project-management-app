@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardRoutingModule } from './board-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -31,11 +32,12 @@ import { TaskApiService } from './services/task-api.service';
     BoardRoutingModule,
     SharedModule,
     FormsModule,
+    DragDropModule,
     StoreModule.forFeature('board', boardReducer),
     EffectsModule.forFeature([BoardEffects]),
   ],
   providers: [
-    
+
     ColumnApiService,
     TaskApiService,
   ],

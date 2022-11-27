@@ -121,6 +121,30 @@ export class BoardEffects {
       );
   });
 
+  public updateColumnOrderInServer$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnOrder),
+        switchMap(({ updatedColumns }) => {
+          return this.columnApiService.updateColumnOrder(updatedColumns);
+        }),
+        map((updatedColumns) => {
+          return BoardActions.updateColumnOrderSuccess({ updatedColumns });
+        }),
+        catchError(() => of(BoardActions.updateColumnOrderFailed())),
+      );
+  });
+
+  public updateColumnOrder$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateColumnOrder),
+        switchMap(({ updatedColumns } ) => {
+          return of(BoardActions.updateColumnOrderSuccess({ updatedColumns }));
+        }),
+      );
+  });
+
   public updateColumnTitle$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -174,6 +198,30 @@ export class BoardEffects {
         catchError((error) => {
           this.notifyService.error(error);
           return of(BoardActions.createTaskFailed());
+        }),
+      );
+  });
+
+  public updateTaskOrderInServer$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateTaskOrder),
+        switchMap(({ updatedTasks }) => {
+          return this.taskApiService.updateTaskOrder(updatedTasks);
+        }),
+        map((updatedTasks) => {
+          return BoardActions.updateTaskOrderSuccess({ updatedTasks });
+        }),
+        catchError(() => of(BoardActions.updateTaskOrderFailed())),
+      );
+  });
+
+  public updateTaskOrder$ = createEffect(() => {
+    return this.actions$
+      .pipe(
+        ofType(BoardActions.updateTaskOrder),
+        switchMap(({ updatedTasks } ) => {
+          return of(BoardActions.updateTaskOrderSuccess({ updatedTasks }));
         }),
       );
   });

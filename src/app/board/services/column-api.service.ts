@@ -34,6 +34,19 @@ export class ColumnApiService {
     });
   }
 
+  public updateColumnOrder(columns: IColumn[]): Observable<IColumn[]> {
+    const columnSetForRequest = [...columns].map((column: Partial<Pick<IColumn, 'boardId' | 'title'>> & Omit<IColumn, 'boardId' | 'title'>, i: number) => {
+      const columnClone = { ...column };
+      delete columnClone.boardId;
+      delete columnClone.title;
+      columnClone.order = i;
+      return columnClone;
+    });
+    return this.http.patch<IColumn[]>('columnsSet',
+      columnSetForRequest,
+    );
+  }
+
   public deleteColumn(boardId: string, columnId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}`);
   }

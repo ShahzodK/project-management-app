@@ -6,6 +6,9 @@ import { Store } from '@ngrx/store';
 import { selectBoard, selectColumns } from '../../redux/selectors/board.selectors';
 import * as BoardActions from '../../redux/actions/board.actions';
 import { selectUserId } from '../../../redux/selectors/app.selectors';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { IColumn } from '../../models/column.model';
+import { updateArrayOrder } from 'src/app/shared/consts/updateArrayOrder';
 
 
 @Component({
@@ -23,6 +26,12 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   private routeParamsSub!: Subscription;
 
 
+  public draggedColumn: IColumn | undefined;
+
+  public columns: IColumn[] | undefined;
+
+  public columnsList: IColumn[] | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -38,6 +47,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
       this.store.dispatch(BoardActions.boardPageOpened({ boardId }));
     });
+    this.columns$.subscribe((columns) => {
+      this.columnsList = [...columns];
+    });
   }
 
   private getBoardIdError(): Error {
@@ -50,6 +62,14 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public navigateBack(): void {
     this.location.back();
+  }
+
+  public reorderColumns(event: CdkDragDrop<string[]>, columns: IColumn[]) {
+    if (event.previousIndex !== event.currentIndex) {
+      const updatedColumns: IColumn[] = updateArrayOrder(columns, event.previousIndex, event.currentIndex);
+      this.store.dispatch(BoardActions.updateColumnOrder({ updatedColumns }));
+    }
+
   }
 
 }

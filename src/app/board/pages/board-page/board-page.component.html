@@ -1,4 +1,4 @@
-<section *ngIf="(board$ | async) as board" class="board">
+<section *ngIf="(board$ | async) as board" class="board" cdkDropListGroup>
   <app-board-page-header
     class="board__header"
     [boardId]="board._id"
@@ -9,8 +9,13 @@
   <div *ngIf="userId$ | async as userId"
        class="board__content">
     <ng-container *ngIf="(columns$ | async) as columns">
-      <ul *ngIf="columns.length; else noColumns" class="board__columns columns">
-        <li *ngFor="let column of columns | sortByOrder" class="columns__item">
+      <ul *ngIf="columns.length; else noColumns" class="board__columns columns"
+       cdkDropListGroup
+       cdkDropList
+       cdkDropListOrientation="horizontal"
+       (cdkDropListDropped)="reorderColumns($event, columns)">
+        <li *ngFor="let column of columns | sortByOrder" class="columns__item" cdkDrag [cdkDragData]="column" cdkDropList [cdkDropListData]="column">
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
           <app-column [boardId]="board._id" [column]="column" [userId]="userId"></app-column>
         </li>
       </ul>
