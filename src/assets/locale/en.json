@@ -25,8 +25,13 @@
     },
     "notification": {
       "success": "Saved!",
-      "error": "Error!",
-      "close-btn": "Close"
+      "error": "Error! Please, try again later",
+      "close-btn": "Close",
+      "errors": {
+        "500": "Internal Server Error",
+        "400": "Bad Request",
+        "404": "Requested URL Not found!"
+      }
     }
   },
   "header": {

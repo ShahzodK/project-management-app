@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NotifyService {
-  private readonly successText = this.translateService.instant('notification.success');
-  private readonly errorText = this.translateService.instant('notification.error');
-  private readonly closeBtnText = this.translateService.instant('notification.close-btn');
+  private readonly successText = this.getTranslation('core.notification.success');
+
+  private readonly errorText = this.getTranslation('core.notification.error');
+
+  private readonly closeBtnText = this.getTranslation('core.notification.close-btn');
+
+  private readonly NOT_FOUND_ERR_CODE = 404;
+
+  private readonly SERVER_ERR_CODE = 500;
 
   constructor(
     private snackbar: MatSnackBar,
@@ -21,14 +26,26 @@ export class NotifyService {
     });
   }
 
-  public error(errorLocaleText?: string): void {
-    let errorText = errorLocaleText
-      ? this.translateService.instant(errorLocaleText)
-      : this.errorText;
+  public error(error: HttpErrorResponse): void {
+    let errorText = this.errorText;
+
+    if (error) {
+      if (error.status === this.NOT_FOUND_ERR_CODE) {
+        errorText = this.getTranslation(`core.notification.errors.${this.NOT_FOUND_ERR_CODE}`);
+      }
+
+      if (error.status === this.SERVER_ERR_CODE) {
+        errorText = this.getTranslation(`core.notification.errors.${this.SERVER_ERR_CODE}`);
+      }
+    }
 
     this.snackbar.open(errorText, this.closeBtnText, {
       panelClass: ['notification', 'notification--error'],
       duration: 3000,
     });
+  }
+
+  private getTranslation(str: string): string {
+    return this.translateService.instant(str);
   }
 }
