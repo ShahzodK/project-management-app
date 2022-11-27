@@ -39,5 +39,5 @@ export const updateUserFailed = createAction(
 
 export const setIsEditSuccess = createAction(
   '[App] Set isEditSuccess',
-  props<{isSuccess: boolean}>(),
+  props<{ isSuccess: boolean }>(),
 );

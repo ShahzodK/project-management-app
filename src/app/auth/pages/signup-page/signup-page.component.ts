@@ -7,7 +7,7 @@ import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormField
 import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../../core/services/user.service';
-import {formErrorsLocale} from "../../models/locale-errors.const";
+import { formErrorsLocale } from '../../models/locale-errors.const';
 
 @Component({
   selector: 'app-signup-page',
