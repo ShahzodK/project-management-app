@@ -4,10 +4,10 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, PasswordFieldErrors, LoginFormFields } from '../../models/forms.model';
-import { loginErrorsLocale } from '../../models/locale-errors.const';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FullRoutePaths } from '../../../core/constants/routes';
 import { UserService } from '../../../core/services/user.service';
+import {formErrorsLocale} from "../../models/locale-errors.const";
 
 @Component({
   selector: 'app-login-page',
@@ -106,8 +106,8 @@ export class LoginPageComponent implements OnInit {
   public getEmailErrorMessage(): string {
     const email = this.email;
 
-    if (email?.hasError(EmailFieldErrors.REQUIRED)) return loginErrorsLocale.email.required;
-    if (email?.hasError(EmailFieldErrors.EMAIL)) return loginErrorsLocale.email.email;
+    if (email?.hasError(EmailFieldErrors.REQUIRED)) return formErrorsLocale.email.required;
+    if (email?.hasError(EmailFieldErrors.EMAIL)) return formErrorsLocale.email.email;
 
     return '';
   }
@@ -115,7 +115,7 @@ export class LoginPageComponent implements OnInit {
   public getPasswordErrorMessage(): string {
     const password = this.password;
 
-    if (password?.hasError(PasswordFieldErrors.REQUIRED)) return loginErrorsLocale.password.required;
+    if (password?.hasError(PasswordFieldErrors.REQUIRED)) return formErrorsLocale.password.required;
 
     return '';
   }

@@ -4,10 +4,10 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors, SignUpFormFields } from '../../models/forms.model';
-import { signUpErrorsLocale } from '../../models/locale-errors.const';
 import { passwordStrengthValidator } from '../../../core/validators/password-strength.validator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../../core/services/user.service';
+import {formErrorsLocale} from "../../models/locale-errors.const";
 
 @Component({
   selector: 'app-signup-page',
@@ -113,8 +113,8 @@ export class SignupPageComponent implements OnInit {
   public getNameErrorMessage(): string {
     const name = this.name;
 
-    if (name?.hasError(NameFieldErrors.REQUIRED)) return signUpErrorsLocale.name.required;
-    if (name?.hasError(NameFieldErrors.MIN_LENGTH)) return signUpErrorsLocale.name.minLength;
+    if (name?.hasError(NameFieldErrors.REQUIRED)) return formErrorsLocale.name.required;
+    if (name?.hasError(NameFieldErrors.MIN_LENGTH)) return formErrorsLocale.name.minLength;
 
     return '';
   }
@@ -122,8 +122,8 @@ export class SignupPageComponent implements OnInit {
   public getEmailErrorMessage(): string {
     const email = this.email;
 
-    if (email?.hasError(EmailFieldErrors.REQUIRED)) return signUpErrorsLocale.email.required;
-    if (email?.hasError(EmailFieldErrors.EMAIL)) return signUpErrorsLocale.email.email;
+    if (email?.hasError(EmailFieldErrors.REQUIRED)) return formErrorsLocale.email.required;
+    if (email?.hasError(EmailFieldErrors.EMAIL)) return formErrorsLocale.email.email;
 
     return '';
   }
@@ -133,16 +133,16 @@ export class SignupPageComponent implements OnInit {
 
     switch (true) {
       case password?.hasError(PasswordFieldErrors.REQUIRED):
-        return signUpErrorsLocale.password.required;
+        return formErrorsLocale.password.required;
       case password?.hasError(PasswordFieldErrors.ENOUGH_CHARS):
-        return signUpErrorsLocale.password.enough_chars;
+        return formErrorsLocale.password.enough_chars;
       case password?.hasError(PasswordFieldErrors.LOWERCASE) ||
       password?.hasError(PasswordFieldErrors.UPPERCASE):
-        return signUpErrorsLocale.password.lowercase;
+        return formErrorsLocale.password.lowercase;
       case password?.hasError(PasswordFieldErrors.NUMERIC):
-        return signUpErrorsLocale.password.numeric;
+        return formErrorsLocale.password.numeric;
       case password?.hasError(PasswordFieldErrors.SPECIALS):
-        return signUpErrorsLocale.password.specials;
+        return formErrorsLocale.password.specials;
       default:
         return '';
     }

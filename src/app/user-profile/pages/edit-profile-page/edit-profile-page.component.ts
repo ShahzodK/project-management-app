@@ -6,7 +6,6 @@ import { UserApiService } from '../../services/user-api.service';
 import {selectIsEditSuccess, selectUserLogin, selectUserName} from 'src/app/redux/selectors/app.selectors';
 import * as UserActions from '../../../redux/actions/app.actions';
 import { passwordStrengthValidator } from 'src/app/core/validators/password-strength.validator';
-import { signUpErrorsLocale } from 'src/app/auth/models/locale-errors.const';
 import { EmailFieldErrors, NameFieldErrors, PasswordFieldErrors } from 'src/app/auth/models/forms.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../../core/services/user.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import {formErrorsLocale} from "../../../auth/models/locale-errors.const";
 
 
 @Component({
@@ -138,16 +138,16 @@ export class EditProfilePageComponent implements OnInit {
 
     switch (true) {
       case password.hasError(PasswordFieldErrors.REQUIRED):
-        return signUpErrorsLocale.password.required;
+        return formErrorsLocale.password.required;
       case password.hasError(PasswordFieldErrors.ENOUGH_CHARS):
-        return signUpErrorsLocale.password.enough_chars;
+        return formErrorsLocale.password.enough_chars;
       case password.hasError(PasswordFieldErrors.LOWERCASE) ||
       password?.hasError(PasswordFieldErrors.UPPERCASE):
-        return signUpErrorsLocale.password.lowercase;
+        return formErrorsLocale.password.lowercase;
       case password.hasError(PasswordFieldErrors.NUMERIC):
-        return signUpErrorsLocale.password.numeric;
+        return formErrorsLocale.password.numeric;
       case password.hasError(PasswordFieldErrors.SPECIALS):
-        return signUpErrorsLocale.password.specials;
+        return formErrorsLocale.password.specials;
       default:
         return '';
     }

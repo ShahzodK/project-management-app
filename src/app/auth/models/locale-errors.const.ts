@@ -1,4 +1,4 @@
-export const signUpErrorsLocale = {
+export const formErrorsLocale = {
   name: {
     required: 'auth.forms.errors.client.name.required',
     minLength: 'auth.forms.errors.client.name.minlength',
@@ -15,14 +15,4 @@ export const signUpErrorsLocale = {
     numeric: 'auth.forms.errors.client.password.numeric',
     specials: 'auth.forms.errors.client.password.specials',
   },
-};
-
-export const loginErrorsLocale = {
-  email: {
-    required: 'auth.forms.errors.client.email.required',
-    email: 'auth.forms.errors.client.email.email',
-  },
-  password: {
-    required: 'auth.forms.errors.client.password.required',
-  },
-};
+}
