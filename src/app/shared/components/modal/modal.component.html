@@ -18,12 +18,12 @@
     </ng-container>
   </div>
   <footer class="modal__footer" mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="false">{{"modal.cancel" | translate}}</button>
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
     <button
       mat-raised-button
       type="submit"
       color="primary"
       [disabled]="!modalForm.form.valid"
-    >{{"modal.save" | translate}}</button>
+    >Save</button>
   </footer>
 </form>

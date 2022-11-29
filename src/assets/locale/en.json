@@ -7,20 +7,20 @@
     },
     "members": {
       "first": {
-        "desc": "Built the initial structure of the application: localization, routing, authorization, API requests",
+        "desc": "Made login and improved app performance",
         "name": "Vasily Gusev"
       },
       "second": {
         "name": "Adilet Maksatuly",
-        "desc": "Developed Board and EditProfile pages layout and logic. Implemented showing server errors as popups. Adaptive layout of whole app. Refactor King\uD83D\uDE0E"
+        "desc": "Made Drag and Drop and implemented communication with the server"
       },
       "third": {
         "name": "Shahzod Kakhkhorov",
-        "desc": "Developed Board and Main pages, Drag'n'Drop and communication with the server. Configured NgRx store of whole app"
+        "desc": "Developed the application architecture, routing and configured NgRx"
       },
       "fourth": {
         "name": "Dimitrii Shabanov",
-        "desc": "Developed Not Found layout and logic"
+        "desc": "Developed the application components"
       }
     },
     "notification": {
@@ -82,13 +82,6 @@
       "column-title": "Title",
       "cancel-btn": "Cancel",
       "submit-btn": "Save"
-    },
-    "create-task-modal": {
-      "title": "Create task",
-      "task-title": "Title",
-      "cancel-btn": "Cancel",
-      "submit-btn": "Save",
-      "description":"Description"
     }
   },
   "main": {
@@ -154,10 +147,6 @@
       "submit-btn": "Save",
       "delete-btn": "Delete profile"
     }
-  },
-  "modal": {
-    "save": "save",
-    "cancel": "cancel"
   },
   "languages": {
     "en": "ENG",

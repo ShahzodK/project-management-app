@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { selectIsLogged, selectUserName } from 'src/app/redux/selectors/app.selectors';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
-import { TranslateService } from '@ngx-translate/core';
 import { FullRoutePaths } from '../../constants/routes';
 import { AppRoutePaths } from '../../enums/routes.enum';
 import * as BoardActions from '../../../main/redux/actions/boards.actions';
@@ -39,7 +38,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private store: Store,
     private dialog: MatDialog,
-    private translateService: TranslateService,
   ) {
     this.screenWidth = window.innerWidth;
   }
@@ -71,11 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     dialogConfig.autoFocus = 'dialog';
     dialogConfig.data = {
-      title: this.translateService.instant('header.create-board-modal.title'),
+      title: 'Create Board',
       formFields: [
         {
-          label: this.translateService.instant('header.create-board-modal.board-title'),
-          name: this.translateService.instant('header.create-board-modal.board-title'),
+          label: 'Title',
+          name: 'title',
         },
       ],
     };
