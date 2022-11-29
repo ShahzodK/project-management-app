@@ -7,20 +7,20 @@
     },
     "members": {
       "first": {
-        "desc": "Построил начальный каркас приложения: локализация, роутинг, авторизация, АПИ запросы",
+        "desc": "Made login and improved app performance",
         "name": "Vasily Gusev"
       },
       "second": {
         "name": "Adilet Maksatuly",
-        "desc": "Разработал страницу борды и изменения профиля. Добавил логику отображения серверных ошибок. Адаптивная верстка всего приложения. Король рефакторинга\uD83D\uDE0E"
+        "desc": "Made Drag and Drop and implemented communication with the server"
       },
       "third": {
         "name": "Shahzod Kakhkhorov",
-        "desc": "Разработал страницу борды и главную страницу. Добавил Drag'n'Drop и наладил коммуникацию с сервером. Сконфигурировал работу со стором NgRx всего приложения"
+        "desc": "Developed the application architecture, routing and configured NgRx"
       },
       "fourth": {
         "name": "Dimitrii Shabanov",
-        "desc": "Разработал страницу NotFound"
+        "desc": "Developed the application components"
       }
     },
     "notification": {
@@ -76,17 +76,10 @@
       "back-btn": "Назад"
     },
     "create-column-modal": {
-      "title": "Новая задача",
+      "title": "Новая колонка",
       "column-title": "Название",
       "cancel-btn": "Отменить",
       "submit-btn": "Сохранить"
-    },
-    "create-task-modal": {
-      "title": "Новая задача",
-      "task-title": "Название",
-      "cancel-btn": "Отменить",
-      "submit-btn": "Сохранить",
-      "description":"Описание"
     }
   },
   "main": {
@@ -152,10 +145,6 @@
       "submit-btn": "Сохранить",
       "delete-btn": "Удалить профиль"
     }
-  },
-  "modal": {
-    "save": "Сохранить",
-    "cancel": "Отменить"
   },
 	"languages": {
 		"en": "АНГ",

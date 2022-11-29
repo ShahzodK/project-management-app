@@ -7,7 +7,6 @@ import { selectTasks } from '../../redux/selectors/board.selectors';
 import { map } from 'rxjs/operators';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { TranslateService } from '@ngx-translate/core';
 import { ITask } from '../../models/task.model';
 import { updateArrayOrder } from 'src/app/shared/consts/updateArrayOrder';
 import { ModalComponent } from '../../../shared/components/modal/modal.component';
@@ -35,8 +34,7 @@ export class ColumnComponent {
 
   constructor(
     private dialog: MatDialog,
-    private store: Store,
-    private translateService: TranslateService) {
+    private store: Store) {
   }
 
   public editColumn(): void {
@@ -67,15 +65,15 @@ export class ColumnComponent {
 
     dialogConfig.autoFocus = 'dialog';
     dialogConfig.data = {
-      title: this.translateService.instant('board.create-task-modal.title'),
+      title: 'Create Task',
       formFields: [
         {
-          label: this.translateService.instant('board.create-task-modal.task-title'),
-          name: this.translateService.instant('board.create-task-modal.task-title'),
+          label: 'Title',
+          name: 'title',
         },
         {
-          label: this.translateService.instant('board.create-task-modal.description'),
-          name: this.translateService.instant('board.create-task-modal.description'),
+          label: 'Description',
+          name: 'description',
         },
       ],
     };

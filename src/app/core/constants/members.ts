@@ -2,7 +2,7 @@ export const members = [
   {
     avatar: 'https://avatars.githubusercontent.com/u/4479289?v=4',
     name: 'core.members.first.name',
-    description: 'core.members.first.desc',
+    description: 'welcome.members.first.desc',
     github: 'https://github.com/Guseff',
   },
   {
