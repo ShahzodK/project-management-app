@@ -86,13 +86,6 @@
       "cancel-btn": "Bekor qilish",
       "submit-btn": "Saqlash",
       "description":"tavsifi"
-    },
-    "edit-task-modal": {
-      "title": "Vazifani taxrirlash",
-      "task-title": "Sarlavha",
-      "cancel-btn": "Bekor qilish",
-      "submit-btn": "Saqlash",
-      "description":"tavsifi"
     }
   },
   "main": {
