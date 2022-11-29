@@ -89,13 +89,6 @@
       "cancel-btn": "Cancel",
       "submit-btn": "Save",
       "description":"Description"
-    },
-    "edit-task-modal": {
-      "title": "Edit task",
-      "task-title": "Title",
-      "cancel-btn": "Cancel",
-      "submit-btn": "Save",
-      "description":"Description"
     }
   },
   "main": {
