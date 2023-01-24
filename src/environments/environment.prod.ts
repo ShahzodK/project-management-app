@@ -4,5 +4,5 @@ export const environment = {
   production: true,
   locales: Object.keys(ELocales),
   defaultLocale: ELocales.EN,
-  baseUrl: 'https://teamwork-app.herokuapp.com/',
+  baseUrl: 'https://teamwork.herokuapp.com/,
 };
