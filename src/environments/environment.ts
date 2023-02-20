@@ -9,7 +9,7 @@ export const environment = {
   production: false,
   locales: Object.keys(ELocales),
   defaultLocale: ELocales.EN,
-  baseUrl: 'https://react-learnwords.herokuapp.com/',
+  baseUrl: 'https://teamwork-app.herokuapp.com/',
 };
 
 /*
